@@ -29,6 +29,8 @@ proguard/
 */.idea/
 .idea/
 study/Oyster01/.idea/
+/study/Oyster01/.idea/
+
 proguard-project.txt
 
 src/com/oyster/DBandContentProviderEx/ParseKeys.java
