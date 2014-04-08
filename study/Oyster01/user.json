@@ -1,0 +1,10 @@
+{
+	"age":29,
+	"name":"NAU",
+	"messages":["msg 1","msg 2","msg 3"],
+	"adress" : {
+		"city" : "Kiev",
+		"street" : "Yangelya",
+		"number": 22,
+		"room" : 200}
+}
