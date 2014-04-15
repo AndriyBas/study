@@ -7,13 +7,13 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
- * class represents a Position occupied by the worker
+ * class represents a __Position occupied by the worker
  *
  * @author bamboo
  * @since 4/8/14 12:02 AM
  */
 @Stored(name = "POSITION")
-public class Position {
+public class __Position {
 
     @Stored(name = "_ID", converter = UUIDConverter.class)
     @Primary
@@ -28,32 +28,32 @@ public class Position {
     /**
      * default constructor
      */
-    public Position() {
+    public __Position() {
     }
 
 
     /**
      * Constructor
      *
-     * @param id          UUID of the Position
-     * @param name        name of the Position
+     * @param id          UUID of the __Position
+     * @param name        name of the __Position
      * @param description description of the position
      */
-    public Position(UUID id, String name, String description) {
+    public __Position(UUID id, String name, String description) {
         this.name = name;
         this.id = id;
         this.description = description;
     }
 
     /**
-     * @return UUID of the Position
+     * @return UUID of the __Position
      */
     public UUID getId() {
         return id;
     }
 
     /**
-     * set UUID of the Position
+     * set UUID of the __Position
      *
      * @param id
      */
@@ -62,14 +62,14 @@ public class Position {
     }
 
     /**
-     * @return name of the Position
+     * @return name of the __Position
      */
     public String getName() {
         return name;
     }
 
     /**
-     * set name of the Position
+     * set name of the __Position
      *
      * @param name
      */
@@ -78,14 +78,14 @@ public class Position {
     }
 
     /**
-     * @return description  of the Position
+     * @return description  of the __Position
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * set description  of the Position
+     * set description  of the __Position
      *
      * @param description
      */
@@ -94,7 +94,7 @@ public class Position {
     }
 
     /**
-     * show all info about the Position
+     * show all info about the __Position
      *
      * @return
      */

@@ -46,11 +46,10 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      * retrieves a Jdbc dao instance
      *
      * @param context context of the application
-     * @param daoBean Maven's dao bean
      * @return an instance to the Jdbc dao
      */
-    public static DAOCRUDJdbc getInstance(ApplicationContext context, String daoBean) {
-        return (DAOCRUDJdbc) context.getBean(daoBean);
+    public static DAOCRUDJdbc getInstance(ApplicationContext context) {
+        return (DAOCRUDJdbc) context.getBean("DAOJdbc");
     }
 
     /**
@@ -78,7 +77,10 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
 
 //        System.out.println(sql);
 
+
         getJdbcTemplate().update(sql);
+
+
         return instance;
     }
 

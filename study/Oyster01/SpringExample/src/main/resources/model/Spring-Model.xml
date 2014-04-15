@@ -4,10 +4,10 @@
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <bean
-            id="DAOPosition"
+            id="DAOJdbc"
             class="com.oyster.dao.impl.DAOCRUDJdbc"
             >
-        <property name="dataSource" ref="dataSourcePosition"/>
+        <property name="dataSource" ref="dataSourceModelJdbc"/>
     </bean>
 
 </beans>

@@ -4,7 +4,6 @@
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <import resource="databases/Spring-Datasource.xml"/>
-    <import resource="administrator/Spring-Administrator.xml"/>
-    <import resource="position/Spring-Position.xml"/>
+    <import resource="model/Spring-Model.xml"/>
 
 </beans>

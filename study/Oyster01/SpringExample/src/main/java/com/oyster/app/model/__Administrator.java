@@ -8,13 +8,13 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
- * Class represents Administrator in the system
+ * Class represents __Administrator in the system
  *
  * @author bamboo
  * @since 4/8/14 12:01 AM
  */
 @Stored(name = "ADMINISTRATOR")
-public class Administrator {
+public class __Administrator {
 
     @Stored(name = "_ID", converter = UUIDConverter.class)
     @Primary
@@ -41,12 +41,12 @@ public class Administrator {
     /**
      * default constructor
      */
-    public Administrator() {
+    public __Administrator() {
     }
 
 
     /**
-     * create Administrator with all fields defined
+     * create __Administrator with all fields defined
      *
      * @param id
      * @param name
@@ -56,7 +56,7 @@ public class Administrator {
      * @param positionId
      * @param age
      */
-    public Administrator(UUID id, String name, String username, String email, String password, UUID positionId, int age) {
+    public __Administrator(UUID id, String name, String username, String email, String password, UUID positionId, int age) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -67,14 +67,14 @@ public class Administrator {
     }
 
     /**
-     * @return UUID of the Administrator
+     * @return UUID of the __Administrator
      */
     public UUID getId() {
         return id;
     }
 
     /**
-     * set UUID of the Administrator
+     * set UUID of the __Administrator
      *
      * @param id
      */
@@ -83,14 +83,14 @@ public class Administrator {
     }
 
     /**
-     * @return name of the Administrator
+     * @return name of the __Administrator
      */
     public String getName() {
         return name;
     }
 
     /**
-     * set name of the Administrator
+     * set name of the __Administrator
      *
      * @param name
      */
@@ -99,14 +99,14 @@ public class Administrator {
     }
 
     /**
-     * @return username  of the Administrator
+     * @return username  of the __Administrator
      */
     public String getUsername() {
         return username;
     }
 
     /**
-     * set username  of the Administrator
+     * set username  of the __Administrator
      *
      * @param username
      */
@@ -115,14 +115,14 @@ public class Administrator {
     }
 
     /**
-     * @return email  of the Administrator
+     * @return email  of the __Administrator
      */
     public String getEmail() {
         return email;
     }
 
     /**
-     * set email  of the Administrator
+     * set email  of the __Administrator
      *
      * @param email
      */
@@ -131,14 +131,14 @@ public class Administrator {
     }
 
     /**
-     * @return password  of the Administrator
+     * @return password  of the __Administrator
      */
     public String getPassword() {
         return password;
     }
 
     /**
-     * set password  of the Administrator
+     * set password  of the __Administrator
      *
      * @param password
      */
@@ -147,14 +147,14 @@ public class Administrator {
     }
 
     /**
-     * @return Positions id  of the Administrator
+     * @return Positions id  of the __Administrator
      */
     public UUID getPositionId() {
         return positionId;
     }
 
     /**
-     * set Positions id  of the Administrator
+     * set Positions id  of the __Administrator
      *
      * @param positionId
      */
@@ -163,14 +163,14 @@ public class Administrator {
     }
 
     /**
-     * @return age  of the Administrator
+     * @return age  of the __Administrator
      */
     public int getAge() {
         return age;
     }
 
     /**
-     * set age  of the Administrator
+     * set age  of the __Administrator
      *
      * @param age
      */

@@ -1,7 +1,7 @@
 package com.oyster.app.test;
 
-import com.oyster.app.model.Administrator;
-import com.oyster.app.model.Position;
+import com.oyster.app.model.__Administrator;
+import com.oyster.app.model.__Position;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
@@ -15,7 +15,41 @@ import java.util.UUID;
  * class to test the program
  */
 public class App {
-    public static void main(String[] args) throws DAOException {
+
+
+    public static void main(String[] args) {
+
+/*
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
+        JFrame loginFrame = new LoginFrame();
+
+        loginFrame.setSize(290, 120);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setResizable(false);
+
+        loginFrame.setVisible(true);
+
+*/
+
+        try {
+            runTest();
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void runTest() throws DAOException {
         ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
 
@@ -28,13 +62,13 @@ public class App {
 //        System.out.println(customer1);
 
 
-        Position p = new Position(UUID.randomUUID(), "name", "desc");
+        __Position p = new __Position(UUID.randomUUID(), "name", "desc");
 //        System.out.println(DAOAnnotationUtils.entityToMap(p));
 //        System.out.println(DAOAnnotationUtils.getStoredFields(p.getClass()));
 
 //        System.out.println(DAOAnnotationUtils.getValueList(p));
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(context, "DAOPosition");
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(context);
         x.insert(p);
 
         p.setDescription(" _ fuck yeah 2");
@@ -44,10 +78,10 @@ public class App {
 
         x.delete(p);
 
-        List<Position> list = x.select(Position.class, new DAOFilter() {
+        List<__Position> list = x.select(__Position.class, new DAOFilter() {
             @Override
             public <T> boolean accept(T entity) {
-                Position p = (Position) entity;
+                __Position p = (__Position) entity;
                 return (p.getName().equals("ololo new name"));
             }
         });
@@ -57,9 +91,9 @@ public class App {
         }
 
 
-        Administrator admin = new Administrator(UUID.randomUUID(), "admin", "root", "email@gmail.com", "password", p.getId(), 102);
+        __Administrator admin = new __Administrator(UUID.randomUUID(), "admin", "root", "email@gmail.com", "password", p.getId(), 102);
 
-        DAOCRUDJdbc adminJdbc = DAOCRUDJdbc.getInstance(context, "DAOAdministrator");
+        DAOCRUDJdbc adminJdbc = DAOCRUDJdbc.getInstance(context);
 
         adminJdbc.insert(admin);
 
@@ -67,13 +101,12 @@ public class App {
 
         adminJdbc.update(admin);
 
-        DAOCRUDJdbc adminJdbc2 = (DAOCRUDJdbc) context.getBean("DAOAdministrator");
+        DAOCRUDJdbc adminJdbc2 = (DAOCRUDJdbc) context.getBean("DAOJdbc");
 
-        Administrator ad2 = new Administrator(UUID.randomUUID(), "admin2", "root2", "email@gmail.com", "password", p.getId(), 102);
+        __Administrator ad2 = new __Administrator(UUID.randomUUID(), "admin2", "root2", "email@gmail.com", "password", p.getId(), 102);
         adminJdbc2.insert(ad2);
 
         adminJdbc2.delete(admin);
         adminJdbc.delete(ad2);
-
     }
 }
