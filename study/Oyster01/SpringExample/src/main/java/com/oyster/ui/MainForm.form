@@ -425,7 +425,9 @@
                 <children>
                   <component id="9be9" class="javax.swing.JTable" binding="mTable1" default-binding="true">
                     <constraints border-constraint="Center"/>
-                    <properties/>
+                    <properties>
+                      <fillsViewportHeight value="false"/>
+                    </properties>
                   </component>
                 </children>
               </grid>

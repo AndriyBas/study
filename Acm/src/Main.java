@@ -69,33 +69,33 @@ public class Main {
             }
         }
 
-
         @SuppressWarnings("deprecation")
         public void solve() throws IOException {
 
+            int c = in.nextInt();
+            int d = in.nextInt();
             int n = in.nextInt();
             int m = in.nextInt();
+            int k = in.nextInt();
 
-            int[] a = new int[n + 1];
+            int N = n * m + 1;
+            int[] a = new int[N];
             Arrays.fill(a, 0);
-            int last = n;
 
-            for (int i = 0; i < m; i++) {
-                int b = in.nextInt();
-                while (last >= b) {
-                    a[last] = b;
-                    last--;
-                }
+            for (int i = 0; i <= n; i++) {
+                a[i] = Math.min(c, d * i);
             }
 
-            for (int i = 1; i <= n; i++) {
-                System.out.print(a[i]);
-                System.out.print(" ");
+            for (int i = n + 1; i < N; i++) {
+                a[i] = Math.min(a[i - 1] + d, a[i - n] + c);
             }
 
+            int s = Math.max(n * m - k, 0);
+
+            int res = a[s];
+
+            System.out.println(res);
         }
-
-
     }
 
 
