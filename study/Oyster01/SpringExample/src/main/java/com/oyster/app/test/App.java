@@ -2,6 +2,11 @@ package com.oyster.app.test;
 
 import com.oyster.app.model.__Administrator;
 import com.oyster.app.model.__Position;
+import com.oyster.core.controller.CommandExecutor;
+import com.oyster.core.controller.command.Context;
+import com.oyster.core.controller.command.RegisterStudentCommand;
+import com.oyster.core.controller.exception.CommandNotFoundException;
+import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
@@ -42,11 +47,49 @@ public class App {
 
 */
 
-        try {
+       /* try {
             runTest();
         } catch (DAOException e) {
             e.printStackTrace();
+        }*/
+
+        runCommandTest();
+    }
+
+
+    public static void runCommandTest() {
+
+        CommandExecutor executor = CommandExecutor.getInstance();
+        executor.addCommand(RegisterStudentCommand.class);
+
+        try {
+
+            Context c = new Context();
+            c.put("name", "Andriy");
+            c.put("surname", "Bas");
+            c.put("birthday", 100L);
+            c.put("faculty", "FIOT");
+            c.put("group", "IO-22");
+            c.put("course", 2);
+            c.put("comment", " ololo ");
+            c.put("bookNum", 2201);
+
+            executor.execute("registerStudent", c, new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("in main thread : finished");
+                }
+            });
+        } catch (CommandNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvalidCommandParameterException e) {
+            e.printStackTrace();
         }
+
     }
 
     public static void runTest() throws DAOException {
