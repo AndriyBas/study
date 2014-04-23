@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<preference-headers
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+    <header
+            android:fragment="com.commonsware.empublite.prefs.EditPreferencesActivity$First"
+            android:title="@string/header1title"
+            android:summary="@string/header1summary"
+            />
+
+    <header
+            android:fragment="com.commonsware.empublite.prefs.EditPreferencesActivity$Second"
+            android:title="@string/header2title"
+            android:summary="@string/header2summary"
+            />
+
+</preference-headers>

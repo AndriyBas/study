@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<preference-headers
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+    <header
+            android:fragment="com.commonsware.empublite.prefs.StockPrefsFragment"
+            android:title="@string/preftitle"
+            android:summary="@string/prefdesc"
+            >
+        <extra android:name="resource" android:value="book_display_prefs"/>
+    </header>
+
+</preference-headers>
