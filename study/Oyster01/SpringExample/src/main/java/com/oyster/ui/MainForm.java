@@ -115,6 +115,13 @@ public class MainForm extends JFrame {
 
                 case "Група":
 
+                    NewGroupCustomDialog gr = new NewGroupCustomDialog(this, this);
+                    gr.setPreferredSize(new Dimension(350, 250));
+                    gr.setMinimumSize(new Dimension(350, 250));
+
+                    gr.pack();
+
+                    gr.setVisible(true);
                     return;
 
                 case "Факультет":
