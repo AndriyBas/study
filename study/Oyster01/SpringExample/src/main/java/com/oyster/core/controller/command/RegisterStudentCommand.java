@@ -49,5 +49,4 @@ public class RegisterStudentCommand extends AbstractCommand {
             SwingUtilities.invokeLater(getOnPostExecute());
         }
     }
-
 }

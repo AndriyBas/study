@@ -10,9 +10,11 @@ import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
+import com.oyster.ui.LoginFrame;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,7 +26,6 @@ public class App {
 
     public static void main(String[] args) {
 
-/*
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
@@ -45,7 +46,6 @@ public class App {
 
         loginFrame.setVisible(true);
 
-*/
 
        /* try {
             runTest();
@@ -53,7 +53,7 @@ public class App {
             e.printStackTrace();
         }*/
 
-        runCommandTest();
+//        runCommandTest();
     }
 
 

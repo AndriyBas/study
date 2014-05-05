@@ -22,14 +22,18 @@ public class Profile {
     @Stored(name = "surname")
     private String surname;
 
+    @Stored(name = "password")
+    private String password;
+
     @Stored(name = "birthday", converter = LongConverter.class)
     private long birthday;
 
 
-    public Profile(long id, String name, String surname, long birthday) {
+    public Profile(long id, String name, String surname, String password, long birthday) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.password = password;
         this.birthday = birthday;
     }
 

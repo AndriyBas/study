@@ -3,6 +3,7 @@ package com.oyster.ui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 
@@ -22,7 +23,7 @@ public class MainForm extends JFrame {
     private JPanel mPanelLeftControl;
     private JButton mButtonRating;
     private JButton mButtonSave;
-    private JButton mВидалитиButton;
+    private JButton mButtonDelete;
     private JList mListHistoryProfile;
     private JTextField mTextFieldInfo1;
     private JTextField mTextFieldInfo2;
@@ -36,6 +37,13 @@ public class MainForm extends JFrame {
     private JComboBox mComboBoxScheduleFaculty;
     private JScrollPane mListGroups;
     private JTable mTable1;
+    private JLabel mLabel4;
+    private JLabel mLable5;
+    private JLabel mLable6;
+    private JLabel mLable1;
+    private JLabel mLable2;
+    private JLabel mLable3;
+    private JLabel mLablePhoto;
 
 
     public MainForm() {
@@ -46,7 +54,8 @@ public class MainForm extends JFrame {
         add(rootPanel);
         setPreferredSize(new Dimension(750, 450));
         setMinimumSize(new Dimension(750, 450));
-        addJMenu();
+
+        hardCoreInit();
 
         pack();
 
@@ -54,6 +63,73 @@ public class MainForm extends JFrame {
 
         setVisible(true);
     }
+
+
+    private void hardCoreInit() {
+
+        addJMenu();
+
+
+        mButtonNewUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newUserAction();
+            }
+        });
+
+    }
+
+    private void newUserAction() {
+        Object[] possibilities = {"Студент", "Виладач", "Адміністратор", "Група", "Факультет", "Предмет"};
+        String s = (String) JOptionPane.showInputDialog(
+                MainForm.this,
+                "Виберіть категорію, яку хочете створити:\n",
+                "Новий акаунт",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                possibilities,
+                "Студент");
+
+//If a string was returned, say so.
+        if ((s != null) && (s.length() > 0)) {
+
+            switch (s) {
+                case "Студент":
+
+
+                    CustomDialog d = new CustomDialog(this, "wow", this);
+                    d.setPreferredSize(new Dimension(350, 250));
+                    d.setMinimumSize(new Dimension(350, 250));
+
+                    d.pack();
+
+                    d.setVisible(true);
+
+                    return;
+                case "Виладач":
+
+                    return;
+                case "Адміністратор":
+
+                    return;
+
+                case "Група":
+
+                    return;
+
+                case "Факультет":
+
+                    return;
+
+                case "Предмет":
+
+                    return;
+
+            }
+        }
+
+    }
+
 
     private void addJMenu() {
         //Where the GUI is created:
@@ -75,9 +151,18 @@ public class MainForm extends JFrame {
 
 //a group of JMenuItems
         menuItem = new JMenuItem("Додати акаунт",
-                KeyEvent.VK_N);
+                KeyEvent
+                        .VK_N
+        );
+        menuItem.setMnemonic(KeyEvent.VK_N);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_N, ActionEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newUserAction();
+            }
+        });
         menu.add(menuItem);
 
 
@@ -109,6 +194,10 @@ public class MainForm extends JFrame {
 
 
         setJMenuBar(menuBar);
+    }
+
+    public void setLabel(String msg) {
+        this.setTitle(msg);
     }
 
 }
