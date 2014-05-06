@@ -2,13 +2,17 @@ package com.oyster.ui;
 
 import com.oyster.app.model.Faculty;
 import com.oyster.app.model.Group;
+import com.oyster.app.test.App;
 import com.oyster.core.controller.command.Context;
+import com.oyster.dao.exception.DAOException;
+import com.oyster.dao.impl.DAOCRUDJdbc;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.UUID;
 
 
 /**
@@ -59,7 +63,6 @@ public class MainForm extends JFrame {
         super("KPI City");
 //        setContentPane(rootPane);
 
-
         add(rootPanel);
         setPreferredSize(new Dimension(750, 480));
         setMinimumSize(new Dimension(750, 480));
@@ -87,12 +90,7 @@ public class MainForm extends JFrame {
             }
         });
 
-        mButtonSave.setEnabled(false);
-        mComboBoxProfileStudentTypeFaculty.setVisible(false);
-        mComboBoxProfileStudentTypeGroup.setVisible(false);
-        mScrollPanePeople.setVisible(false);
-        mButtonDelete.setEnabled(false);
-        mButtonRating.setEnabled(false);
+        comboBoxChangeAction();
         mComboBoxProfileType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -116,44 +114,62 @@ public class MainForm extends JFrame {
     private void comboBoxChangeAction() {
 
         mButtonSave.setEnabled(false);
+        int selected = mComboBoxProfileType.getSelectedIndex();
+
+        if (selected < 3) {
+            mComboBoxProfileStudentTypeFaculty.setVisible(false);
+            mComboBoxProfileStudentTypeGroup.setVisible(false);
+            mButtonRating.setEnabled(false);
+            mLable7.setVisible(false);
+            mTextFieldInfo7.setVisible(false);
+            mLable4.setText("Посада");
+            mLabel5.setText("Зарплата");
+            mLable6.setText("Працює із");
+
+        } else {
+
+            mComboBoxProfileStudentTypeFaculty.setVisible(true);
+            mComboBoxProfileStudentTypeGroup.setVisible(true);
+            mButtonRating.setEnabled(true);
+            mLable7.setVisible(true);
+            mTextFieldInfo7.setVisible(true);
+            mLable4.setText("Факультет");
+            mLabel5.setText("Курс");
+            mLable6.setText("Група");
+            mLable7.setText("НЗК");
+
+        }
 
         switch (mComboBoxProfileType.getSelectedIndex()) {
             case 0:
 
-                mComboBoxProfileStudentTypeFaculty.setVisible(false);
-                mComboBoxProfileStudentTypeGroup.setVisible(false);
+
                 mScrollPanePeople.setVisible(false);
                 mButtonDelete.setEnabled(false);
-                mButtonRating.setEnabled(false);
+
 
                 break;
             case 1:
 
-                mComboBoxProfileStudentTypeFaculty.setVisible(false);
-                mComboBoxProfileStudentTypeGroup.setVisible(false);
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
-                mButtonRating.setEnabled(false);
+
 
                 break;
 
             case 2:
 
-                mComboBoxProfileStudentTypeFaculty.setVisible(false);
-                mComboBoxProfileStudentTypeGroup.setVisible(false);
+
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
-                mButtonRating.setEnabled(false);
+
 
                 break;
 
             case 3:
 
-                mComboBoxProfileStudentTypeFaculty.setVisible(true);
-                mComboBoxProfileStudentTypeGroup.setVisible(true);
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
-                mButtonRating.setEnabled(true);
 
 
                 mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(new Object[]{"ФІОТ", "ІПСА"}));
@@ -299,6 +315,36 @@ public class MainForm extends JFrame {
 
 
     public void performAction(String action, Context c) {
+
+        switch (action) {
+            case "registerSubject":
+
+                break;
+            case "registerFaculty":
+
+                break;
+            case "registerGroup":
+
+                Group g = new Group(UUID.randomUUID(), (String) c.get("chipher"), (String) c.get("name"));
+                DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(App.context);
+                try {
+                    x.insert(g);
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case "registerStudent":
+
+                break;
+
+            case "registerTeacher":
+
+                break;
+            case "registerAdmin":
+
+                break;
+        }
 
     }
 

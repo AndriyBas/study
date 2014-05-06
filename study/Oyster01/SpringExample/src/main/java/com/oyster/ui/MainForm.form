@@ -158,7 +158,7 @@
                             <properties>
                               <enabled value="true"/>
                               <horizontalAlignment value="0"/>
-                              <icon value="com/oyster/ui/facee.png"/>
+                              <icon value="facee.png"/>
                               <text value=""/>
                               <verticalAlignment value="0"/>
                               <verticalTextPosition value="3"/>

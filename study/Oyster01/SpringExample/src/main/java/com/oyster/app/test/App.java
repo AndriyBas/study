@@ -24,7 +24,10 @@ import java.util.UUID;
 public class App {
 
 
+    public static ApplicationContext context;
+
     public static void main(String[] args) {
+
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -37,6 +40,8 @@ public class App {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+
+        context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
         JFrame loginFrame = new LoginFrame();
 
@@ -93,7 +98,6 @@ public class App {
     }
 
     public static void runTest() throws DAOException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
 
 //        Random r = new Random();

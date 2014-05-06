@@ -12,7 +12,18 @@ import java.util.UUID;
  * @since 4/15/14 10:47 PM
  */
 
-@Stored(name = "GROUP_ID")
+/*
+
+    CREATE TABLE `GROUP_TBL` (
+            `_id` VARCHAR(50),
+    `name` VARCHAR(30),
+    `chipher`  VARCHAR(50),
+    PRIMARY KEY (`_ID`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ */
+@Stored(name = "GROUP_TBL")
 public class Group {
 
     @Primary
