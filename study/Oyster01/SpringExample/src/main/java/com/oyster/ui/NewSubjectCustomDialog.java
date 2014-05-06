@@ -1,15 +1,16 @@
 package com.oyster.ui;
 
-import com.oyster.app.model.Faculty;
 import com.oyster.core.controller.command.Context;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.UUID;
 
 /* 1.4 example used by DialogDemo.java. */
 class NewSubjectCustomDialog extends JDialog
@@ -94,6 +95,9 @@ class NewSubjectCustomDialog extends JDialog
 
         //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
+
+        setPreferredSize(new Dimension(350, 140));
+        setMinimumSize(new Dimension(350, 140));
     }
 
     /**

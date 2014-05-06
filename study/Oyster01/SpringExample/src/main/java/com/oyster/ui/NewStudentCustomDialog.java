@@ -134,6 +134,10 @@ class NewStudentCustomDialog extends JDialog
 
         //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
+
+
+        setPreferredSize(new Dimension(350, 490));
+        setMinimumSize(new Dimension(350, 490));
     }
 
     private ActionListener textFieldActionLstener = new ActionListener() {

@@ -52,6 +52,7 @@ public class MainForm extends JFrame {
     private JPasswordField mPasswordField1;
     private JLabel mLable4;
     private JTextField mTextFieldInfo4;
+    private JScrollPane mScrollPanePeople;
 
 
     public MainForm() {
@@ -60,8 +61,8 @@ public class MainForm extends JFrame {
 
 
         add(rootPanel);
-        setPreferredSize(new Dimension(750, 450));
-        setMinimumSize(new Dimension(750, 450));
+        setPreferredSize(new Dimension(750, 480));
+        setMinimumSize(new Dimension(750, 480));
 
         hardCoreInit();
 
@@ -79,7 +80,6 @@ public class MainForm extends JFrame {
 
         addJMenu();
 
-
         mButtonNewUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,6 +87,80 @@ public class MainForm extends JFrame {
             }
         });
 
+        mButtonSave.setEnabled(false);
+        mComboBoxProfileStudentTypeFaculty.setVisible(false);
+        mComboBoxProfileStudentTypeGroup.setVisible(false);
+        mScrollPanePeople.setVisible(false);
+        mButtonDelete.setEnabled(false);
+        mButtonRating.setEnabled(false);
+        mComboBoxProfileType.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comboBoxChangeAction();
+            }
+        });
+
+        mComboBoxAllHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                comboBoxHistoryChangeAction();
+            }
+        });
+
+    }
+
+    private void comboBoxHistoryChangeAction() {
+
+    }
+
+    private void comboBoxChangeAction() {
+
+        mButtonSave.setEnabled(false);
+
+        switch (mComboBoxProfileType.getSelectedIndex()) {
+            case 0:
+
+                mComboBoxProfileStudentTypeFaculty.setVisible(false);
+                mComboBoxProfileStudentTypeGroup.setVisible(false);
+                mScrollPanePeople.setVisible(false);
+                mButtonDelete.setEnabled(false);
+                mButtonRating.setEnabled(false);
+
+                break;
+            case 1:
+
+                mComboBoxProfileStudentTypeFaculty.setVisible(false);
+                mComboBoxProfileStudentTypeGroup.setVisible(false);
+                mScrollPanePeople.setVisible(true);
+                mButtonDelete.setEnabled(true);
+                mButtonRating.setEnabled(false);
+
+                break;
+
+            case 2:
+
+                mComboBoxProfileStudentTypeFaculty.setVisible(false);
+                mComboBoxProfileStudentTypeGroup.setVisible(false);
+                mScrollPanePeople.setVisible(true);
+                mButtonDelete.setEnabled(true);
+                mButtonRating.setEnabled(false);
+
+                break;
+
+            case 3:
+
+                mComboBoxProfileStudentTypeFaculty.setVisible(true);
+                mComboBoxProfileStudentTypeGroup.setVisible(true);
+                mScrollPanePeople.setVisible(true);
+                mButtonDelete.setEnabled(true);
+                mButtonRating.setEnabled(true);
+
+
+                mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(new Object[]{"ФІОТ", "ІПСА"}));
+                mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(new Object[]{"ІО-21", "ІО-22"}));
+
+                break;
+        }
     }
 
     private void newUserAction() {
@@ -106,49 +180,46 @@ public class MainForm extends JFrame {
             switch (s) {
                 case "Студент":
 
-
                     NewStudentCustomDialog d = new NewStudentCustomDialog(this, this);
-                    d.setPreferredSize(new Dimension(350, 490));
-                    d.setMinimumSize(new Dimension(350, 490));
                     d.pack();
                     d.setVisible(true);
+                    break;
 
-                    return;
                 case "Виладач":
 
-                    return;
+                    NewTeacherCustomDialog teach = new NewTeacherCustomDialog(this, this);
+                    teach.pack();
+                    teach.setVisible(true);
+                    break;
+
                 case "Адміністратор":
 
-                    return;
+                    NewAdminCustomDialog adminDialog = new NewAdminCustomDialog(this, this);
+                    adminDialog.pack();
+                    adminDialog.setVisible(true);
+                    break;
 
                 case "Група":
 
                     NewGroupCustomDialog gr = new NewGroupCustomDialog(this, this);
-                    gr.setPreferredSize(new Dimension(350, 190));
-                    gr.setMinimumSize(new Dimension(350, 150));
+
                     gr.pack();
                     gr.setVisible(true);
-                    return;
+                    break;
 
                 case "Факультет":
 
-
                     NewFacultyCustomDialog fac = new NewFacultyCustomDialog(this, this);
-                    fac.setPreferredSize(new Dimension(350, 140));
-                    fac.setMinimumSize(new Dimension(350, 140));
                     fac.pack();
                     fac.setVisible(true);
-                    return;
+                    break;
 
                 case "Предмет":
 
                     NewSubjectCustomDialog sub = new NewSubjectCustomDialog(this, this);
-                    sub.setPreferredSize(new Dimension(350, 140));
-                    sub.setMinimumSize(new Dimension(350, 140));
                     sub.pack();
                     sub.setVisible(true);
-                    return;
-
+                    break;
             }
         }
 

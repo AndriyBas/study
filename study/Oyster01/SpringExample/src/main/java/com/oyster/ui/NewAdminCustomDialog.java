@@ -10,14 +10,14 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewTeacherCustomDialog extends JDialog
+class NewAdminCustomDialog extends JDialog
         implements PropertyChangeListener {
     private String userName = null;
     private String userSurmane = null;
     private String userBirthDate = null;
-    private String teacherPosition;
-    private String teacherSalary;
-    private String teacherDateHired;
+    private String adminPosition;
+    private String adminSalary;
+    private String adminDateHired;
     private String userPassword;
     private JTextField textField1;
     private JTextField textField2;
@@ -44,12 +44,12 @@ class NewTeacherCustomDialog extends JDialog
     /**
      * Creates the reusable dialog.
      */
-    public NewTeacherCustomDialog(Frame aFrame, MainForm parent) {
+    public NewAdminCustomDialog(Frame aFrame, MainForm parent) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
         dd = parent;
 
-        setTitle("Створити профіль викладача");
+        setTitle("Створити профіль адміністратора");
 
         textField1 = new JTextField(10);
         textField2 = new JTextField(15);
@@ -60,8 +60,8 @@ class NewTeacherCustomDialog extends JDialog
         mJPasswordField = new JPasswordField(15);
 
         //Create an array of the text and components to be displayed.
-        String msgString1 = "Ім’я викладача: ";
-        String msgString2 = "Прізвище викладача : ";
+        String msgString1 = "Ім’я адміністратора: ";
+        String msgString2 = "Прізвище адміністратора : ";
         String msgString3 = "День народження : ";
         String msgString4 = "Посада : ";
         String msgString5 = "Зарплата / рік : ";
@@ -133,7 +133,6 @@ class NewTeacherCustomDialog extends JDialog
 
         setPreferredSize(new Dimension(350, 450));
         setMinimumSize(new Dimension(350, 450));
-
     }
 
     private ActionListener textFieldActionLstener = new ActionListener() {
@@ -171,9 +170,9 @@ class NewTeacherCustomDialog extends JDialog
                 userName = textField1.getText();
                 userSurmane = textField2.getText();
                 userBirthDate = textField3.getText();
-                teacherPosition = textField4.getText();
-                teacherSalary = textField5.getText();
-                teacherDateHired = textField6.getText();
+                adminPosition = textField4.getText();
+                adminSalary = textField5.getText();
+                adminDateHired = textField6.getText();
                 userPassword = new String(mJPasswordField.getPassword());
 
                 boolean errorOccured = false;
@@ -182,7 +181,7 @@ class NewTeacherCustomDialog extends JDialog
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
                 if (userName.trim().length() == 0) {
-                    errorMsg.append(" ім’я викладача");
+                    errorMsg.append(" ім’я адміністратора");
                     errorOccured = true;
                 }
 
@@ -191,7 +190,7 @@ class NewTeacherCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  прізвище викладача");
+                    errorMsg.append("  прізвище адміністратора");
                     focusComponent = textField2;
                 }
                 if (userBirthDate.trim().length() == 0) {
@@ -203,7 +202,7 @@ class NewTeacherCustomDialog extends JDialog
                     focusComponent = textField3;
                 }
 
-                if (teacherPosition.trim().length() == 0) {
+                if (adminPosition.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -212,7 +211,7 @@ class NewTeacherCustomDialog extends JDialog
                     focusComponent = textField4;
                 }
 
-                if (teacherSalary.trim().length() == 0) {
+                if (adminSalary.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -220,7 +219,7 @@ class NewTeacherCustomDialog extends JDialog
                     errorMsg.append("  зарплату");
                     focusComponent = textField5;
                 }
-                if (teacherDateHired.trim().length() == 0) {
+                if (adminDateHired.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -248,20 +247,20 @@ class NewTeacherCustomDialog extends JDialog
                     c.put("name", userName);
                     c.put("surname", userSurmane);
                     c.put("birthday", userBirthDate);
-                    c.put("position", teacherPosition);
-                    c.put("salary", Integer.parseInt(teacherSalary));
-                    c.put("dateHired", teacherDateHired);
+                    c.put("position", adminPosition);
+                    c.put("salary", Integer.parseInt(adminSalary));
+                    c.put("dateHired", adminDateHired);
                     c.put("password", userPassword);
 
                     // and kick off action for performing
-                    dd.performAction("registerTeacher", c);
+                    dd.performAction("registerAdmin", c);
 
                     clearAndHide();
                 } else {
                     //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
-                            NewTeacherCustomDialog.this,
+                            NewAdminCustomDialog.this,
                             errorMsg.toString(),
                             "Спробуйте ще раз",
                             JOptionPane.ERROR_MESSAGE
@@ -269,9 +268,9 @@ class NewTeacherCustomDialog extends JDialog
                     userName = null;
                     userSurmane = null;
                     userBirthDate = null;
-                    teacherPosition = null;
-                    teacherSalary = null;
-                    teacherDateHired = null;
+                    adminPosition = null;
+                    adminSalary = null;
+                    adminDateHired = null;
                     userPassword = null;
                     focusComponent.requestFocusInWindow();
                 }
@@ -279,9 +278,9 @@ class NewTeacherCustomDialog extends JDialog
                 userName = null;
                 userSurmane = null;
                 userBirthDate = null;
-                teacherPosition = null;
-                teacherSalary = null;
-                teacherDateHired = null;
+                adminPosition = null;
+                adminSalary = null;
+                adminDateHired = null;
                 userPassword = null;
                 clearAndHide();
             }
