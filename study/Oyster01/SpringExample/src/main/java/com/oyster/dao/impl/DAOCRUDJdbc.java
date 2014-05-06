@@ -75,7 +75,9 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         String sql = "INSERT INTO " + DAOAnnotationUtils.getStorageName(instance.getClass())
                 + " (" + sb.substring(1) + ")" + "VALUES" + " (" + q.substring(1) + ");";
 
-//        System.out.println(sql);
+
+        System.out.println("fuck my balls : ");
+        System.out.println(sql);
 
 
         getJdbcTemplate().update(sql);

@@ -1,5 +1,6 @@
 package com.oyster.app.test;
 
+import com.oyster.app.model.Group;
 import com.oyster.app.model.__Administrator;
 import com.oyster.app.model.__Position;
 import com.oyster.core.controller.CommandExecutor;
@@ -27,7 +28,9 @@ public class App {
     public static ApplicationContext context;
 
     public static void main(String[] args) {
+        context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
+        testRead();
 
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -41,7 +44,6 @@ public class App {
             e.printStackTrace();
         }
 
-        context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
         JFrame loginFrame = new LoginFrame();
 
@@ -61,6 +63,21 @@ public class App {
 //        runCommandTest();
     }
 
+
+    public static void testRead() {
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(context);
+
+        try {
+            Group g = x.read(Group.class, UUID.fromString("2eb17945-6cac-4ee5-9cf1-f3d8a98f7211"));
+
+            System.out.println("");
+
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static void runCommandTest() {
 

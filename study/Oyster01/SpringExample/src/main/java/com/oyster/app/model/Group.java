@@ -2,7 +2,6 @@ package com.oyster.app.model;
 
 import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
-import com.oyster.dao.annotation.utils.converter.LongConverter;
 import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
@@ -30,7 +29,7 @@ public class Group {
     @Stored(name = "_id", converter = UUIDConverter.class)
     private UUID id;
 
-    @Stored(name = "chipher", converter = LongConverter.class)
+    @Stored(name = "chipher")
     private String chipher;
 
     @Stored(name = "name")
