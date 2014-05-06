@@ -2,7 +2,9 @@ package com.oyster.app.model;
 
 import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
-import com.oyster.dao.annotation.utils.converter.LongConverter;
+import com.oyster.dao.annotation.utils.converter.UUIDConverter;
+
+import java.util.UUID;
 
 /**
  * @author bamboo
@@ -12,42 +14,42 @@ import com.oyster.dao.annotation.utils.converter.LongConverter;
 @Stored(name = "ABSENCE_TBL")
 public class Absence {
     @Primary
-    @Stored(name = "_id", converter = LongConverter.class)
-    private long id;
+    @Stored(name = "_id", converter = UUIDConverter.class)
+    private UUID id;
 
-    @Stored(name = "group_id", converter = LongConverter.class)
-    private long groupId;
+    @Stored(name = "group_id", converter = UUIDConverter.class)
+    private UUID groupId;
 
-    @Stored(name = "class_id", converter = LongConverter.class)
-    private long classId;
+    @Stored(name = "class_id", converter = UUIDConverter.class)
+    private UUID classId;
 
-    public Absence(long id, long groupId, long classId) {
+    public Absence(UUID id, UUID groupId, UUID classId) {
         this.id = id;
         this.groupId = groupId;
         this.classId = classId;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public long getGroupId() {
+    public UUID getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(long groupId) {
+    public void setGroupId(UUID groupId) {
         this.groupId = groupId;
     }
 
-    public long getClassId() {
+    public UUID getClassId() {
         return classId;
     }
 
-    public void setClassId(long classId) {
+    public void setClassId(UUID classId) {
         this.classId = classId;
     }
 }

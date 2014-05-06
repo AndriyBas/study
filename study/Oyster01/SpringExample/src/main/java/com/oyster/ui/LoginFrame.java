@@ -16,6 +16,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         add(panel);
         placeComponents(panel);
+        setLocationRelativeTo(null);
 
 //        frame.pack();
     }

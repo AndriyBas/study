@@ -3,6 +3,9 @@ package com.oyster.app.model;
 import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
 import com.oyster.dao.annotation.utils.converter.LongConverter;
+import com.oyster.dao.annotation.utils.converter.UUIDConverter;
+
+import java.util.UUID;
 
 /**
  * @author bamboo
@@ -13,30 +16,44 @@ import com.oyster.dao.annotation.utils.converter.LongConverter;
 public class History {
 
     @Primary
-    @Stored(name = "_id", converter = LongConverter.class)
-    private long id;
+    @Stored(name = "_id", converter = UUIDConverter.class)
+    private UUID id;
 
-    @Stored(name = "author_id", converter = LongConverter.class)
-    private long authorId;
+    @Stored(name = "author_id", converter = UUIDConverter.class)
+    private UUID authorId;
 
-    public History(long id, long authorId) {
+    @Stored(name = "action")
+    private String action;
+
+    public History() {}
+
+    public History(UUID id, UUID authorId, String action) {
         this.id = id;
         this.authorId = authorId;
+        this.action = action;
     }
 
-    public long getAuthorId() {
+    public UUID getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(long authorId) {
+    public void setAuthorId(UUID authorId) {
         this.authorId = authorId;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 }

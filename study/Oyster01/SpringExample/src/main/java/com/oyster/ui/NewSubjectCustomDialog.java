@@ -1,24 +1,22 @@
 package com.oyster.ui;
 
+import com.oyster.app.model.Faculty;
 import com.oyster.core.controller.command.Context;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.UUID;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewGroupCustomDialog extends JDialog
+class NewSubjectCustomDialog extends JDialog
         implements PropertyChangeListener {
-    private String groupName = null;
-    private String groupChipher = null;
-    private JTextField textField1;
-    private JTextField textField2;
+    private String subjectName = null;
+    private JTextField textFieldSubjectName;
+
     private MainForm dd;
 
     private JOptionPane optionPane;
@@ -31,26 +29,24 @@ class NewGroupCustomDialog extends JDialog
      * otherwise, returns the string as the user entered it.
      */
     public String getValidatedText() {
-        return groupName;
+        return subjectName;
     }
 
     /**
      * Creates the reusable dialog.
      */
-    public NewGroupCustomDialog(Frame aFrame, MainForm parent) {
+    public NewSubjectCustomDialog(Frame aFrame, MainForm parent) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
         dd = parent;
 
-        setTitle("Додати нову групу");
+        setTitle("Додати предмет");
 
-        textField1 = new JTextField(10);
-        textField2 = new JTextField(15);
+        textFieldSubjectName = new JTextField(10);
 
         //Create an array of the text and components to be displayed.
-        String msgString1 = "Назва групи : ";
-        String msgString2 = "Шифр групи : ";
-        Object[] array = {msgString1, textField1, msgString2, textField2};
+        String msgString1 = "Назва предмету : ";
+        Object[] array = {msgString1, textFieldSubjectName};
 
         //Create an array specifying the number of dialog buttons
         //and their text.
@@ -84,19 +80,12 @@ class NewGroupCustomDialog extends JDialog
         //Ensure the text field always gets the first focus.
         addComponentListener(new ComponentAdapter() {
             public void componentShown(ComponentEvent ce) {
-                textField1.requestFocusInWindow();
+                textFieldSubjectName.requestFocusInWindow();
             }
         });
 
         //Register an event handler that puts the text into the option pane.
-//        textField1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
-//        textField2.addActionListener(new ActionListener() {
+//        textFieldSubjectName.addActionListener(new ActionListener() {
 //            @Override
 //            public void actionPerformed(ActionEvent e) {
 //                optionPane.setValue(btnString1);
@@ -132,56 +121,40 @@ class NewGroupCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                groupName = textField1.getText();
-                groupChipher = textField2.getText();
+                subjectName = textFieldSubjectName.getText();
 
                 boolean errorOccured = false;
-                JTextComponent focusComponent = textField1;
+                JTextComponent focusComponent = textFieldSubjectName;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (groupName.trim().length() == 0) {
-                    errorMsg.append(" назву групи");
+                if (subjectName.trim().length() == 0) {
+                    errorMsg.append(" назву предмету");
                     errorOccured = true;
-                }
-
-                if (groupChipher.trim().length() == 0) {
-                    if (errorOccured) {
-                        errorMsg.append(" та");
-                    }
-                    errorOccured = true;
-                    errorMsg.append("  шифр групи");
-                    focusComponent = textField2;
                 }
 
                 errorMsg.append("!");
 
                 if (!errorOccured) {
-
-                    // collect all data
                     Context c = new Context();
-                    c.put("name", groupName);
-                    c.put("chipher", groupChipher);
+                    c.put("name", subjectName);
                     // and kick off action for performing
-                    dd.performAction("registerGroup", c);
-
+                    dd.performAction("registerSubject", c);
                     clearAndHide();
                 } else {
                     //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
-                            NewGroupCustomDialog.this,
+                            NewSubjectCustomDialog.this,
                             errorMsg.toString(),
                             "Спробуйте ще раз",
                             JOptionPane.ERROR_MESSAGE
                     );
-                    groupName = null;
-                    groupChipher = null;
+                    subjectName = null;
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
-                groupName = null;
-                groupChipher = null;
+                subjectName = null;
                 clearAndHide();
             }
         }
@@ -191,8 +164,7 @@ class NewGroupCustomDialog extends JDialog
      * This method clears the dialog and hides it.
      */
     public void clearAndHide() {
-        textField1.setText(null);
-        textField2.setText(null);
+        textFieldSubjectName.setText(null);
         setVisible(false);
         dispose();
     }

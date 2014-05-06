@@ -3,6 +3,9 @@ package com.oyster.app.model;
 import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
 import com.oyster.dao.annotation.utils.converter.LongConverter;
+import com.oyster.dao.annotation.utils.converter.UUIDConverter;
+
+import java.util.UUID;
 
 /**
  * @author bamboo
@@ -12,11 +15,11 @@ import com.oyster.dao.annotation.utils.converter.LongConverter;
 public class Task {
 
     @Primary
-    @Stored(name = "_id", converter = LongConverter.class)
-    private long id;
+    @Stored(name = "_id", converter = UUIDConverter.class)
+    private UUID id;
 
-    @Stored(name = "subject_id", converter = LongConverter.class)
-    private long subjectId;
+    @Stored(name = "subject_id", converter = UUIDConverter.class)
+    private UUID subjectId;
 
     @Stored(name = "desc")
     private String description;
@@ -24,26 +27,29 @@ public class Task {
     @Stored(name = "date", converter = LongConverter.class)
     private long date;
 
-    public Task(long id, long subjectId, String description, long date) {
+    public Task() {
+    }
+
+    public Task(UUID id, UUID subjectId, String description, long date) {
         this.id = id;
         this.subjectId = subjectId;
         this.description = description;
         this.date = date;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public long getSubjectId() {
+    public UUID getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(long subjectId) {
+    public void setSubjectId(UUID subjectId) {
         this.subjectId = subjectId;
     }
 

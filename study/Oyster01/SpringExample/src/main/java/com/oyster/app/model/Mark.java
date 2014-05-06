@@ -4,6 +4,9 @@ import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
 import com.oyster.dao.annotation.utils.converter.IntConverter;
 import com.oyster.dao.annotation.utils.converter.LongConverter;
+import com.oyster.dao.annotation.utils.converter.UUIDConverter;
+
+import java.util.UUID;
 
 /**
  * @author bamboo
@@ -14,46 +17,49 @@ import com.oyster.dao.annotation.utils.converter.LongConverter;
 public class Mark {
 
     @Primary
-    @Stored(name = "_id", converter = LongConverter.class)
-    private long id;
+    @Stored(name = "_id", converter = UUIDConverter.class)
+    private UUID id;
 
-    @Stored(name = "student_id", converter = LongConverter.class)
-    private long studentId;
+    @Stored(name = "student_id", converter = UUIDConverter.class)
+    private UUID studentId;
 
-    @Stored(name = "task_id", converter = LongConverter.class)
-    private long taskId;
+    @Stored(name = "task_id", converter = UUIDConverter.class)
+    private UUID taskId;
 
     @Stored(name = "mark", converter = IntConverter.class)
     private int mark;
 
-    public Mark(long id, long studentId, long taskId, int mark) {
+
+    public Mark() {}
+
+    public Mark(UUID id, UUID studentId, UUID taskId, int mark) {
         this.id = id;
         this.studentId = studentId;
         this.taskId = taskId;
         this.mark = mark;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public long getStudentId() {
+    public UUID getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(long studentId) {
+    public void setStudentId(UUID studentId) {
         this.studentId = studentId;
     }
 
-    public long getTaskId() {
+    public UUID getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(long taskId) {
+    public void setTaskId(UUID taskId) {
         this.taskId = taskId;
     }
 

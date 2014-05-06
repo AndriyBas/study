@@ -1,5 +1,9 @@
 package com.oyster.ui;
 
+import com.oyster.app.model.Faculty;
+import com.oyster.app.model.Group;
+import com.oyster.core.controller.command.Context;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -28,22 +32,26 @@ public class MainForm extends JFrame {
     private JTextField mTextFieldInfo1;
     private JTextField mTextFieldInfo2;
     private JTextField mTextFieldInfo3;
-    private JTextField mTextFieldInfo4;
     private JTextField mTextFieldInfo5;
     private JTextField mTextFieldInfo6;
+    private JTextField mTextFieldInfo7;
     private JButton mButtonNewUser;
     private JComboBox mComboBoxAllHistory;
     private JList mListAllHistory;
     private JComboBox mComboBoxScheduleFaculty;
     private JScrollPane mListGroups;
     private JTable mTable1;
-    private JLabel mLabel4;
-    private JLabel mLable5;
+    private JLabel mLabel5;
     private JLabel mLable6;
+    private JLabel mLable7;
     private JLabel mLable1;
     private JLabel mLable2;
     private JLabel mLable3;
     private JLabel mLablePhoto;
+    private JLabel mLable8;
+    private JPasswordField mPasswordField1;
+    private JLabel mLable4;
+    private JTextField mTextFieldInfo4;
 
 
     public MainForm() {
@@ -60,6 +68,8 @@ public class MainForm extends JFrame {
         pack();
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        setLocationRelativeTo(null);
 
         setVisible(true);
     }
@@ -97,12 +107,10 @@ public class MainForm extends JFrame {
                 case "Студент":
 
 
-                    CustomDialog d = new CustomDialog(this, "wow", this);
-                    d.setPreferredSize(new Dimension(350, 250));
-                    d.setMinimumSize(new Dimension(350, 250));
-
+                    NewStudentCustomDialog d = new NewStudentCustomDialog(this, this);
+                    d.setPreferredSize(new Dimension(350, 490));
+                    d.setMinimumSize(new Dimension(350, 490));
                     d.pack();
-
                     d.setVisible(true);
 
                     return;
@@ -116,20 +124,29 @@ public class MainForm extends JFrame {
                 case "Група":
 
                     NewGroupCustomDialog gr = new NewGroupCustomDialog(this, this);
-                    gr.setPreferredSize(new Dimension(350, 250));
-                    gr.setMinimumSize(new Dimension(350, 250));
-
+                    gr.setPreferredSize(new Dimension(350, 190));
+                    gr.setMinimumSize(new Dimension(350, 150));
                     gr.pack();
-
                     gr.setVisible(true);
                     return;
 
                 case "Факультет":
 
+
+                    NewFacultyCustomDialog fac = new NewFacultyCustomDialog(this, this);
+                    fac.setPreferredSize(new Dimension(350, 140));
+                    fac.setMinimumSize(new Dimension(350, 140));
+                    fac.pack();
+                    fac.setVisible(true);
                     return;
 
                 case "Предмет":
 
+                    NewSubjectCustomDialog sub = new NewSubjectCustomDialog(this, this);
+                    sub.setPreferredSize(new Dimension(350, 140));
+                    sub.setMinimumSize(new Dimension(350, 140));
+                    sub.pack();
+                    sub.setVisible(true);
                     return;
 
             }
@@ -181,6 +198,12 @@ public class MainForm extends JFrame {
         menuItem.setMnemonic(KeyEvent.VK_W);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_W, ActionEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainForm.this.dispose();
+            }
+        });
         menu.add(menuItem);
 
         menu = new JMenu("Допомога");
@@ -203,8 +226,20 @@ public class MainForm extends JFrame {
         setJMenuBar(menuBar);
     }
 
-    public void setLabel(String msg) {
-        this.setTitle(msg);
+
+    public void performAction(String action, Context c) {
+
     }
+
+    public void createNew(Group g) {
+        System.out.print("Create : ");
+        System.out.println(g.getName());
+    }
+
+    public void createNew(Faculty f) {
+        System.out.print("Create : ");
+        System.out.println(f.getName());
+    }
+
 
 }

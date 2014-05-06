@@ -13,12 +13,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewGroupCustomDialog extends JDialog
+class NewFacultyCustomDialog extends JDialog
         implements PropertyChangeListener {
-    private String groupName = null;
-    private String groupChipher = null;
+    private String facultyName = null;
     private JTextField textField1;
-    private JTextField textField2;
+
     private MainForm dd;
 
     private JOptionPane optionPane;
@@ -31,26 +30,24 @@ class NewGroupCustomDialog extends JDialog
      * otherwise, returns the string as the user entered it.
      */
     public String getValidatedText() {
-        return groupName;
+        return facultyName;
     }
 
     /**
      * Creates the reusable dialog.
      */
-    public NewGroupCustomDialog(Frame aFrame, MainForm parent) {
+    public NewFacultyCustomDialog(Frame aFrame, MainForm parent) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
         dd = parent;
 
-        setTitle("Додати нову групу");
+        setTitle("Додати факультет");
 
         textField1 = new JTextField(10);
-        textField2 = new JTextField(15);
 
         //Create an array of the text and components to be displayed.
-        String msgString1 = "Назва групи : ";
-        String msgString2 = "Шифр групи : ";
-        Object[] array = {msgString1, textField1, msgString2, textField2};
+        String msgString1 = "Назва факультету : ";
+        Object[] array = {msgString1, textField1};
 
         //Create an array specifying the number of dialog buttons
         //and their text.
@@ -96,13 +93,6 @@ class NewGroupCustomDialog extends JDialog
 //            }
 //        });
 
-//        textField2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
         //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
     }
@@ -132,56 +122,40 @@ class NewGroupCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                groupName = textField1.getText();
-                groupChipher = textField2.getText();
+                facultyName = textField1.getText();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (groupName.trim().length() == 0) {
-                    errorMsg.append(" назву групи");
+                if (facultyName.trim().length() == 0) {
+                    errorMsg.append(" назву факультету");
                     errorOccured = true;
-                }
-
-                if (groupChipher.trim().length() == 0) {
-                    if (errorOccured) {
-                        errorMsg.append(" та");
-                    }
-                    errorOccured = true;
-                    errorMsg.append("  шифр групи");
-                    focusComponent = textField2;
                 }
 
                 errorMsg.append("!");
 
                 if (!errorOccured) {
-
-                    // collect all data
                     Context c = new Context();
-                    c.put("name", groupName);
-                    c.put("chipher", groupChipher);
+                    c.put("name", facultyName);
                     // and kick off action for performing
-                    dd.performAction("registerGroup", c);
-
+                    dd.performAction("registerFaculty", c);
                     clearAndHide();
                 } else {
                     //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
-                            NewGroupCustomDialog.this,
+                            NewFacultyCustomDialog.this,
                             errorMsg.toString(),
                             "Спробуйте ще раз",
                             JOptionPane.ERROR_MESSAGE
                     );
-                    groupName = null;
-                    groupChipher = null;
+                    facultyName = null;
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
-                groupName = null;
-                groupChipher = null;
+                facultyName = null;
                 clearAndHide();
             }
         }
@@ -192,7 +166,6 @@ class NewGroupCustomDialog extends JDialog
      */
     public void clearAndHide() {
         textField1.setText(null);
-        textField2.setText(null);
         setVisible(false);
         dispose();
     }

@@ -33,6 +33,7 @@ class CustomDialog extends JDialog
      */
     public CustomDialog(Frame aFrame, String aWord, MainForm parent) {
         super(aFrame, true);
+        super.setLocationRelativeTo(parent);
         dd = parent;
 
         magicWord = aWord.toUpperCase();
@@ -142,9 +143,9 @@ class CustomDialog extends JDialog
                     textField.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
-                dd.setLabel("It's OK.  "
+                /*dd.setLabel("It's OK.  "
                         + "We won't force you to type "
-                        + magicWord + ".");
+                        + magicWord + ".");*/
                 typedText = null;
                 clearAndHide();
             }

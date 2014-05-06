@@ -4,6 +4,9 @@ import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
 import com.oyster.dao.annotation.utils.converter.IntConverter;
 import com.oyster.dao.annotation.utils.converter.LongConverter;
+import com.oyster.dao.annotation.utils.converter.UUIDConverter;
+
+import java.util.UUID;
 
 /**
  * @author bamboo
@@ -14,8 +17,8 @@ import com.oyster.dao.annotation.utils.converter.LongConverter;
 public class WorkerInfo {
 
     @Primary
-    @Stored(name = "_id", converter = LongConverter.class)
-    private long id;
+    @Stored(name = "_id", converter = UUIDConverter.class)
+    private UUID id;
 
     @Stored(name = "position")
     private String position;
@@ -26,18 +29,21 @@ public class WorkerInfo {
     @Stored(name = "date_hired", converter = LongConverter.class)
     private long dateHired;
 
-    public WorkerInfo(long id, String position, int salary, long dateHired) {
+    public WorkerInfo() {
+    }
+
+    public WorkerInfo(UUID id, String position, int salary, long dateHired) {
         this.id = id;
         this.position = position;
         this.salary = salary;
         this.dateHired = dateHired;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

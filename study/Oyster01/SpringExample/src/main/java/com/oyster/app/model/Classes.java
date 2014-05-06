@@ -4,6 +4,9 @@ import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
 import com.oyster.dao.annotation.utils.converter.IntConverter;
 import com.oyster.dao.annotation.utils.converter.LongConverter;
+import com.oyster.dao.annotation.utils.converter.UUIDConverter;
+
+import java.util.UUID;
 
 /**
  * @author bamboo
@@ -14,14 +17,14 @@ import com.oyster.dao.annotation.utils.converter.LongConverter;
 public class Classes {
 
     @Primary
-    @Stored(name = "_id", converter = LongConverter.class)
-    private long id;
+    @Stored(name = "_id", converter = UUIDConverter.class)
+    private UUID id;
 
-    @Stored(name = "subject_id", converter = LongConverter.class)
-    private long subjectId;
+    @Stored(name = "subject_id", converter = UUIDConverter.class)
+    private UUID subjectId;
 
-    @Stored(name = "teacher_id", converter = LongConverter.class)
-    private long teacherId;
+    @Stored(name = "teacher_id", converter = UUIDConverter.class)
+    private UUID teacherId;
 
     @Stored(name = "building", converter = IntConverter.class)
     private int building;
@@ -32,7 +35,7 @@ public class Classes {
     @Stored(name = "date", converter = LongConverter.class)
     private long date;
 
-    public Classes(long id, long subjectId, long teacherId, int building, int audience, long date) {
+    public Classes(UUID id, UUID subjectId, UUID teacherId, int building, int audience, long date) {
         this.id = id;
         this.subjectId = subjectId;
         this.teacherId = teacherId;
@@ -65,27 +68,27 @@ public class Classes {
         this.building = building;
     }
 
-    public long getTeacherId() {
+    public UUID getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(long teacherId) {
+    public void setTeacherId(UUID teacherId) {
         this.teacherId = teacherId;
     }
 
-    public long getSubjectId() {
+    public UUID getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(long subjectId) {
+    public void setSubjectId(UUID subjectId) {
         this.subjectId = subjectId;
     }
 
-    public long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }
