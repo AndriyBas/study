@@ -1,6 +1,7 @@
 package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.command.Context;
+import com.oyster.dao.exception.DAOException;
 import com.oyster.ui.MainForm;
 
 import javax.swing.*;
@@ -78,13 +79,13 @@ public class NewStudentCustomDialog extends JDialog
         textField4 = new JTextField(15);
 
         NumberFormat format = NumberFormat.getInstance();
-        NumberFormatter CourseFormatter = new NumberFormatter(format);
-        CourseFormatter.setValueClass(Integer.class);
-        CourseFormatter.setMinimum(1);
-        CourseFormatter.setMaximum(6);
+        NumberFormatter courseFormatter = new NumberFormatter(format);
+        courseFormatter.setValueClass(Integer.class);
+        courseFormatter.setMinimum(1);
+        courseFormatter.setMaximum(6);
         // If you want the value to be committed on each keystroke instead of focus lost
-        CourseFormatter.setCommitsOnValidEdit(true);
-        textField5 = new JFormattedTextField(CourseFormatter);
+        courseFormatter.setCommitsOnValidEdit(true);
+        textField5 = new JFormattedTextField(courseFormatter);
 
         textField6 = new JTextField(15);
 
@@ -294,9 +295,9 @@ public class NewStudentCustomDialog extends JDialog
                         userBirthDate = (Date) ((JFormattedTextField) textField3)
                                 .getFormatter().stringToValue(userBirthDateStr);
                         studentCourseInt = (Integer) ((JFormattedTextField) textField5)
-                                .getFormatter().stringToValue(userBirthDateStr);
+                                .getFormatter().stringToValue(studentCourse);
                         studentNZKInt = (Integer) ((JFormattedTextField) textField7)
-                                .getFormatter().stringToValue(userBirthDateStr);
+                                .getFormatter().stringToValue(studentNZK);
 
                     } catch (ParseException e1) {
                         e1.printStackTrace();

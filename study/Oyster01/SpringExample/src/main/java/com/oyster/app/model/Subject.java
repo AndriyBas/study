@@ -17,6 +17,7 @@ import java.util.UUID;
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  */
+
 /**
  * Created by bamboo on 07.05.14.
  */
@@ -29,6 +30,9 @@ public class Subject {
 
     @Stored(name = "name")
     private String name;
+
+    public Subject() {
+    }
 
     public Subject(UUID id, String name) {
         this.id = id;

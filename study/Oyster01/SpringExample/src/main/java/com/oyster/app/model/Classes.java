@@ -35,6 +35,9 @@ public class Classes {
     @Stored(name = "date", converter = LongConverter.class)
     private long date;
 
+    public Classes() {
+    }
+
     public Classes(UUID id, UUID subjectId, UUID teacherId, int building, int audience, long date) {
         this.id = id;
         this.subjectId = subjectId;

@@ -16,9 +16,9 @@ import java.util.UUID;
 
     CREATE TABLE `STUDENT_TBL` (
             `_id` VARCHAR(50),
-    `profile_id` VARCHAR(30) UNIQUE,
-    `faculty_id` VARCHAR(30),
-    `group_id` VARCHAR(30),
+    `profile_id` VARCHAR(50) UNIQUE,
+    `faculty_id` VARCHAR(50),
+    `group_id` VARCHAR(50),
     `course`  INT UNSIGNED ZEROFILL,
     `book_num`  INT UNSIGNED ZEROFILL,
 

@@ -23,6 +23,9 @@ public class Absence {
     @Stored(name = "class_id", converter = UUIDConverter.class)
     private UUID classId;
 
+    public Absence() {
+    }
+
     public Absence(UUID id, UUID groupId, UUID classId) {
         this.id = id;
         this.groupId = groupId;

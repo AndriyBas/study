@@ -36,6 +36,8 @@ public class Admin {
     @Stored(name = "worker_info_id", converter = UUIDConverter.class)
     private UUID workerInfoId;
 
+    public Admin() {}
+
     public Admin(UUID id, UUID profileId, UUID workerInfoId) {
         this.id = id;
         this.profileId = profileId;

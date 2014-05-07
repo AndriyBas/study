@@ -3,6 +3,8 @@ package com.oyster.ui;
 import com.oyster.app.model.*;
 import com.oyster.app.test.App;
 import com.oyster.core.controller.command.Context;
+import com.oyster.dao.DAOFilter;
+import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
 import com.oyster.ui.dialogs.*;
 
@@ -359,6 +361,72 @@ public class MainForm extends JFrame {
 
                 break;
             case "registerStudent":
+
+                Profile pStudent = new Profile(
+                        UUID.randomUUID(),
+                        (String) c.get("name"),
+                        (String) c.get("surname"),
+                        (String) c.get("password"),
+                        (Long) c.get("birthday")
+                );
+
+                final String facultyName = (String) c.get("faculty");
+                java.util.List<Faculty> faculties = null;
+                try {
+                    faculties = x.select(Faculty.class, new DAOFilter() {
+                        @Override
+                        public <T> boolean accept(T entity) {
+//                            Faculty f = (Faculty) entity;
+//                            return f.getName().equals(facultyName);
+                            return true;
+                        }
+                    });
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка зчитування факультету : \n" + e.getMessage()));
+                }
+
+                if (faculties.size() == 0) {
+                    showErrorDialog("Немає такого факультету!");
+                    break;
+                }
+
+                final String groupName = (String) c.get("group");
+                java.util.List<Group> groups = null;
+                try {
+                    groups = x.select(Group.class, new DAOFilter() {
+                        @Override
+                        public <T> boolean accept(T entity) {
+                            Group g = (Group) entity;
+                            return g.getName().equals(groupName);
+                        }
+                    });
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка зчитування групи : \n" + e.getMessage()));
+                }
+
+                if (groups.size() == 0) {
+                    showErrorDialog("Немає такої групи!");
+                    break;
+                }
+
+                Student student = new Student(
+                        UUID.randomUUID(),
+                        pStudent.getId(),
+                        faculties.get(0).getId(),
+                        groups.get(0).getId(),
+                        (Integer) c.get("course"),
+                        (Integer) c.get("bookNum")
+                );
+
+                try {
+                    x.insert(pStudent);
+                    x.insert(student);
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка створення студента : \n" + e.getMessage()));
+                }
 
                 break;
 
