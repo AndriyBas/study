@@ -4,10 +4,14 @@ import com.oyster.core.controller.command.Context;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 
 /* 1.4 example used by DialogDemo.java. */
 class NewAdminCustomDialog extends JDialog
@@ -51,12 +55,24 @@ class NewAdminCustomDialog extends JDialog
 
         setTitle("Створити профіль адміністратора");
 
+        DateFormat dateFormat = new SimpleDateFormat("d/M/y");
+
+
         textField1 = new JTextField(10);
         textField2 = new JTextField(15);
-        textField3 = new JTextField(15);
+        textField3 = new JFormattedTextField(dateFormat);
         textField4 = new JTextField(15);
-        textField5 = new JTextField(15);
-        textField6 = new JTextField(15);
+
+        NumberFormat format = NumberFormat.getInstance();
+        NumberFormatter formatter = new NumberFormatter(format);
+        formatter.setValueClass(Integer.class);
+        formatter.setMinimum(1);
+        formatter.setMaximum(Integer.MAX_VALUE);
+        // If you want the value to be committed on each keystroke instead of focus lost
+        formatter.setCommitsOnValidEdit(true);
+        textField5 = new JFormattedTextField(formatter);
+
+        textField6 = new JFormattedTextField(dateFormat);
         mJPasswordField = new JPasswordField(15);
 
         //Create an array of the text and components to be displayed.
@@ -198,7 +214,7 @@ class NewAdminCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату народження");
+                    errorMsg.append("  дату народження у фрматі DD/MM/YYYY");
                     focusComponent = textField3;
                 }
 
@@ -224,7 +240,7 @@ class NewAdminCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату прийняття");
+                    errorMsg.append("  дату прийняття у фрматі DD/MM/YYYY");
                     focusComponent = textField6;
                 }
 

@@ -1,10 +1,8 @@
 package com.oyster.ui;
 
-import com.oyster.app.model.Faculty;
-import com.oyster.app.model.Group;
+import com.oyster.app.model.*;
 import com.oyster.app.test.App;
 import com.oyster.core.controller.command.Context;
-import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
 
 import javax.swing.*;
@@ -177,6 +175,9 @@ public class MainForm extends JFrame {
 
                 break;
         }
+
+        validate();
+        repaint();
     }
 
     private void newUserAction() {
@@ -316,21 +317,42 @@ public class MainForm extends JFrame {
 
     public void performAction(String action, Context c) {
 
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(App.context);
+
         switch (action) {
             case "registerSubject":
+
+                Subject subject = new Subject(UUID.randomUUID(), ((String) c.get("name")).toUpperCase());
+                try {
+                    x.insert(subject);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка створення предмету : \n" + e.getMessage()));
+                }
 
                 break;
             case "registerFaculty":
 
+                Faculty fac = new Faculty(UUID.randomUUID(), ((String) c.get("name")).toUpperCase());
+                try {
+                    x.insert(fac);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка створення факультету : \n" + e.getMessage()));
+                }
+
+
                 break;
             case "registerGroup":
 
-                Group g = new Group(UUID.randomUUID(), (String) c.get("chipher"), (String) c.get("name"));
-                DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(App.context);
+                Group g = new Group(UUID.randomUUID(),
+                        (String) c.get("chipher"),
+                        ((String) c.get("name")).toUpperCase());
                 try {
                     x.insert(g);
-                } catch (DAOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка створення групи : \n" + e.getMessage()));
                 }
 
                 break;
@@ -340,12 +362,110 @@ public class MainForm extends JFrame {
 
             case "registerTeacher":
 
+                Profile pTeacher = new Profile(
+                        UUID.randomUUID(),
+                        (String) c.get("name"),
+                        (String) c.get("surname"),
+                        (String) c.get("password"),
+                        (Long) c.get("birthday")
+                );
+
+                WorkerInfo wTeacher = new WorkerInfo(
+                        UUID.randomUUID(),
+                        (String) c.get("position"),
+                        (Integer) c.get("salary"),
+                        (Long) c.get("dataHired")
+                );
+
+                Teacher teacher = new Teacher(
+                        UUID.randomUUID(),
+                        pTeacher.getId(),
+                        wTeacher.getId()
+                );
+
+                try {
+                    x.insert(pTeacher);
+                    x.insert(wTeacher);
+                    x.insert(teacher);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка створення викладача : \n" + e.getMessage()));
+                }
                 break;
             case "registerAdmin":
 
+                Profile pAdmin = new Profile(
+                        UUID.randomUUID(),
+                        (String) c.get("name"),
+                        (String) c.get("surname"),
+                        (String) c.get("password"),
+                        (Long) c.get("birthday")
+                );
+
+                WorkerInfo wAdmin = new WorkerInfo(
+                        UUID.randomUUID(),
+                        (String) c.get("position"),
+                        (Integer) c.get("salary"),
+                        (Long) c.get("dataHired")
+                );
+
+                Admin admin = new Admin(
+                        UUID.randomUUID(),
+                        pAdmin.getId(),
+                        wAdmin.getId()
+                );
+
+                try {
+                    x.insert(pAdmin);
+                    x.insert(wAdmin);
+                    x.insert(admin);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showErrorDialog(makePretty("Помилка створення адміністратора : \n" + e.getMessage()));
+                }
                 break;
         }
 
+    }
+/*
+    private String toUTF8(String s) {
+        byte[] bytes = new byte[0];
+        try {
+            bytes = s.getBytes("UTF-8");
+            return new String(bytes, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }*/
+
+
+    private String makePretty(String s) {
+        String[] words = s.split("\\s+");
+        int lineWidth = 0;
+        StringBuilder msg = new StringBuilder(s.length());
+        for (String w : words) {
+            msg.append(w);
+            msg.append(" ");
+            lineWidth += w.length();
+            if (lineWidth > 50) {
+                lineWidth = 0;
+                msg.append("\n");
+            }
+        }
+        return msg.toString();
+//        return toUTF8(msg.toString());
+    }
+
+    private void showErrorDialog(String errorMsg) {
+
+
+        JOptionPane.showMessageDialog(
+                MainForm.this,
+                errorMsg,
+                "Спробуйте ще раз",
+                JOptionPane.ERROR_MESSAGE
+        );
     }
 
     public void createNew(Group g) {

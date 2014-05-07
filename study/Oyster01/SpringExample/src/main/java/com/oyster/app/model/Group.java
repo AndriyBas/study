@@ -15,9 +15,9 @@ import java.util.UUID;
 
     CREATE TABLE `GROUP_TBL` (
             `_id` VARCHAR(50),
-    `name` VARCHAR(30),
+    `name` VARCHAR(30) UNIQUE,
     `chipher`  VARCHAR(50),
-    PRIMARY KEY (`_ID`)
+    PRIMARY KEY (`_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -6,6 +6,7 @@ import com.oyster.dao.annotation.Stored;
 import com.oyster.dao.annotation.utils.DAOAnnotationUtils;
 import com.oyster.dao.exception.DAOException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 import java.lang.reflect.Field;
@@ -80,8 +81,8 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         System.out.println(sql);
 
 
-        getJdbcTemplate().update(sql);
-
+        int result = getJdbcTemplate().update(sql);
+        System.out.println(result);
 
         return instance;
     }
@@ -102,8 +103,12 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
                 + " WHERE " + primaryKeyField.getAnnotation(Stored.class).name()
                 + "=\"" + id.toString() + "\";";
 
-        Map<String, Object> map = getJdbcTemplate().queryForMap(sql);
-
+        Map<String, Object> map = null;
+        try {
+            map = getJdbcTemplate().queryForMap(sql);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
 //        System.out.println(sql);
 
         return DAOAnnotationUtils.mapToEntity(entityClass, map);
