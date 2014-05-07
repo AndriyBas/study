@@ -12,6 +12,18 @@ import java.util.UUID;
  * @since 4/15/14 11:03 PM
  */
 
+/*
+
+    CREATE TABLE `ADMIN_TBL` (
+            `_id` VARCHAR(50),
+    `profile_id` VARCHAR(30) UNIQUE,
+    `worker_info_id` VARCHAR(30) UNIQUE,
+    PRIMARY KEY (`_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ */
+
 @Stored(name = "ADMIN_TBL")
 public class Admin {
     @Primary

@@ -12,6 +12,21 @@ import java.util.UUID;
  * @since 4/15/14 10:36 PM
  */
 
+/*
+
+    CREATE TABLE `STUDENT_TBL` (
+            `_id` VARCHAR(50),
+    `profile_id` VARCHAR(30) UNIQUE,
+    `faculty_id` VARCHAR(30),
+    `group_id` VARCHAR(30),
+    `course`  INT UNSIGNED ZEROFILL,
+    `book_num`  INT UNSIGNED ZEROFILL,
+
+    PRIMARY KEY (`_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ */
 @Stored(name = "STUDENT_TBL")
 public class Student {
 

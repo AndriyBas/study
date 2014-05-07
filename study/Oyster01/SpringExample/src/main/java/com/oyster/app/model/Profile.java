@@ -12,6 +12,21 @@ import java.util.UUID;
  * @since 4/15/14 10:32 PM
  */
 
+/*
+
+
+    CREATE TABLE `PROFILE_TBL` (
+            `_id` VARCHAR(50),
+    `name` VARCHAR(30),
+    `surname` VARCHAR(30),
+    `password` VARCHAR(30),
+    `birthday`   BIGINT UNSIGNED ZEROFILL,
+    PRIMARY KEY (`_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ */
+
 @Stored(name = "PROFILE_TBL")
 public class Profile {
 

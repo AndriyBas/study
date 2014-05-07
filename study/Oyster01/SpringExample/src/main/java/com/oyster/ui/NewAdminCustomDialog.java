@@ -11,18 +11,23 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
 class NewAdminCustomDialog extends JDialog
         implements PropertyChangeListener {
+
     private String userName = null;
     private String userSurmane = null;
     private String userBirthDate = null;
     private String adminPosition;
     private String adminSalary;
+    private Integer adminSalaryInt;
     private String adminDateHired;
     private String userPassword;
+
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -74,6 +79,7 @@ class NewAdminCustomDialog extends JDialog
 
         textField6 = new JFormattedTextField(dateFormat);
         mJPasswordField = new JPasswordField(15);
+
 
         //Create an array of the text and components to be displayed.
         String msgString1 = "Ім’я адміністратора: ";
@@ -214,7 +220,7 @@ class NewAdminCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату народження у фрматі DD/MM/YYYY");
+                    errorMsg.append("  дату народження у фрматі день/місяць/рік");
                     focusComponent = textField3;
                 }
 
@@ -240,7 +246,7 @@ class NewAdminCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату прийняття у фрматі DD/MM/YYYY");
+                    errorMsg.append("  дату прийняття у фрматі день/місяць/рік");
                     focusComponent = textField6;
                 }
 
@@ -258,13 +264,27 @@ class NewAdminCustomDialog extends JDialog
 
                 if (!errorOccured) {
 
+                    System.out.println("fuck : ");
+                    try {
+                        adminSalaryInt = (Integer)
+                                ((JFormattedTextField) textField5).getFormatter().stringToValue(adminSalary);
+
+                        System.out.println(
+                                ((Date) ((JFormattedTextField) textField3).getFormatter().stringToValue(userBirthDate)) + " " +
+                                        ((Date) ((JFormattedTextField) textField3).getFormatter().stringToValue(userBirthDate))
+                                                .getTime()
+                        );
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+
                     // collect all data
                     Context c = new Context();
                     c.put("name", userName);
                     c.put("surname", userSurmane);
                     c.put("birthday", userBirthDate);
                     c.put("position", adminPosition);
-                    c.put("salary", Integer.parseInt(adminSalary));
+                    c.put("salary", adminSalaryInt);
                     c.put("dateHired", adminDateHired);
                     c.put("password", userPassword);
 

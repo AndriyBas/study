@@ -216,7 +216,7 @@ class NewTeacherCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату народження у фрматі DD/MM/YYYY");
+                    errorMsg.append("  дату народження у фрматі день/місяць/рік");
                     focusComponent = textField3;
                 }
 
@@ -242,7 +242,7 @@ class NewTeacherCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату прийняття у фрматі DD/MM/YYYY");
+                    errorMsg.append("  дату прийняття у фрматі день/місяць/рік");
                     focusComponent = textField6;
                 }
 

@@ -226,7 +226,7 @@ class NewStudentCustomDialog extends JDialog
                         errorMsg.append(", та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  дату народження  у фрматі DD/MM/YYYY");
+                    errorMsg.append("  дату народження  у фрматі день/місяць/рік");
                     focusComponent = textField3;
                 }
 

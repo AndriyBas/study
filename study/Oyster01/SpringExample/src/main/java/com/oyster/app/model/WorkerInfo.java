@@ -13,6 +13,18 @@ import java.util.UUID;
  * @since 4/15/14 11:06 PM
  */
 
+/*
+
+
+    CREATE TABLE `WORKER_INFO_TBL` (
+            `_id` VARCHAR(50),
+    `position` VARCHAR(30),
+    `salary`  INT UNSIGNED ZEROFILL,
+    `date_hired`   BIGINT UNSIGNED ZEROFILL,
+    PRIMARY KEY (`_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ */
 @Stored(name = "WORKER_INFO_TBL")
 public class WorkerInfo {
 
