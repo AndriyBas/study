@@ -20,7 +20,7 @@ import java.util.UUID;
     `name` VARCHAR(30),
     `surname` VARCHAR(30),
     `password` VARCHAR(30),
-    `birthday`   BIGINT UNSIGNED ZEROFILL,
+    `birthday` BIGINT ZEROFILL,
     PRIMARY KEY (`_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -2,13 +2,14 @@ package com.oyster.dao.annotation.utils.converter;
 
 import com.oyster.dao.annotation.utils.ValueConverter;
 
+import java.math.BigInteger;
+
 /**
- *  converts entity (String <==> Long)
+ * converts entity (String <==> Long)
  */
 public class LongConverter implements ValueConverter {
 
     /**
-     *
      * @param value parameter to convert
      * @param <T>
      * @return
@@ -16,11 +17,13 @@ public class LongConverter implements ValueConverter {
     @Override
     public <T> String toString(T value) {
         if (value == null) return "null";
+        if (value instanceof BigInteger) {
+            return value.toString();
+        }
         return Long.toString((Long) value);
     }
 
     /**
-     *
      * @param str String to convert
      * @param <T>
      * @return

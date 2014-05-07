@@ -1,7 +1,7 @@
 package com.oyster.ui;
 
+import com.oyster.app.AppConst;
 import com.oyster.app.model.*;
-import com.oyster.app.test.App;
 import com.oyster.core.controller.command.Context;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
@@ -321,7 +321,7 @@ public class MainForm extends JFrame {
 
     public void performAction(String action, Context c) {
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(App.context);
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         switch (action) {
             case "registerSubject":
@@ -331,7 +331,7 @@ public class MainForm extends JFrame {
                     x.insert(subject);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка створення предмету : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення предмету : \n" + e.getMessage()));
                 }
 
                 break;
@@ -342,7 +342,7 @@ public class MainForm extends JFrame {
                     x.insert(fac);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка створення факультету : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення факультету : \n" + e.getMessage()));
                 }
 
 
@@ -356,7 +356,7 @@ public class MainForm extends JFrame {
                     x.insert(g);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка створення групи : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення групи : \n" + e.getMessage()));
                 }
 
                 break;
@@ -383,11 +383,11 @@ public class MainForm extends JFrame {
                     });
                 } catch (DAOException e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка зчитування факультету : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка зчитування факультету : \n" + e.getMessage()));
                 }
 
                 if (faculties.size() == 0) {
-                    showErrorDialog("Немає такого факультету!");
+                    Utils.showErrorDialog(this, "Немає такого факультету!");
                     break;
                 }
 
@@ -403,11 +403,11 @@ public class MainForm extends JFrame {
                     });
                 } catch (DAOException e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка зчитування групи : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка зчитування групи : \n" + e.getMessage()));
                 }
 
                 if (groups.size() == 0) {
-                    showErrorDialog("Немає такої групи!");
+                    Utils.showErrorDialog(this, "Немає такої групи!");
                     break;
                 }
 
@@ -425,7 +425,7 @@ public class MainForm extends JFrame {
                     x.insert(student);
                 } catch (DAOException e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка створення студента : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення студента : \n" + e.getMessage()));
                 }
 
                 break;
@@ -459,7 +459,8 @@ public class MainForm extends JFrame {
                     x.insert(teacher);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка створення викладача : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this,
+                            Utils.makePretty("Помилка створення викладача : \n" + e.getMessage()));
                 }
                 break;
             case "registerAdmin":
@@ -491,7 +492,8 @@ public class MainForm extends JFrame {
                     x.insert(admin);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    showErrorDialog(makePretty("Помилка створення адміністратора : \n" + e.getMessage()));
+                    Utils.showErrorDialog(this,
+                            Utils.makePretty("Помилка створення адміністратора : \n" + e.getMessage()));
                 }
                 break;
         }
@@ -508,35 +510,6 @@ public class MainForm extends JFrame {
         }
         return null;
     }*/
-
-
-    private String makePretty(String s) {
-        String[] words = s.split("\\s+");
-        int lineWidth = 0;
-        StringBuilder msg = new StringBuilder(s.length());
-        for (String w : words) {
-            msg.append(w);
-            msg.append(" ");
-            lineWidth += w.length();
-            if (lineWidth > 50) {
-                lineWidth = 0;
-                msg.append("\n");
-            }
-        }
-        return msg.toString();
-//        return toUTF8(msg.toString());
-    }
-
-    private void showErrorDialog(String errorMsg) {
-
-
-        JOptionPane.showMessageDialog(
-                MainForm.this,
-                errorMsg,
-                "Спробуйте ще раз",
-                JOptionPane.ERROR_MESSAGE
-        );
-    }
 
     public void createNew(Group g) {
         System.out.print("Create : ");

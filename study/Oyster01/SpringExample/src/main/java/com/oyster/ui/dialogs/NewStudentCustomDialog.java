@@ -1,7 +1,6 @@
 package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.command.Context;
-import com.oyster.dao.exception.DAOException;
 import com.oyster.ui.MainForm;
 
 import javax.swing.*;

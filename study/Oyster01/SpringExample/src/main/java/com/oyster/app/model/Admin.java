@@ -16,8 +16,8 @@ import java.util.UUID;
 
     CREATE TABLE `ADMIN_TBL` (
             `_id` VARCHAR(50),
-    `profile_id` VARCHAR(30) UNIQUE,
-    `worker_info_id` VARCHAR(30) UNIQUE,
+    `profile_id` VARCHAR(50) UNIQUE,
+    `worker_info_id` VARCHAR(50) UNIQUE,
     PRIMARY KEY (`_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

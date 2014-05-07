@@ -1,5 +1,6 @@
 package com.oyster.app.test;
 
+import com.oyster.app.AppConst;
 import com.oyster.app.model.Group;
 import com.oyster.app.model.__Administrator;
 import com.oyster.app.model.__Position;
@@ -12,7 +13,6 @@ import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
 import com.oyster.ui.LoginFrame;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.swing.*;
@@ -25,10 +25,8 @@ import java.util.UUID;
 public class App {
 
 
-    public static ApplicationContext context;
-
     public static void main(String[] args) {
-        context = new ClassPathXmlApplicationContext("Spring-Module.xml");
+        AppConst.context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
         testRead();
 
@@ -53,7 +51,6 @@ public class App {
 
         loginFrame.setVisible(true);
 
-
        /* try {
             runTest();
         } catch (DAOException e) {
@@ -66,7 +63,7 @@ public class App {
 
     public static void testRead() {
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(context);
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         try {
             Group g = x.read(Group.class, UUID.fromString("2eb17945-6cac-4ee5-9cf1-f3d8a98f7211"));
@@ -132,7 +129,7 @@ public class App {
 
 //        System.out.println(DAOAnnotationUtils.getValueList(p));
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(context);
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
         x.insert(p);
 
         p.setDescription(" _ fuck yeah 2");
@@ -157,7 +154,7 @@ public class App {
 
         __Administrator admin = new __Administrator(UUID.randomUUID(), "admin", "root", "email@gmail.com", "password", p.getId(), 102);
 
-        DAOCRUDJdbc adminJdbc = DAOCRUDJdbc.getInstance(context);
+        DAOCRUDJdbc adminJdbc = DAOCRUDJdbc.getInstance(AppConst.context);
 
         adminJdbc.insert(admin);
 
@@ -165,7 +162,7 @@ public class App {
 
         adminJdbc.update(admin);
 
-        DAOCRUDJdbc adminJdbc2 = (DAOCRUDJdbc) context.getBean("DAOJdbc");
+        DAOCRUDJdbc adminJdbc2 = (DAOCRUDJdbc) AppConst.context.getBean("DAOJdbc");
 
         __Administrator ad2 = new __Administrator(UUID.randomUUID(), "admin2", "root2", "email@gmail.com", "password", p.getId(), 102);
         adminJdbc2.insert(ad2);
