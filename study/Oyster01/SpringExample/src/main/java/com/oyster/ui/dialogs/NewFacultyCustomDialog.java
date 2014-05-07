@@ -1,51 +1,54 @@
-package com.oyster.ui;
+package com.oyster.ui.dialogs;
+
+import com.oyster.core.controller.command.Context;
+import com.oyster.ui.MainForm;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /* 1.4 example used by DialogDemo.java. */
-class CustomDialog extends JDialog
-        implements ActionListener,
-        PropertyChangeListener {
-    private String typedText = null;
-    private JTextField textField;
+public class NewFacultyCustomDialog extends JDialog
+        implements PropertyChangeListener {
+    private String facultyName = null;
+    private JTextField textField1;
+
     private MainForm dd;
 
-    private String magicWord;
     private JOptionPane optionPane;
 
-    private String btnString1 = "Enter";
-    private String btnString2 = "Cancel";
+    private String btnString1 = "Створити";
+    private String btnString2 = "Відмінити";
 
     /**
      * Returns null if the typed string was invalid;
      * otherwise, returns the string as the user entered it.
      */
     public String getValidatedText() {
-        return typedText;
+        return facultyName;
     }
 
     /**
      * Creates the reusable dialog.
      */
-    public CustomDialog(Frame aFrame, String aWord, MainForm parent) {
+    public NewFacultyCustomDialog(Frame aFrame, MainForm parent) {
         super(aFrame, true);
-        super.setLocationRelativeTo(parent);
+        super.setLocationRelativeTo(null);
         dd = parent;
 
-        magicWord = aWord.toUpperCase();
-        setTitle("Quiz");
+        setTitle("Додати факультет");
 
-        textField = new JTextField(10);
+        textField1 = new JTextField(10);
 
         //Create an array of the text and components to be displayed.
-        String msgString1 = "What was Dr. SEUSS's real last name?";
-        String msgString2 = "(The answer is \"" + magicWord
-                + "\".)";
-        Object[] array = {msgString1, msgString2, textField};
+        String msgString1 = "Назва факультету : ";
+        Object[] array = {msgString1, textField1};
 
         //Create an array specifying the number of dialog buttons
         //and their text.
@@ -53,7 +56,7 @@ class CustomDialog extends JDialog
 
         //Create the JOptionPane.
         optionPane = new JOptionPane(array,
-                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.INFORMATION_MESSAGE,
                 JOptionPane.YES_NO_OPTION,
                 null,
                 options,
@@ -79,22 +82,23 @@ class CustomDialog extends JDialog
         //Ensure the text field always gets the first focus.
         addComponentListener(new ComponentAdapter() {
             public void componentShown(ComponentEvent ce) {
-                textField.requestFocusInWindow();
+                textField1.requestFocusInWindow();
             }
         });
 
         //Register an event handler that puts the text into the option pane.
-        textField.addActionListener(this);
+//        textField1.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                optionPane.setValue(btnString1);
+//            }
+//        });
 
         //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
-    }
 
-    /**
-     * This method handles events for the text field.
-     */
-    public void actionPerformed(ActionEvent e) {
-        optionPane.setValue(btnString1);
+        setPreferredSize(new Dimension(350, 140));
+        setMinimumSize(new Dimension(350, 140));
     }
 
     /**
@@ -122,31 +126,40 @@ class CustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                typedText = textField.getText();
-                String ucText = typedText.toUpperCase();
-                if (magicWord.equals(ucText)) {
-                    //we're done; clear and dismiss the dialog
+                facultyName = textField1.getText();
+
+                boolean errorOccured = false;
+                JTextComponent focusComponent = textField1;
+
+
+                StringBuilder errorMsg = new StringBuilder("Введіть ");
+                if (facultyName.trim().length() == 0) {
+                    errorMsg.append(" назву факультету");
+                    errorOccured = true;
+                }
+
+                errorMsg.append("!");
+
+                if (!errorOccured) {
+                    Context c = new Context();
+                    c.put("name", facultyName);
+                    // and kick off action for performing
+                    dd.performAction("registerFaculty", c);
                     clearAndHide();
                 } else {
                     //text was invalid
-                    textField.selectAll();
+                    focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
-                            CustomDialog.this,
-                            "Sorry, \"" + typedText + "\" "
-                                    + "isn't a valid response.\n"
-                                    + "Please enter "
-                                    + magicWord + ".",
-                            "Try again",
+                            NewFacultyCustomDialog.this,
+                            errorMsg.toString(),
+                            "Спробуйте ще раз",
                             JOptionPane.ERROR_MESSAGE
                     );
-                    typedText = null;
-                    textField.requestFocusInWindow();
+                    facultyName = null;
+                    focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
-                /*dd.setLabel("It's OK.  "
-                        + "We won't force you to type "
-                        + magicWord + ".");*/
-                typedText = null;
+                facultyName = null;
                 clearAndHide();
             }
         }
@@ -156,7 +169,8 @@ class CustomDialog extends JDialog
      * This method clears the dialog and hides it.
      */
     public void clearAndHide() {
-        textField.setText(null);
+        textField1.setText(null);
         setVisible(false);
+        dispose();
     }
 }

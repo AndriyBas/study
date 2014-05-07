@@ -1,6 +1,7 @@
-package com.oyster.ui;
+package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.command.Context;
+import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -16,16 +17,23 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewAdminCustomDialog extends JDialog
+public class NewAdminCustomDialog extends JDialog
         implements PropertyChangeListener {
 
     private String userName = null;
     private String userSurmane = null;
-    private String userBirthDate = null;
+
+    private String userBirthDateStr = null;
+    private Date userBirthDate = null;
+
     private String adminPosition;
+
     private String adminSalary;
     private Integer adminSalaryInt;
-    private String adminDateHired;
+
+    private String adminDateHiredStr;
+    private Date adminDateHired;
+
     private String userPassword;
 
     private JTextField textField1;
@@ -191,10 +199,10 @@ class NewAdminCustomDialog extends JDialog
             if (btnString1.equals(value)) {
                 userName = textField1.getText();
                 userSurmane = textField2.getText();
-                userBirthDate = textField3.getText();
+                userBirthDateStr = textField3.getText();
                 adminPosition = textField4.getText();
                 adminSalary = textField5.getText();
-                adminDateHired = textField6.getText();
+                adminDateHiredStr = textField6.getText();
                 userPassword = new String(mJPasswordField.getPassword());
 
                 boolean errorOccured = false;
@@ -215,7 +223,7 @@ class NewAdminCustomDialog extends JDialog
                     errorMsg.append("  прізвище адміністратора");
                     focusComponent = textField2;
                 }
-                if (userBirthDate.trim().length() == 0) {
+                if (userBirthDateStr.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -241,7 +249,7 @@ class NewAdminCustomDialog extends JDialog
                     errorMsg.append("  зарплату");
                     focusComponent = textField5;
                 }
-                if (adminDateHired.trim().length() == 0) {
+                if (adminDateHiredStr.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -264,16 +272,16 @@ class NewAdminCustomDialog extends JDialog
 
                 if (!errorOccured) {
 
-                    System.out.println("fuck : ");
                     try {
-                        adminSalaryInt = (Integer)
-                                ((JFormattedTextField) textField5).getFormatter().stringToValue(adminSalary);
+                        adminSalaryInt = (Integer) ((JFormattedTextField) textField5)
+                                .getFormatter().stringToValue(adminSalary);
 
-                        System.out.println(
-                                ((Date) ((JFormattedTextField) textField3).getFormatter().stringToValue(userBirthDate)) + " " +
-                                        ((Date) ((JFormattedTextField) textField3).getFormatter().stringToValue(userBirthDate))
-                                                .getTime()
-                        );
+                        userBirthDate = (Date) ((JFormattedTextField) textField3)
+                                .getFormatter().stringToValue(userBirthDateStr);
+
+                        adminDateHired = (Date) ((JFormattedTextField) textField6)
+                                .getFormatter().stringToValue(adminDateHiredStr);
+
                     } catch (ParseException e1) {
                         e1.printStackTrace();
                     }
@@ -282,10 +290,10 @@ class NewAdminCustomDialog extends JDialog
                     Context c = new Context();
                     c.put("name", userName);
                     c.put("surname", userSurmane);
-                    c.put("birthday", userBirthDate);
+                    c.put("birthday", userBirthDate.getTime());
                     c.put("position", adminPosition);
                     c.put("salary", adminSalaryInt);
-                    c.put("dateHired", adminDateHired);
+                    c.put("dateHired", adminDateHired.getTime());
                     c.put("password", userPassword);
 
                     // and kick off action for performing
@@ -303,20 +311,20 @@ class NewAdminCustomDialog extends JDialog
                     );
                     userName = null;
                     userSurmane = null;
-                    userBirthDate = null;
+                    userBirthDateStr = null;
                     adminPosition = null;
                     adminSalary = null;
-                    adminDateHired = null;
+                    adminDateHiredStr = null;
                     userPassword = null;
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
                 userName = null;
                 userSurmane = null;
-                userBirthDate = null;
+                userBirthDateStr = null;
                 adminPosition = null;
                 adminSalary = null;
-                adminDateHired = null;
+                adminDateHiredStr = null;
                 userPassword = null;
                 clearAndHide();
             }

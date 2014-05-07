@@ -1,6 +1,7 @@
-package com.oyster.ui;
+package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.command.Context;
+import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -11,18 +12,29 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewTeacherCustomDialog extends JDialog
+public class NewTeacherCustomDialog extends JDialog
         implements PropertyChangeListener {
     private String userName = null;
     private String userSurmane = null;
-    private String userBirthDate = null;
+
+    private String userBirthDateStr = null;
+    private Date userBirthDate = null;
+
     private String teacherPosition;
-    private String teacherSalary;
-    private String teacherDateHired;
+
+    private String teacherSalaryStr;
+    private Integer teacherSalaryInt;
+
+    private String teacherDateHiredStr;
+    private Date teacherDateHired;
+
     private String userPassword;
+
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -187,10 +199,10 @@ class NewTeacherCustomDialog extends JDialog
             if (btnString1.equals(value)) {
                 userName = textField1.getText();
                 userSurmane = textField2.getText();
-                userBirthDate = textField3.getText();
+                userBirthDateStr = textField3.getText();
                 teacherPosition = textField4.getText();
-                teacherSalary = textField5.getText();
-                teacherDateHired = textField6.getText();
+                teacherSalaryStr = textField5.getText();
+                teacherDateHiredStr = textField6.getText();
                 userPassword = new String(mJPasswordField.getPassword());
 
                 boolean errorOccured = false;
@@ -211,7 +223,7 @@ class NewTeacherCustomDialog extends JDialog
                     errorMsg.append("  прізвище викладача");
                     focusComponent = textField2;
                 }
-                if (userBirthDate.trim().length() == 0) {
+                if (userBirthDateStr.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -229,7 +241,7 @@ class NewTeacherCustomDialog extends JDialog
                     focusComponent = textField4;
                 }
 
-                if (teacherSalary.trim().length() == 0) {
+                if (teacherSalaryStr.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -237,7 +249,7 @@ class NewTeacherCustomDialog extends JDialog
                     errorMsg.append("  зарплату");
                     focusComponent = textField5;
                 }
-                if (teacherDateHired.trim().length() == 0) {
+                if (teacherDateHiredStr.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -260,14 +272,28 @@ class NewTeacherCustomDialog extends JDialog
 
                 if (!errorOccured) {
 
+
+                    try {
+                        userBirthDate = (Date) ((JFormattedTextField) textField3)
+                                .getFormatter().stringToValue(userBirthDateStr);
+
+                        teacherSalaryInt = (Integer) ((JFormattedTextField) textField5)
+                                .getFormatter().stringToValue(teacherSalaryStr);
+
+                        teacherDateHired = (Date) ((JFormattedTextField) textField6)
+                                .getFormatter().stringToValue(teacherDateHiredStr);
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+
                     // collect all data
                     Context c = new Context();
                     c.put("name", userName);
                     c.put("surname", userSurmane);
-                    c.put("birthday", userBirthDate);
+                    c.put("birthday", userBirthDate.getTime());
                     c.put("position", teacherPosition);
-                    c.put("salary", Integer.parseInt(teacherSalary));
-                    c.put("dateHired", teacherDateHired);
+                    c.put("salary", teacherSalaryInt);
+                    c.put("dateHired", teacherDateHired.getTime());
                     c.put("password", userPassword);
 
                     // and kick off action for performing
@@ -285,20 +311,20 @@ class NewTeacherCustomDialog extends JDialog
                     );
                     userName = null;
                     userSurmane = null;
-                    userBirthDate = null;
+                    userBirthDateStr = null;
                     teacherPosition = null;
-                    teacherSalary = null;
-                    teacherDateHired = null;
+                    teacherSalaryStr = null;
+                    teacherDateHiredStr = null;
                     userPassword = null;
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
                 userName = null;
                 userSurmane = null;
-                userBirthDate = null;
+                userBirthDateStr = null;
                 teacherPosition = null;
-                teacherSalary = null;
-                teacherDateHired = null;
+                teacherSalaryStr = null;
+                teacherDateHiredStr = null;
                 userPassword = null;
                 clearAndHide();
             }

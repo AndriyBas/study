@@ -88,4 +88,12 @@ public class Profile {
     public void setBirthday(long birthday) {
         this.birthday = birthday;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

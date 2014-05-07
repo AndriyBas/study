@@ -1,6 +1,7 @@
-package com.oyster.ui;
+package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.command.Context;
+import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -13,11 +14,12 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewFacultyCustomDialog extends JDialog
+public class NewGroupCustomDialog extends JDialog
         implements PropertyChangeListener {
-    private String facultyName = null;
+    private String groupName = null;
+    private String groupChipher = null;
     private JTextField textField1;
-
+    private JTextField textField2;
     private MainForm dd;
 
     private JOptionPane optionPane;
@@ -30,24 +32,26 @@ class NewFacultyCustomDialog extends JDialog
      * otherwise, returns the string as the user entered it.
      */
     public String getValidatedText() {
-        return facultyName;
+        return groupName;
     }
 
     /**
      * Creates the reusable dialog.
      */
-    public NewFacultyCustomDialog(Frame aFrame, MainForm parent) {
+    public NewGroupCustomDialog(Frame aFrame, MainForm parent) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
         dd = parent;
 
-        setTitle("Додати факультет");
+        setTitle("Додати нову групу");
 
         textField1 = new JTextField(10);
+        textField2 = new JTextField(15);
 
         //Create an array of the text and components to be displayed.
-        String msgString1 = "Назва факультету : ";
-        Object[] array = {msgString1, textField1};
+        String msgString1 = "Назва групи : ";
+        String msgString2 = "Шифр групи : ";
+        Object[] array = {msgString1, textField1, msgString2, textField2};
 
         //Create an array specifying the number of dialog buttons
         //and their text.
@@ -93,11 +97,18 @@ class NewFacultyCustomDialog extends JDialog
 //            }
 //        });
 
+//        textField2.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                optionPane.setValue(btnString1);
+//            }
+//        });
+
         //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
 
-        setPreferredSize(new Dimension(350, 140));
-        setMinimumSize(new Dimension(350, 140));
+        setPreferredSize(new Dimension(350, 190));
+        setMinimumSize(new Dimension(350, 150));
     }
 
     /**
@@ -125,40 +136,56 @@ class NewFacultyCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                facultyName = textField1.getText();
+                groupName = textField1.getText();
+                groupChipher = textField2.getText();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (facultyName.trim().length() == 0) {
-                    errorMsg.append(" назву факультету");
+                if (groupName.trim().length() == 0) {
+                    errorMsg.append(" назву групи");
                     errorOccured = true;
+                }
+
+                if (groupChipher.trim().length() == 0) {
+                    if (errorOccured) {
+                        errorMsg.append(" та");
+                    }
+                    errorOccured = true;
+                    errorMsg.append("  шифр групи");
+                    focusComponent = textField2;
                 }
 
                 errorMsg.append("!");
 
                 if (!errorOccured) {
+
+                    // collect all data
                     Context c = new Context();
-                    c.put("name", facultyName);
+                    c.put("name", groupName);
+                    c.put("chipher", groupChipher);
                     // and kick off action for performing
-                    dd.performAction("registerFaculty", c);
+                    dd.performAction("registerGroup", c);
+
                     clearAndHide();
                 } else {
                     //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
-                            NewFacultyCustomDialog.this,
+                            NewGroupCustomDialog.this,
                             errorMsg.toString(),
                             "Спробуйте ще раз",
                             JOptionPane.ERROR_MESSAGE
                     );
-                    facultyName = null;
+                    groupName = null;
+                    groupChipher = null;
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
-                facultyName = null;
+                groupName = null;
+                groupChipher = null;
                 clearAndHide();
             }
         }
@@ -169,6 +196,7 @@ class NewFacultyCustomDialog extends JDialog
      */
     public void clearAndHide() {
         textField1.setText(null);
+        textField2.setText(null);
         setVisible(false);
         dispose();
     }

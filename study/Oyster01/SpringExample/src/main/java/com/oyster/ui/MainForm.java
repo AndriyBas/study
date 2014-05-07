@@ -4,6 +4,7 @@ import com.oyster.app.model.*;
 import com.oyster.app.test.App;
 import com.oyster.core.controller.command.Context;
 import com.oyster.dao.impl.DAOCRUDJdbc;
+import com.oyster.ui.dialogs.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -236,6 +237,7 @@ public class MainForm extends JFrame {
                     NewSubjectCustomDialog sub = new NewSubjectCustomDialog(this, this);
                     sub.pack();
                     sub.setVisible(true);
+                    sub.setVisible(true);
                     break;
             }
         }
@@ -374,7 +376,7 @@ public class MainForm extends JFrame {
                         UUID.randomUUID(),
                         (String) c.get("position"),
                         (Integer) c.get("salary"),
-                        (Long) c.get("dataHired")
+                        (Long) c.get("dateHired")
                 );
 
                 Teacher teacher = new Teacher(
@@ -406,7 +408,7 @@ public class MainForm extends JFrame {
                         UUID.randomUUID(),
                         (String) c.get("position"),
                         (Integer) c.get("salary"),
-                        (Long) c.get("dataHired")
+                        (Long) c.get("dateHired")
                 );
 
                 Admin admin = new Admin(

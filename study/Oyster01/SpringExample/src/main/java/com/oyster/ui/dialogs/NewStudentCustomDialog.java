@@ -1,6 +1,7 @@
-package com.oyster.ui;
+package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.command.Context;
+import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -11,19 +12,31 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
-class NewStudentCustomDialog extends JDialog
+public class NewStudentCustomDialog extends JDialog
         implements PropertyChangeListener {
     private String userName = null;
     private String userSurmane = null;
-    private String userBirthDate = null;
+
+    private String userBirthDateStr = null;
+    private Date userBirthDate = null;
+
     private String studentFaculty;
+
     private String studentCourse;
+    private Integer studentCourseInt;
+
     private String studentGroup;
+
     private String studentNZK;
+    private Integer studentNZKInt;
+
     private String userPassword;
+
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField3;
@@ -65,13 +78,13 @@ class NewStudentCustomDialog extends JDialog
         textField4 = new JTextField(15);
 
         NumberFormat format = NumberFormat.getInstance();
-        NumberFormatter formatter = new NumberFormatter(format);
-        formatter.setValueClass(Integer.class);
-        formatter.setMinimum(1);
-        formatter.setMaximum(6);
+        NumberFormatter CourseFormatter = new NumberFormatter(format);
+        CourseFormatter.setValueClass(Integer.class);
+        CourseFormatter.setMinimum(1);
+        CourseFormatter.setMaximum(6);
         // If you want the value to be committed on each keystroke instead of focus lost
-        formatter.setCommitsOnValidEdit(true);
-        textField5 = new JFormattedTextField(formatter);
+        CourseFormatter.setCommitsOnValidEdit(true);
+        textField5 = new JFormattedTextField(CourseFormatter);
 
         textField6 = new JTextField(15);
 
@@ -196,7 +209,7 @@ class NewStudentCustomDialog extends JDialog
             if (btnString1.equals(value)) {
                 userName = textField1.getText();
                 userSurmane = textField2.getText();
-                userBirthDate = textField3.getText();
+                userBirthDateStr = textField3.getText();
                 studentFaculty = textField4.getText();
                 studentCourse = textField5.getText();
                 studentGroup = textField6.getText();
@@ -221,7 +234,7 @@ class NewStudentCustomDialog extends JDialog
                     errorMsg.append("  прізвище студента");
                     focusComponent = textField2;
                 }
-                if (userBirthDate.trim().length() == 0) {
+                if (userBirthDateStr.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -277,15 +290,27 @@ class NewStudentCustomDialog extends JDialog
 
                 if (!errorOccured) {
 
+                    try {
+                        userBirthDate = (Date) ((JFormattedTextField) textField3)
+                                .getFormatter().stringToValue(userBirthDateStr);
+                        studentCourseInt = (Integer) ((JFormattedTextField) textField5)
+                                .getFormatter().stringToValue(userBirthDateStr);
+                        studentNZKInt = (Integer) ((JFormattedTextField) textField7)
+                                .getFormatter().stringToValue(userBirthDateStr);
+
+                    } catch (ParseException e1) {
+                        e1.printStackTrace();
+                    }
+
                     // collect all data
                     Context c = new Context();
                     c.put("name", userName);
                     c.put("surname", userSurmane);
-                    c.put("birthday", userBirthDate);
+                    c.put("birthday", userBirthDate.getTime());
                     c.put("faculty", studentFaculty);
-                    c.put("course", Integer.parseInt(studentCourse));
+                    c.put("course", studentCourseInt);
                     c.put("group", studentGroup);
-                    c.put("bookNum", Integer.parseInt(studentNZK));
+                    c.put("bookNum", studentNZKInt);
                     c.put("password", userPassword);
 
                     // and kick off action for performing
@@ -303,7 +328,7 @@ class NewStudentCustomDialog extends JDialog
                     );
                     userName = null;
                     userSurmane = null;
-                    userBirthDate = null;
+                    userBirthDateStr = null;
                     studentFaculty = null;
                     studentCourse = null;
                     studentGroup = null;
@@ -314,7 +339,7 @@ class NewStudentCustomDialog extends JDialog
             } else { //user closed dialog or clicked cancel
                 userName = null;
                 userSurmane = null;
-                userBirthDate = null;
+                userBirthDateStr = null;
                 studentFaculty = null;
                 studentCourse = null;
                 studentGroup = null;
