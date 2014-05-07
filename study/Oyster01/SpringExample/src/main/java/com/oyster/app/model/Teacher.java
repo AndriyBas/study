@@ -2,7 +2,6 @@ package com.oyster.app.model;
 
 import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
-import com.oyster.dao.annotation.utils.converter.LongConverter;
 import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
@@ -35,6 +34,10 @@ public class Teacher {
     @Stored(name = "worker_info_id", converter = UUIDConverter.class)
     private UUID workerInfoId;
 
+    private Profile profile;
+
+    private WorkerInfo workerInfo;
+
     public Teacher() {
     }
 
@@ -66,5 +69,21 @@ public class Teacher {
 
     public void setProfileId(UUID profileId) {
         this.profileId = profileId;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public WorkerInfo getWorkerInfo() {
+        return workerInfo;
+    }
+
+    public void setWorkerInfo(WorkerInfo workerInfo) {
+        this.workerInfo = workerInfo;
     }
 }

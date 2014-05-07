@@ -1,5 +1,6 @@
 package com.oyster.ui.dialogs;
 
+import com.oyster.app.AppConst;
 import com.oyster.core.controller.command.Context;
 import com.oyster.ui.MainForm;
 
@@ -10,10 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
@@ -67,12 +66,9 @@ public class NewTeacherCustomDialog extends JDialog
 
         setTitle("Створити профіль викладача");
 
-        DateFormat dateFormat = new SimpleDateFormat("d/M/y");
-
-
         textField1 = new JTextField(10);
         textField2 = new JTextField(15);
-        textField3 = new JFormattedTextField(dateFormat);
+        textField3 = new JFormattedTextField(AppConst.dateFormat);
         textField4 = new JTextField(15);
 
         NumberFormat format = NumberFormat.getInstance();
@@ -84,7 +80,7 @@ public class NewTeacherCustomDialog extends JDialog
         formatter.setCommitsOnValidEdit(true);
         textField5 = new JFormattedTextField(formatter);
 
-        textField6 = new JFormattedTextField(dateFormat);
+        textField6 = new JFormattedTextField(AppConst.dateFormat);
         mJPasswordField = new JPasswordField(15);
         mJPasswordField = new JPasswordField(15);
 

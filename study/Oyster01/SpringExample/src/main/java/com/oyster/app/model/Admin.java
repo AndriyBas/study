@@ -36,6 +36,10 @@ public class Admin {
     @Stored(name = "worker_info_id", converter = UUIDConverter.class)
     private UUID workerInfoId;
 
+    private Profile profile;
+
+    private WorkerInfo workerInfo;
+
     public Admin() {}
 
     public Admin(UUID id, UUID profileId, UUID workerInfoId) {
@@ -66,5 +70,21 @@ public class Admin {
 
     public void setProfileId(UUID profileId) {
         this.profileId = profileId;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public WorkerInfo getWorkerInfo() {
+        return workerInfo;
+    }
+
+    public void setWorkerInfo(WorkerInfo workerInfo) {
+        this.workerInfo = workerInfo;
     }
 }

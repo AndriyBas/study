@@ -2,7 +2,10 @@ package com.oyster.app;
 
 import com.oyster.app.model.Admin;
 import com.oyster.app.model.Profile;
+import com.oyster.app.model.WorkerInfo;
 import org.springframework.context.ApplicationContext;
+
+import java.text.SimpleDateFormat;
 
 /**
  * Created by bamboo on 07.05.14.
@@ -10,9 +13,14 @@ import org.springframework.context.ApplicationContext;
 public class AppConst {
 
     private static Admin currentAdmin;
-    private static Profile currentAdminProfile;
 
     public static ApplicationContext context;
+
+    public static SimpleDateFormat dateFormat;
+
+    static {
+        dateFormat = new SimpleDateFormat("d/M/y");
+    }
 
 
     public static Admin getCurrentAdmin() {
@@ -21,13 +29,5 @@ public class AppConst {
 
     public static void setCurrentAdmin(Admin currentAdmin) {
         AppConst.currentAdmin = currentAdmin;
-    }
-
-    public static Profile getCurrentAdminProfile() {
-        return currentAdminProfile;
-    }
-
-    public static void setCurrentAdminProfile(Profile currentAdminProfile) {
-        AppConst.currentAdminProfile = currentAdminProfile;
     }
 }

@@ -1,5 +1,6 @@
 package com.oyster.ui.dialogs;
 
+import com.oyster.app.AppConst;
 import com.oyster.core.controller.command.Context;
 import com.oyster.ui.MainForm;
 
@@ -70,11 +71,9 @@ public class NewStudentCustomDialog extends JDialog
 
         setTitle("Створити профіль студента");
 
-        DateFormat dateFormat = new SimpleDateFormat("d/M/y");
-
         textField1 = new JTextField(10);
         textField2 = new JTextField(15);
-        textField3 = new JFormattedTextField(dateFormat);
+        textField3 = new JFormattedTextField(AppConst.dateFormat);
         textField4 = new JTextField(15);
 
         NumberFormat format = NumberFormat.getInstance();

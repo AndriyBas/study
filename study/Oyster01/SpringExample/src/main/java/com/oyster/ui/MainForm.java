@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -82,6 +83,7 @@ public class MainForm extends JFrame {
 
     private void hardCoreInit() {
 
+//        mTextFieldInfo3 = new JFormattedTextField(AppConst.dateFormat);
         addJMenu();
 
         mButtonNewUser.addActionListener(new ActionListener() {
@@ -105,6 +107,7 @@ public class MainForm extends JFrame {
                 comboBoxHistoryChangeAction();
             }
         });
+
 
     }
 
@@ -148,6 +151,8 @@ public class MainForm extends JFrame {
                 mScrollPanePeople.setVisible(false);
                 mButtonDelete.setEnabled(false);
 
+                fillInfoFields(AppConst.getCurrentAdmin());
+
 
                 break;
             case 1:
@@ -181,6 +186,32 @@ public class MainForm extends JFrame {
 
         validate();
         repaint();
+    }
+
+    private void fillInfoFields(Profile p) {
+        mTextFieldInfo1.setText(p.getName());
+        mTextFieldInfo2.setText(p.getSurname());
+        mTextFieldInfo3.setText(AppConst.dateFormat.format(new Date(p.getBirthday())));
+        mPasswordField1.setText(p.getPassword());
+    }
+
+    private void fillInfoFields(WorkerInfo wi) {
+        mTextFieldInfo4.setText(wi.getPosition());
+        mTextFieldInfo5.setText(String.valueOf(wi.getSalary()));
+        mTextFieldInfo6.setText(AppConst.dateFormat.format(new Date(wi.getDateHired())));
+
+    }
+
+    private void fillInfoFields(Admin a) {
+        fillInfoFields(a.getProfile());
+        fillInfoFields(a.getWorkerInfo());
+    }
+
+    private void fillInfoFields(Student s) {
+        mTextFieldInfo4.setText(s.getFaculty().getName());
+        mTextFieldInfo5.setText(String.valueOf(s.getCourse()));
+        mTextFieldInfo6.setText(s.getGroup().getName());
+        mTextFieldInfo7.setText(String.valueOf(s.getBookNum()));
     }
 
     private void newUserAction() {

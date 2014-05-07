@@ -49,6 +49,12 @@ public class Student {
     @Stored(name = "book_num", converter = IntConverter.class)
     private int bookNum;
 
+    private Profile profile;
+
+    private Faculty faculty;
+
+    private Group group;
+
     public Student() {
     }
 
@@ -108,5 +114,29 @@ public class Student {
 
     public void setBookNum(int bookNum) {
         this.bookNum = bookNum;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

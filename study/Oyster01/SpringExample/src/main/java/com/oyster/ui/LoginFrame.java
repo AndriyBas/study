@@ -3,6 +3,7 @@ package com.oyster.ui;
 import com.oyster.app.AppConst;
 import com.oyster.app.model.Admin;
 import com.oyster.app.model.Profile;
+import com.oyster.app.model.WorkerInfo;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.dao.impl.DAOCRUDJdbc;
@@ -132,7 +133,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             return;
         }
 
-        final Profile p = profiles.get(0);
+        final Profile profile = profiles.get(0);
         List<Admin> admins = null;
 
         try {
@@ -140,7 +141,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                 @Override
                 public <T> boolean accept(T entity) {
                     Admin a = (Admin) entity;
-                    return a.getProfileId().equals(p.getId());
+                    return a.getProfileId().equals(profile.getId());
                 }
             });
         } catch (DAOException e) {
@@ -154,8 +155,28 @@ public class LoginFrame extends JFrame implements ActionListener {
             return;
         }
 
-        AppConst.setCurrentAdmin(admins.get(0));
-        AppConst.setCurrentAdminProfile(p);
+        final Admin admin = admins.get(0);
+
+        List<WorkerInfo> infos = null;
+        try {
+            infos = x.select(WorkerInfo.class, new DAOFilter() {
+                @Override
+                public <T> boolean accept(T entity) {
+                    WorkerInfo w = (WorkerInfo) entity;
+                    return admin.getWorkerInfoId().equals(w.getId());
+                }
+            });
+        } catch (DAOException e) {
+            e.printStackTrace();
+            Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
+            return;
+        }
+
+
+        admin.setProfile(profile);
+        admin.setWorkerInfo(infos.get(0));
+        AppConst.setCurrentAdmin(admin);
+
 
         MainForm form = new MainForm();
 

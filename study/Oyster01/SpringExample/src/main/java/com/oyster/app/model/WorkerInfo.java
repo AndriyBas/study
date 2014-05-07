@@ -19,7 +19,7 @@ import java.util.UUID;
     CREATE TABLE `WORKER_INFO_TBL` (
             `_id` VARCHAR(50),
     `position` VARCHAR(50),
-    `salary`  INT UNSIGNED ZEROFILL,
+    `salary`  INT ZEROFILL,
     `date_hired`   BIGINT UNSIGNED ZEROFILL,
     PRIMARY KEY (`_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
