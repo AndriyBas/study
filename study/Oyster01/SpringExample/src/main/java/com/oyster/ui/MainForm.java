@@ -123,10 +123,57 @@ public class MainForm extends JFrame {
             }
         });
 
+        mComboBoxProfileStudentTypeFaculty.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showFilteredStudents();
+            }
+        });
+        mComboBoxProfileStudentTypeGroup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showFilteredStudents();
+            }
+        });
+
     }
+
 
     private void comboBoxHistoryChangeAction() {
 
+    }
+
+    private void showFilteredStudents() {
+
+        DefaultListModel<Student> model = new DefaultListModel<Student>();
+        java.util.List<Student> students = filterStudents((Faculty) mComboBoxProfileStudentTypeFaculty.getSelectedItem(),
+                (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem());
+        for (Student s : students) {
+            model.addElement(s);
+        }
+        mListPeople.setModel(model);
+    }
+
+    private java.util.List<Student> filterStudents(final Faculty faculty, final Group group) {
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+        java.util.List<Student> students = null;
+        try {
+            students = x.select(Student.class, new DAOFilter() {
+                @Override
+                public <T> boolean accept(T entity) {
+                    Student s = (Student) entity;
+                    return s.getFacultyId().equals(faculty.getId()) && s.getGroupId().equals(group.getId());
+                }
+            });
+            for (Student student : students) {
+                student.setProfile((Profile) x.read(Profile.class, student.getProfileId()));
+                student.setGroup(group);
+                student.setFaculty(faculty);
+            }
+        } catch (Exception e) {
+        }
+        return students;
     }
 
     private void comboBoxChangeAction() {
@@ -231,33 +278,45 @@ public class MainForm extends JFrame {
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
 
-                mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(new Object[]{"ФІОТ", "ІПСА"}));
-                mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(new Object[]{"ІО-21", "ІО-22"}));
+//                mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(new Object[]{"ФІОТ", "ІПСА"}));
+//                mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(new Object[]{"ІО-21", "ІО-22"}));
 
-                java.util.List<Student> students = null;
+//                java.util.List<Student> students = null;
+                java.util.List<Faculty> faculties = null;
+                java.util.List<Group> groups = null;
+
 
                 try {
-                    students = x.select(Student.class, "");
+                   /* students = x.select(Student.class, "");
                     for (Student student : students) {
                         student.setProfile((Profile) x.read(Profile.class, student.getProfileId()));
                         student.setGroup((Group) x.read(Group.class, student.getGroupId()));
                         student.setFaculty((Faculty) x.read(Faculty.class, student.getFacultyId()));
                     }
+*/
+                    faculties = x.select(Faculty.class, "");
+                    groups = x.select(Group.class, "");
+
                 } catch (DAOException e) {
                     e.printStackTrace();
                 }
 
-                DefaultListModel<Student> studentModel = new DefaultListModel<>();
+                mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(faculties.toArray()));
+                mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(groups.toArray()));
+
+                mComboBoxProfileStudentTypeFaculty.setSelectedIndex(0);
+                mComboBoxProfileStudentTypeGroup.setSelectedIndex(0);
+
+         /*       DefaultListModel<Student> studentModel = new DefaultListModel<>();
                 for (Student student : students) {
                     studentModel.addElement(student);
                 }
                 mListPeople.setModel(studentModel);
-                mListPeople.setSelectedIndex(0);
+                mListPeople.setSelectedIndex(0);*/
 
 
                 break;
         }
-
         validate();
         repaint();
     }
