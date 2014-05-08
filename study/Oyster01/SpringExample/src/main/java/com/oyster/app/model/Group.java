@@ -16,7 +16,7 @@ import java.util.UUID;
     CREATE TABLE `GROUP_TBL` (
             `_id` VARCHAR(50),
     `name` VARCHAR(30) UNIQUE,
-    `chipher`  VARCHAR(50),
+    `faculty_id`  VARCHAR(50),
     PRIMARY KEY (`_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -29,26 +29,23 @@ public class Group {
     @Stored(name = "_id", converter = UUIDConverter.class)
     private UUID id;
 
-    @Stored(name = "chipher")
-    private String chipher;
+    @Stored(name = "faculty_id", converter = UUIDConverter.class)
+    private UUID facultyId;
 
     @Stored(name = "name")
     private String name;
 
+    private Faculty faculty;
+
     public Group() {
     }
 
-    public Group(UUID id, String chipher, String name) {
+    public Group(UUID id, UUID facultyId, String name) {
         this.id = id;
-        this.chipher = chipher;
+        this.facultyId = facultyId;
         this.name = name;
     }
 
-
-    public Group(String chipher, String name) {
-        this.chipher = chipher;
-        this.name = name;
-    }
 
     public String getName() {
         return name;
@@ -58,20 +55,29 @@ public class Group {
         this.name = name;
     }
 
-    public String getChipher() {
-        return chipher;
-    }
-
-    public void setChipher(String chipher) {
-        this.chipher = chipher;
-    }
-
     public UUID getId() {
         return id;
     }
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public UUID getFacultyId() {
+        return facultyId;
+    }
+
+    public void setFacultyId(UUID facultyId) {
+        this.facultyId = facultyId;
+    }
+
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 
     @Override

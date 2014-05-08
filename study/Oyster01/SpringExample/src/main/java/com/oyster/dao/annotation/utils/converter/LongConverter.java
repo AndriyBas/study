@@ -17,9 +17,12 @@ public class LongConverter implements ValueConverter {
     @Override
     public <T> String toString(T value) {
         if (value == null) return "null";
+
+        // костиль (for Spring JDBC)
         if (value instanceof BigInteger) {
             return value.toString();
         }
+
         return Long.toString((Long) value);
     }
 

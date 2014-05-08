@@ -15,9 +15,12 @@ public class IntConverter implements ValueConverter {
     @Override
     public <T> String toString(T value) {
         if (value == null) return "null";
+
+        // костиль (for Spring JDBC)
         if (value instanceof Long) {
             return value.toString();
         }
+
         return Integer.toString((Integer) value);
     }
 

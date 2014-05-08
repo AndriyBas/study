@@ -17,11 +17,9 @@ import java.util.UUID;
     CREATE TABLE `STUDENT_TBL` (
             `_id` VARCHAR(50),
     `profile_id` VARCHAR(50) UNIQUE,
-    `faculty_id` VARCHAR(50),
     `group_id` VARCHAR(50),
     `course`  INT UNSIGNED ZEROFILL,
     `book_num`  INT UNSIGNED ZEROFILL,
-
     PRIMARY KEY (`_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -37,8 +35,6 @@ public class Student {
     @Stored(name = "profile_id", converter = UUIDConverter.class)
     private UUID profileId;
 
-    @Stored(name = "faculty_id", converter = UUIDConverter.class)
-    private UUID facultyId;
 
     @Stored(name = "group_id", converter = UUIDConverter.class)
     private UUID groupId;
@@ -51,17 +47,15 @@ public class Student {
 
     private Profile profile;
 
-    private Faculty faculty;
 
     private Group group;
 
     public Student() {
     }
 
-    public Student(UUID id, UUID profileId, UUID facultyId, UUID groupId, int course, int bookNum) {
+    public Student(UUID id, UUID profileId, UUID groupId, int course, int bookNum) {
         this.id = id;
         this.profileId = profileId;
-        this.facultyId = facultyId;
         this.groupId = groupId;
         this.course = course;
         this.bookNum = bookNum;
@@ -83,13 +77,6 @@ public class Student {
         this.profileId = profileId;
     }
 
-    public UUID getFacultyId() {
-        return facultyId;
-    }
-
-    public void setFacultyId(UUID facultyId) {
-        this.facultyId = facultyId;
-    }
 
     public UUID getGroupId() {
         return groupId;
@@ -124,13 +111,6 @@ public class Student {
         this.profile = profile;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
 
     public Group getGroup() {
         return group;

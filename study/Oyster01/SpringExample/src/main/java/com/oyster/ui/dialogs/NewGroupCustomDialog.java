@@ -17,7 +17,7 @@ import java.beans.PropertyChangeListener;
 public class NewGroupCustomDialog extends JDialog
         implements PropertyChangeListener {
     private String groupName = null;
-    private String groupChipher = null;
+    private String groupFaculty = null;
     private JTextField textField1;
     private JTextField textField2;
     private MainForm dd;
@@ -50,7 +50,7 @@ public class NewGroupCustomDialog extends JDialog
 
         //Create an array of the text and components to be displayed.
         String msgString1 = "Назва групи : ";
-        String msgString2 = "Шифр групи : ";
+        String msgString2 = "Факультет : ";
         Object[] array = {msgString1, textField1, msgString2, textField2};
 
         //Create an array specifying the number of dialog buttons
@@ -137,7 +137,7 @@ public class NewGroupCustomDialog extends JDialog
 
             if (btnString1.equals(value)) {
                 groupName = textField1.getText();
-                groupChipher = textField2.getText();
+                groupFaculty = textField2.getText();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;
@@ -149,12 +149,12 @@ public class NewGroupCustomDialog extends JDialog
                     errorOccured = true;
                 }
 
-                if (groupChipher.trim().length() == 0) {
+                if (groupFaculty.trim().length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(" та");
                     }
                     errorOccured = true;
-                    errorMsg.append("  шифр групи");
+                    errorMsg.append("  факльтет");
                     focusComponent = textField2;
                 }
 
@@ -165,7 +165,7 @@ public class NewGroupCustomDialog extends JDialog
                     // collect all data
                     Context c = new Context();
                     c.put("name", groupName);
-                    c.put("chipher", groupChipher);
+                    c.put("faculty", groupFaculty);
                     // and kick off action for performing
                     dd.performAction("registerGroup", c);
 
@@ -180,12 +180,12 @@ public class NewGroupCustomDialog extends JDialog
                             JOptionPane.ERROR_MESSAGE
                     );
                     groupName = null;
-                    groupChipher = null;
+                    groupFaculty = null;
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
                 groupName = null;
-                groupChipher = null;
+                groupFaculty = null;
                 clearAndHide();
             }
         }

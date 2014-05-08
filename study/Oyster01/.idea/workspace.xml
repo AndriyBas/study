@@ -106,37 +106,9 @@
       <file leaf-file-name="Student.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Student.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1022" max-vertical-offset="1650">
-              <caret line="122" column="21" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="481" max-vertical-offset="1470">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Admin.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Admin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="761" max-vertical-offset="1155">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-              <folding>
-                <element signature="e#1935#1936#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoginFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/LoginFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2175" max-vertical-offset="2655">
-              <caret line="154" column="12" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3222#3549#0" expanded="true" />
-                <element signature="e#3534#3535#0" expanded="true" />
-                <element signature="e#4061#4305#0" expanded="true" />
-                <element signature="e#4290#4291#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -144,7 +116,7 @@
       <file leaf-file-name="DAOCRUDJdbc.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/impl/DAOCRUDJdbc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2823" max-vertical-offset="3405">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1775" max-vertical-offset="3405">
               <caret line="219" column="14" selection-start-line="219" selection-start-column="14" selection-end-line="219" selection-end-column="14" />
               <folding>
                 <element signature="e#5682#5683#0" expanded="true" />
@@ -166,8 +138,8 @@
       <file leaf-file-name="MainForm.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/MainForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2672269" vertical-offset="4086" max-vertical-offset="5565">
-              <caret line="293" column="8" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.29227054" vertical-offset="2264" max-vertical-offset="8625">
+              <caret line="169" column="42" selection-start-line="169" selection-start-column="42" selection-end-line="169" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2799#2964#0" expanded="true" />
@@ -176,19 +148,60 @@
                 <element signature="e#3726#3727#0" expanded="true" />
                 <element signature="e#3802#3967#0" expanded="true" />
                 <element signature="e#3956#3957#0" expanded="true" />
-                <element signature="e#4029#4194#0" expanded="true" />
-                <element signature="e#4183#4184#0" expanded="true" />
-                <element signature="e#4368#4377#0" expanded="true" />
-                <element signature="e#4977#5265#0" expanded="true" />
-                <element signature="e#5250#5251#0" expanded="true" />
+                <element signature="e#4030#4193#0" expanded="true" />
+                <element signature="e#4182#4183#0" expanded="true" />
+                <element signature="e#4565#4803#0" expanded="true" />
+                <element signature="e#4788#4789#0" expanded="true" />
+                <element signature="e#5526#5770#0" expanded="true" />
+                <element signature="e#5755#5756#0" expanded="true" />
+                <element signature="e#6228#6237#0" expanded="true" />
                 <element signature="method#newUserAction#0;class#MainForm#0" expanded="false" />
                 <element signature="method#addJMenu#0;class#MainForm#0" expanded="false" />
-                <element signature="method#performAction#0;class#MainForm#0" expanded="false" />
-                <element signature="e#18295#18582#0" expanded="true" />
-                <element signature="e#18559#18560#0" expanded="true" />
-                <element signature="e#19170#19451#0" expanded="true" />
-                <element signature="e#19428#19429#0" expanded="true" />
+                <element signature="e#17075#17362#0" expanded="true" />
+                <element signature="e#17339#17340#0" expanded="true" />
+                <element signature="e#18762#19043#0" expanded="true" />
+                <element signature="e#19020#19021#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntConverter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/IntConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="645">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewStudentCustomDialog.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewStudentCustomDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4009" max-vertical-offset="5190">
+              <caret line="308" column="34" selection-start-line="308" selection-start-column="27" selection-end-line="308" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LongConverter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/LongConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+              <caret line="20" column="36" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NewGroupCustomDialog.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewGroupCustomDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2057" max-vertical-offset="2865">
+              <caret line="167" column="34" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -200,39 +213,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Faculty.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Faculty.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="840">
-              <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-              <folding>
-                <element signature="e#1044#1045#0" expanded="true" />
-                <element signature="e#1076#1077#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Group.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Group.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1065">
-              <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1155">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="41" />
               <folding>
-                <element signature="e#1431#1432#0" expanded="true" />
-                <element signature="e#1463#1464#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="XMLConfigWriter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab01 (copy)/src/com/oyster/kpi/lab/XMLConfigWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1747" max-vertical-offset="2340">
-              <caret line="121" column="13" selection-start-line="121" selection-start-column="13" selection-end-line="121" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1231#1232#0" expanded="true" />
+                <element signature="e#1263#1264#0" expanded="true" />
+                <element signature="e#1311#1312#0" expanded="true" />
+                <element signature="e#1353#1354#0" expanded="true" />
+                <element signature="e#1550#1551#0" expanded="true" />
+                <element signature="e#1582#1583#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -248,7 +240,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/core/controller/command/RegisterStudentCommand.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/core/controller/command/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/NewStudentForm.form" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Task.java" />
@@ -275,18 +266,15 @@
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/Utils.java" />
         <option value="dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..ADMIN_TBL" />
         <option value="dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..SUBJECT_TBL" />
-        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/LongConverter.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/test/App.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewAdminCustomDialog.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewStudentCustomDialog.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewTeacherCustomDialog.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/WorkerInfo.java" />
-        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/IntConverter.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/AppConst.java" />
         <option value="$PROJECT_DIR$/Lab01 (copy)/src/com/oyster/kpi/lab/XMLConfigWriter.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Profile.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Admin.java" />
-        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Student.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Teacher.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/impl/DAOCRUDJdbc.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/LoginFrame.java" />
@@ -297,7 +285,11 @@
         <option value="dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..FACULTY_TBL" />
         <option value="dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..GROUP_TBL" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Faculty.java" />
+        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewGroupCustomDialog.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Group.java" />
+        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/LongConverter.java" />
+        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/IntConverter.java" />
+        <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Student.java" />
         <option value="$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/MainForm.java" />
       </list>
     </option>
@@ -411,6 +403,10 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -502,6 +498,40 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="ui" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dialogs" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oyster01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringExample" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oyster" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -537,6 +567,120 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oyster01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringExample" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oyster" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="annotation" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oyster01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringExample" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oyster" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="annotation" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Oyster01" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SpringExample" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="oyster" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="annotation" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="converter" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -656,6 +800,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/SpringExample/pom.xml" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="database.results.filters.show" value="false" />
+    <property name="Console.TableResult.DefaultCopyAction" value="Comma-separated Values (CSV)" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1125,12 +1271,12 @@
       <workItem from="1399468059993" duration="5410000" />
       <workItem from="1399476358209" duration="4181000" />
       <workItem from="1399491835114" duration="9111000" />
-      <workItem from="1399527199851" duration="8597000" />
+      <workItem from="1399527199851" duration="14560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218126000" />
+    <option name="totallyTimeSpent" value="224089000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1160,7 +1306,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2496063" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20784314" sideWeight="0.49829933" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20784314" sideWeight="0.49829933" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32784313" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1168,8 +1314,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771823" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2454902" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.013782542" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18431373" sideWeight="0.71428573" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.237366" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24941176" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771823" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1312,6 +1458,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.20380434" vertical-offset="180" max-vertical-offset="585">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1347,6 +1494,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1113" max-vertical-offset="2460">
           <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1369,13 +1517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="720">
           <caret line="18" column="58" selection-start-line="18" selection-start-column="58" selection-end-line="18" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
-          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1403,6 +1544,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1095">
           <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1418,13 +1560,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="808" max-vertical-offset="4890">
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewGroupCustomDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2080" max-vertical-offset="2865">
-          <caret line="183" column="58" selection-start-line="174" selection-start-column="19" selection-end-line="183" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1436,17 +1572,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewStudentCustomDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="5190">
-          <caret line="75" column="48" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewTeacherCustomDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="803" max-vertical-offset="4875">
           <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1461,22 +1591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1035">
           <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/LongConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="92" max-vertical-offset="630">
-          <caret line="22" column="36" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/IntConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="600">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1520,20 +1634,6 @@
           <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding>
             <element signature="e#1935#1936#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/LoginFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2175" max-vertical-offset="2655">
-          <caret line="154" column="12" selection-start-line="154" selection-start-column="12" selection-end-line="154" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3222#3549#0" expanded="true" />
-            <element signature="e#3534#3535#0" expanded="true" />
-            <element signature="e#4061#4305#0" expanded="true" />
-            <element signature="e#4290#4291#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1592,25 +1692,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1022" max-vertical-offset="1650">
-          <caret line="122" column="21" selection-start-line="122" selection-start-column="21" selection-end-line="122" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..GROUP_TBL">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..FACULTY_TBL">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
@@ -1620,17 +1701,6 @@
       </provider>
       <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Group.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="417" max-vertical-offset="1065">
-          <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
-          <folding>
-            <element signature="e#1431#1432#0" expanded="true" />
-            <element signature="e#1463#1464#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Faculty.java">
@@ -1668,9 +1738,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/LoginFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2060" max-vertical-offset="2655">
+          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3222#3549#0" expanded="true" />
+            <element signature="e#3534#3535#0" expanded="true" />
+            <element signature="e#4061#4305#0" expanded="true" />
+            <element signature="e#4290#4291#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewGroupCustomDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2057" max-vertical-offset="2865">
+          <caret line="167" column="34" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/dialogs/NewStudentCustomDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4009" max-vertical-offset="5190">
+          <caret line="308" column="34" selection-start-line="308" selection-start-column="27" selection-end-line="308" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/MainForm.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/impl/DAOCRUDJdbc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2831" max-vertical-offset="3405">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1775" max-vertical-offset="3405">
           <caret line="219" column="14" selection-start-line="219" selection-start-column="14" selection-end-line="219" selection-end-column="14" />
           <folding>
             <element signature="e#5682#5683#0" expanded="true" />
@@ -1688,15 +1801,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/MainForm.form">
-      <provider selected="true" editor-type-id="ui-designer">
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/LongConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/dao/annotation/utils/converter/IntConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="50" max-vertical-offset="645">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1155">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="20" selection-end-column="41" />
+          <folding>
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1263#1264#0" expanded="true" />
+            <element signature="e#1311#1312#0" expanded="true" />
+            <element signature="e#1353#1354#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1582#1583#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/app/model/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1021" max-vertical-offset="1470">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/590ede82/4eef562a-31bf-4011-bff4-700c816f2a55/kpi_java_database..GROUP_TBL">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
         <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SpringExample/src/main/java/com/oyster/ui/MainForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2672269" vertical-offset="4086" max-vertical-offset="5565">
-          <caret line="293" column="8" selection-start-line="293" selection-start-column="8" selection-end-line="293" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.29227054" vertical-offset="2264" max-vertical-offset="8625">
+          <caret line="169" column="42" selection-start-line="169" selection-start-column="42" selection-end-line="169" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2799#2964#0" expanded="true" />
@@ -1705,18 +1863,19 @@
             <element signature="e#3726#3727#0" expanded="true" />
             <element signature="e#3802#3967#0" expanded="true" />
             <element signature="e#3956#3957#0" expanded="true" />
-            <element signature="e#4029#4194#0" expanded="true" />
-            <element signature="e#4183#4184#0" expanded="true" />
-            <element signature="e#4368#4377#0" expanded="true" />
-            <element signature="e#4977#5265#0" expanded="true" />
-            <element signature="e#5250#5251#0" expanded="true" />
+            <element signature="e#4030#4193#0" expanded="true" />
+            <element signature="e#4182#4183#0" expanded="true" />
+            <element signature="e#4565#4803#0" expanded="true" />
+            <element signature="e#4788#4789#0" expanded="true" />
+            <element signature="e#5526#5770#0" expanded="true" />
+            <element signature="e#5755#5756#0" expanded="true" />
+            <element signature="e#6228#6237#0" expanded="true" />
             <element signature="method#newUserAction#0;class#MainForm#0" expanded="false" />
             <element signature="method#addJMenu#0;class#MainForm#0" expanded="false" />
-            <element signature="method#performAction#0;class#MainForm#0" expanded="false" />
-            <element signature="e#18295#18582#0" expanded="true" />
-            <element signature="e#18559#18560#0" expanded="true" />
-            <element signature="e#19170#19451#0" expanded="true" />
-            <element signature="e#19428#19429#0" expanded="true" />
+            <element signature="e#17075#17362#0" expanded="true" />
+            <element signature="e#17339#17340#0" expanded="true" />
+            <element signature="e#18762#19043#0" expanded="true" />
+            <element signature="e#19020#19021#0" expanded="true" />
           </folding>
         </state>
       </provider>

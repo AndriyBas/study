@@ -126,13 +126,14 @@ public class MainForm extends JFrame {
         mComboBoxProfileStudentTypeFaculty.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showFilteredStudents();
+                facultyChangedAction();
             }
         });
+
         mComboBoxProfileStudentTypeGroup.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showFilteredStudents();
+                groupChangedAction();
             }
         });
 
@@ -143,18 +144,41 @@ public class MainForm extends JFrame {
 
     }
 
-    private void showFilteredStudents() {
+    private void facultyChangedAction() {
 
-        DefaultListModel<Student> model = new DefaultListModel<Student>();
-        java.util.List<Student> students = filterStudents((Faculty) mComboBoxProfileStudentTypeFaculty.getSelectedItem(),
-                (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem());
-        for (Student s : students) {
-            model.addElement(s);
+        final Faculty f = (Faculty) mComboBoxProfileStudentTypeFaculty.getSelectedItem();
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+        java.util.List<Group> groups = null;
+        try {
+            groups = x.select(Group.class, new DAOFilter() {
+                @Override
+                public <T> boolean accept(T entity) {
+                    Group g = (Group) entity;
+                    return g.getFacultyId().equals(f.getId());
+                }
+            });
+            for (Group g : groups) {
+                g.setFaculty(f);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        mListPeople.setModel(model);
+
+        mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(groups.toArray()));
+        if (groups.size() > 0) {
+            mComboBoxProfileStudentTypeGroup.setSelectedIndex(0);
+        }
+
+        validate();
+        repaint();
     }
 
-    private java.util.List<Student> filterStudents(final Faculty faculty, final Group group) {
+    private void groupChangedAction() {
+
+
+
+        final Group group = (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem();
 
         DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
         java.util.List<Student> students = null;
@@ -163,17 +187,34 @@ public class MainForm extends JFrame {
                 @Override
                 public <T> boolean accept(T entity) {
                     Student s = (Student) entity;
-                    return s.getFacultyId().equals(faculty.getId()) && s.getGroupId().equals(group.getId());
+                    return s.getGroupId().equals(group.getId());
                 }
             });
             for (Student student : students) {
                 student.setProfile((Profile) x.read(Profile.class, student.getProfileId()));
                 student.setGroup(group);
-                student.setFaculty(faculty);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        return students;
+
+        showFilteredStudents(students);
+    }
+
+    private void showFilteredStudents(java.util.List<Student> students) {
+
+        DefaultListModel<Student> model = new DefaultListModel<Student>();
+        for (Student s : students) {
+            model.addElement(s);
+        }
+        mListPeople.setModel(model);
+
+        if (students.size() > 0) {
+            mListPeople.setSelectedIndex(0);
+        }
+
+        validate();
+        repaint();
     }
 
     private void comboBoxChangeAction() {
@@ -278,42 +319,17 @@ public class MainForm extends JFrame {
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
 
-//                mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(new Object[]{"ФІОТ", "ІПСА"}));
-//                mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(new Object[]{"ІО-21", "ІО-22"}));
-
-//                java.util.List<Student> students = null;
                 java.util.List<Faculty> faculties = null;
-                java.util.List<Group> groups = null;
-
 
                 try {
-                   /* students = x.select(Student.class, "");
-                    for (Student student : students) {
-                        student.setProfile((Profile) x.read(Profile.class, student.getProfileId()));
-                        student.setGroup((Group) x.read(Group.class, student.getGroupId()));
-                        student.setFaculty((Faculty) x.read(Faculty.class, student.getFacultyId()));
-                    }
-*/
                     faculties = x.select(Faculty.class, "");
-                    groups = x.select(Group.class, "");
-
                 } catch (DAOException e) {
                     e.printStackTrace();
                 }
 
                 mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(faculties.toArray()));
-                mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(groups.toArray()));
 
                 mComboBoxProfileStudentTypeFaculty.setSelectedIndex(0);
-                mComboBoxProfileStudentTypeGroup.setSelectedIndex(0);
-
-         /*       DefaultListModel<Student> studentModel = new DefaultListModel<>();
-                for (Student student : students) {
-                    studentModel.addElement(student);
-                }
-                mListPeople.setModel(studentModel);
-                mListPeople.setSelectedIndex(0);*/
-
 
                 break;
         }
@@ -347,7 +363,7 @@ public class MainForm extends JFrame {
 
     private void fillInfoFields(Student student) {
         fillInfoFields(student.getProfile());
-        mTextFieldInfo4.setText(student.getFaculty().getName());
+        mTextFieldInfo4.setText(student.getGroup().getFaculty().getName());
         mTextFieldInfo5.setText(String.valueOf(student.getCourse()));
         mTextFieldInfo6.setText(student.getGroup().getName());
         mTextFieldInfo7.setText(String.valueOf(student.getBookNum()));
@@ -519,27 +535,6 @@ public class MainForm extends JFrame {
                 break;
             case "registerGroup":
 
-                Group g = new Group(UUID.randomUUID(),
-                        (String) c.get("chipher"),
-                        ((String) c.get("name")).toUpperCase());
-                try {
-                    x.insert(g);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення групи : \n" + e.getMessage()));
-                }
-
-                break;
-            case "registerStudent":
-
-                Profile pStudent = new Profile(
-                        UUID.randomUUID(),
-                        (String) c.get("name"),
-                        (String) c.get("surname"),
-                        (String) c.get("password"),
-                        (Long) c.get("birthday")
-                );
-
                 final String facultyName = (String) c.get("faculty");
                 java.util.List<Faculty> faculties = null;
                 try {
@@ -560,6 +555,27 @@ public class MainForm extends JFrame {
                     break;
                 }
 
+                Group g = new Group(UUID.randomUUID(),
+                        faculties.get(0).getId(),
+                        ((String) c.get("name")).toUpperCase());
+                try {
+                    x.insert(g);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення групи : \n" + e.getMessage()));
+                }
+
+                break;
+            case "registerStudent":
+
+                Profile pStudent = new Profile(
+                        UUID.randomUUID(),
+                        (String) c.get("name"),
+                        (String) c.get("surname"),
+                        (String) c.get("password"),
+                        (Long) c.get("birthday")
+                );
+
                 final String groupName = (String) c.get("group");
                 java.util.List<Group> groups = null;
                 try {
@@ -570,6 +586,9 @@ public class MainForm extends JFrame {
                             return g.getName().equals(groupName);
                         }
                     });
+                    for (Group gg : groups) {
+                        gg.setFaculty((Faculty) x.read(Faculty.class, gg.getFacultyId()));
+                    }
                 } catch (DAOException e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this, Utils.makePretty("Помилка зчитування групи : \n" + e.getMessage()));
@@ -580,10 +599,17 @@ public class MainForm extends JFrame {
                     break;
                 }
 
+                final Group group = groups.get(0);
+
+                if (!group.getFaculty().getName().equals((String) c.get("faculty"))) {
+                    Utils.showErrorDialog(this, "Немає такої групи на цьому факультеті!");
+                    break;
+                }
+
+
                 Student student = new Student(
                         UUID.randomUUID(),
                         pStudent.getId(),
-                        faculties.get(0).getId(),
                         groups.get(0).getId(),
                         (Integer) c.get("course"),
                         (Integer) c.get("bookNum")
