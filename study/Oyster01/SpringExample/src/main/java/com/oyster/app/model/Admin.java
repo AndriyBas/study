@@ -2,7 +2,6 @@ package com.oyster.app.model;
 
 import com.oyster.dao.annotation.Primary;
 import com.oyster.dao.annotation.Stored;
-import com.oyster.dao.annotation.utils.converter.LongConverter;
 import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
@@ -40,7 +39,8 @@ public class Admin {
 
     private WorkerInfo workerInfo;
 
-    public Admin() {}
+    public Admin() {
+    }
 
     public Admin(UUID id, UUID profileId, UUID workerInfoId) {
         this.id = id;
@@ -86,5 +86,10 @@ public class Admin {
 
     public void setWorkerInfo(WorkerInfo workerInfo) {
         this.workerInfo = workerInfo;
+    }
+
+    @Override
+    public String toString() {
+        return getProfile().toString();
     }
 }

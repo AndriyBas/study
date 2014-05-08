@@ -134,6 +134,7 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
 
         final Profile profile = profiles.get(0);
+        WorkerInfo wi = null;
         List<Admin> admins = null;
 
         try {
@@ -144,7 +145,8 @@ public class LoginFrame extends JFrame implements ActionListener {
                     return a.getProfileId().equals(profile.getId());
                 }
             });
-        } catch (DAOException e) {
+            wi = x.read(WorkerInfo.class, admins.get(0).getWorkerInfoId());
+        } catch (Exception e) {
             e.printStackTrace();
             Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
             return;
@@ -156,27 +158,10 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
 
         final Admin admin = admins.get(0);
-
-        List<WorkerInfo> infos = null;
-        try {
-            infos = x.select(WorkerInfo.class, new DAOFilter() {
-                @Override
-                public <T> boolean accept(T entity) {
-                    WorkerInfo w = (WorkerInfo) entity;
-                    return admin.getWorkerInfoId().equals(w.getId());
-                }
-            });
-        } catch (DAOException e) {
-            e.printStackTrace();
-            Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
-            return;
-        }
-
-
         admin.setProfile(profile);
-        admin.setWorkerInfo(infos.get(0));
-        AppConst.setCurrentAdmin(admin);
+        admin.setWorkerInfo(wi);
 
+        AppConst.setCurrentAdmin(admin);
 
         MainForm form = new MainForm();
 

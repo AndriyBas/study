@@ -1,7 +1,6 @@
 package com.oyster.kpi.lab;
 
 
-import android.annotation.TargetApi;
 import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,7 +19,6 @@ public class XMLConfigWriter extends ConfigurationWriter {
         this.config = configuration;
     }
 
-    @TargetApi(19)
     @Override
     public void save(String path) throws IOException,
             ParserConfigurationException {

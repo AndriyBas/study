@@ -9,6 +9,8 @@ import com.oyster.dao.impl.DAOCRUDJdbc;
 import com.oyster.ui.dialogs.*;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +62,6 @@ public class MainForm extends JFrame {
     private JTextField mTextFieldInfo4;
     private JScrollPane mScrollPanePeople;
 
-
     public MainForm() {
         super("KPI City");
 //        setContentPane(rootPane);
@@ -108,6 +109,19 @@ public class MainForm extends JFrame {
             }
         });
 
+        mListPeople.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Object o = mListPeople.getSelectedValue();
+                if (o instanceof Admin) {
+                    fillInfoFields((Admin) o);
+                } else if (o instanceof Teacher) {
+                    fillInfoFields((Teacher) o);
+                } else if (o instanceof Student) {
+                    fillInfoFields((Student) o);
+                }
+            }
+        });
 
     }
 
@@ -119,6 +133,8 @@ public class MainForm extends JFrame {
 
         mButtonSave.setEnabled(false);
         int selected = mComboBoxProfileType.getSelectedIndex();
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         if (selected < 3) {
             mComboBoxProfileStudentTypeFaculty.setVisible(false);
@@ -160,6 +176,25 @@ public class MainForm extends JFrame {
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
 
+                java.util.List<Admin> admins = null;
+
+                try {
+                    admins = x.select(Admin.class, "");
+                    for (Admin a : admins) {
+                        a.setProfile((Profile) x.read(Profile.class, a.getProfileId()));
+                        a.setWorkerInfo((WorkerInfo) x.read(WorkerInfo.class, a.getWorkerInfoId()));
+                    }
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                }
+
+                DefaultListModel<Admin> model = new DefaultListModel<>();
+                for (Admin a : admins) {
+                    model.addElement(a);
+                }
+                mListPeople.setModel(model);
+
+                mListPeople.setSelectedIndex(0);
 
                 break;
 
@@ -169,6 +204,25 @@ public class MainForm extends JFrame {
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
 
+                java.util.List<Teacher> teachers = null;
+
+                try {
+                    teachers = x.select(Teacher.class, "");
+                    for (Teacher teacher : teachers) {
+                        teacher.setProfile((Profile) x.read(Profile.class, teacher.getProfileId()));
+                        teacher.setWorkerInfo((WorkerInfo) x.read(WorkerInfo.class, teacher.getWorkerInfoId()));
+                    }
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                }
+
+                DefaultListModel<Teacher> teacherModel = new DefaultListModel<>();
+                for (Teacher teacher : teachers) {
+                    teacherModel.addElement(teacher);
+                }
+                mListPeople.setModel(teacherModel);
+                mListPeople.setSelectedIndex(0);
+
 
                 break;
 
@@ -177,9 +231,29 @@ public class MainForm extends JFrame {
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
 
-
                 mComboBoxProfileStudentTypeFaculty.setModel(new DefaultComboBoxModel(new Object[]{"ФІОТ", "ІПСА"}));
                 mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(new Object[]{"ІО-21", "ІО-22"}));
+
+                java.util.List<Student> students = null;
+
+                try {
+                    students = x.select(Student.class, "");
+                    for (Student student : students) {
+                        student.setProfile((Profile) x.read(Profile.class, student.getProfileId()));
+                        student.setGroup((Group) x.read(Group.class, student.getGroupId()));
+                        student.setFaculty((Faculty) x.read(Faculty.class, student.getFacultyId()));
+                    }
+                } catch (DAOException e) {
+                    e.printStackTrace();
+                }
+
+                DefaultListModel<Student> studentModel = new DefaultListModel<>();
+                for (Student student : students) {
+                    studentModel.addElement(student);
+                }
+                mListPeople.setModel(studentModel);
+                mListPeople.setSelectedIndex(0);
+
 
                 break;
         }
@@ -188,30 +262,36 @@ public class MainForm extends JFrame {
         repaint();
     }
 
-    private void fillInfoFields(Profile p) {
-        mTextFieldInfo1.setText(p.getName());
-        mTextFieldInfo2.setText(p.getSurname());
-        mTextFieldInfo3.setText(AppConst.dateFormat.format(new Date(p.getBirthday())));
-        mPasswordField1.setText(p.getPassword());
+    private void fillInfoFields(Profile profile) {
+        mTextFieldInfo1.setText(profile.getName());
+        mTextFieldInfo2.setText(profile.getSurname());
+        mTextFieldInfo3.setText(AppConst.dateFormat.format(new Date(profile.getBirthday())));
+        mPasswordField1.setText(profile.getPassword());
     }
 
-    private void fillInfoFields(WorkerInfo wi) {
-        mTextFieldInfo4.setText(wi.getPosition());
-        mTextFieldInfo5.setText(String.valueOf(wi.getSalary()));
-        mTextFieldInfo6.setText(AppConst.dateFormat.format(new Date(wi.getDateHired())));
+    private void fillInfoFields(WorkerInfo workerInfo) {
+        mTextFieldInfo4.setText(workerInfo.getPosition());
+        mTextFieldInfo5.setText(String.valueOf(workerInfo.getSalary()));
+        mTextFieldInfo6.setText(AppConst.dateFormat.format(new Date(workerInfo.getDateHired())));
 
     }
 
-    private void fillInfoFields(Admin a) {
-        fillInfoFields(a.getProfile());
-        fillInfoFields(a.getWorkerInfo());
+    private void fillInfoFields(Admin admin) {
+        fillInfoFields(admin.getProfile());
+        fillInfoFields(admin.getWorkerInfo());
     }
 
-    private void fillInfoFields(Student s) {
-        mTextFieldInfo4.setText(s.getFaculty().getName());
-        mTextFieldInfo5.setText(String.valueOf(s.getCourse()));
-        mTextFieldInfo6.setText(s.getGroup().getName());
-        mTextFieldInfo7.setText(String.valueOf(s.getBookNum()));
+    private void fillInfoFields(Teacher teacher) {
+        fillInfoFields(teacher.getProfile());
+        fillInfoFields(teacher.getWorkerInfo());
+    }
+
+    private void fillInfoFields(Student student) {
+        fillInfoFields(student.getProfile());
+        mTextFieldInfo4.setText(student.getFaculty().getName());
+        mTextFieldInfo5.setText(String.valueOf(student.getCourse()));
+        mTextFieldInfo6.setText(student.getGroup().getName());
+        mTextFieldInfo7.setText(String.valueOf(student.getBookNum()));
     }
 
     private void newUserAction() {
@@ -407,9 +487,8 @@ public class MainForm extends JFrame {
                     faculties = x.select(Faculty.class, new DAOFilter() {
                         @Override
                         public <T> boolean accept(T entity) {
-//                            Faculty f = (Faculty) entity;
-//                            return f.getName().equals(facultyName);
-                            return true;
+                            Faculty f = (Faculty) entity;
+                            return f.getName().equals(facultyName);
                         }
                     });
                 } catch (DAOException e) {
@@ -541,16 +620,5 @@ public class MainForm extends JFrame {
         }
         return null;
     }*/
-
-    public void createNew(Group g) {
-        System.out.print("Create : ");
-        System.out.println(g.getName());
-    }
-
-    public void createNew(Faculty f) {
-        System.out.print("Create : ");
-        System.out.println(f.getName());
-    }
-
 
 }

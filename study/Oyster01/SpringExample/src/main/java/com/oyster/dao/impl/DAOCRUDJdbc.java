@@ -173,10 +173,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      */
     @Override
     public <T> List<T> select(Class entityClass, DAOFilter filter) throws DAOException {
-
-        String sql = "SELECT * FROM " + DAOAnnotationUtils.getStorageName(entityClass) + ";";
-
-        return select(entityClass, filter, sql);
+        return select(entityClass, filter, null);
     }
 
     /**
@@ -190,13 +187,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      */
     @Override
     public <T> List<T> select(Class entityClass, String SQLString) throws DAOException {
-        DAOFilter filter = new DAOFilter() {
-            @Override
-            public <T> boolean accept(T entity) {
-                return true;
-            }
-        };
-        return select(entityClass, filter, SQLString);
+        return select(entityClass, null, SQLString);
     }
 
     /**
@@ -209,6 +200,19 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      * @return list of entities that satisfy the sql-clause and Filter conditions
      */
     private <T> List<T> select(Class entityClass, DAOFilter filter, String sql) {
+
+        if (sql == null || sql.trim().length() == 0) {
+            sql = "SELECT * FROM " + DAOAnnotationUtils.getStorageName(entityClass) + ";";
+        }
+
+        if (filter == null) {
+            filter = new DAOFilter() {
+                @Override
+                public <T> boolean accept(T entity) {
+                    return true;
+                }
+            };
+        }
 
         List<Map<String, Object>> list = getJdbcTemplate().queryForList(sql);
 

@@ -86,4 +86,9 @@ public class Teacher {
     public void setWorkerInfo(WorkerInfo workerInfo) {
         this.workerInfo = workerInfo;
     }
+
+    @Override
+    public String toString() {
+        return getProfile().toString();
+    }
 }
