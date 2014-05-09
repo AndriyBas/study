@@ -190,19 +190,51 @@ public class MainForm extends JFrame {
 
         if (currentPerson instanceof Admin) {
             Admin a = (Admin) currentPerson;
-            updateProfile(a.getProfile());
+            saveUpdate(a.getProfile());
+            saveUpdate(a.getWorkerInfo());
+
         } else if (currentPerson instanceof Teacher) {
             Teacher t = (Teacher) currentPerson;
-            updateProfile(t.getProfile());
+            saveUpdate(t.getProfile());
+            saveUpdate(t.getWorkerInfo());
+
         } else if (currentPerson instanceof Student) {
             Student s = (Student) currentPerson;
-            updateProfile(s.getProfile());
+            saveUpdate(s);
         }
 
         updateUI();
     }
 
-    private void updateProfile(Profile p) {
+
+    private void saveUpdate(Student s) {
+        saveUpdate(s.getProfile());
+
+        String course = mTextFieldInfo5.getText().trim();
+        String bookNum = mTextFieldInfo7.getText().trim();
+
+        String facultyName = mTextFieldInfo4.getText().trim();
+        String groupName = mTextFieldInfo6.getText().trim();
+
+        s.setCourse(Integer.parseInt(course));
+        s.setBookNum(Integer.parseInt(bookNum));
+
+        s.getGroup().setName(groupName);
+        s.getGroup().getFaculty().setName(facultyName);
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
+        try {
+            x.update(s);
+            x.update(s.getGroup());
+            x.update(s.getGroup().getFaculty());
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void saveUpdate(Profile p) {
 
         String firstName = mTextFieldInfo1.getText().trim();
         String secondName = mTextFieldInfo2.getText().trim();
@@ -231,8 +263,32 @@ public class MainForm extends JFrame {
         }
     }
 
-    private void updateWorkerInfo(WorkerInfo wi) {
+    private void saveUpdate(WorkerInfo wi) {
 
+        String position = mTextFieldInfo4.getText().trim();
+        String salary = mTextFieldInfo5.getText().trim();
+        String dateHiredStr = mTextFieldInfo6.getText().trim();
+
+        Long dateHired = 0L;
+
+        try {
+            Date d = (Date) new DateFormatter(AppConst.dateFormat).stringToValue(dateHiredStr);
+            dateHired = d.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        wi.setPosition(position);
+        wi.setSalary(Integer.parseInt(salary));
+        wi.setDateHired(dateHired);
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
+        try {
+            x.update(wi);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateUI() {
@@ -455,6 +511,7 @@ public class MainForm extends JFrame {
         fillInfoFields(admin.getWorkerInfo());
 
         currentPerson = admin;
+        updateUI();
     }
 
     private void fillInfoFields(Teacher teacher) {
@@ -462,6 +519,7 @@ public class MainForm extends JFrame {
         fillInfoFields(teacher.getWorkerInfo());
 
         currentPerson = teacher;
+        updateUI();
     }
 
     private void fillInfoFields(Student student) {
@@ -472,6 +530,7 @@ public class MainForm extends JFrame {
         mTextFieldInfo7.setText(String.valueOf(student.getBookNum()));
 
         currentPerson = student;
+        updateUI();
     }
 
     private void newUserAction() {
