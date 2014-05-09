@@ -65,14 +65,6 @@ public class App {
 
         DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
-        try {
-            Group g = x.read(Group.class, UUID.fromString("2eb17945-6cac-4ee5-9cf1-f3d8a98f7211"));
-
-            System.out.println("");
-
-        } catch (DAOException e) {
-            e.printStackTrace();
-        }
 
     }
 
