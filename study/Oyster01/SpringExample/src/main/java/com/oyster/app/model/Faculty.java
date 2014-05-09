@@ -10,9 +10,9 @@ import java.util.UUID;
 
 
     CREATE TABLE `FACULTY_TBL` (
-            `_id` VARCHAR(50),
-    `name` VARCHAR(30) UNIQUE,
-    PRIMARY KEY (`_id`)
+            `faculty_id` VARCHAR(50),
+    `faculty_name` VARCHAR(30) UNIQUE,
+    PRIMARY KEY (`faculty_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  */
@@ -25,10 +25,10 @@ import java.util.UUID;
 public class Faculty {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "faculty_id", converter = UUIDConverter.class)
     private UUID id;
 
-    @Stored(name = "name")
+    @Stored(name = "faculty_name")
     private String name;
 
     public Faculty() {

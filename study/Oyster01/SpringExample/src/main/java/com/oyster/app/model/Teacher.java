@@ -14,10 +14,10 @@ import java.util.UUID;
 /*
 
     CREATE TABLE `TEACHER_TBL` (
-            `_id` VARCHAR(50),
+            `teacher_id` VARCHAR(50),
     `profile_id` VARCHAR(50) UNIQUE,
     `worker_info_id` VARCHAR(50) UNIQUE,
-    PRIMARY KEY (`_id`)
+    PRIMARY KEY (`teacher_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -25,7 +25,7 @@ import java.util.UUID;
 @Stored(name = "TEACHER_TBL")
 public class Teacher {
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "teacher_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "profile_id", converter = UUIDConverter.class)

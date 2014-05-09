@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Mark {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "mark_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "student_id", converter = UUIDConverter.class)

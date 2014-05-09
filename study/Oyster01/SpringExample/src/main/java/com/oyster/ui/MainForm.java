@@ -9,12 +9,16 @@ import com.oyster.dao.impl.DAOCRUDJdbc;
 import com.oyster.ui.dialogs.*;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.DateFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.UUID;
 
@@ -61,6 +65,29 @@ public class MainForm extends JFrame {
     private JLabel mLable4;
     private JTextField mTextFieldInfo4;
     private JScrollPane mScrollPanePeople;
+
+    private Object currentPerson;
+
+    private DocumentListener mDocumentListener = new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            act();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            act();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            act();
+        }
+
+        private void act() {
+            mButtonSave.setEnabled(true);
+        }
+    };
 
     public MainForm() {
         super("KPI City");
@@ -137,6 +164,82 @@ public class MainForm extends JFrame {
             }
         });
 
+        mTextFieldInfo1.getDocument().addDocumentListener(mDocumentListener);
+        mTextFieldInfo2.getDocument().addDocumentListener(mDocumentListener);
+        mTextFieldInfo3.getDocument().addDocumentListener(mDocumentListener);
+        mTextFieldInfo4.getDocument().addDocumentListener(mDocumentListener);
+        mTextFieldInfo5.getDocument().addDocumentListener(mDocumentListener);
+        mTextFieldInfo6.getDocument().addDocumentListener(mDocumentListener);
+        mTextFieldInfo7.getDocument().addDocumentListener(mDocumentListener);
+        mPasswordField1.getDocument().addDocumentListener(mDocumentListener);
+
+        mButtonSave.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveButtonClick();
+            }
+        });
+    }
+
+
+    private void saveButtonClick() {
+
+        if (currentPerson == null) {
+            return;
+        }
+
+        if (currentPerson instanceof Admin) {
+            Admin a = (Admin) currentPerson;
+            updateProfile(a.getProfile());
+        } else if (currentPerson instanceof Teacher) {
+            Teacher t = (Teacher) currentPerson;
+            updateProfile(t.getProfile());
+        } else if (currentPerson instanceof Student) {
+            Student s = (Student) currentPerson;
+            updateProfile(s.getProfile());
+        }
+
+        updateUI();
+    }
+
+    private void updateProfile(Profile p) {
+
+        String firstName = mTextFieldInfo1.getText().trim();
+        String secondName = mTextFieldInfo2.getText().trim();
+        String password = mPasswordField1.getText().trim();
+        String birthday = mTextFieldInfo3.getText().trim();
+        Long birthdayLong = 0L;
+
+        try {
+            Date d = (Date) new DateFormatter(AppConst.dateFormat).stringToValue(birthday);
+            birthdayLong = d.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        p.setFirstName(firstName);
+        p.setSecondName(secondName);
+        p.setBirthday(birthdayLong);
+        p.setPassword(password);
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
+        try {
+            x.update(p);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateWorkerInfo(WorkerInfo wi) {
+
+    }
+
+    private void updateUI() {
+        mButtonSave.setEnabled(false);
+
+        validate();
+        repaint();
     }
 
 
@@ -170,12 +273,10 @@ public class MainForm extends JFrame {
             mComboBoxProfileStudentTypeGroup.setSelectedIndex(0);
         }
 
-        validate();
-        repaint();
+        updateUI();
     }
 
     private void groupChangedAction() {
-
 
 
         final Group group = (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem();
@@ -212,9 +313,7 @@ public class MainForm extends JFrame {
         if (students.size() > 0) {
             mListPeople.setSelectedIndex(0);
         }
-
-        validate();
-        repaint();
+        updateUI();
     }
 
     private void comboBoxChangeAction() {
@@ -333,13 +432,13 @@ public class MainForm extends JFrame {
 
                 break;
         }
-        validate();
-        repaint();
+
+        updateUI();
     }
 
     private void fillInfoFields(Profile profile) {
-        mTextFieldInfo1.setText(profile.getName());
-        mTextFieldInfo2.setText(profile.getSurname());
+        mTextFieldInfo1.setText(profile.getFirstName());
+        mTextFieldInfo2.setText(profile.getSecondName());
         mTextFieldInfo3.setText(AppConst.dateFormat.format(new Date(profile.getBirthday())));
         mPasswordField1.setText(profile.getPassword());
     }
@@ -354,11 +453,15 @@ public class MainForm extends JFrame {
     private void fillInfoFields(Admin admin) {
         fillInfoFields(admin.getProfile());
         fillInfoFields(admin.getWorkerInfo());
+
+        currentPerson = admin;
     }
 
     private void fillInfoFields(Teacher teacher) {
         fillInfoFields(teacher.getProfile());
         fillInfoFields(teacher.getWorkerInfo());
+
+        currentPerson = teacher;
     }
 
     private void fillInfoFields(Student student) {
@@ -367,6 +470,8 @@ public class MainForm extends JFrame {
         mTextFieldInfo5.setText(String.valueOf(student.getCourse()));
         mTextFieldInfo6.setText(student.getGroup().getName());
         mTextFieldInfo7.setText(String.valueOf(student.getBookNum()));
+
+        currentPerson = student;
     }
 
     private void newUserAction() {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Alpha</string>
-    <string name="button_label">Start</string>
+    <string firstName="app_name">Alpha</string>
+    <string firstName="button_label">Start</string>
 </resources>

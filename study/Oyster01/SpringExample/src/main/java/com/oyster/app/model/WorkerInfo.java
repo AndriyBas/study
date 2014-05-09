@@ -17,11 +17,11 @@ import java.util.UUID;
 
 
     CREATE TABLE `WORKER_INFO_TBL` (
-            `_id` VARCHAR(50),
+            `worker_info_id` VARCHAR(50),
     `position` VARCHAR(50),
     `salary`  INT ZEROFILL,
     `date_hired`   BIGINT UNSIGNED ZEROFILL,
-    PRIMARY KEY (`_id`)
+    PRIMARY KEY (`worker_info_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  */
@@ -29,7 +29,7 @@ import java.util.UUID;
 public class WorkerInfo {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "worker_info_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "position")

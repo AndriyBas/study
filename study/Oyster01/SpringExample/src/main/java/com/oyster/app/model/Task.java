@@ -15,16 +15,16 @@ import java.util.UUID;
 public class Task {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "task_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "subject_id", converter = UUIDConverter.class)
     private UUID subjectId;
 
-    @Stored(name = "desc")
+    @Stored(name = "task_desc")
     private String description;
 
-    @Stored(name = "date", converter = LongConverter.class)
+    @Stored(name = "task_date", converter = LongConverter.class)
     private long date;
 
     public Task() {

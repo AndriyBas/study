@@ -7,7 +7,7 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
             id="DAOJdbc"
             class="com.oyster.dao.impl.DAOCRUDJdbc"
             >
-        <property name="dataSource" ref="dataSourceModelJdbc"/>
+        <property firstName="dataSource" ref="dataSourceModelJdbc"/>
     </bean>
 
 </beans>

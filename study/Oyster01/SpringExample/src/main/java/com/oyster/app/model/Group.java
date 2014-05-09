@@ -14,10 +14,10 @@ import java.util.UUID;
 /*
 
     CREATE TABLE `GROUP_TBL` (
-            `_id` VARCHAR(50),
-    `name` VARCHAR(30) UNIQUE,
+            `group_id` VARCHAR(50),
+    `group_name` VARCHAR(30) UNIQUE,
     `faculty_id`  VARCHAR(50),
-    PRIMARY KEY (`_id`)
+    PRIMARY KEY (`group_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -26,13 +26,13 @@ import java.util.UUID;
 public class Group {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "group_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "faculty_id", converter = UUIDConverter.class)
     private UUID facultyId;
 
-    @Stored(name = "name")
+    @Stored(name = "group_name")
     private String name;
 
     private Faculty faculty;

@@ -14,7 +14,7 @@ import java.util.UUID;
 @Stored(name = "ABSENCE_TBL")
 public class Absence {
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "absence_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "group_id", converter = UUIDConverter.class)

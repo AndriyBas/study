@@ -11,9 +11,9 @@ import java.util.UUID;
 
 
     CREATE TABLE `SUBJECT_TBL` (
-            `_id` VARCHAR(50),
-    `name` VARCHAR(30) UNIQUE,
-    PRIMARY KEY (`_id`)
+            `subject_id` VARCHAR(50),
+    `subject_name` VARCHAR(30) UNIQUE,
+    PRIMARY KEY (`subject_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
  */
@@ -25,10 +25,10 @@ import java.util.UUID;
 public class Subject {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "subject_id", converter = UUIDConverter.class)
     private UUID id;
 
-    @Stored(name = "name")
+    @Stored(name = "subject_name")
     private String name;
 
     public Subject() {

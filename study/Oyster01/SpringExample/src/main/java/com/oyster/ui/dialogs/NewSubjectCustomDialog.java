@@ -126,14 +126,14 @@ public class NewSubjectCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                subjectName = textFieldSubjectName.getText();
+                subjectName = textFieldSubjectName.getText().trim();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textFieldSubjectName;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (subjectName.trim().length() == 0) {
+                if (subjectName.length() == 0) {
                     errorMsg.append(" назву предмету");
                     errorOccured = true;
                 }

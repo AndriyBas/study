@@ -15,12 +15,12 @@ import java.util.UUID;
 /*
 
     CREATE TABLE `STUDENT_TBL` (
-            `_id` VARCHAR(50),
+            `student_id` VARCHAR(50),
     `profile_id` VARCHAR(50) UNIQUE,
     `group_id` VARCHAR(50),
     `course`  INT UNSIGNED ZEROFILL,
     `book_num`  INT UNSIGNED ZEROFILL,
-    PRIMARY KEY (`_id`)
+    PRIMARY KEY (`student_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -29,7 +29,7 @@ import java.util.UUID;
 public class Student {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "student_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "profile_id", converter = UUIDConverter.class)

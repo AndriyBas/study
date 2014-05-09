@@ -126,7 +126,7 @@ public class NewFacultyCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                facultyName = textField1.getText();
+                facultyName = textField1.getText().trim();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;

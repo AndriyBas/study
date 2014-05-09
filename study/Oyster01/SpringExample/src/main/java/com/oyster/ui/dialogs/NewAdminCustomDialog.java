@@ -196,25 +196,25 @@ public class NewAdminCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                userName = textField1.getText();
-                userSurmane = textField2.getText();
-                userBirthDateStr = textField3.getText();
-                adminPosition = textField4.getText();
-                adminSalary = textField5.getText();
-                adminDateHiredStr = textField6.getText();
-                userPassword = new String(mJPasswordField.getPassword());
+                userName = textField1.getText().trim();
+                userSurmane = textField2.getText().trim();
+                userBirthDateStr = textField3.getText().trim();
+                adminPosition = textField4.getText().trim();
+                adminSalary = textField5.getText().trim();
+                adminDateHiredStr = textField6.getText().trim();
+                userPassword = new String(mJPasswordField.getPassword()).trim();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (userName.trim().length() == 0) {
+                if (userName.length() == 0) {
                     errorMsg.append(" ім’я адміністратора");
                     errorOccured = true;
                 }
 
-                if (userSurmane.trim().length() == 0) {
+                if (userSurmane.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -222,7 +222,7 @@ public class NewAdminCustomDialog extends JDialog
                     errorMsg.append("  прізвище адміністратора");
                     focusComponent = textField2;
                 }
-                if (userBirthDateStr.trim().length() == 0) {
+                if (userBirthDateStr.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -231,7 +231,7 @@ public class NewAdminCustomDialog extends JDialog
                     focusComponent = textField3;
                 }
 
-                if (adminPosition.trim().length() == 0) {
+                if (adminPosition.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -240,7 +240,7 @@ public class NewAdminCustomDialog extends JDialog
                     focusComponent = textField4;
                 }
 
-                if (adminSalary.trim().length() == 0) {
+                if (adminSalary.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -248,7 +248,7 @@ public class NewAdminCustomDialog extends JDialog
                     errorMsg.append("  зарплату");
                     focusComponent = textField5;
                 }
-                if (adminDateHiredStr.trim().length() == 0) {
+                if (adminDateHiredStr.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -258,7 +258,7 @@ public class NewAdminCustomDialog extends JDialog
                 }
 
 
-                if (userPassword.trim().length() == 0) {
+                if (userPassword.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }

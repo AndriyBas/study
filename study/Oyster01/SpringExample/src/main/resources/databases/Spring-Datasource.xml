@@ -8,10 +8,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
             class="org.springframework.jdbc.datasource.DriverManagerDataSource"
             >
 
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/kpi_java_database"/>
-        <property name="username" value="root"/>
-        <property name="password" value="Zk.,k.rgsnow1!1"/>
+        <property firstName="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property firstName="url" value="jdbc:mysql://localhost:3306/kpi_java_database"/>
+        <property firstName="username" value="root"/>
+        <property firstName="password" value="Zk.,k.rgsnow1!1"/>
 
     </bean>-->
 
@@ -21,10 +21,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
             class="org.springframework.jdbc.datasource.DriverManagerDataSource"
             >
 
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/kpi_java_database?characterEncoding=UTF-8"/>
-        <property name="username" value="root"/>
-        <property name="password" value="Zk.,k.rgsnow1!1"/>
+        <property firstName="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property firstName="url" value="jdbc:mysql://localhost:3306/kpi_java_database?characterEncoding=UTF-8"/>
+        <property firstName="username" value="root"/>
+        <property firstName="password" value="Zk.,k.rgsnow1!1"/>
 
     </bean>
 

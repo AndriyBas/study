@@ -16,7 +16,7 @@ import java.util.UUID;
 public class History {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "history_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "author_id", converter = UUIDConverter.class)

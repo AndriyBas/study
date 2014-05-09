@@ -69,7 +69,6 @@ public class LoginFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
 
-
         StringBuilder errorMsg = new StringBuilder("Введіть ");
         boolean errorOccurred = false;
         JTextComponent focusComponent = userText;
@@ -121,7 +120,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                 @Override
                 public <T> boolean accept(T entity) {
                     Profile p = (Profile) entity;
-                    return userName.equals(p.getName() + "-" + p.getSurname())
+                    return userName.equals(p.getFirstName() + "-" + p.getSecondName())
                             && userPassword.equals(p.getPassword());
                 }
             });
@@ -171,7 +170,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         System.out.println("------------");
         try {
-            x.select(Group.class, "SELECT a._id, a.name, b._id AS ololo, b.name FROM GROUP_TBL a JOIN  FACULTY_TBL b ON a.faculty_id = b._id;");
+            x.select(Group.class, "SELECT a.group_id, a.group_name, b.faculty_id, b.faculty_name " +
+                    "FROM GROUP_TBL a JOIN  FACULTY_TBL b ON a.faculty_id = b.faculty_id;");
         } catch (DAOException e) {
             e.printStackTrace();
         }

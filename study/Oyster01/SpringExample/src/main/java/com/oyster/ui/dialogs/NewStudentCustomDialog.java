@@ -206,26 +206,26 @@ public class NewStudentCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                userName = textField1.getText();
-                userSurmane = textField2.getText();
-                userBirthDateStr = textField3.getText();
-                studentFaculty = textField4.getText();
-                studentCourse = textField5.getText();
-                studentGroup = textField6.getText();
-                studentNZK = textField7.getText();
-                userPassword = new String(mJPasswordField.getPassword());
+                userName = textField1.getText().trim();
+                userSurmane = textField2.getText().trim();
+                userBirthDateStr = textField3.getText().trim();
+                studentFaculty = textField4.getText().trim();
+                studentCourse = textField5.getText().trim();
+                studentGroup = textField6.getText().trim();
+                studentNZK = textField7.getText().trim();
+                userPassword = new String(mJPasswordField.getPassword()).trim();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (userName.trim().length() == 0) {
+                if (userName.length() == 0) {
                     errorMsg.append(" ім’я студента");
                     errorOccured = true;
                 }
 
-                if (userSurmane.trim().length() == 0) {
+                if (userSurmane.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -233,7 +233,7 @@ public class NewStudentCustomDialog extends JDialog
                     errorMsg.append("  прізвище студента");
                     focusComponent = textField2;
                 }
-                if (userBirthDateStr.trim().length() == 0) {
+                if (userBirthDateStr.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -242,7 +242,7 @@ public class NewStudentCustomDialog extends JDialog
                     focusComponent = textField3;
                 }
 
-                if (studentFaculty.trim().length() == 0) {
+                if (studentFaculty.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -251,7 +251,7 @@ public class NewStudentCustomDialog extends JDialog
                     focusComponent = textField4;
                 }
 
-                if (studentCourse.trim().length() == 0) {
+                if (studentCourse.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -259,7 +259,7 @@ public class NewStudentCustomDialog extends JDialog
                     errorMsg.append("  курс");
                     focusComponent = textField5;
                 }
-                if (studentGroup.trim().length() == 0) {
+                if (studentGroup.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -267,7 +267,7 @@ public class NewStudentCustomDialog extends JDialog
                     errorMsg.append("  групу");
                     focusComponent = textField6;
                 }
-                if (studentNZK.trim().length() == 0) {
+                if (studentNZK.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -276,7 +276,7 @@ public class NewStudentCustomDialog extends JDialog
                     focusComponent = textField7;
                 }
 
-                if (userPassword.trim().length() == 0) {
+                if (userPassword.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }

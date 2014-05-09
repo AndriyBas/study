@@ -193,12 +193,12 @@ public class NewTeacherCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                userName = textField1.getText();
-                userSurmane = textField2.getText();
-                userBirthDateStr = textField3.getText();
-                teacherPosition = textField4.getText();
-                teacherSalaryStr = textField5.getText();
-                teacherDateHiredStr = textField6.getText();
+                userName = textField1.getText().trim();
+                userSurmane = textField2.getText().trim();
+                userBirthDateStr = textField3.getText().trim();
+                teacherPosition = textField4.getText().trim();
+                teacherSalaryStr = textField5.getText().trim();
+                teacherDateHiredStr = textField6.getText().trim();
                 userPassword = new String(mJPasswordField.getPassword());
 
                 boolean errorOccured = false;
@@ -206,12 +206,12 @@ public class NewTeacherCustomDialog extends JDialog
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (userName.trim().length() == 0) {
+                if (userName.length() == 0) {
                     errorMsg.append(" ім’я викладача");
                     errorOccured = true;
                 }
 
-                if (userSurmane.trim().length() == 0) {
+                if (userSurmane.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -219,7 +219,7 @@ public class NewTeacherCustomDialog extends JDialog
                     errorMsg.append("  прізвище викладача");
                     focusComponent = textField2;
                 }
-                if (userBirthDateStr.trim().length() == 0) {
+                if (userBirthDateStr.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -228,7 +228,7 @@ public class NewTeacherCustomDialog extends JDialog
                     focusComponent = textField3;
                 }
 
-                if (teacherPosition.trim().length() == 0) {
+                if (teacherPosition.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -237,7 +237,7 @@ public class NewTeacherCustomDialog extends JDialog
                     focusComponent = textField4;
                 }
 
-                if (teacherSalaryStr.trim().length() == 0) {
+                if (teacherSalaryStr.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -245,7 +245,7 @@ public class NewTeacherCustomDialog extends JDialog
                     errorMsg.append("  зарплату");
                     focusComponent = textField5;
                 }
-                if (teacherDateHiredStr.trim().length() == 0) {
+                if (teacherDateHiredStr.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -255,7 +255,7 @@ public class NewTeacherCustomDialog extends JDialog
                 }
 
 
-                if (userPassword.trim().length() == 0) {
+                if (userPassword.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }

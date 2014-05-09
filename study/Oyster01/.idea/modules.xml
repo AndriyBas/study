@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AMO_lab03/AMO_lab03.iml" filepath="$PROJECT_DIR$/AMO_lab03/AMO_lab03.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AMO_lab04/AMO_lab04.iml" filepath="$PROJECT_DIR$/AMO_lab04/AMO_lab04.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AMO_lab05/AMO_lab05.iml" filepath="$PROJECT_DIR$/AMO_lab05/AMO_lab05.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Alpha/Alpha.iml" filepath="$PROJECT_DIR$/Alpha/Alpha.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab01/Lab01.iml" filepath="$PROJECT_DIR$/Lab01/Lab01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Lab01 (copy)/Lab01 (copy).iml" filepath="$PROJECT_DIR$/Lab01 (copy)/Lab01 (copy).iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab02/Lab02.iml" filepath="$PROJECT_DIR$/Lab02/Lab02.iml" />
       <module fileurl="file://$PROJECT_DIR$/SpringExample/SpringExample.iml" filepath="$PROJECT_DIR$/SpringExample/SpringExample.iml" />
     </modules>

@@ -136,20 +136,20 @@ public class NewGroupCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                groupName = textField1.getText();
-                groupFaculty = textField2.getText();
+                groupName = textField1.getText().trim();
+                groupFaculty = textField2.getText().trim();
 
                 boolean errorOccured = false;
                 JTextComponent focusComponent = textField1;
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (groupName.trim().length() == 0) {
+                if (groupName.length() == 0) {
                     errorMsg.append(" назву групи");
                     errorOccured = true;
                 }
 
-                if (groupFaculty.trim().length() == 0) {
+                if (groupFaculty.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(" та");
                     }

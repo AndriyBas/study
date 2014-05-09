@@ -16,12 +16,12 @@ import java.util.UUID;
 
 
     CREATE TABLE `PROFILE_TBL` (
-            `_id` VARCHAR(50),
-    `name` VARCHAR(30),
-    `surname` VARCHAR(30),
+            `profile_id` VARCHAR(50),
+    `first_name` VARCHAR(30),
+    `second_name` VARCHAR(30),
     `password` VARCHAR(30),
     `birthday` BIGINT ZEROFILL,
-    PRIMARY KEY (`_id`)
+    PRIMARY KEY (`profile_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -31,14 +31,14 @@ import java.util.UUID;
 public class Profile {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "profile_id", converter = UUIDConverter.class)
     private UUID id;
 
-    @Stored(name = "name")
-    private String name;
+    @Stored(name = "first_name")
+    private String firstName;
 
-    @Stored(name = "surname")
-    private String surname;
+    @Stored(name = "second_name")
+    private String secondName;
 
     @Stored(name = "password")
     private String password;
@@ -49,10 +49,10 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(UUID id, String name, String surname, String password, long birthday) {
+    public Profile(UUID id, String firstName, String secondName, String password, long birthday) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
+        this.firstName = firstName;
+        this.secondName = secondName;
         this.password = password;
         this.birthday = birthday;
     }
@@ -65,20 +65,20 @@ public class Profile {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public long getBirthday() {
@@ -99,6 +99,6 @@ public class Profile {
 
     @Override
     public String toString() {
-        return String.format("%s %s", getName(), getSurname());
+        return String.format("%s %s", getFirstName(), getSecondName());
     }
 }

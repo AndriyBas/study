@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Classes {
 
     @Primary
-    @Stored(name = "_id", converter = UUIDConverter.class)
+    @Stored(name = "classes_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "subject_id", converter = UUIDConverter.class)
@@ -32,7 +32,7 @@ public class Classes {
     @Stored(name = "audience", converter = IntConverter.class)
     private int audience;
 
-    @Stored(name = "date", converter = LongConverter.class)
+    @Stored(name = "class_date", converter = LongConverter.class)
     private long date;
 
     public Classes() {
