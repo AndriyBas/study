@@ -2,6 +2,7 @@ package com.oyster.ui;
 
 import com.oyster.app.AppConst;
 import com.oyster.app.model.Admin;
+import com.oyster.app.model.Group;
 import com.oyster.app.model.Profile;
 import com.oyster.app.model.WorkerInfo;
 import com.oyster.dao.DAOFilter;
@@ -66,6 +67,8 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+
 
         StringBuilder errorMsg = new StringBuilder("Введіть ");
         boolean errorOccurred = false;
@@ -164,6 +167,15 @@ public class LoginFrame extends JFrame implements ActionListener {
         AppConst.setCurrentAdmin(admin);
 
         MainForm form = new MainForm();
+
+
+        System.out.println("------------");
+        try {
+            x.select(Group.class, "SELECT a._id, a.name, b._id AS ololo, b.name FROM GROUP_TBL a JOIN  FACULTY_TBL b ON a.faculty_id = b._id;");
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("------------");
 
         this.dispose();
 

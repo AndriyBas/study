@@ -217,6 +217,10 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         List<Map<String, Object>> list = getJdbcTemplate().queryForList(sql);
 
 
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
+
         ArrayList<T> arrayList = new ArrayList<T>();
 
         for (int i = 0; i < list.size(); i++) {

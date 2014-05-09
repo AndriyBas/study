@@ -28,8 +28,9 @@ proguard/
 *.iws
 */.idea/
 .idea/
-study/Oyster01/.idea/
-/study/Oyster01/.idea/
+study/Oyster01/.idea/*
+/study/Oyster01/.idea/*
+study/Oyster01/.idea/workspace.xml
 
 proguard-project.txt
 
