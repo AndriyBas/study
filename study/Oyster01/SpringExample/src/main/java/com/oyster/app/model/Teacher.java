@@ -23,7 +23,7 @@ import java.util.UUID;
 
  */
 @Stored(name = "TEACHER_TBL")
-public class Teacher {
+public class Teacher implements IProfile {
     @Primary
     @Stored(name = "teacher_id", converter = UUIDConverter.class)
     private UUID id;

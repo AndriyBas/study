@@ -66,7 +66,7 @@ public class MainForm extends JFrame {
     private JTextField mTextFieldInfo4;
     private JScrollPane mScrollPanePeople;
 
-    private Object currentPerson;
+    private IProfile currentPerson;
 
     private DocumentListener mDocumentListener = new DocumentListener() {
         @Override
@@ -179,8 +179,45 @@ public class MainForm extends JFrame {
                 saveButtonClick();
             }
         });
+
+        mButtonDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteButtonClick();
+            }
+        });
     }
 
+    private void deleteButtonClick() {
+
+        if (currentPerson == null) {
+            return;
+        }
+
+        int dialogResult = JOptionPane.showConfirmDialog(this,
+                "Підтвердити видалення акаунту  : ",
+                "Захист від дурака",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        if (dialogResult == JOptionPane.CANCEL_OPTION) {
+            return;
+        }
+
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
+        try {
+            x.delete(currentPerson.getProfile());
+            x.delete(currentPerson);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+
+        currentPerson = null;
+
+        comboBoxChangeAction();
+    }
 
     private void saveButtonClick() {
 

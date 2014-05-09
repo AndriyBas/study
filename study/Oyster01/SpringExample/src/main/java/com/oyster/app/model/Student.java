@@ -26,7 +26,7 @@ import java.util.UUID;
 
  */
 @Stored(name = "STUDENT_TBL")
-public class Student {
+public class Student implements IProfile {
 
     @Primary
     @Stored(name = "student_id", converter = UUIDConverter.class)
