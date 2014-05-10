@@ -109,6 +109,21 @@ public class ScheduleTab {
     private void checkAndSave(Classes c) {
         try {
             x.insert(c);
+
+            Group g = (Group) groupList.getSelectedValue();
+
+            AppConst.SESSION_TIME++;
+
+            if (AppConst.SESSION_TIME > 20) {
+                History h = new History(
+                        UUID.randomUUID(),
+                        AppConst.getCurrentAdmin().getProfileId(),
+                        "Вніс зміни до розкладу групи " + g.getName()
+                );
+                x.insert(h);
+                AppConst.SESSION_TIME = 0;
+            }
+
         } catch (DAOException e) {
             e.printStackTrace();
         }

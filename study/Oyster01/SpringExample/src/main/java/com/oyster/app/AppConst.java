@@ -1,8 +1,6 @@
 package com.oyster.app;
 
 import com.oyster.app.model.Admin;
-import com.oyster.app.model.Profile;
-import com.oyster.app.model.WorkerInfo;
 import org.springframework.context.ApplicationContext;
 
 import java.text.SimpleDateFormat;
@@ -18,8 +16,11 @@ public class AppConst {
 
     public static SimpleDateFormat dateFormat;
 
+    public static int SESSION_TIME;
+
     static {
         dateFormat = new SimpleDateFormat("d/M/y");
+        SESSION_TIME = 0;
     }
 
 

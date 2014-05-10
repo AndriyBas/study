@@ -92,7 +92,7 @@ public class MainForm extends JFrame {
 
     private HistoryTab historyTab;
     private ScheduleTab scheduleTab;
-    
+
     DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
     public MainForm() {
@@ -219,6 +219,14 @@ public class MainForm extends JFrame {
         try {
             x.delete(currentPerson.getProfile());
             x.delete(currentPerson);
+
+            History h = new History(
+                    UUID.randomUUID(),
+                    AppConst.getCurrentAdmin().getProfileId(),
+                    "Видалив користувача " + currentPerson.getProfile().toString()
+            );
+            x.insert(h);
+
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -559,7 +567,7 @@ public class MainForm extends JFrame {
 
         DefaultListModel<History> historyModel = new DefaultListModel<>();
         for (History h : histories) {
-            histories.add(h);
+            historyModel.addElement(h);
         }
 
         mListHistoryProfile.setModel(historyModel);
@@ -655,7 +663,6 @@ public class MainForm extends JFrame {
                     NewSubjectCustomDialog sub = new NewSubjectCustomDialog(this, this);
                     sub.pack();
                     sub.setVisible(true);
-                    sub.setVisible(true);
                     break;
             }
         }
@@ -744,10 +751,17 @@ public class MainForm extends JFrame {
                 Subject subject = new Subject(UUID.randomUUID(), ((String) c.get("name")).toUpperCase());
                 try {
                     x.insert(subject);
+                    History h = new History(
+                            UUID.randomUUID(),
+                            AppConst.getCurrentAdmin().getProfileId(),
+                            "Створив новий предмет " + subject.getName()
+                    );
+                    x.insert(h);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this, Utils.makePretty("Помилка створення предмету : \n" + e.getMessage()));
                 }
+
 
                 break;
             case "registerFaculty":
@@ -755,6 +769,12 @@ public class MainForm extends JFrame {
                 Faculty fac = new Faculty(UUID.randomUUID(), ((String) c.get("name")).toUpperCase());
                 try {
                     x.insert(fac);
+                    History h = new History(
+                            UUID.randomUUID(),
+                            AppConst.getCurrentAdmin().getProfileId(),
+                            "Створив новий факультет " + fac.getName()
+                    );
+                    x.insert(h);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this, Utils.makePretty("Помилка створення факультету : \n" + e.getMessage()));
@@ -772,6 +792,7 @@ public class MainForm extends JFrame {
                         public <T> boolean accept(T entity) {
                             Faculty f = (Faculty) entity;
                             return f.getName().equals(facultyName);
+
                         }
                     });
                 } catch (DAOException e) {
@@ -789,6 +810,12 @@ public class MainForm extends JFrame {
                         ((String) c.get("name")).toUpperCase());
                 try {
                     x.insert(g);
+                    History h = new History(
+                            UUID.randomUUID(),
+                            AppConst.getCurrentAdmin().getProfileId(),
+                            "Створив нову групу " + g.getName()
+                    );
+                    x.insert(h);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this, Utils.makePretty("Помилка створення групи : \n" + e.getMessage()));
@@ -847,6 +874,13 @@ public class MainForm extends JFrame {
                 try {
                     x.insert(pStudent);
                     x.insert(student);
+
+                    History h = new History(
+                            UUID.randomUUID(),
+                            AppConst.getCurrentAdmin().getProfileId(),
+                            "Додав студента " + pStudent.toString()
+                    );
+                    x.insert(h);
                 } catch (DAOException e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this, Utils.makePretty("Помилка створення студента : \n" + e.getMessage()));
@@ -881,6 +915,14 @@ public class MainForm extends JFrame {
                     x.insert(pTeacher);
                     x.insert(wTeacher);
                     x.insert(teacher);
+
+                    History h = new History(
+                            UUID.randomUUID(),
+                            AppConst.getCurrentAdmin().getProfileId(),
+                            "Додав викладача " + pTeacher.toString()
+                    );
+                    x.insert(h);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this,
@@ -914,6 +956,14 @@ public class MainForm extends JFrame {
                     x.insert(pAdmin);
                     x.insert(wAdmin);
                     x.insert(admin);
+
+                    History h = new History(
+                            UUID.randomUUID(),
+                            AppConst.getCurrentAdmin().getProfileId(),
+                            "Додав адміністратора " + pAdmin.toString()
+                    );
+                    x.insert(h);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     Utils.showErrorDialog(this,
