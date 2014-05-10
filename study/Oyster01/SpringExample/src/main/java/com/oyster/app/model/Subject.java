@@ -59,4 +59,14 @@ public class Subject {
     public String toString() {
         return getName();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Subject) {
+            return ((Subject) obj).toString().equals(this.toString());
+        } else if (obj instanceof String) {
+            return ((String) obj).equals(this.toString());
+        }
+        return this.equals(obj);
+    }
 }

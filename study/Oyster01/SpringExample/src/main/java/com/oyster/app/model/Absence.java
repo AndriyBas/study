@@ -11,6 +11,17 @@ import java.util.UUID;
  * @since 4/15/14 10:54 PM
  */
 
+/*
+
+    CREATE TABLE `ABSENCE_TBL` (
+            `absence_id` VARCHAR(50),
+    `group_id` VARCHAR(50),
+    `class_id`  VARCHAR(50),
+    PRIMARY KEY (`absence_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ */
+
 @Stored(name = "ABSENCE_TBL")
 public class Absence {
     @Primary

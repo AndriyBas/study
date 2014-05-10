@@ -37,7 +37,6 @@ public class MainForm extends JFrame {
     private JComboBox mComboBoxProfileStudentTypeGroup;
     private JPanel mPanelProfile;
     private JPanel mPanelLeftControl;
-    private JButton mButtonRating;
     private JButton mButtonSave;
     private JButton mButtonDelete;
     private JList mListHistoryProfile;
@@ -79,6 +78,7 @@ public class MainForm extends JFrame {
         public void removeUpdate(DocumentEvent e) {
             act();
         }
+
 
         @Override
         public void changedUpdate(DocumentEvent e) {
@@ -424,7 +424,7 @@ public class MainForm extends JFrame {
         if (selected < 3) {
             mComboBoxProfileStudentTypeFaculty.setVisible(false);
             mComboBoxProfileStudentTypeGroup.setVisible(false);
-            mButtonRating.setEnabled(false);
+//            mButtonRating.setEnabled(false);
             mLable7.setVisible(false);
             mTextFieldInfo7.setVisible(false);
             mLable4.setText("Посада");
@@ -435,7 +435,7 @@ public class MainForm extends JFrame {
 
             mComboBoxProfileStudentTypeFaculty.setVisible(true);
             mComboBoxProfileStudentTypeGroup.setVisible(true);
-            mButtonRating.setEnabled(true);
+//            mButtonRating.setEnabled(true);
             mLable7.setVisible(true);
             mTextFieldInfo7.setVisible(true);
             mLable4.setText("Факультет");

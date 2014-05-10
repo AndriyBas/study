@@ -9,6 +9,8 @@ import com.oyster.dao.impl.DAOCRUDJdbc;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
@@ -23,14 +25,17 @@ import java.util.ArrayList;
  */
 public class SecondScreen {
 
-    JFrame frame;
+    private JFrame frame;
 
-    JComboBox comboBoxFaculty;
+    private JComboBox comboBoxFaculty;
 
-    JComboBox comboBoxSubject;
-    JComboBox comboBoxTeacher;
-    JList groupList;
-    JTable table;
+    private JComboBox comboBoxSubject;
+    private JComboBox comboBoxTeacher;
+    private JList groupList;
+    private JTable table;
+
+    private java.util.List<Subject> subjects = null;
+    private java.util.List<Teacher> teachers = null;
 
     private boolean DEBUG = false;
 
@@ -85,14 +90,41 @@ public class SecondScreen {
             }
         });
 
+
+
         reloadAll();
 
+    }
+
+    private void tableValueChangedAction(TableModelEvent e) {
+        if (e.getType() == TableModelEvent.UPDATE
+//                | e.getType() == TableModelEvent.INSERT
+                ) {
+            System.out.println("Cell " + e.getFirstRow() + ", "
+                    + e.getColumn() + " changed. The new value: "
+                    + table.getModel().getValueAt(e.getFirstRow(),
+                    e.getColumn()));
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+          /*  if (column == 1 || column == 2) {
+                TableModel model = table.getModel();
+                int quantity = ((Integer) model.getValueAt(row, 1)).intValue();
+                double price = ((Double) model.getValueAt(row, 2)).doubleValue();
+                Double value = new Double(quantity * price);
+                model.setValueAt(value, row, 3);
+            }*/
+        }
     }
 
 
     private void fillTable() {
 
         Group g = (Group) groupList.getSelectedValue();
+
+        MyTableModel model = (MyTableModel) table.getModel();
+
+        model.setValueAt(subjects.get(0), 2, 1);
+
 
     }
 
@@ -138,6 +170,13 @@ public class SecondScreen {
         table.setModel(new MyTableModel());
         table.setPreferredScrollableViewportSize(new Dimension(500, 900));
         table.setFillsViewportHeight(true);
+
+        table.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                tableValueChangedAction(e);
+            }
+        });
 
 
         createScheduleTable();
@@ -225,7 +264,6 @@ public class SecondScreen {
     public void setUpSubjectColumn(JTable table,
                                    TableColumn subjectColumn) {
 
-        java.util.List<Subject> subjects = null;
 
         DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
@@ -258,7 +296,6 @@ public class SecondScreen {
     public void setUpTeacherColumn(JTable table,
                                    TableColumn teacherColumn) {
 
-        java.util.List<Teacher> teachers = null;
 
         DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 

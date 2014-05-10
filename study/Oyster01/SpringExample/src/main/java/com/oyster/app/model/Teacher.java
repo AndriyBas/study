@@ -91,4 +91,14 @@ public class Teacher implements IProfile {
     public String toString() {
         return getProfile().toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Teacher) {
+            return ((Teacher) obj).toString().equals(this.toString());
+        } else if (obj instanceof String) {
+            return ((String) obj).equals(this.toString());
+        }
+        return this.equals(obj);
+    }
 }

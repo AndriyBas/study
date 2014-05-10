@@ -318,13 +318,6 @@
                           <toolTipText value="Створити новий акаунт"/>
                         </properties>
                       </component>
-                      <component id="f7db" class="javax.swing.JButton" binding="mButtonRating">
-                        <constraints/>
-                        <properties>
-                          <text value="Рейтинг"/>
-                          <toolTipText value="Показати рейтинг студента"/>
-                        </properties>
-                      </component>
                       <component id="d214a" class="javax.swing.JButton" binding="mButtonSave">
                         <constraints/>
                         <properties>
