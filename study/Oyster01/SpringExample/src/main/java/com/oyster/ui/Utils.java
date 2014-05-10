@@ -27,7 +27,6 @@ public class Utils {
 
     public static void showErrorDialog(JFrame parent, String errorMsg) {
 
-
         JOptionPane.showMessageDialog(
                 parent,
                 errorMsg,

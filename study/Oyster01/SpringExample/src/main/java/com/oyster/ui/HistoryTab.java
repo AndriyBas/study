@@ -23,7 +23,7 @@ public class HistoryTab {
     private JComboBox comboBox;
     private JList historyList;
 
-    private DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+    private DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
     private Map<UUID, Profile> profiles;
 

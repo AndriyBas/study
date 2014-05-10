@@ -1,6 +1,7 @@
 package com.oyster.app;
 
 import com.oyster.app.model.Admin;
+import com.oyster.dao.impl.DAOCRUDJdbc;
 import org.springframework.context.ApplicationContext;
 
 import java.text.SimpleDateFormat;
@@ -12,11 +13,13 @@ public class AppConst {
 
     private static Admin currentAdmin;
 
-    public static ApplicationContext context;
+    public static ApplicationContext CONTEXT;
 
     public static SimpleDateFormat dateFormat;
 
     public static int SESSION_TIME;
+
+    public static DAOCRUDJdbc DAO;
 
     static {
         dateFormat = new SimpleDateFormat("d/M/y");

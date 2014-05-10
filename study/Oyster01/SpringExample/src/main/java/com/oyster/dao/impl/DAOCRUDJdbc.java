@@ -46,7 +46,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
     /**
      * retrieves a Jdbc dao instance
      *
-     * @param context context of the application
+     * @param context CONTEXT of the application
      * @return an instance to the Jdbc dao
      */
     public static DAOCRUDJdbc getInstance(ApplicationContext context) {
@@ -63,6 +63,11 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      */
     @Override
     public <T> T insert(T instance) throws DAOException {
+        return performInsertOrReplace(instance, "INSERT");
+    }
+
+    private <T> T performInsertOrReplace(T instance, String keyWord) {
+
         HashMap<String, String> mapStrStr = (HashMap<String, String>)
                 DAOAnnotationUtils.getConvertedStoredFields(instance);
 
@@ -73,7 +78,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
             q.append(", " + mapStrStr.get(key));
         }
 
-        String sql = "REPLACE INTO " + DAOAnnotationUtils.getStorageName(instance.getClass())
+        String sql = keyWord + " INTO " + DAOAnnotationUtils.getStorageName(instance.getClass())
                 + " (" + sb.substring(1) + ")" + "VALUES" + " (" + q.substring(1) + ");";
 
 
@@ -85,6 +90,10 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         System.out.println(result);
 
         return instance;
+    }
+
+    public <T> T replace(T instance) throws DAOException {
+        return performInsertOrReplace(instance, "REPLACE");
     }
 
     /**

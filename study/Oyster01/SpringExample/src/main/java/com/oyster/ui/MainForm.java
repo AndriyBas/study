@@ -93,7 +93,7 @@ public class MainForm extends JFrame {
     private HistoryTab historyTab;
     private ScheduleTab scheduleTab;
 
-    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
     public MainForm() {
         super("KPI City");
@@ -759,7 +759,7 @@ public class MainForm extends JFrame {
                     x.insert(h);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення предмету : \n" + e.getMessage()));
+                    Utils.showErrorDialog(null, Utils.makePretty("Помилка створення предмету : \n" + e.getMessage()));
                 }
 
 
@@ -824,67 +824,7 @@ public class MainForm extends JFrame {
                 break;
             case "registerStudent":
 
-                Profile pStudent = new Profile(
-                        UUID.randomUUID(),
-                        (String) c.get("name"),
-                        (String) c.get("surname"),
-                        (String) c.get("password"),
-                        (Long) c.get("birthday")
-                );
 
-                final String groupName = (String) c.get("group");
-                java.util.List<Group> groups = null;
-                try {
-                    groups = x.select(Group.class, new DAOFilter() {
-                        @Override
-                        public <T> boolean accept(T entity) {
-                            Group g = (Group) entity;
-                            return g.getName().equals(groupName);
-                        }
-                    });
-                    for (Group gg : groups) {
-                        gg.setFaculty((Faculty) x.read(Faculty.class, gg.getFacultyId()));
-                    }
-                } catch (DAOException e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка зчитування групи : \n" + e.getMessage()));
-                }
-
-                if (groups.size() == 0) {
-                    Utils.showErrorDialog(this, "Немає такої групи!");
-                    break;
-                }
-
-                final Group group = groups.get(0);
-
-                if (!group.getFaculty().getName().equals((String) c.get("faculty"))) {
-                    Utils.showErrorDialog(this, "Немає такої групи на цьому факультеті!");
-                    break;
-                }
-
-
-                Student student = new Student(
-                        UUID.randomUUID(),
-                        pStudent.getId(),
-                        groups.get(0).getId(),
-                        (Integer) c.get("course"),
-                        (Integer) c.get("bookNum")
-                );
-
-                try {
-                    x.insert(pStudent);
-                    x.insert(student);
-
-                    History h = new History(
-                            UUID.randomUUID(),
-                            AppConst.getCurrentAdmin().getProfileId(),
-                            "Додав студента " + pStudent.toString()
-                    );
-                    x.insert(h);
-                } catch (DAOException e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення студента : \n" + e.getMessage()));
-                }
 
                 break;
 

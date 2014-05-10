@@ -65,7 +65,7 @@ public class ScheduleTab {
 
     private ArrayList<Classes> classes;
 
-    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
     private Teacher emptyTeacher;
     private Subject emptySubject;
@@ -108,7 +108,7 @@ public class ScheduleTab {
 
     private void checkAndSave(Classes c) {
         try {
-            x.insert(c);
+            x.replace(c);
 
             Group g = (Group) groupList.getSelectedValue();
 

@@ -110,7 +110,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     private void tryToLogIn() {
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
         Timestamp t = new Timestamp(100L);
 

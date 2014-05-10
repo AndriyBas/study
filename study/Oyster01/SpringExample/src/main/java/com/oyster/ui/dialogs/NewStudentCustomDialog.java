@@ -1,7 +1,10 @@
 package com.oyster.ui.dialogs;
 
 import com.oyster.app.AppConst;
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
+import com.oyster.core.controller.exception.CommandNotFoundException;
+import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.ui.MainForm;
 
 import javax.swing.*;
@@ -313,7 +316,19 @@ public class NewStudentCustomDialog extends JDialog
                     c.put("password", userPassword);
 
                     // and kick off action for performing
-                    dd.performAction("registerStudent", c);
+//                    dd.performAction("registerStudent", c);
+
+                    try {
+                        CommandExecutor.getInstance().execute("registerStudent", c, null);
+                    } catch (CommandNotFoundException e1) {
+                        e1.printStackTrace();
+                    } catch (InstantiationException e1) {
+                        e1.printStackTrace();
+                    } catch (IllegalAccessException e1) {
+                        e1.printStackTrace();
+                    } catch (InvalidCommandParameterException e1) {
+                        e1.printStackTrace();
+                    }
 
                     clearAndHide();
                 } else {
