@@ -9,7 +9,7 @@
     <artifactId>SpringExample</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <firstName>SpringExample</firstName>
+    <name>SpringExample</name>
     <url>http://maven.apache.org</url>
 
 

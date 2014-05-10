@@ -418,15 +418,7 @@
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <model>
-                        <item value="ФІОТ"/>
-                        <item value="ІПСА"/>
-                        <item value="ФММ"/>
-                        <item value="ФПМ"/>
-                        <item value="ІХФ"/>
-                        <item value="ФАКС"/>
-                        <item value="МУФ"/>
-                      </model>
+                      <model/>
                     </properties>
                   </component>
                   <scrollpane id="96044" binding="mListGroups">
@@ -436,26 +428,10 @@
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <component id="c7f69" class="javax.swing.JList">
+                      <component id="c7f69" class="javax.swing.JList" binding="mListTab2Group">
                         <constraints/>
                         <properties>
-                          <model>
-                            <item value="ІО-21"/>
-                            <item value="ІО-22"/>
-                            <item value="ІО-23"/>
-                            <item value="ІО-24"/>
-                            <item value="ІО-25"/>
-                            <item value="ІП-21"/>
-                            <item value="ІП-22"/>
-                            <item value="ІП-23"/>
-                            <item value="ІП-24"/>
-                            <item value="ІП-25"/>
-                            <item value="ІК-21"/>
-                            <item value="ІК-22"/>
-                            <item value="ІК-23"/>
-                            <item value="ІК-24"/>
-                            <item value="ІК-25"/>
-                          </model>
+                          <model/>
                         </properties>
                       </component>
                     </children>
@@ -467,12 +443,19 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="9be9" class="javax.swing.JTable" binding="mTable1" default-binding="true">
-                    <constraints border-constraint="Center"/>
-                    <properties>
-                      <fillsViewportHeight value="false"/>
-                    </properties>
-                  </component>
+                  <scrollpane id="52d15">
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="9be9" class="javax.swing.JTable" binding="mTable1" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <fillsViewportHeight value="false"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </grid>
             </children>

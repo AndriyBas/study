@@ -20,6 +20,7 @@ public class Utils {
                 msg.append("\n");
             }
         }
+
         return msg.toString();
 //        return toUTF8(msg.toString());
     }

@@ -65,6 +65,7 @@ public class MainForm extends JFrame {
     private JLabel mLable4;
     private JTextField mTextFieldInfo4;
     private JScrollPane mScrollPanePeople;
+    private JList mListTab2Group;
 
     private IProfile currentPerson;
 
@@ -88,6 +89,8 @@ public class MainForm extends JFrame {
             mButtonSave.setEnabled(true);
         }
     };
+
+    private SecondScreen secondScreen;
 
     public MainForm() {
         super("KPI City");
@@ -186,6 +189,8 @@ public class MainForm extends JFrame {
                 deleteButtonClick();
             }
         });
+
+        secondScreen = new SecondScreen(this, mComboBoxScheduleFaculty, mListTab2Group, mTable1);
     }
 
     private void deleteButtonClick() {
