@@ -73,7 +73,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
             q.append(", " + mapStrStr.get(key));
         }
 
-        String sql = "INSERT INTO " + DAOAnnotationUtils.getStorageName(instance.getClass())
+        String sql = "REPLACE INTO " + DAOAnnotationUtils.getStorageName(instance.getClass())
                 + " (" + sb.substring(1) + ")" + "VALUES" + " (" + q.substring(1) + ");";
 
 

@@ -35,10 +35,10 @@ public class Profile {
     private UUID id;
 
     @Stored(name = "first_name")
-    private String firstName;
+    private String firstName = "";
 
     @Stored(name = "second_name")
-    private String secondName;
+    private String secondName = "";
 
     @Stored(name = "password")
     private String password;

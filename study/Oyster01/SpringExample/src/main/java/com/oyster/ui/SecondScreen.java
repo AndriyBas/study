@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Created by bamboo on 10.05.14.
@@ -62,18 +63,29 @@ public class SecondScreen {
             "Аудиторія",
     };
 
+    private ArrayList<Classes> classes;
+
+    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
+    private Teacher emptyTeacher;
+    private Subject emptySubject;
+
     public SecondScreen(JFrame frame, JComboBox comboBoxFaculty, JList groupList, JTable table) {
         this.frame = frame;
         this.comboBoxFaculty = comboBoxFaculty;
         this.groupList = groupList;
         this.table = table;
 
-
         hardcoreInit();
-
     }
 
     private void hardcoreInit() {
+
+        emptyTeacher = new Teacher();
+        emptyTeacher.setProfile(new Profile());
+
+        emptySubject = new Subject();
+        emptySubject.setName("");
 
 
         comboBoxFaculty.addActionListener(new ActionListener() {
@@ -90,22 +102,111 @@ public class SecondScreen {
             }
         });
 
-
-
         reloadAll();
-
     }
+
+
+    private void checkAndSave(Classes c) {
+        try {
+            x.insert(c);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void tableValueChangedAction(TableModelEvent e) {
         if (e.getType() == TableModelEvent.UPDATE
-//                | e.getType() == TableModelEvent.INSERT
+                | e.getType() == TableModelEvent.INSERT
                 ) {
+
+            Group g = (Group) groupList.getSelectedValue();
+
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+
+            Absence absence = null;
+
+            Classes c = classes.get(row);
+            if (c == null) {
+                c = new Classes();
+                c.setId(UUID.randomUUID());
+                absence = new Absence();
+                absence.setId(UUID.randomUUID());
+                absence.setGroupId(g.getId());
+                absence.setClassId(c.getId());
+                c.setTime(row);
+
+                try {
+                    x.insert(absence);
+                } catch (DAOException e1) {
+                    e1.printStackTrace();
+                }
+
+                classes.set(row, c);
+
+            }
+
+
+            switch (column) {
+                case 1:
+                    Subject s = (Subject) table.getModel().getValueAt(row,
+                            column);
+
+                    c.setSubject(s);
+                    c.setSubjectId(s.getId());
+
+                    checkAndSave(c);
+
+                    break;
+
+                case 2:
+
+                    Teacher t = (Teacher) table.getModel().getValueAt(row,
+                            column);
+
+                    c.setTeacher(t);
+                    c.setTeacherId(t.getId());
+
+                    checkAndSave(c);
+
+                    break;
+
+                case 3:
+
+                    Integer i = null;
+                    try {
+                        i = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
+                        if (i < 0) {
+                            throw new IllegalArgumentException("Аудиторія повинна бути >= 0");
+                        }
+                    } catch (NumberFormatException ne) {
+                        // ok, empty string then
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        Utils.showErrorDialog(frame, Utils.makePretty(ex.getMessage()));
+                        if (absence != null) {
+                            try {
+                                x.delete(absence);
+                            } catch (DAOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
+                        return;
+                    }
+
+                    c.setAudience(i);
+
+                    checkAndSave(c);
+
+                    break;
+            }
+
+
             System.out.println("Cell " + e.getFirstRow() + ", "
                     + e.getColumn() + " changed. The new value: "
                     + table.getModel().getValueAt(e.getFirstRow(),
                     e.getColumn()));
-            int row = e.getFirstRow();
-            int column = e.getColumn();
           /*  if (column == 1 || column == 2) {
                 TableModel model = table.getModel();
                 int quantity = ((Integer) model.getValueAt(row, 1)).intValue();
@@ -119,19 +220,79 @@ public class SecondScreen {
 
     private void fillTable() {
 
+        java.util.List<Classes> c1 = null;
         Group g = (Group) groupList.getSelectedValue();
+        if (g == null) {
+            table.setVisible(false);
+            return;
+        } else {
+            table.setVisible(true);
+        }
+
+        try {
+            c1 = x.select(Classes.class, "select b.*  from  ABSENCE_TBL a " +
+                    " left join CLASSES_TBL b on  (a.class_id = b.classes_id and " +
+                    " a.group_id = \"" + g.getId() + "\")");
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+
+        MyTableModel model = (MyTableModel) table.getModel();
+        for (Classes c : c1) {
+            if (c != null) {
+                classes.set(c.getTime(), c);
+
+                int row = c.getTime();
+
+                if (c.getAudience() > 0) {
+                    model.setValueAt(c.getAudience(), row, 3);
+                }
+
+                model.setValueAt(getSubjectById(c.getSubjectId()), row, 1);
+
+                model.setValueAt(getTeacherById(c.getTeacherId()), row, 2);
+
+            }
+        }
+
+
+
+
+      /*  Group g = (Group) groupList.getSelectedValue();
 
         MyTableModel model = (MyTableModel) table.getModel();
 
-        model.setValueAt(subjects.get(0), 2, 1);
+        model.setValueAt(subjects.get(0), 2, 1);*/
 
 
+        updateUI();
+    }
+
+    private Subject getSubjectById(UUID id) {
+
+        for (Subject s : subjects) {
+            if (s != null && s.getId().equals(id)) {
+                return s;
+            }
+        }
+
+        return emptySubject;
+    }
+
+    private Teacher getTeacherById(UUID id) {
+
+        for (Teacher t : teachers) {
+            if (t != null && t.getId().equals(id)) {
+                return t;
+            }
+        }
+        return emptyTeacher;
     }
 
     private void facultyChangedAction() {
         final Faculty f = (Faculty) comboBoxFaculty.getSelectedItem();
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
         java.util.List<Group> groups = null;
         try {
             groups = x.select(Group.class, new DAOFilter() {
@@ -167,6 +328,12 @@ public class SecondScreen {
     }
 
     private void reloadTable() {
+
+        classes = new ArrayList<>(30);
+        for (int i = 0; i < 30; i++) {
+            classes.add(null);
+        }
+
         table.setModel(new MyTableModel());
         table.setPreferredScrollableViewportSize(new Dimension(500, 900));
         table.setFillsViewportHeight(true);
@@ -197,7 +364,6 @@ public class SecondScreen {
 
         java.util.List<Faculty> faculties = null;
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         try {
             faculties = x.select(Faculty.class, "");
@@ -265,8 +431,6 @@ public class SecondScreen {
                                    TableColumn subjectColumn) {
 
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
-
         try {
             subjects = x.select(Subject.class, "");
         } catch (DAOException e) {
@@ -275,7 +439,7 @@ public class SecondScreen {
 
         comboBoxSubject = new JComboBox();
 
-        comboBoxSubject.addItem("");
+        comboBoxSubject.addItem(emptySubject);
 
         for (Subject s : subjects) {
             comboBoxSubject.addItem(s);
@@ -297,8 +461,6 @@ public class SecondScreen {
                                    TableColumn teacherColumn) {
 
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
-
         try {
             teachers = x.select(Teacher.class, "");
             for (Teacher t : teachers) {
@@ -311,7 +473,7 @@ public class SecondScreen {
 
         comboBoxTeacher = new JComboBox();
 
-        comboBoxTeacher.addItem("");
+        comboBoxTeacher.addItem(emptyTeacher);
 
         for (Teacher s : teachers) {
             comboBoxTeacher.addItem(s);
