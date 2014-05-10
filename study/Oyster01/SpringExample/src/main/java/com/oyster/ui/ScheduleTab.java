@@ -24,7 +24,7 @@ import java.util.UUID;
 /**
  * Created by bamboo on 10.05.14.
  */
-public class SecondScreen {
+public class ScheduleTab {
 
     private JFrame frame;
 
@@ -70,7 +70,7 @@ public class SecondScreen {
     private Teacher emptyTeacher;
     private Subject emptySubject;
 
-    public SecondScreen(JFrame frame, JComboBox comboBoxFaculty, JList groupList, JTable table) {
+    public ScheduleTab(JFrame frame, JComboBox comboBoxFaculty, JList groupList, JTable table) {
         this.frame = frame;
         this.comboBoxFaculty = comboBoxFaculty;
         this.groupList = groupList;

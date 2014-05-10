@@ -90,7 +90,10 @@ public class MainForm extends JFrame {
         }
     };
 
-    private SecondScreen secondScreen;
+    private HistoryTab historyTab;
+    private ScheduleTab scheduleTab;
+    
+    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
     public MainForm() {
         super("KPI City");
@@ -190,7 +193,9 @@ public class MainForm extends JFrame {
             }
         });
 
-        secondScreen = new SecondScreen(this, mComboBoxScheduleFaculty, mListTab2Group, mTable1);
+        scheduleTab = new ScheduleTab(this, mComboBoxScheduleFaculty, mListTab2Group, mTable1);
+
+        historyTab = new HistoryTab(this, mComboBoxAllHistory, mListAllHistory);
     }
 
     private void deleteButtonClick() {
@@ -210,7 +215,6 @@ public class MainForm extends JFrame {
             return;
         }
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         try {
             x.delete(currentPerson.getProfile());
@@ -264,8 +268,6 @@ public class MainForm extends JFrame {
         s.getGroup().setName(groupName);
         s.getGroup().getFaculty().setName(facultyName);
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
-
         try {
             x.update(s);
             x.update(s.getGroup());
@@ -296,7 +298,6 @@ public class MainForm extends JFrame {
         p.setBirthday(birthdayLong);
         p.setPassword(password);
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         try {
             x.update(p);
@@ -324,7 +325,6 @@ public class MainForm extends JFrame {
         wi.setSalary(Integer.parseInt(salary));
         wi.setDateHired(dateHired);
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         try {
             x.update(wi);
@@ -349,7 +349,7 @@ public class MainForm extends JFrame {
 
         final Faculty f = (Faculty) mComboBoxProfileStudentTypeFaculty.getSelectedItem();
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
         java.util.List<Group> groups = null;
         try {
             groups = x.select(Group.class, new DAOFilter() {
@@ -379,7 +379,7 @@ public class MainForm extends JFrame {
 
         final Group group = (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem();
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
+
         java.util.List<Student> students = null;
         try {
             students = x.select(Student.class, new DAOFilter() {
@@ -419,7 +419,6 @@ public class MainForm extends JFrame {
         mButtonSave.setEnabled(false);
         int selected = mComboBoxProfileType.getSelectedIndex();
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         if (selected < 3) {
             mComboBoxProfileStudentTypeFaculty.setVisible(false);
@@ -539,6 +538,31 @@ public class MainForm extends JFrame {
         mTextFieldInfo2.setText(profile.getSecondName());
         mTextFieldInfo3.setText(AppConst.dateFormat.format(new Date(profile.getBirthday())));
         mPasswordField1.setText(profile.getPassword());
+
+        loadHistory(profile);
+    }
+
+    private void loadHistory(Profile profile) {
+
+        java.util.List<History> histories = null;
+
+        try {
+            histories = x.select(History.class, "select * from HISTORY_TBL where author_id = \"" +
+                    profile.getId() + "\";");
+            for (History h : histories) {
+                h.setAuthor(profile);
+            }
+        } catch (DAOException e) {
+            e.printStackTrace();
+            Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
+        }
+
+        DefaultListModel<History> historyModel = new DefaultListModel<>();
+        for (History h : histories) {
+            histories.add(h);
+        }
+
+        mListHistoryProfile.setModel(historyModel);
     }
 
     private void fillInfoFields(WorkerInfo workerInfo) {
@@ -713,7 +737,6 @@ public class MainForm extends JFrame {
 
     public void performAction(String action, Context c) {
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.context);
 
         switch (action) {
             case "registerSubject":
