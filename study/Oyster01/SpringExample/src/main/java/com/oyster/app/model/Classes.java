@@ -26,9 +26,6 @@ public class Classes {
     @Stored(name = "teacher_id", converter = UUIDConverter.class)
     private UUID teacherId;
 
-    @Stored(name = "building", converter = IntConverter.class)
-    private int building;
-
     @Stored(name = "audience", converter = IntConverter.class)
     private int audience;
 
@@ -38,11 +35,11 @@ public class Classes {
     public Classes() {
     }
 
-    public Classes(UUID id, UUID subjectId, UUID teacherId, int building, int audience, long date) {
+    public Classes(UUID id, UUID subjectId, UUID teacherId, int audience, long date) {
         this.id = id;
         this.subjectId = subjectId;
         this.teacherId = teacherId;
-        this.building = building;
+
         this.audience = audience;
         this.date = date;
     }
@@ -63,13 +60,6 @@ public class Classes {
         this.audience = audience;
     }
 
-    public int getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(int building) {
-        this.building = building;
-    }
 
     public UUID getTeacherId() {
         return teacherId;
