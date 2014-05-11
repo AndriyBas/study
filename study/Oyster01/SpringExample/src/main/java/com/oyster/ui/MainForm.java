@@ -6,7 +6,6 @@ import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
-import com.oyster.dao.impl.DAOCRUDJdbc;
 import com.oyster.ui.dialogs.*;
 
 import javax.swing.*;
@@ -93,7 +92,6 @@ public class MainForm extends JFrame {
     private HistoryTab historyTab;
     private ScheduleTab scheduleTab;
 
-    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
     public MainForm() {
         super("KPI City");
@@ -260,9 +258,9 @@ public class MainForm extends JFrame {
         s.getGroup().getFaculty().setName(facultyName);
 
         try {
-            x.update(s);
-            x.update(s.getGroup());
-            x.update(s.getGroup().getFaculty());
+            AppConst.DAO.update(s);
+            AppConst.DAO.update(s.getGroup());
+            AppConst.DAO.update(s.getGroup().getFaculty());
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -291,7 +289,7 @@ public class MainForm extends JFrame {
 
 
         try {
-            x.update(p);
+            AppConst.DAO.update(p);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -318,7 +316,7 @@ public class MainForm extends JFrame {
 
 
         try {
-            x.update(wi);
+            AppConst.DAO.update(wi);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -338,7 +336,7 @@ public class MainForm extends JFrame {
 
         java.util.List<Group> groups = null;
         try {
-            groups = x.select(Group.class, new DAOFilter() {
+            groups = AppConst.DAO.select(Group.class, new DAOFilter() {
                 @Override
                 public <T> boolean accept(T entity) {
                     Group g = (Group) entity;
@@ -368,7 +366,7 @@ public class MainForm extends JFrame {
 
         java.util.List<Student> students = null;
         try {
-            students = x.select(Student.class, new DAOFilter() {
+            students = AppConst.DAO.select(Student.class, new DAOFilter() {
                 @Override
                 public <T> boolean accept(T entity) {
                     Student s = (Student) entity;
@@ -376,7 +374,7 @@ public class MainForm extends JFrame {
                 }
             });
             for (Student student : students) {
-                student.setProfile((Profile) x.read(Profile.class, student.getProfileId()));
+                student.setProfile((Profile) AppConst.DAO.read(Profile.class, student.getProfileId()));
                 student.setGroup(group);
             }
         } catch (Exception e) {
@@ -449,10 +447,10 @@ public class MainForm extends JFrame {
                 java.util.List<Admin> admins = null;
 
                 try {
-                    admins = x.select(Admin.class, "");
+                    admins = AppConst.DAO.select(Admin.class, "");
                     for (Admin a : admins) {
-                        a.setProfile((Profile) x.read(Profile.class, a.getProfileId()));
-                        a.setWorkerInfo((WorkerInfo) x.read(WorkerInfo.class, a.getWorkerInfoId()));
+                        a.setProfile((Profile) AppConst.DAO.read(Profile.class, a.getProfileId()));
+                        a.setWorkerInfo((WorkerInfo) AppConst.DAO.read(WorkerInfo.class, a.getWorkerInfoId()));
                     }
                 } catch (DAOException e) {
                     e.printStackTrace();
@@ -477,10 +475,10 @@ public class MainForm extends JFrame {
                 java.util.List<Teacher> teachers = null;
 
                 try {
-                    teachers = x.select(Teacher.class, "");
+                    teachers = AppConst.DAO.select(Teacher.class, "");
                     for (Teacher teacher : teachers) {
-                        teacher.setProfile((Profile) x.read(Profile.class, teacher.getProfileId()));
-                        teacher.setWorkerInfo((WorkerInfo) x.read(WorkerInfo.class, teacher.getWorkerInfoId()));
+                        teacher.setProfile((Profile) AppConst.DAO.read(Profile.class, teacher.getProfileId()));
+                        teacher.setWorkerInfo((WorkerInfo) AppConst.DAO.read(WorkerInfo.class, teacher.getWorkerInfoId()));
                     }
                 } catch (DAOException e) {
                     e.printStackTrace();
@@ -504,7 +502,7 @@ public class MainForm extends JFrame {
                 java.util.List<Faculty> faculties = null;
 
                 try {
-                    faculties = x.select(Faculty.class, "");
+                    faculties = AppConst.DAO.select(Faculty.class, "");
                 } catch (DAOException e) {
                     e.printStackTrace();
                 }
@@ -533,7 +531,7 @@ public class MainForm extends JFrame {
         java.util.List<History> histories = null;
 
         try {
-            histories = x.select(History.class, "select * from HISTORY_TBL where author_id = \"" +
+            histories = AppConst.DAO.select(History.class, "select * from HISTORY_TBL where author_id = \"" +
                     profile.getId() + "\";");
             for (History h : histories) {
                 h.setAuthor(profile);

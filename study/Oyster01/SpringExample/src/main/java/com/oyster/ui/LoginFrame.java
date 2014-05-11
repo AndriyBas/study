@@ -1,20 +1,12 @@
 package com.oyster.ui;
 
-import com.oyster.app.AppConst;
-import com.oyster.app.model.Admin;
-import com.oyster.app.model.Group;
-import com.oyster.app.model.Profile;
-import com.oyster.app.model.WorkerInfo;
-import com.oyster.dao.DAOFilter;
-import com.oyster.dao.exception.DAOException;
-import com.oyster.dao.impl.DAOCRUDJdbc;
+import com.oyster.core.controller.CommandExecutor;
+import com.oyster.core.controller.command.Context;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * @author bamboo
@@ -35,8 +27,6 @@ public class LoginFrame extends JFrame implements ActionListener {
         add(panel);
         placeComponents(panel);
         setLocationRelativeTo(null);
-
-//        frame.pack();
     }
 
     private void placeComponents(JPanel panel) {
@@ -110,74 +100,21 @@ public class LoginFrame extends JFrame implements ActionListener {
 
     private void tryToLogIn() {
 
-        DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
-
-        Timestamp t = new Timestamp(100L);
-
-        List<Profile> profiles = null;
-        try {
-            profiles = x.select(Profile.class, new DAOFilter() {
-                @Override
-                public <T> boolean accept(T entity) {
-                    Profile p = (Profile) entity;
-                    return userName.equals(p.getFirstName() + "-" + p.getSecondName())
-                            && userPassword.equals(p.getPassword());
-                }
-            });
-        } catch (DAOException e) {
-            e.printStackTrace();
-            Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
-            return;
-        }
-
-        if (profiles.size() == 0) {
-            Utils.showErrorDialog(this, "Помилка авторизації : неправильні логін чи пароль !");
-            return;
-        }
-
-        final Profile profile = profiles.get(0);
-        WorkerInfo wi = null;
-        List<Admin> admins = null;
+        Context c = new Context();
+        c.put("username", userName);
+        c.put("password", userPassword);
 
         try {
-            admins = x.select(Admin.class, new DAOFilter() {
+            CommandExecutor.getInstance().execute("logIn", c, new Runnable() {
                 @Override
-                public <T> boolean accept(T entity) {
-                    Admin a = (Admin) entity;
-                    return a.getProfileId().equals(profile.getId());
+                public void run() {
+                    LoginFrame.this.dispose();
+
                 }
             });
-            wi = x.read(WorkerInfo.class, admins.get(0).getWorkerInfoId());
         } catch (Exception e) {
             e.printStackTrace();
-            Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
-            return;
         }
-
-        if (admins.size() == 0) {
-            Utils.showErrorDialog(this, "Помилка авторизації : дані логін та пароль не відповідають адміністратору !");
-            return;
-        }
-
-        final Admin admin = admins.get(0);
-        admin.setProfile(profile);
-        admin.setWorkerInfo(wi);
-
-        AppConst.setCurrentAdmin(admin);
-
-        MainForm form = new MainForm();
-
-
-        System.out.println("------------");
-        try {
-            x.select(Group.class, "SELECT a.group_id, a.group_name, b.faculty_id, b.faculty_name " +
-                    "FROM GROUP_TBL a JOIN  FACULTY_TBL b ON a.faculty_id = b.faculty_id;");
-        } catch (DAOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("------------");
-
-        this.dispose();
 
     }
 }
