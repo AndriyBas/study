@@ -6,6 +6,7 @@ import com.oyster.app.model.__Position;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 import com.oyster.core.controller.command.DeleteIProfileCommand;
+import com.oyster.core.controller.command.LoadHistoryCommand;
 import com.oyster.core.controller.command.LogInCommand;
 import com.oyster.core.controller.command.register.*;
 import com.oyster.core.controller.exception.CommandNotFoundException;
@@ -41,6 +42,8 @@ public class App {
 
         executor.addCommand(DeleteIProfileCommand.class);
         executor.addCommand(LogInCommand.class);
+
+        executor.addCommand(LoadHistoryCommand.class);
 
 
         testRead();

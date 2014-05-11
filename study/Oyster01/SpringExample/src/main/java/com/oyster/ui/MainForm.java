@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -526,27 +527,33 @@ public class MainForm extends JFrame {
         loadHistory(profile);
     }
 
-    private void loadHistory(Profile profile) {
+    private void loadHistory(final Profile profile) {
 
-        java.util.List<History> histories = null;
+        final java.util.List<History> histories = new ArrayList<History>();
+
+        Context c = new Context();
+        c.put("list", histories);
+        c.put("sqlQuery", "select * from HISTORY_TBL where author_id = \"" +
+                profile.getId() + "\";");
 
         try {
-            histories = AppConst.DAO.select(History.class, "select * from HISTORY_TBL where author_id = \"" +
-                    profile.getId() + "\";");
-            for (History h : histories) {
-                h.setAuthor(profile);
-            }
-        } catch (DAOException e) {
+            CommandExecutor.getInstance().execute("loadHistory", c, new Runnable() {
+                @Override
+                public void run() {
+                    for (History h : histories) {
+                        h.setAuthor(profile);
+                    }
+                    DefaultListModel<History> historyModel = new DefaultListModel<>();
+                    for (History h : histories) {
+                        historyModel.addElement(h);
+                    }
+
+                    mListHistoryProfile.setModel(historyModel);
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
-            Utils.showErrorDialog(this, Utils.makePretty(e.getMessage()));
         }
-
-        DefaultListModel<History> historyModel = new DefaultListModel<>();
-        for (History h : histories) {
-            historyModel.addElement(h);
-        }
-
-        mListHistoryProfile.setModel(historyModel);
     }
 
     private void fillInfoFields(WorkerInfo workerInfo) {
