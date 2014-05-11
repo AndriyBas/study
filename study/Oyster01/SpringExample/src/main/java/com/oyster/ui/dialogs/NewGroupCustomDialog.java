@@ -1,5 +1,6 @@
 package com.oyster.ui.dialogs;
 
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 import com.oyster.ui.MainForm;
 
@@ -20,7 +21,6 @@ public class NewGroupCustomDialog extends JDialog
     private String groupFaculty = null;
     private JTextField textField1;
     private JTextField textField2;
-    private MainForm dd;
 
     private JOptionPane optionPane;
 
@@ -38,10 +38,9 @@ public class NewGroupCustomDialog extends JDialog
     /**
      * Creates the reusable dialog.
      */
-    public NewGroupCustomDialog(Frame aFrame, MainForm parent) {
+    public NewGroupCustomDialog(Frame aFrame) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
-        dd = parent;
 
         setTitle("Додати нову групу");
 
@@ -167,7 +166,11 @@ public class NewGroupCustomDialog extends JDialog
                     c.put("name", groupName);
                     c.put("faculty", groupFaculty);
                     // and kick off action for performing
-                    dd.performAction("registerGroup", c);
+                    try {
+                        CommandExecutor.getInstance().execute("registerGroup", c, null);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
 
                     clearAndHide();
                 } else {

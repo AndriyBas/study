@@ -1,6 +1,9 @@
 package com.oyster.ui.dialogs;
 
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
+import com.oyster.core.controller.exception.CommandNotFoundException;
+import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.ui.MainForm;
 
 import javax.swing.*;
@@ -19,8 +22,6 @@ public class NewSubjectCustomDialog extends JDialog
     private String subjectName = null;
     private JTextField textFieldSubjectName;
 
-    private MainForm dd;
-
     private JOptionPane optionPane;
 
     private String btnString1 = "Створити";
@@ -37,10 +38,9 @@ public class NewSubjectCustomDialog extends JDialog
     /**
      * Creates the reusable dialog.
      */
-    public NewSubjectCustomDialog(Frame aFrame, MainForm parent) {
+    public NewSubjectCustomDialog(Frame aFrame) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
-        dd = parent;
 
         setTitle("Додати предмет");
 
@@ -144,7 +144,11 @@ public class NewSubjectCustomDialog extends JDialog
                     Context c = new Context();
                     c.put("name", subjectName);
                     // and kick off action for performing
-                    dd.performAction("registerSubject", c);
+                    try {
+                        CommandExecutor.getInstance().execute("registerSubject", c, null);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                     clearAndHide();
                 } else {
                     //text was invalid

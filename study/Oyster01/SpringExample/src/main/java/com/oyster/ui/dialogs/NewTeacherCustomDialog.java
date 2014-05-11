@@ -1,7 +1,10 @@
 package com.oyster.ui.dialogs;
 
 import com.oyster.app.AppConst;
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
+import com.oyster.core.controller.exception.CommandNotFoundException;
+import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.ui.MainForm;
 
 import javax.swing.*;
@@ -41,7 +44,6 @@ public class NewTeacherCustomDialog extends JDialog
     private JTextField textField5;
     private JTextField textField6;
     private JPasswordField mJPasswordField;
-    private MainForm dd;
 
     private JOptionPane optionPane;
 
@@ -59,10 +61,9 @@ public class NewTeacherCustomDialog extends JDialog
     /**
      * Creates the reusable dialog.
      */
-    public NewTeacherCustomDialog(Frame aFrame, MainForm parent) {
+    public NewTeacherCustomDialog(Frame aFrame) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
-        dd = parent;
 
         setTitle("Створити профіль викладача");
 
@@ -292,8 +293,11 @@ public class NewTeacherCustomDialog extends JDialog
                     c.put("dateHired", teacherDateHired.getTime());
                     c.put("password", userPassword);
 
-                    // and kick off action for performing
-                    dd.performAction("registerTeacher", c);
+                    try {
+                        CommandExecutor.getInstance().execute("registerTeacher", c, null);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
 
                     clearAndHide();
                 } else {

@@ -1,6 +1,7 @@
 package com.oyster.ui.dialogs;
 
 import com.oyster.app.AppConst;
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 import com.oyster.ui.MainForm;
 
@@ -11,10 +12,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
@@ -44,7 +43,6 @@ public class NewAdminCustomDialog extends JDialog
     private JTextField textField5;
     private JTextField textField6;
     private JPasswordField mJPasswordField;
-    private MainForm dd;
 
     private JOptionPane optionPane;
 
@@ -62,10 +60,9 @@ public class NewAdminCustomDialog extends JDialog
     /**
      * Creates the reusable dialog.
      */
-    public NewAdminCustomDialog(Frame aFrame, MainForm parent) {
+    public NewAdminCustomDialog(Frame aFrame) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
-        dd = parent;
 
         setTitle("Створити профіль адміністратора");
 
@@ -296,8 +293,11 @@ public class NewAdminCustomDialog extends JDialog
                     c.put("password", userPassword);
 
                     // and kick off action for performing
-                    dd.performAction("registerAdmin", c);
-
+                    try {
+                        CommandExecutor.getInstance().execute("registerAdmin", c, null);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                     clearAndHide();
                 } else {
                     //text was invalid

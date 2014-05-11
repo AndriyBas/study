@@ -2,6 +2,7 @@ package com.oyster.ui;
 
 import com.oyster.app.AppConst;
 import com.oyster.app.model.*;
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
@@ -20,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.UUID;
 
 
 /**
@@ -117,28 +117,18 @@ public class MainForm extends JFrame {
 
     private void hardCoreInit() {
 
-//        mTextFieldInfo3 = new JFormattedTextField(AppConst.dateFormat);
         addJMenu();
-
         mButtonNewUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newUserAction();
             }
         });
-
         comboBoxChangeAction();
         mComboBoxProfileType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 comboBoxChangeAction();
-            }
-        });
-
-        mComboBoxAllHistory.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                comboBoxHistoryChangeAction();
             }
         });
 
@@ -204,7 +194,7 @@ public class MainForm extends JFrame {
             return;
         }
 
-        int dialogResult = JOptionPane.showConfirmDialog(this,
+        int dialogResult = JOptionPane.showConfirmDialog(null,
                 "Підтвердити видалення акаунту  : ",
                 "Захист від дурака",
                 JOptionPane.OK_CANCEL_OPTION,
@@ -215,19 +205,12 @@ public class MainForm extends JFrame {
             return;
         }
 
+        Context c = new Context();
+        c.put("profile", currentPerson);
 
         try {
-            x.delete(currentPerson.getProfile());
-            x.delete(currentPerson);
-
-            History h = new History(
-                    UUID.randomUUID(),
-                    AppConst.getCurrentAdmin().getProfileId(),
-                    "Видалив користувача " + currentPerson.getProfile().toString()
-            );
-            x.insert(h);
-
-        } catch (DAOException e) {
+            CommandExecutor.getInstance().execute("deleteIProfile", c, null);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -346,11 +329,6 @@ public class MainForm extends JFrame {
 
         validate();
         repaint();
-    }
-
-
-    private void comboBoxHistoryChangeAction() {
-
     }
 
     private void facultyChangedAction() {
@@ -621,52 +599,40 @@ public class MainForm extends JFrame {
 //If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
 
+            JDialog dialog = null;
             switch (s) {
                 case "Студент":
 
-                    NewStudentCustomDialog d = new NewStudentCustomDialog(this, this);
-                    d.pack();
-                    d.setVisible(true);
+                    dialog = new NewStudentCustomDialog(this);
                     break;
 
                 case "Виладач":
-
-                    NewTeacherCustomDialog teach = new NewTeacherCustomDialog(this, this);
-                    teach.pack();
-                    teach.setVisible(true);
+                    dialog = new NewTeacherCustomDialog(this);
                     break;
 
                 case "Адміністратор":
 
-                    NewAdminCustomDialog adminDialog = new NewAdminCustomDialog(this, this);
-                    adminDialog.pack();
-                    adminDialog.setVisible(true);
+                    dialog = new NewAdminCustomDialog(this);
                     break;
 
                 case "Група":
 
-                    NewGroupCustomDialog gr = new NewGroupCustomDialog(this, this);
-
-                    gr.pack();
-                    gr.setVisible(true);
+                    dialog = new NewGroupCustomDialog(this);
                     break;
 
                 case "Факультет":
 
-                    NewFacultyCustomDialog fac = new NewFacultyCustomDialog(this, this);
-                    fac.pack();
-                    fac.setVisible(true);
+                    dialog = new NewFacultyCustomDialog(this);
                     break;
 
                 case "Предмет":
 
-                    NewSubjectCustomDialog sub = new NewSubjectCustomDialog(this, this);
-                    sub.pack();
-                    sub.setVisible(true);
+                    dialog = new NewSubjectCustomDialog(this);
                     break;
             }
+            dialog.pack();
+            dialog.setVisible(true);
         }
-
     }
 
 
@@ -740,189 +706,4 @@ public class MainForm extends JFrame {
 
         setJMenuBar(menuBar);
     }
-
-
-    public void performAction(String action, Context c) {
-
-
-        switch (action) {
-            case "registerSubject":
-
-                Subject subject = new Subject(UUID.randomUUID(), ((String) c.get("name")).toUpperCase());
-                try {
-                    x.insert(subject);
-                    History h = new History(
-                            UUID.randomUUID(),
-                            AppConst.getCurrentAdmin().getProfileId(),
-                            "Створив новий предмет " + subject.getName()
-                    );
-                    x.insert(h);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(null, Utils.makePretty("Помилка створення предмету : \n" + e.getMessage()));
-                }
-
-
-                break;
-            case "registerFaculty":
-
-                Faculty fac = new Faculty(UUID.randomUUID(), ((String) c.get("name")).toUpperCase());
-                try {
-                    x.insert(fac);
-                    History h = new History(
-                            UUID.randomUUID(),
-                            AppConst.getCurrentAdmin().getProfileId(),
-                            "Створив новий факультет " + fac.getName()
-                    );
-                    x.insert(h);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення факультету : \n" + e.getMessage()));
-                }
-
-
-                break;
-            case "registerGroup":
-
-                final String facultyName = (String) c.get("faculty");
-                java.util.List<Faculty> faculties = null;
-                try {
-                    faculties = x.select(Faculty.class, new DAOFilter() {
-                        @Override
-                        public <T> boolean accept(T entity) {
-                            Faculty f = (Faculty) entity;
-                            return f.getName().equals(facultyName);
-
-                        }
-                    });
-                } catch (DAOException e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка зчитування факультету : \n" + e.getMessage()));
-                }
-
-                if (faculties.size() == 0) {
-                    Utils.showErrorDialog(this, "Немає такого факультету!");
-                    break;
-                }
-
-                Group g = new Group(UUID.randomUUID(),
-                        faculties.get(0).getId(),
-                        ((String) c.get("name")).toUpperCase());
-                try {
-                    x.insert(g);
-                    History h = new History(
-                            UUID.randomUUID(),
-                            AppConst.getCurrentAdmin().getProfileId(),
-                            "Створив нову групу " + g.getName()
-                    );
-                    x.insert(h);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this, Utils.makePretty("Помилка створення групи : \n" + e.getMessage()));
-                }
-
-                break;
-            case "registerStudent":
-
-
-
-                break;
-
-            case "registerTeacher":
-
-                Profile pTeacher = new Profile(
-                        UUID.randomUUID(),
-                        (String) c.get("name"),
-                        (String) c.get("surname"),
-                        (String) c.get("password"),
-                        (Long) c.get("birthday")
-                );
-
-                WorkerInfo wTeacher = new WorkerInfo(
-                        UUID.randomUUID(),
-                        (String) c.get("position"),
-                        (Integer) c.get("salary"),
-                        (Long) c.get("dateHired")
-                );
-
-                Teacher teacher = new Teacher(
-                        UUID.randomUUID(),
-                        pTeacher.getId(),
-                        wTeacher.getId()
-                );
-
-                try {
-                    x.insert(pTeacher);
-                    x.insert(wTeacher);
-                    x.insert(teacher);
-
-                    History h = new History(
-                            UUID.randomUUID(),
-                            AppConst.getCurrentAdmin().getProfileId(),
-                            "Додав викладача " + pTeacher.toString()
-                    );
-                    x.insert(h);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this,
-                            Utils.makePretty("Помилка створення викладача : \n" + e.getMessage()));
-                }
-                break;
-            case "registerAdmin":
-
-                Profile pAdmin = new Profile(
-                        UUID.randomUUID(),
-                        (String) c.get("name"),
-                        (String) c.get("surname"),
-                        (String) c.get("password"),
-                        (Long) c.get("birthday")
-                );
-
-                WorkerInfo wAdmin = new WorkerInfo(
-                        UUID.randomUUID(),
-                        (String) c.get("position"),
-                        (Integer) c.get("salary"),
-                        (Long) c.get("dateHired")
-                );
-
-                Admin admin = new Admin(
-                        UUID.randomUUID(),
-                        pAdmin.getId(),
-                        wAdmin.getId()
-                );
-
-                try {
-                    x.insert(pAdmin);
-                    x.insert(wAdmin);
-                    x.insert(admin);
-
-                    History h = new History(
-                            UUID.randomUUID(),
-                            AppConst.getCurrentAdmin().getProfileId(),
-                            "Додав адміністратора " + pAdmin.toString()
-                    );
-                    x.insert(h);
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Utils.showErrorDialog(this,
-                            Utils.makePretty("Помилка створення адміністратора : \n" + e.getMessage()));
-                }
-                break;
-        }
-
-    }
-/*
-    private String toUTF8(String s) {
-        byte[] bytes = new byte[0];
-        try {
-            bytes = s.getBytes("UTF-8");
-            return new String(bytes, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }*/
-
 }

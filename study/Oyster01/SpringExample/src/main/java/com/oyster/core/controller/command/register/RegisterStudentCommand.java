@@ -1,10 +1,12 @@
-package com.oyster.core.controller.command;
+package com.oyster.core.controller.command.register;
 
 import com.oyster.app.AppConst;
 import com.oyster.app.model.*;
 import com.oyster.core.controller.annotation.COMMAND;
 import com.oyster.core.controller.annotation.CONTEXT;
 import com.oyster.core.controller.annotation.PARAMETER;
+import com.oyster.core.controller.command.AbstractCommand;
+import com.oyster.core.controller.command.Context;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.ui.Utils;

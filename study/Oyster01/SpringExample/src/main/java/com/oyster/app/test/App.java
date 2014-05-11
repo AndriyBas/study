@@ -5,7 +5,7 @@ import com.oyster.app.model.__Administrator;
 import com.oyster.app.model.__Position;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
-import com.oyster.core.controller.command.RegisterStudentCommand;
+import com.oyster.core.controller.command.register.*;
 import com.oyster.core.controller.exception.CommandNotFoundException;
 import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.dao.DAOFilter;
@@ -29,7 +29,13 @@ public class App {
         AppConst.DAO = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
         CommandExecutor executor = CommandExecutor.getInstance();
+
         executor.addCommand(RegisterStudentCommand.class);
+        executor.addCommand(RegisterAdminCommand.class);
+        executor.addCommand(RegisterTeacherCommand.class);
+        executor.addCommand(RegisterGroupCommand.class);
+        executor.addCommand(RegisterFacultyCommand.class);
+        executor.addCommand(RegisterSubjectCommand.class);
 
         testRead();
 

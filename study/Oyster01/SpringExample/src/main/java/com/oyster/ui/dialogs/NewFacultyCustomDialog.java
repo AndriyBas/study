@@ -1,7 +1,7 @@
 package com.oyster.ui.dialogs;
 
+import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
-import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -19,8 +19,6 @@ public class NewFacultyCustomDialog extends JDialog
     private String facultyName = null;
     private JTextField textField1;
 
-    private MainForm dd;
-
     private JOptionPane optionPane;
 
     private String btnString1 = "Створити";
@@ -37,10 +35,9 @@ public class NewFacultyCustomDialog extends JDialog
     /**
      * Creates the reusable dialog.
      */
-    public NewFacultyCustomDialog(Frame aFrame, MainForm parent) {
+    public NewFacultyCustomDialog(Frame aFrame) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
-        dd = parent;
 
         setTitle("Додати факультет");
 
@@ -144,7 +141,11 @@ public class NewFacultyCustomDialog extends JDialog
                     Context c = new Context();
                     c.put("name", facultyName);
                     // and kick off action for performing
-                    dd.performAction("registerFaculty", c);
+                    try {
+                        CommandExecutor.getInstance().execute("registerFaculty", c, null);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                     clearAndHide();
                 } else {
                     //text was invalid

@@ -3,8 +3,6 @@ package com.oyster.ui.dialogs;
 import com.oyster.app.AppConst;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
-import com.oyster.core.controller.exception.CommandNotFoundException;
-import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.ui.MainForm;
 
 import javax.swing.*;
@@ -14,17 +12,15 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /* 1.4 example used by DialogDemo.java. */
 public class NewStudentCustomDialog extends JDialog
         implements PropertyChangeListener {
-    private String userName = null;
-    private String userSurmane = null;
+    private String firstName = null;
+    private String secondName = null;
 
     private String userBirthDateStr = null;
     private Date userBirthDate = null;
@@ -49,8 +45,6 @@ public class NewStudentCustomDialog extends JDialog
     private JTextField textField6;
     private JTextField textField7;
     private JPasswordField mJPasswordField;
-    private MainForm dd;
-
     private JOptionPane optionPane;
 
     private String btnString1 = "Створити";
@@ -61,16 +55,15 @@ public class NewStudentCustomDialog extends JDialog
      * otherwise, returns the string as the user entered it.
      */
     public String getValidatedText() {
-        return userName;
+        return firstName;
     }
 
     /**
      * Creates the reusable dialog.
      */
-    public NewStudentCustomDialog(Frame aFrame, MainForm parent) {
+    public NewStudentCustomDialog(Frame aFrame ) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
-        dd = parent;
 
         setTitle("Створити профіль студента");
 
@@ -209,8 +202,8 @@ public class NewStudentCustomDialog extends JDialog
                     JOptionPane.UNINITIALIZED_VALUE);
 
             if (btnString1.equals(value)) {
-                userName = textField1.getText().trim();
-                userSurmane = textField2.getText().trim();
+                firstName = textField1.getText().trim();
+                secondName = textField2.getText().trim();
                 userBirthDateStr = textField3.getText().trim();
                 studentFaculty = textField4.getText().trim();
                 studentCourse = textField5.getText().trim();
@@ -223,12 +216,12 @@ public class NewStudentCustomDialog extends JDialog
 
 
                 StringBuilder errorMsg = new StringBuilder("Введіть ");
-                if (userName.length() == 0) {
+                if (firstName.length() == 0) {
                     errorMsg.append(" ім’я студента");
                     errorOccured = true;
                 }
 
-                if (userSurmane.length() == 0) {
+                if (secondName.length() == 0) {
                     if (errorOccured) {
                         errorMsg.append(", та");
                     }
@@ -306,8 +299,8 @@ public class NewStudentCustomDialog extends JDialog
 
                     // collect all data
                     Context c = new Context();
-                    c.put("name", userName);
-                    c.put("surname", userSurmane);
+                    c.put("name", firstName);
+                    c.put("surname", secondName);
                     c.put("birthday", userBirthDate.getTime());
                     c.put("faculty", studentFaculty);
                     c.put("course", studentCourseInt);
@@ -315,18 +308,9 @@ public class NewStudentCustomDialog extends JDialog
                     c.put("bookNum", studentNZKInt);
                     c.put("password", userPassword);
 
-                    // and kick off action for performing
-//                    dd.performAction("registerStudent", c);
-
                     try {
                         CommandExecutor.getInstance().execute("registerStudent", c, null);
-                    } catch (CommandNotFoundException e1) {
-                        e1.printStackTrace();
-                    } catch (InstantiationException e1) {
-                        e1.printStackTrace();
-                    } catch (IllegalAccessException e1) {
-                        e1.printStackTrace();
-                    } catch (InvalidCommandParameterException e1) {
+                    } catch (Exception e1) {
                         e1.printStackTrace();
                     }
 
@@ -340,8 +324,8 @@ public class NewStudentCustomDialog extends JDialog
                             "Спробуйте ще раз",
                             JOptionPane.ERROR_MESSAGE
                     );
-                    userName = null;
-                    userSurmane = null;
+                    firstName = null;
+                    secondName = null;
                     userBirthDateStr = null;
                     studentFaculty = null;
                     studentCourse = null;
@@ -351,8 +335,8 @@ public class NewStudentCustomDialog extends JDialog
                     focusComponent.requestFocusInWindow();
                 }
             } else { //user closed dialog or clicked cancel
-                userName = null;
-                userSurmane = null;
+                firstName = null;
+                secondName = null;
                 userBirthDateStr = null;
                 studentFaculty = null;
                 studentCourse = null;

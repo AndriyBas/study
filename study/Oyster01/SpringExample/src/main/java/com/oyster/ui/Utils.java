@@ -22,7 +22,6 @@ public class Utils {
         }
 
         return msg.toString();
-//        return toUTF8(msg.toString());
     }
 
     public static void showErrorDialog(JFrame parent, String errorMsg) {
