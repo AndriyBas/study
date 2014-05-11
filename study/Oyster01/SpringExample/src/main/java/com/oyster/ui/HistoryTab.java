@@ -24,8 +24,6 @@ public class HistoryTab {
 
     java.util.List<History> histories;
 
-    private DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
-
     private Map<UUID, Profile> profiles;
 
     public HistoryTab(JFrame frame, JComboBox comboBox, JList historyList) {
@@ -49,7 +47,7 @@ public class HistoryTab {
         });
 
         try {
-            List<Profile> list = x.select(Profile.class, "");
+            List<Profile> list = AppConst.DAO.select(Profile.class, "");
             for (Profile p : list) {
                 profiles.put(p.getId(), p);
             }

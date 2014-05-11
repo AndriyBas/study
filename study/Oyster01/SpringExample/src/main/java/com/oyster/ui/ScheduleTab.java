@@ -2,9 +2,10 @@ package com.oyster.ui;
 
 import com.oyster.app.AppConst;
 import com.oyster.app.model.*;
+import com.oyster.core.controller.CommandExecutor;
+import com.oyster.core.controller.command.Context;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
-import com.oyster.dao.impl.DAOCRUDJdbc;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -42,19 +43,6 @@ public class ScheduleTab {
 
     private String[] daysOfWeek = new String[]{"Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота"};
 
-/*    private Object[][] data2 = {
-            {"Mary", "Campione",
-                    "", new Integer(5), new Boolean(false)},
-            {"Alison", "Huml",
-                    "Rowing", new Integer(3), new Boolean(true)},
-            {"Kathy", "Walrath",
-                    "Knitting", new Integer(2), new Boolean(false)},
-            {"Sharon", "Zakhour",
-                    "Speed reading", new Integer(20), new Boolean(true)},
-            {"Philip", "Milne",
-                    "Pool", new Integer(10), new Boolean(false)}
-    };*/
-
     private ArrayList<Object[]> data;
 
     private String[] columnNames = {"Пара",
@@ -62,10 +50,7 @@ public class ScheduleTab {
             "Викладач",
             "Аудиторія",
     };
-
     private ArrayList<Classes> classes;
-
-    DAOCRUDJdbc x = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
 
     private Teacher emptyTeacher;
     private Subject emptySubject;
@@ -105,10 +90,9 @@ public class ScheduleTab {
         reloadAll();
     }
 
-
     private void checkAndSave(Classes c) {
         try {
-            x.replace(c);
+            AppConst.DAO.replace(c);
 
             Group g = (Group) groupList.getSelectedValue();
 
@@ -120,7 +104,7 @@ public class ScheduleTab {
                         AppConst.getCurrentAdmin().getProfileId(),
                         "Вніс зміни до розкладу групи " + g.getName()
                 );
-                x.insert(h);
+                AppConst.DAO.insert(h);
                 AppConst.SESSION_TIME = 0;
             }
 
@@ -128,7 +112,6 @@ public class ScheduleTab {
             e.printStackTrace();
         }
     }
-
 
     private void tableValueChangedAction(TableModelEvent e) {
         if (e.getType() == TableModelEvent.UPDATE
@@ -153,26 +136,21 @@ public class ScheduleTab {
                 c.setTime(row);
 
                 try {
-                    x.insert(absence);
+                    AppConst.DAO.insert(absence);
                 } catch (DAOException e1) {
                     e1.printStackTrace();
                 }
 
                 classes.set(row, c);
-
             }
-
-
             switch (column) {
                 case 1:
                     Subject s = (Subject) table.getModel().getValueAt(row,
                             column);
-
                     c.setSubject(s);
                     c.setSubjectId(s.getId());
 
                     checkAndSave(c);
-
                     break;
 
                 case 2:
@@ -188,7 +166,6 @@ public class ScheduleTab {
                     break;
 
                 case 3:
-
                     Integer i = null;
                     try {
                         i = Integer.parseInt(table.getModel().getValueAt(row, column).toString());
@@ -202,40 +179,30 @@ public class ScheduleTab {
                         Utils.showErrorDialog(frame, Utils.makePretty(ex.getMessage()));
                         if (absence != null) {
                             try {
-                                x.delete(absence);
+                                AppConst.DAO.delete(absence);
                             } catch (DAOException e1) {
                                 e1.printStackTrace();
                             }
                         }
                         return;
                     }
-
                     c.setAudience(i);
 
                     checkAndSave(c);
 
                     break;
             }
-
-
             System.out.println("Cell " + e.getFirstRow() + ", "
                     + e.getColumn() + " changed. The new value: "
                     + table.getModel().getValueAt(e.getFirstRow(),
                     e.getColumn()));
-          /*  if (column == 1 || column == 2) {
-                TableModel model = table.getModel();
-                int quantity = ((Integer) model.getValueAt(row, 1)).intValue();
-                double price = ((Double) model.getValueAt(row, 2)).doubleValue();
-                Double value = new Double(quantity * price);
-                model.setValueAt(value, row, 3);
-            }*/
         }
     }
 
 
     private void fillTable() {
 
-        java.util.List<Classes> c1 = null;
+        final java.util.List<Classes> classesList = new ArrayList<>();
         Group g = (Group) groupList.getSelectedValue();
         if (g == null) {
             table.setVisible(false);
@@ -244,43 +211,34 @@ public class ScheduleTab {
             table.setVisible(true);
         }
 
+        Context c = new Context();
+        c.put("list", classesList);
+        c.put("sqlQuery", "select b.*  from  ABSENCE_TBL a " +
+                " left join CLASSES_TBL b on  (a.class_id = b.classes_id and " +
+                " a.group_id = \"" + g.getId() + "\")");
+
         try {
-            c1 = x.select(Classes.class, "select b.*  from  ABSENCE_TBL a " +
-                    " left join CLASSES_TBL b on  (a.class_id = b.classes_id and " +
-                    " a.group_id = \"" + g.getId() + "\")");
-        } catch (DAOException e) {
+            CommandExecutor.getInstance().execute("loadSchedule", c, new Runnable() {
+                @Override
+                public void run() {
+                    MyTableModel model = (MyTableModel) table.getModel();
+                    for (Classes c : classesList) {
+                        if (c != null) {
+                            classes.set(c.getTime(), c);
+                            int row = c.getTime();
+                            if (c.getAudience() > 0) {
+                                model.setValueAt(c.getAudience(), row, 3);
+                            }
+                            model.setValueAt(getSubjectById(c.getSubjectId()), row, 1);
+                            model.setValueAt(getTeacherById(c.getTeacherId()), row, 2);
+                        }
+                    }
+                    updateUI();
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        MyTableModel model = (MyTableModel) table.getModel();
-        for (Classes c : c1) {
-            if (c != null) {
-                classes.set(c.getTime(), c);
-
-                int row = c.getTime();
-
-                if (c.getAudience() > 0) {
-                    model.setValueAt(c.getAudience(), row, 3);
-                }
-
-                model.setValueAt(getSubjectById(c.getSubjectId()), row, 1);
-
-                model.setValueAt(getTeacherById(c.getTeacherId()), row, 2);
-
-            }
-        }
-
-
-
-
-      /*  Group g = (Group) groupList.getSelectedValue();
-
-        MyTableModel model = (MyTableModel) table.getModel();
-
-        model.setValueAt(subjects.get(0), 2, 1);*/
-
-
-        updateUI();
     }
 
     private Subject getSubjectById(UUID id) {
@@ -310,7 +268,7 @@ public class ScheduleTab {
 
         java.util.List<Group> groups = null;
         try {
-            groups = x.select(Group.class, new DAOFilter() {
+            groups = AppConst.DAO.select(Group.class, new DAOFilter() {
                 @Override
                 public <T> boolean accept(T entity) {
                     Group g = (Group) entity;
@@ -381,7 +339,7 @@ public class ScheduleTab {
 
 
         try {
-            faculties = x.select(Faculty.class, "");
+            faculties = AppConst.DAO.select(Faculty.class, "");
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -447,7 +405,7 @@ public class ScheduleTab {
 
 
         try {
-            subjects = x.select(Subject.class, "");
+            subjects = AppConst.DAO.select(Subject.class, "");
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -477,10 +435,10 @@ public class ScheduleTab {
 
 
         try {
-            teachers = x.select(Teacher.class, "");
+            teachers = AppConst.DAO.select(Teacher.class, "");
             for (Teacher t : teachers) {
-                t.setProfile((Profile) x.read(Profile.class, t.getProfileId()));
-                t.setWorkerInfo((WorkerInfo) x.read(WorkerInfo.class, t.getWorkerInfoId()));
+                t.setProfile((Profile) AppConst.DAO.read(Profile.class, t.getProfileId()));
+                t.setWorkerInfo((WorkerInfo) AppConst.DAO.read(WorkerInfo.class, t.getWorkerInfoId()));
             }
         } catch (DAOException e) {
             e.printStackTrace();
