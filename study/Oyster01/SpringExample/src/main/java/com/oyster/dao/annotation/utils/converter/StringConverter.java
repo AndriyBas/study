@@ -3,12 +3,12 @@ package com.oyster.dao.annotation.utils.converter;
 import com.oyster.dao.annotation.utils.ValueConverter;
 
 /**
- * converts entity (String <==> String)
+ * конвертує сутність (String <==> String)
  */
 public class StringConverter implements ValueConverter {
 
     /**
-     * @param value parameter to convert
+     * @param value параметр для конвертування
      * @param <T>
      * @return
      */
@@ -19,7 +19,7 @@ public class StringConverter implements ValueConverter {
     }
 
     /**
-     * @param str String to convert
+     * @param str String для конвертування
      * @param <T>
      * @return
      */

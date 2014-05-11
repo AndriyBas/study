@@ -1,6 +1,8 @@
 package com.oyster.app;
 
-import com.oyster.app.AppConst;
+import com.oyster.config.AppConfig;
+import com.oyster.config.ConfigReader;
+import com.oyster.config.impl.JSONConfigReader;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.DeleteIProfileCommand;
 import com.oyster.core.controller.command.LoadHistoryCommand;
@@ -21,6 +23,13 @@ public class App {
     public static void main(String[] args) {
         AppConst.CONTEXT = new ClassPathXmlApplicationContext("Spring-Module.xml");
         AppConst.DAO = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);
+
+        AppConst.APP_CONFIG = AppConfig.getInstance();
+
+        String inputFile = "kpiCityConfig.json";
+
+        ConfigReader reader = new JSONConfigReader(AppConst.APP_CONFIG);
+        reader.loadFromFile(inputFile);
 
         CommandExecutor executor = CommandExecutor.getInstance();
 
@@ -51,7 +60,11 @@ public class App {
 
         JFrame loginFrame = new LoginFrame();
 
-        loginFrame.setSize(290, 120);
+
+        int width = (Integer) AppConst.APP_CONFIG.getValue("logInScreenWidth");
+        int height = (Integer) AppConst.APP_CONFIG.getValue("logInScreenHeight");
+
+        loginFrame.setSize(width, height);
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.setResizable(false);
 

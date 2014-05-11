@@ -1,6 +1,7 @@
 package com.oyster.app;
 
 import com.oyster.app.model.Admin;
+import com.oyster.config.AppConfig;
 import com.oyster.dao.impl.DAOCRUDJdbc;
 import org.springframework.context.ApplicationContext;
 
@@ -15,14 +16,16 @@ public class AppConst {
 
     public static ApplicationContext CONTEXT;
 
-    public static SimpleDateFormat dateFormat;
+    public static SimpleDateFormat DATE_FORMAT;
 
     public static int SESSION_TIME;
 
     public static DAOCRUDJdbc DAO;
 
+    public static AppConfig APP_CONFIG;
+
     static {
-        dateFormat = new SimpleDateFormat("d/M/y");
+        DATE_FORMAT = new SimpleDateFormat("d/M/y");
         SESSION_TIME = 0;
     }
 
@@ -34,4 +37,6 @@ public class AppConst {
     public static void setCurrentAdmin(Admin currentAdmin) {
         AppConst.currentAdmin = currentAdmin;
     }
+
+
 }

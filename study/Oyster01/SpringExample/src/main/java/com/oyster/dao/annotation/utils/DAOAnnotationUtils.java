@@ -16,8 +16,8 @@ public class DAOAnnotationUtils {
 
 
     /**
-     * @param c class or field to retrieve {@link com.oyster.dao.annotation.Stored} annotation
-     * @return the name() if the class or field has Stored Annotation
+     * @param c клас чи поле для повернення  {@link com.oyster.dao.annotation.Stored} анотації
+     * @return ім’я,якщо клас має анотацію Stored
      */
     public static String getStorageName(Class c) {
         Stored t = (Stored) c.getAnnotation(Stored.class);
@@ -26,8 +26,8 @@ public class DAOAnnotationUtils {
 
 
     /**
-     * @param c class to retrieve info from
-     * @return the primary key of the class
+     * @param c клас, з якого потрібно повернути інформацію
+     * @return primary key класу
      */
     public static Field getPrimaryKey(Class c) {
         Field[] fields = c.getDeclaredFields();
@@ -41,11 +41,11 @@ public class DAOAnnotationUtils {
     }
 
     /**
-     * retrieves value of UUID from Primary Key Field, assuming it's type is UUID
+     * повертає значення UUID з поля Primary Key, вважається, що його тип UUID
      *
-     * @param instance instance of a class to retrieve info from
-     * @param <T>      type of the class
-     * @return UUID value of the primary key
+     * @param instance екземпляр класу з якого потрібно отримати інформацію
+     * @param <T>      тип класу
+     * @return UUID значення primary key
      */
     public static <T> UUID getPrimaryKeyValue(T instance) {
         Field pk = getPrimaryKey(instance.getClass());
@@ -66,11 +66,11 @@ public class DAOAnnotationUtils {
     }
 
     /**
-     * set UUID to the Field that is Primary Key, assuming that it's type is UUID
+     * встановлює значення UUID з поля Primary Key, вважається, що його тип UUID
      *
-     * @param instance instance of a class to retrieve info from
-     * @param value    new value to set for primary key
-     * @param <T>      type of the class
+     * @param instance екземпляр класу з якого потрібно отримати інформацію
+     * @param value    нове значення для встановлення primary key
+     * @param <T>      тип класу
      */
     public static <T> void setPrimaryKeyValue(T instance, UUID value) {
         Field pk = getPrimaryKey(instance.getClass());
@@ -90,11 +90,11 @@ public class DAOAnnotationUtils {
     }
 
     /**
-     * get HashMap<String, Field> for current class c
+     * повертає HashMap<String, Field> для поточного класу c
      * String - Stored.name() value
      *
-     * @param c class to get info abour its declared Stored fields
-     * @return HashMap <stored name - its field > for current class
+     * @param c клас, з якого отримується інформація про поля позначені Stored
+     * @return HashMap <stored name - це поле> для поточного класу
      */
     public static HashMap<String, Field> getStoredFields(Class c) {
         HashMap<String, Field> res = new HashMap<String, Field>();
@@ -121,23 +121,6 @@ public class DAOAnnotationUtils {
 
             ValueConverter valueConverter = getValueConverter(f);
             return valueConverter.toString(p.getReadMethod().invoke(instance, null));
-
-            /*Class fieldClass = p.getPropertyType();
-            if (fieldClass.getCanonicalName().equals("int")) {
-                return ((Integer) p.getReadMethod().invoke(instance, null)).toString();
-            }
-            if (fieldClass.getCanonicalName().equals("double")) {
-                return ((Double) p.getReadMethod().invoke(instance, null)).toString();
-            }
-            Object value = p.getReadMethod().invoke(instance, null);
-
-            if (value == null) return "null";
-
-            if (fieldClass.equals(String.class) || fieldClass.equals(UUID.class)) return "\"" + value.toString() + "\"";
-
-
-            String prefix = ""; // (isReference(f)) ? "^"+f.getType().getCanonicalName()+" : " : "";
-            return (value != null) ? prefix + value.toString() : prefix + "NULL";*/
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -202,21 +185,19 @@ public class DAOAnnotationUtils {
             ValueConverter res = (ValueConverter) converterClass.newInstance();
             return (T) res;
         } catch (InstantiationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (IllegalAccessException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
     }
 
     /**
-     * form map of Stored.name() - Fields value applied to ValueConverter
+     * мапа Stored.name() - значення поля
      *
-     * @param instance instance to convert
-     * @param <T>      type of the instance
-     * @return map that contains stored name of the field - it's value after applying ValueConverter
+     * @param instance екземпляр для конвертації
+     * @param <T>      тип екземпляру
+     * @return мапа, яка містить збережене ім’я поля - його значення після застосування ValueConverter
      */
     public static <T> Map<String, String> getConvertedStoredFields(T instance) {
         HashMap<String, Field> mapStrField = getStoredFields(instance.getClass());
@@ -228,8 +209,8 @@ public class DAOAnnotationUtils {
     }
 
     /**
-     * @param instance instance to convert
-     * @param <T>      type of the instance
+     * @param instance екземпляр для конвертування
+     * @param <T>      тип екземпляру
      * @return
      */
     public static <T> Map entityToMap(T instance) {
@@ -259,7 +240,7 @@ public class DAOAnnotationUtils {
     /**
      * @param instanceClass
      * @param map
-     * @param <T>           type of the instance
+     * @param <T>           тип екземпляру
      * @return
      */
     public static <T> T convertedMapToEntity(Class instanceClass, Map map) {
@@ -293,7 +274,7 @@ public class DAOAnnotationUtils {
     /**
      * @param instanceClass
      * @param map
-     * @param <T>           type of the instance
+     * @param <T>           тип екземпляру
      * @return
      */
     public static <T> T mapToEntity(Class instanceClass, Map map) {
@@ -329,7 +310,7 @@ public class DAOAnnotationUtils {
 
 
     /**
-     * empty constructor
+     * конструктор за замовчуванням
      */
     public DAOAnnotationUtils() {
     }

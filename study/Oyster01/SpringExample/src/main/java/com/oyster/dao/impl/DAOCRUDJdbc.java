@@ -19,21 +19,21 @@ import java.util.*;
 public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
 
     /**
-     * retrieves a Jdbc dao instance
+     * отримує екземпляр JDBC dao
      *
-     * @param context CONTEXT of the application
-     * @return an instance to the Jdbc dao
+     * @param context контекст додатку
+     * @return екземпляр Jdbc dao
      */
     public static DAOCRUDJdbc getInstance(ApplicationContext context) {
         return (DAOCRUDJdbc) context.getBean("DAOJdbc");
     }
 
     /**
-     * insert an instance of new entity into the data storage
+     * додає екземпляр нової сутності у сховище даних
      *
-     * @param instance entity to insert
-     * @param <T>      type of the entity
-     * @return
+     * @param instance сутність для вставки
+     * @param <T>      тип сутності
+     * @return  саму сутність
      * @throws DAOException
      */
     @Override
@@ -62,17 +62,25 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         return instance;
     }
 
+    /**
+     * замінює екземпляр сутності у сховищі даних
+     *
+     * @param instance сутність для вставки
+     * @param <T>      тип сутності
+     * @return  саму сутність
+     * @throws DAOException
+     */
     public <T> T replace(T instance) throws DAOException {
         return performInsertOrReplace(instance, "REPLACE");
     }
 
     /**
-     * query for entity in the data storage   by it's UUID
+     * запит сутності у сховищі даних по його UUID
      *
-     * @param entityClass class to wrap the entity into
-     * @param id          unique id of the entity
-     * @param <T>         type of the entity
-     * @return the entity if found, else null
+     * @param entityClass клас-обгортка сутності
+     * @param id          унікальний ідентифікатор сутності
+     * @param <T>         тип сутності
+     * @return сутність, якщо така існує, інакше null
      * @throws DAOException
      */
     @Override
@@ -94,10 +102,10 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
     }
 
     /**
-     * update entity in the data storage
+     * оновлює сутність у сховищі даних
      *
-     * @param instance entity to update
-     * @param <T>      type of the entity
+     * @param instance сутність для оновлення
+     * @param <T>      тип сутності
      * @throws DAOException
      */
     @Override
@@ -122,10 +130,10 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
     }
 
     /**
-     * delete an entity from the data storage
+     * видаляє сутність із сховища даних
      *
-     * @param instance entity to delete
-     * @param <T>      type of the entity
+     * @param instance сутність для видалення
+     * @param <T>      тип сутності
      * @throws DAOException
      */
     @Override
@@ -140,12 +148,12 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
     }
 
     /**
-     * query for entities in the data storage
+     * запит для доступу до сховища даних
      *
-     * @param entityClass class to wrap the entity into
-     * @param filter      conditions that entities should satisfy
-     * @param <T>         type of the entity
-     * @return list of entities that satisfy  Filter conditions
+     * @param entityClass клас-обгортка сутності
+     * @param filter      умови, яким повинна відповідати сутність
+     * @param <T>         тип сутності
+     * @return список сутностей, що відповідають умовам фільтру
      * @throws DAOException
      */
     @Override
@@ -154,12 +162,12 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
     }
 
     /**
-     * query for entities in the data storage
+     * запит для доступу до сховища даних
      *
-     * @param entityClass class to wrap the entity into
-     * @param SQLString   sql select-where clause
-     * @param <T>         type of the entity
-     * @return list of entities that satisfy the sql-clause
+     * @param entityClass клас-обгортка сутності
+     * @param SQLString   sql select
+     * @param <T>         тип сутності
+     * @return список сутностей, що відповідають the sql-clause
      * @throws DAOException
      */
     @Override
@@ -168,13 +176,13 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
     }
 
     /**
-     * helper function to perform different types of select
+     * допоміжна функція  для пертворення різних типів запитів
      *
-     * @param entityClass class to wrap the entity into
-     * @param filter      conditions that entities should satisfy
+     * @param entityClass клас-обгортка сутності
+     * @param filter      умови, яким повинна відповідати сутність
      * @param sql         sql select-where clause
-     * @param <T>         type of the entity
-     * @return list of entities that satisfy the sql-clause and Filter conditions
+     * @param <T>         тип сутності
+     * @return список сутностей, що відповідають the sql-clause і умовам фільтру
      */
     private <T> List<T> select(Class entityClass, DAOFilter filter, String sql) {
 

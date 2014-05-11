@@ -5,12 +5,12 @@ import com.oyster.dao.annotation.utils.ValueConverter;
 import java.util.UUID;
 
 /**
- * converts entity (String <==> UUID)
+ * конвертує сутність (String <==> UUID)
  */
 public class UUIDConverter implements ValueConverter {
 
     /**
-     * @param value parameter to convert
+     * @param value параметр для конвертації
      * @param <T>
      * @return
      */
@@ -21,7 +21,7 @@ public class UUIDConverter implements ValueConverter {
     }
 
     /**
-     * @param str String to convert
+     * @param str String для конвертації
      * @param <T>
      * @return
      */

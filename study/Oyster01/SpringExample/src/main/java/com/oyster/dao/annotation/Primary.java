@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 
 /**
- * Annotation signifies that the field is defined as PRIMARY KEY
- * in the data storage
+ * Анотація, що означає, що поле позначене як PRIMARY KEY у сховищі даних
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.FIELD)

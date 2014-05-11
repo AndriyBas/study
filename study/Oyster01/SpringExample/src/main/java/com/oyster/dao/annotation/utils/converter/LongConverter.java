@@ -5,12 +5,12 @@ import com.oyster.dao.annotation.utils.ValueConverter;
 import java.math.BigInteger;
 
 /**
- * converts entity (String <==> Long)
+ * конвертує сутність (String <==> Long)
  */
 public class LongConverter implements ValueConverter {
 
     /**
-     * @param value parameter to convert
+     * @param value параметр для конвертування
      * @param <T>
      * @return
      */
@@ -27,7 +27,7 @@ public class LongConverter implements ValueConverter {
     }
 
     /**
-     * @param str String to convert
+     * @param str Long для конвертування
      * @param <T>
      * @return
      */

@@ -95,12 +95,16 @@ public class MainForm extends JFrame {
 
 
     public MainForm() {
-        super("KPI City");
+        super((String) AppConst.APP_CONFIG.getValue("progTitle"));
 //        setContentPane(rootPane);
 
         add(rootPanel);
-        setPreferredSize(new Dimension(750, 480));
-        setMinimumSize(new Dimension(750, 480));
+
+        int width = (Integer) AppConst.APP_CONFIG.getValue("mainScreenWidth");
+        int height = (Integer) AppConst.APP_CONFIG.getValue("mainScreenHeight");
+
+        setPreferredSize(new Dimension(width, height));
+        setMinimumSize(new Dimension(width, height));
 
         hardCoreInit();
 
@@ -277,7 +281,7 @@ public class MainForm extends JFrame {
         Long birthdayLong = 0L;
 
         try {
-            Date d = (Date) new DateFormatter(AppConst.dateFormat).stringToValue(birthday);
+            Date d = (Date) new DateFormatter(AppConst.DATE_FORMAT).stringToValue(birthday);
             birthdayLong = d.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -305,7 +309,7 @@ public class MainForm extends JFrame {
         Long dateHired = 0L;
 
         try {
-            Date d = (Date) new DateFormatter(AppConst.dateFormat).stringToValue(dateHiredStr);
+            Date d = (Date) new DateFormatter(AppConst.DATE_FORMAT).stringToValue(dateHiredStr);
             dateHired = d.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -521,7 +525,7 @@ public class MainForm extends JFrame {
     private void fillInfoFields(Profile profile) {
         mTextFieldInfo1.setText(profile.getFirstName());
         mTextFieldInfo2.setText(profile.getSecondName());
-        mTextFieldInfo3.setText(AppConst.dateFormat.format(new Date(profile.getBirthday())));
+        mTextFieldInfo3.setText(AppConst.DATE_FORMAT.format(new Date(profile.getBirthday())));
         mPasswordField1.setText(profile.getPassword());
 
         loadHistory(profile);
@@ -559,7 +563,7 @@ public class MainForm extends JFrame {
     private void fillInfoFields(WorkerInfo workerInfo) {
         mTextFieldInfo4.setText(workerInfo.getPosition());
         mTextFieldInfo5.setText(String.valueOf(workerInfo.getSalary()));
-        mTextFieldInfo6.setText(AppConst.dateFormat.format(new Date(workerInfo.getDateHired())));
+        mTextFieldInfo6.setText(AppConst.DATE_FORMAT.format(new Date(workerInfo.getDateHired())));
 
     }
 

@@ -1,4 +1,4 @@
-package com.oyster.kpi.lab;
+package com.oyster.config;
 
 
 import java.util.HashMap;

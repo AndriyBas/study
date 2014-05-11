@@ -3,7 +3,6 @@ package com.oyster.ui.dialogs;
 import com.oyster.app.AppConst;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
-import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -69,7 +68,7 @@ public class NewStudentCustomDialog extends JDialog
 
         textField1 = new JTextField(10);
         textField2 = new JTextField(15);
-        textField3 = new JFormattedTextField(AppConst.dateFormat);
+        textField3 = new JFormattedTextField(AppConst.DATE_FORMAT);
         textField4 = new JTextField(15);
 
         NumberFormat format = NumberFormat.getInstance();

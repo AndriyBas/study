@@ -1,25 +1,24 @@
 package com.oyster.dao.annotation.utils;
 
 /**
- * interface for classes that convert particular field of type T to String
- * and vice versa
+ * інтерфейс для класів, які пертворюють певні поля типу Т в String і навпаки
  */
 public interface ValueConverter {
     /**
-     * convert instance of type T to String
+     * конвертує екземпляр типу Т в String
      *
-     * @param value parameter to convert
-     * @param <T>   type of parameter
-     * @return parameter converted to String
+     * @param value параметр для конвертування
+     * @param <T>  тип параметру
+     * @return параметр конвертований в String
      */
     public <T> String toString(T value);
 
     /**
-     * convert String to the instance of type T
+     * конвертує String до екземпляру типу Т
      *
-     * @param str String to convert
-     * @param <T> type of parameter
-     * @return object of type T
+     * @param str String для конвертування
+     * @param <T> тип параметру
+     * @return об’єкт типу Т
      */
     public <T> T toValue(String str);
 }
