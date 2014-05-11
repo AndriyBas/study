@@ -13,8 +13,9 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
+ * Клас реалізує CRUDInterface для доступу до локальної бази даних на комп’ютері
+ *
  * @author bamboo
- * @since 4/8/14 7:37 PM
  */
 public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
 
@@ -33,7 +34,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      *
      * @param instance сутність для вставки
      * @param <T>      тип сутності
-     * @return  саму сутність
+     * @return саму сутність
      * @throws DAOException
      */
     @Override
@@ -67,7 +68,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
      *
      * @param instance сутність для вставки
      * @param <T>      тип сутності
-     * @return  саму сутність
+     * @return саму сутність
      * @throws DAOException
      */
     public <T> T replace(T instance) throws DAOException {

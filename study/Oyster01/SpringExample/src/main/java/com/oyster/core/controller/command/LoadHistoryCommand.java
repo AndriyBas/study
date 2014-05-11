@@ -12,9 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by bamboo on 11.05.14.
+ * команда виконує завантаження історії, виконуюючи SQL-запит, що їй передається
  */
-
 
 @COMMAND(key = "loadHistory")
 @CONTEXT(list = {
@@ -27,12 +26,17 @@ public class LoadHistoryCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     *
+     * @param context1 контекст команди
      */
     public LoadHistoryCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 

@@ -16,10 +16,8 @@ import javax.swing.*;
 import java.util.List;
 
 /**
- * Created by bamboo on 11.05.14.
+ * команда виконує авторизацію користувача із логіном та паролем, що ії передаються
  */
-
-
 @COMMAND(key = "logIn")
 @CONTEXT(list = {
         @PARAMETER(key = "username", type = String.class),
@@ -31,12 +29,17 @@ public class LogInCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     *
+     * @param context1 контекст команди
      */
     public LogInCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 

@@ -10,12 +10,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+
+/**
+ *  клас реалізує записування файлу конфігурації до JSON - файлу
+ */
 public class JSONConfigWriter extends ConfigWriter {
 
+    /**
+     * конструктор
+     * @param config об’єкт конфігурацій
+     */
     public JSONConfigWriter(IConfig config) {
         this.config = config;
     }
 
+    /**
+     * записує конфігураіцю у JSON - файл
+     * @param path шлях до файлу
+     */
     @Override
     public void save(String path) {
 

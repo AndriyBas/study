@@ -12,14 +12,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * Клас відповідає за реєстрацію, валідацію та виконання команд,
+ * реалізує паттерн Singleton
+ *
  * @author bamboo
- * @since 4/21/14 11:30 PM
  */
 public class CommandExecutor {
 
     private static final int THREAD_NUM = 1;
 
-    /**
+    /*
      * Значение переменной, объявленной без volatile, может кэшироваться отдельно
      * для каждого потока, и значение из этого кэша может различаться для каждого из них. Объявление переменной
      * с ключевым словом volatile отключает для неё такое кэширование и все запросы к переменной будут направляться
@@ -27,13 +29,12 @@ public class CommandExecutor {
      */
     private static volatile CommandExecutor sCommandExecutor;
 
-    // Executor Service to run commands in it
     private ExecutorService threadExecutorService;
 
     private Map<String, Class> commandContainer;
 
     /**
-     * creates newSinglethreadExecutor
+     * створює екземпляр класу CommandExecutor
      */
     private CommandExecutor() {
         threadExecutorService = Executors.newFixedThreadPool(THREAD_NUM);
@@ -41,9 +42,9 @@ public class CommandExecutor {
     }
 
     /**
-     * retrieves an instance of singleton
+     * повертає змінну класу CommandExecutor
      *
-     * @return singleton instance of CommandExecutor
+     * @return екземпляр класу CommandExecutor
      */
     public static CommandExecutor getInstance() {
         // double checked locking for thread safety
@@ -58,10 +59,10 @@ public class CommandExecutor {
     }
 
     /**
-     * execute the command
+     * виконує команду у  фоновому режимі
      *
-     * @param action
-     * @param params
+     * @param action ключ команди
+     * @param params контекст команди
      */
     public void execute(String action, Context params, Runnable onPostExecute) throws CommandNotFoundException, InstantiationException, IllegalAccessException, InvalidCommandParameterException {
 
@@ -83,12 +84,18 @@ public class CommandExecutor {
 
     }
 
+    /**
+     * шукає команду за ключем
+     *
+     * @param action ключ команди
+     * @return команду, якщо знаходить, інакше  null
+     */
     private Class findCommandByAction(String action) {
         return commandContainer.get(action);
     }
 
     /**
-     * tells the executor that new Command is available
+     * реєструє нову команду в CommandExecutor
      *
      * @param command class of the new command
      */
@@ -98,9 +105,10 @@ public class CommandExecutor {
     }
 
     /**
-     * makes sure noone can clone singleton instance
+     * викидає помилку при спробі клонувати об’єкт, оскільки CommandExecutor
+     * повинен бути одиночкою
      *
-     * @return nothing
+     * @return нічого
      * @throws CloneNotSupportedException
      */
     @Override

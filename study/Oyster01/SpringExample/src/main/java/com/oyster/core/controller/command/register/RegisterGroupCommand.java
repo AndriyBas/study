@@ -17,7 +17,8 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 11.05.14.
+ * команда виконує реєстрацію групи у системі, інформацію про яку їй передається у контексті
+ * @author bamboo
  */
 
 
@@ -33,12 +34,16 @@ public class RegisterGroupCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     * @param context1 контекст команди
      */
     public RegisterGroupCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 

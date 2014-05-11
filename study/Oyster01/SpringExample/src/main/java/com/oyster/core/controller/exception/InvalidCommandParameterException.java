@@ -1,8 +1,9 @@
 package com.oyster.core.controller.exception;
 
 /**
+ * Базова помилка, викидається коли команда не проходить валідації
+ *
  * @author bamboo
- * @since 4/22/14 1:36 AM
  */
 public class InvalidCommandParameterException extends CommandException {
     public InvalidCommandParameterException() {

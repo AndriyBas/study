@@ -6,72 +6,66 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * defines the interface for create, read, update and delete (CRUD)
- * - the four basic functions of persistent storage
+ * визначає CRUD-інтерфейс для базових операцій із постійним місцем збереження
  */
 public interface CRUDInterface {
 
-//    public void open(ApplicationContext applicationContext) throws DAOException;
-//    public void close() throws DAOException;
-
     /**
-     * inserts an instance into the data storage
+     * виконує базову операцію вставлення для даної сутності
      *
-     * @param instance entity to insert
-     * @param <T>      type of an instance
-     * @return entity itself, maybe updated
+     * @param instance сутність
+     * @param <T>      тип сутності
+     * @return саму сутність
      * @throws DAOException
      */
     public <T> T insert(T instance) throws DAOException;
 
     /**
-     * get an instance of entity of class entityClass with
-     * the current id
-     *
-     * @param entityClass class to wrap the entity into
-     * @param id          unique id of the entity
-     * @param <T>         type of an instance
-     * @return found entity
+     * виконує базову операцію зчитування для даної сутності
+     * @param entityClass клас сутності
+     * @param id ключ сутності
+     * @param <T> тип сутності
+     * @return саму сутність
      * @throws DAOException
      */
     public <T> T read(Class entityClass, UUID id) throws DAOException;
 
     /**
-     * updates the current entity in the data storage
+     * виконує базову операцію оновлення для даної сутності
      *
-     * @param instance entity to update
-     * @param <T>      type of an instance
+     * @param instance сутність
+     * @param <T>      тип сутності
+     * @return саму сутність
      * @throws DAOException
      */
     public <T> void update(T instance) throws DAOException;
 
     /**
-     * deletes current entity from the data storage
+     * виконує базову операцію видалення для даної сутності
      *
-     * @param instance entity to delete
-     * @param <T>      type of an instance
+     * @param instance сутність
+     * @param <T>      тип сутності
+     * @return саму сутність
      * @throws DAOException
      */
     public <T> void delete(T instance) throws DAOException;
 
     /**
-     * query for entities that satisfy conditions in DAOFilter
-     *
-     * @param entityClass class to wrap the entity into
-     * @param filter      conditions that entities should satisfy
-     * @param <T>         type of an instance
-     * @return list of entities that satisfy the conditions
+     * виконує пошук сутностей у  постійному хранилищі
+     * @param entityClass клас сутності
+     * @param filter фільтр
+     * @param <T> тип сутності
+     * @return список знайдених сутностей, що задовільняють даному фільтру
      * @throws DAOException
      */
     public <T> List<T> select(Class entityClass, DAOFilter filter) throws DAOException;
 
     /**
-     * query for entities with sql code
-     *
-     * @param entityClass class to wrap the entity into
-     * @param SQLString   sql select-where clause
-     * @param <T>         type of an instance
-     * @return list of entities returned from query
+     * виконує пошук сутностей у базі даних
+     * @param entityClass клас сутності
+     * @param SQLString SQL-запит до бази даних
+     * @param <T> тип сутності
+     * @return список знайдених сутностей
      * @throws DAOException
      */
     public <T> List<T> select(Class entityClass, String SQLString) throws DAOException;

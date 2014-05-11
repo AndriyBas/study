@@ -7,20 +7,9 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю ADMIN_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 11:03 PM
- */
-
-/*
-
-    CREATE TABLE `ADMIN_TBL` (
-            `admin_id` VARCHAR(50),
-    `profile_id` VARCHAR(50) UNIQUE,
-    `worker_info_id` VARCHAR(50) UNIQUE,
-    PRIMARY KEY (`admin_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
  */
 
 @Stored(name = "ADMIN_TBL")

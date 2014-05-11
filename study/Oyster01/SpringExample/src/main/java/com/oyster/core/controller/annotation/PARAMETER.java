@@ -5,11 +5,31 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Retention (value = RetentionPolicy.RUNTIME)
-@Target (value = ElementType.TYPE)
+@Retention(value = RetentionPolicy.RUNTIME)
+@Target(value = ElementType.TYPE)
 
-public @interface PARAMETER{
-	public String key();
-	public Class<?> type() default Object.class;
-	public boolean optional() default false;	
+/**
+ * анотація для параметра команди
+ */
+public @interface PARAMETER {
+    /**
+     * повертає ключ параметра
+     *
+     * @return ключ параметра
+     */
+    public String key();
+
+    /**
+     * повертає тип параметра
+     *
+     * @return тип параметра
+     */
+    public Class<?> type() default Object.class;
+
+    /**
+     * визначає, чи є даний параметр обов’язковим
+     *
+     * @return true - якщо необов’язковий, false - обов’язковий
+     */
+    public boolean optional() default false;
 }

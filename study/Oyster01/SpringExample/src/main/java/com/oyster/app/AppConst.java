@@ -8,7 +8,8 @@ import org.springframework.context.ApplicationContext;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by bamboo on 07.05.14.
+ * Клас містить константні поля(переважно статичні), що є спільними для
+ * всього застосунку
  */
 public class AppConst {
 
@@ -30,10 +31,20 @@ public class AppConst {
     }
 
 
+    /**
+     * Повертає адміністратора, що останній раз авторизувався
+     *
+     * @return адміністратора, що залогінився, або null, якщо такого немає
+     */
     public static Admin getCurrentAdmin() {
         return currentAdmin;
     }
 
+    /**
+     * Встановлює адміністратора, що розпочав сесію
+     *
+     * @param currentAdmin адміністратор, що здійснив авторизацію
+     */
     public static void setCurrentAdmin(Admin currentAdmin) {
         AppConst.currentAdmin = currentAdmin;
     }

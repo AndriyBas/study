@@ -1,14 +1,12 @@
 package com.oyster.core.controller.command;
 
-import com.oyster.app.AppConst;
-import com.oyster.dao.impl.DAOCRUDJdbc;
-
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
+ * Абстпрактний клас, що реалізує базову команду,
+ * містить контекст, та екземпляр інтерфейсу Runnable,
+ * та методи його отримання
+ *
  * @author bamboo
- * @since 4/22/14 12:28 AM
  */
 
 public abstract class AbstractCommand implements Runnable {
@@ -16,28 +14,40 @@ public abstract class AbstractCommand implements Runnable {
     protected Context context;
     protected Runnable onPostExecute;
 
-
-
+    /**
+     * повертає контекст команди
+     *
+     * @return контекст команди
+     */
     public Context getContext() {
         return context;
     }
 
+    /**
+     * встановлює контекст команди
+     *
+     * @param context контекст команди
+     */
     public void setContext(Context context) {
         this.context = context;
     }
 
-    public Object addParameter(String name, Object value) {
-        return context.put(name, value);
-    }
-
-    public Object removeParametr(String name) {
-        return context.remove(name);
-    }
-
+    /**
+     * повертає екземпляр інтерфейсу Runnable, метод якого run()
+     * буде виконаний у UI потоці
+     *
+     * @return екземпляр інтерфейсу Runnable
+     */
     public Runnable getOnPostExecute() {
         return onPostExecute;
     }
 
+    /**
+     * встановлює екземпляр інтерфейсу Runnable, метод якого run()
+     * буде виконаний у UI потоці
+     *
+     * @param runnable екземпляр інтерфейсу Runnable
+     */
     public void setOnPostExecute(Runnable runnable) {
         onPostExecute = runnable;
     }

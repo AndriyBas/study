@@ -1,9 +1,17 @@
 package com.oyster.app.model;
 
 /**
- * Created by bamboo on 09.05.14.
+ * Інтерфейс для узагальнення сутностей, що містять граничний клас Profile серед полів
+ *
+ * @author bamboo
  */
+
 public interface IProfile {
 
+    /**
+     * повертає профіль класу
+     *
+     * @return граничний клас Profile
+     */
     public Profile getProfile();
 }

@@ -1,8 +1,8 @@
 package com.oyster.core.controller.exception;
 
 /**
+ * Базова помилка, викидається під час помилки виконання команди
  * @author bamboo
- * @since 4/22/14 1:37 AM
  */
 public class CommandException extends Exception {
 

@@ -8,24 +8,11 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю PROFILE_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 10:32 PM
  */
 
-/*
-
-
-    CREATE TABLE `PROFILE_TBL` (
-            `profile_id` VARCHAR(50),
-    `first_name` VARCHAR(30),
-    `second_name` VARCHAR(30),
-    `password` VARCHAR(30),
-    `birthday` BIGINT ZEROFILL,
-    PRIMARY KEY (`profile_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
- */
 
 @Stored(name = "PROFILE_TBL")
 public class Profile {

@@ -12,10 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by bamboo on 11.05.14.
+ * команда виконує завантаження розкладу, виконуюючи SQL-запит, що їй передається
  */
-
-
 @COMMAND(key = "loadSchedule")
 @CONTEXT(list = {
         @PARAMETER(key = "sqlQuery", type = String.class),
@@ -27,12 +25,16 @@ public class LoadScheduleCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     * @param context1 контекст команди
      */
     public LoadScheduleCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 

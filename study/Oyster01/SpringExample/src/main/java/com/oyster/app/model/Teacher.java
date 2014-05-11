@@ -7,21 +7,11 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю TEACHER_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 11:03 PM
  */
 
-/*
-
-    CREATE TABLE `TEACHER_TBL` (
-            `teacher_id` VARCHAR(50),
-    `profile_id` VARCHAR(50) UNIQUE,
-    `worker_info_id` VARCHAR(50) UNIQUE,
-    PRIMARY KEY (`teacher_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
- */
 @Stored(name = "TEACHER_TBL")
 public class Teacher implements IProfile {
     @Primary

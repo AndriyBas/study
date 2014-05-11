@@ -11,12 +11,23 @@ import java.util.Map;
 import java.util.Set;
 
 
+/**
+ * клас реалізує зчитування файлу конфігурації із JSON - файлу
+ */
 public class JSONConfigReader extends ConfigReader {
 
+    /**
+     * Конструктор
+     * @param config об’єкт конфігурації
+     */
     public JSONConfigReader(IConfig config) {
         this.config = config;
     }
 
+    /**
+     * завантажує зовнішній файл конфігурації
+     * @param path шлях до файлу
+     */
     @Override
     public void loadFromFile(String path) {
 

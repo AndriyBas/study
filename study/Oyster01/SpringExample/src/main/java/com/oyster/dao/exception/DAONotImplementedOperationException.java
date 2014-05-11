@@ -1,18 +1,14 @@
 package com.oyster.dao.exception;
 
 /**
- * DAONotImplementedOperationException
+ * Базова помилка, викидається під час спроби доступу до методу, що не реалізований
+ * @author bamboo
  */
 public class DAONotImplementedOperationException extends DAOException {
 
     public DAONotImplementedOperationException() {
         super();
     }
-
-//	public DAONotImplementedOperationException(String message, Throwable cause,
-//			boolean enableSuppression, boolean writableStackTrace) {
-//		super(message, cause, enableSuppression, writableStackTrace);
-//	}
 
     public DAONotImplementedOperationException(String message, Throwable cause) {
         super(message, cause);

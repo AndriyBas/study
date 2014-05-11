@@ -1,15 +1,15 @@
 package com.oyster.dao;
 
 /**
- * helper class to use instead of select-where clause
+ * допоміжний інтерфейс для відбирання сутностей за певними параметрами
  */
 public interface DAOFilter {
     /**
-     * Determines if the entity satisfies some conditions or not
+     * перевіряє, чи сутність задовільняє дані умови
      *
-     * @param entity instance of object to perform check
-     * @param <T>    type of entity
-     * @return true - if include the entity, false - if not
+     * @param entity сутність для перевірки
+     * @param <T>    тип сутності
+     * @return true - якщо сутність задовільняє умови, false - якщо ні
      */
     public <T> boolean accept(T entity);
 }

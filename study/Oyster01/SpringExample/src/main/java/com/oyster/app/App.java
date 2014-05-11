@@ -16,10 +16,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.swing.*;
 
 /**
- * class to test the program
+ * Rлас налаштовує програму,
+ * зававнтажує файли конфігурацій,
+ * запускає контролер, відкриває зв’язок із базою даних
+ * та запускає головне вікно програми
  */
 public class App {
 
+    /**
+     * метод запуску
+     *
+     * @param args аргументи командної стрічки
+     */
     public static void main(String[] args) {
         AppConst.CONTEXT = new ClassPathXmlApplicationContext("Spring-Module.xml");
         AppConst.DAO = DAOCRUDJdbc.getInstance(AppConst.CONTEXT);

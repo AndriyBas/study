@@ -3,24 +3,42 @@ package com.oyster.core.controller.utils;
 import com.oyster.core.controller.annotation.COMMAND;
 import com.oyster.core.controller.annotation.CONTEXT;
 import com.oyster.core.controller.annotation.PARAMETER;
-import com.oyster.core.controller.command.AbstractCommand;
 
-import java.util.Map;
-
+/**
+ * Допоміжний клас для роботи із аннотаціями команди
+ */
 public class ControllerAnnotationUtils {
 
-
+    /**
+     * повертає ключ команди
+     *
+     * @param c Клас команди
+     * @return ключ команди
+     */
     public static String getCommandKey(Class c) {
         COMMAND t = (COMMAND) c.getAnnotation(COMMAND.class);
         return (t != null) ? t.key() : null;
     }
 
+    /**
+     * повертає список усіх параметрів команди
+     *
+     * @param c Клас команди
+     * @return список усіх параметрів команди
+     */
     public static PARAMETER[] getParameterList(Class c) {
         CONTEXT t = (CONTEXT) c.getAnnotation(CONTEXT.class);
         if (t == null) return null;
         return t.list();
     }
 
+    /**
+     * визначає, чи є даний параметр обов’язковим
+     *
+     * @param paramKey ключ параметра
+     * @param command  команда, у якій перевіряємо
+     * @return true - якщо необов’язковий, інакше - false
+     */
     public static boolean paramIsOptional(String paramKey, Class command) {
 
         PARAMETER[] pl = getParameterList(command);
@@ -30,44 +48,4 @@ public class ControllerAnnotationUtils {
 
         return true;
     }
-
-    public static void main(String[] params) {
-
-/*        @COMMAND(key = "createUserAccount")
-        @CONTEXT(list = {
-                @PARAMETER(key = "email", type = String.class),
-                @PARAMETER(key = "password", type = String.class),
-                @PARAMETER(key = "phone", type = String.class, optional = true),
-                @PARAMETER(key = "city", type = String.class, optional = true),
-                @PARAMETER(key = "dept", type = String.class, optional = true)
-        }
-        )
-        class TestAnnCMD extends AbstractCommand<Void> {
-            *//**
-             * constructor that initializes parameters, needed for command
-             *
-             * @param parameters params for the command
-             *//*
-            protected TestAnnCMD(Map<String, Object> parameters) {
-                super(parameters);
-            }
-
-            @Override
-            public Void call() throws Exception {
-                return null;
-            }
-        }
-
-
-        System.out.println("COMMAND");
-        System.out.println(getCommandKey(TestAnnCMD.class) + " : " + TestAnnCMD.class);
-        System.out.println("PARAMETER List");
-
-        PARAMETER[] pl = getParameterList(TestAnnCMD.class);
-        for (PARAMETER p : pl) {
-            System.out.println(p.key() + " : " + p.type() + " optional=" + p.optional());
-        }*/
-    }
-
-
 }

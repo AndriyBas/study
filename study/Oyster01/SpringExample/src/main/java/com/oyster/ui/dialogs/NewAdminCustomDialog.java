@@ -15,7 +15,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-/* 1.4 example used by DialogDemo.java. */
 public class NewAdminCustomDialog extends JDialog
         implements PropertyChangeListener {
 

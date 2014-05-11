@@ -6,20 +6,10 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
 
-/*
-
-
-    CREATE TABLE `FACULTY_TBL` (
-            `faculty_id` VARCHAR(50),
-    `faculty_name` VARCHAR(30) UNIQUE,
-    PRIMARY KEY (`faculty_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
- */
-
 /**
+ * Граничний клас, що представляє таблицю FACULTY_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 10:44 PM
  */
 @Stored(name = "FACULTY_TBL")
 public class Faculty {

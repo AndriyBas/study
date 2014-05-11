@@ -7,20 +7,12 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 
-/*
-
-
-    CREATE TABLE `SUBJECT_TBL` (
-            `subject_id` VARCHAR(50),
-    `subject_name` VARCHAR(30) UNIQUE,
-    PRIMARY KEY (`subject_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
- */
-
 /**
- * Created by bamboo on 07.05.14.
+ * Граничний клас, що представляє таблицю SUBJECT_TBL у базі даних
+ *
+ * @author bamboo
  */
+
 @Stored(name = "SUBJECT_TBL")
 public class Subject {
 

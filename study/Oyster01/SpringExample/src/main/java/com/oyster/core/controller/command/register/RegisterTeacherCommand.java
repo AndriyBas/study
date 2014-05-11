@@ -16,9 +16,9 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 11.05.14.
+ * команда виконує реєстрацію викладача у системі, інформацію про якого їй передається у контексті
+ * @author bamboo
  */
-
 
 @COMMAND(key = "registerTeacher")
 @CONTEXT(list = {
@@ -37,12 +37,16 @@ public class RegisterTeacherCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     * @param context1 контекст команди
      */
     public RegisterTeacherCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 

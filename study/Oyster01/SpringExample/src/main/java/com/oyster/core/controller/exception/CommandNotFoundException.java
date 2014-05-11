@@ -1,8 +1,10 @@
 package com.oyster.core.controller.exception;
 
 /**
+ * Базова помилка, викидається коли CommandExecutor не знаходить
+ * команди із даним ключем
+ *
  * @author bamboo
- * @since 4/22/14 1:38 AM
  */
 public class CommandNotFoundException extends CommandException {
 

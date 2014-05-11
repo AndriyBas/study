@@ -16,10 +16,9 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
+ * команда виконує реєстрацію адміністратора у системі, інформацію про якого їй передається у контексті
  * @author bamboo
- * @since 4/21/14 11:33 PM
  */
-
 
 @COMMAND(key = "registerAdmin")
 @CONTEXT(list = {
@@ -38,12 +37,16 @@ public class RegisterAdminCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     * @param context1 контекст команди
      */
     public RegisterAdminCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 

@@ -7,18 +7,19 @@ import java.lang.annotation.RetentionPolicy;
 
 
 /**
- * Annotation defines the columns where fields are stored and converters
- * for them, can also be used for class declaration
+ * анотація визначає ключ поля, за яким зберігається поле, а також ковертер для нього,
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Stored {
     /**
-     * @return name of column/table where entity is stored
+     * @return name ключ поля, за яким параметр зберігається
      */
     public String name();
 
     /**
-     * @return ValueConverter for current entity
+     * повертає ValueConverter для даної сутності
+     *
+     * @return ValueConverter для даної сутності
      */
     public Class converter() default StringConverter.class;
 }

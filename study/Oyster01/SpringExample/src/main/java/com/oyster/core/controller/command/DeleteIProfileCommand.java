@@ -12,10 +12,9 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 11.05.14.
+ * команда виконує видалення профілю, що передається ії параметром
+ * 
  */
-
-
 @COMMAND(key = "deleteIProfile")
 @CONTEXT(list = {
         @PARAMETER(key = "profile", type = IProfile.class)
@@ -26,19 +25,20 @@ public class DeleteIProfileCommand extends AbstractCommand {
     }
 
     /**
-     * @param context1 params for the command registerStudent
+     * Конструктор
+     * @param context1 контекст команди
      */
     public DeleteIProfileCommand(Context context1) {
         setContext(context1);
     }
 
+    /**
+     * виконує роботу команди
+     */
     @Override
     public void run() {
 
         IProfile currentPerson = (IProfile) context.get("profile");
-
-
-
 
         try {
             AppConst.DAO.delete(currentPerson.getProfile());
@@ -54,7 +54,6 @@ public class DeleteIProfileCommand extends AbstractCommand {
         } catch (DAOException e) {
             e.printStackTrace();
         }
-
 
         if (getOnPostExecute() != null) {
             SwingUtilities.invokeLater(getOnPostExecute());

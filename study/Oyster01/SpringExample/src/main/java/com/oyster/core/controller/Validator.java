@@ -6,11 +6,20 @@ import com.oyster.core.controller.exception.InvalidCommandParameterException;
 import com.oyster.core.controller.utils.ControllerAnnotationUtils;
 
 /**
+ * Клас, що відповідає за валідацію команди
+ *
  * @author bamboo
- * @since 4/21/14 11:31 PM
  */
 public class Validator {
 
+    /**
+     * виконує валідацію команди
+     *
+     * @param command команда для валідації
+     * @param context контекст команди
+     * @return true - якщо команда пройшла валідацію, якщо ні - викидає помилку
+     * @throws InvalidCommandParameterException
+     */
     public static boolean validate(Class command, Context context) throws InvalidCommandParameterException {
 
         PARAMETER[] parameters = ControllerAnnotationUtils

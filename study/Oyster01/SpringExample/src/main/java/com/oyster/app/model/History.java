@@ -7,19 +7,9 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю HISTORY_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 10:45 PM
- */
-
-/*
-
-    CREATE TABLE `HISTORY_TBL` (
-            `history_id` VARCHAR(50),
-    `author_id` VARCHAR(50),
-    `action`  VARCHAR(200),
-    PRIMARY KEY (`history_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
  */
 
 @Stored(name = "HISTORY_TBL")

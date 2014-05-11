@@ -8,22 +8,11 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю CLASSES_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 10:59 PM
  */
 
-
-/*
-    CREATE TABLE `CLASSES_TBL` (
-            `classes_id` VARCHAR(50),
-    `subject_id` VARCHAR(50),
-    `teacher_id`  VARCHAR(50),
-    `audience`  INT UNSIGNED ZEROFILL,
-    `class_date`  INT UNSIGNED ZEROFILL,
-    PRIMARY KEY (`classes_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
- */
 @Stored(name = "CLASSES_TBL")
 public class Classes {
 

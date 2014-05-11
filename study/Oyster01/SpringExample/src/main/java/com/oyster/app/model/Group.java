@@ -7,21 +7,11 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю GROUP_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 10:47 PM
  */
 
-/*
-
-    CREATE TABLE `GROUP_TBL` (
-            `group_id` VARCHAR(50),
-    `group_name` VARCHAR(30) UNIQUE,
-    `faculty_id`  VARCHAR(50),
-    PRIMARY KEY (`group_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
- */
 @Stored(name = "GROUP_TBL")
 public class Group {
 

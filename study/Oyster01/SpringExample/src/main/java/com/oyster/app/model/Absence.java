@@ -7,21 +7,10 @@ import com.oyster.dao.annotation.utils.converter.UUIDConverter;
 import java.util.UUID;
 
 /**
+ * Граничний клас, що представляє таблицю ABSENCE_TBL у базі даних
+ *
  * @author bamboo
- * @since 4/15/14 10:54 PM
  */
-
-/*
-
-    CREATE TABLE `ABSENCE_TBL` (
-            `absence_id` VARCHAR(50),
-    `group_id` VARCHAR(50),
-    `class_id`  VARCHAR(50),
-    PRIMARY KEY (`absence_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
- */
-
 @Stored(name = "ABSENCE_TBL")
 public class Absence {
     @Primary
