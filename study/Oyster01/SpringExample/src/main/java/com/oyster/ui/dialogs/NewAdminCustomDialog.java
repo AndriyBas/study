@@ -8,13 +8,20 @@ import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
 
+
+/**
+ * Клас відповідає за діалог, який збирає усі дані необхідні для створення нового адміністратора
+ */
 public class NewAdminCustomDialog extends JDialog
         implements PropertyChangeListener {
 
@@ -48,15 +55,9 @@ public class NewAdminCustomDialog extends JDialog
     private String btnString2 = "Відмінити";
 
     /**
-     * Returns null if the typed string was invalid;
-     * otherwise, returns the string as the user entered it.
-     */
-    public String getValidatedText() {
-        return userName;
-    }
-
-    /**
-     * Creates the reusable dialog.
+     * Створює нове ділогове вікно
+     *
+     * @param aFrame вкно, що викликало діалог
      */
     public NewAdminCustomDialog(Frame aFrame) {
         super(aFrame, true);
@@ -75,15 +76,12 @@ public class NewAdminCustomDialog extends JDialog
         formatter.setValueClass(Integer.class);
         formatter.setMinimum(1);
         formatter.setMaximum(Integer.MAX_VALUE);
-        // If you want the value to be committed on each keystroke instead of focus lost
         formatter.setCommitsOnValidEdit(true);
         textField5 = new JFormattedTextField(formatter);
 
         textField6 = new JFormattedTextField(AppConst.DATE_FORMAT);
         mJPasswordField = new JPasswordField(15);
 
-
-        //Create an array of the text and components to be displayed.
         String msgString1 = "Ім’я адміністратора: ";
         String msgString2 = "Прізвище адміністратора : ";
         String msgString3 = "День народження : ";
@@ -100,74 +98,37 @@ public class NewAdminCustomDialog extends JDialog
                 msgString6, textField6,
                 msgString7, mJPasswordField};
 
-        //Create an array specifying the number of dialog buttons
-        //and their text.
         Object[] options = {btnString1, btnString2};
 
-        //Create the JOptionPane.
         optionPane = new JOptionPane(array,
                 JOptionPane.INFORMATION_MESSAGE,
                 JOptionPane.YES_NO_OPTION,
                 null,
                 options,
                 options[0]);
-
-        //Make this dialog display it.
         setContentPane(optionPane);
 
-        //Handle window closing correctly.
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
-                /*
-                 * Instead of directly closing the window,
-                 * we're going to change the JOptionPane's
-                 * value property.
-                 */
                 optionPane.setValue(new Integer(
                         JOptionPane.CLOSED_OPTION));
             }
         });
-
-        //Ensure the text field always gets the first focus.
         addComponentListener(new ComponentAdapter() {
             public void componentShown(ComponentEvent ce) {
                 textField1.requestFocusInWindow();
             }
         });
-
-        //Register an event handler that puts the text into the option pane.
-//        textField1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
-//        textField2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
-
-        //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
-
         setPreferredSize(new Dimension(350, 450));
         setMinimumSize(new Dimension(350, 450));
     }
 
-    private ActionListener textFieldActionLstener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            optionPane.setValue(btnString1);
-        }
-    };
-
     /**
-     * This method reacts to state changes in the option pane.
+     * Метод спрацьовує на зміну властивостей у JOptionsPane
+     *
+     * @param e дані про подію
      */
     public void propertyChange(PropertyChangeEvent e) {
         String prop = e.getPropertyName();
@@ -179,14 +140,8 @@ public class NewAdminCustomDialog extends JDialog
             Object value = optionPane.getValue();
 
             if (value == JOptionPane.UNINITIALIZED_VALUE) {
-                //ignore reset
                 return;
             }
-
-            //Reset the JOptionPane's value.
-            //If you don't do this, then if the user
-            //presses the same button next time, no
-            //property change event will be fired.
             optionPane.setValue(
                     JOptionPane.UNINITIALIZED_VALUE);
 
@@ -280,7 +235,6 @@ public class NewAdminCustomDialog extends JDialog
                         e1.printStackTrace();
                     }
 
-                    // collect all data
                     Context c = new Context();
                     c.put("name", userName);
                     c.put("surname", userSurmane);
@@ -290,7 +244,6 @@ public class NewAdminCustomDialog extends JDialog
                     c.put("dateHired", adminDateHired.getTime());
                     c.put("password", userPassword);
 
-                    // and kick off action for performing
                     try {
                         CommandExecutor.getInstance().execute("registerAdmin", c, null);
                     } catch (Exception ex) {
@@ -298,7 +251,6 @@ public class NewAdminCustomDialog extends JDialog
                     }
                     clearAndHide();
                 } else {
-                    //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
                             NewAdminCustomDialog.this,
@@ -315,7 +267,7 @@ public class NewAdminCustomDialog extends JDialog
                     userPassword = null;
                     focusComponent.requestFocusInWindow();
                 }
-            } else { //user closed dialog or clicked cancel
+            } else {
                 userName = null;
                 userSurmane = null;
                 userBirthDateStr = null;
@@ -329,7 +281,7 @@ public class NewAdminCustomDialog extends JDialog
     }
 
     /**
-     * This method clears the dialog and hides it.
+     * Метод очищує всі поля діалогу
      */
     public void clearAndHide() {
         textField1.setText(null);

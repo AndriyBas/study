@@ -15,7 +15,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-/* 1.4 example used by DialogDemo.java. */
+/**
+ * Клас відповідає за діалог, який збирає усі дані необхідні для створення нового викладача
+ */
 public class NewTeacherCustomDialog extends JDialog
         implements PropertyChangeListener {
     private String userName = null;
@@ -48,15 +50,9 @@ public class NewTeacherCustomDialog extends JDialog
     private String btnString2 = "Відмінити";
 
     /**
-     * Returns null if the typed string was invalid;
-     * otherwise, returns the string as the user entered it.
-     */
-    public String getValidatedText() {
-        return userName;
-    }
-
-    /**
-     * Creates the reusable dialog.
+     * Створює нове ділогове вікно
+     *
+     * @param aFrame вкно, що викликало діалог
      */
     public NewTeacherCustomDialog(Frame aFrame) {
         super(aFrame, true);
@@ -74,7 +70,7 @@ public class NewTeacherCustomDialog extends JDialog
         formatter.setValueClass(Integer.class);
         formatter.setMinimum(1);
         formatter.setMaximum(Integer.MAX_VALUE);
-        // If you want the value to be committed on each keystroke instead of focus lost
+
         formatter.setCommitsOnValidEdit(true);
         textField5 = new JFormattedTextField(formatter);
 
@@ -82,7 +78,6 @@ public class NewTeacherCustomDialog extends JDialog
         mJPasswordField = new JPasswordField(15);
         mJPasswordField = new JPasswordField(15);
 
-        //Create an array of the text and components to be displayed.
         String msgString1 = "Ім’я викладача: ";
         String msgString2 = "Прізвище викладача : ";
         String msgString3 = "День народження : ";
@@ -98,12 +93,8 @@ public class NewTeacherCustomDialog extends JDialog
                 msgString5, textField5,
                 msgString6, textField6,
                 msgString7, mJPasswordField};
-
-        //Create an array specifying the number of dialog buttons
-        //and their text.
         Object[] options = {btnString1, btnString2};
 
-        //Create the JOptionPane.
         optionPane = new JOptionPane(array,
                 JOptionPane.INFORMATION_MESSAGE,
                 JOptionPane.YES_NO_OPTION,
@@ -111,49 +102,21 @@ public class NewTeacherCustomDialog extends JDialog
                 options,
                 options[0]);
 
-        //Make this dialog display it.
         setContentPane(optionPane);
 
-        //Handle window closing correctly.
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
-                /*
-                 * Instead of directly closing the window,
-                 * we're going to change the JOptionPane's
-                 * value property.
-                 */
                 optionPane.setValue(new Integer(
                         JOptionPane.CLOSED_OPTION));
             }
         });
-
-        //Ensure the text field always gets the first focus.
         addComponentListener(new ComponentAdapter() {
             public void componentShown(ComponentEvent ce) {
                 textField1.requestFocusInWindow();
             }
         });
-
-        //Register an event handler that puts the text into the option pane.
-//        textField1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
-//        textField2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
-
-        //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
-
         setPreferredSize(new Dimension(350, 450));
         setMinimumSize(new Dimension(350, 450));
 
@@ -166,9 +129,13 @@ public class NewTeacherCustomDialog extends JDialog
         }
     };
 
+
     /**
-     * This method reacts to state changes in the option pane.
+     * Метод спрацьовує на зміну властивостей у JOptionsPane
+     *
+     * @param e дані про подію
      */
+
     public void propertyChange(PropertyChangeEvent e) {
         String prop = e.getPropertyName();
 
@@ -179,14 +146,9 @@ public class NewTeacherCustomDialog extends JDialog
             Object value = optionPane.getValue();
 
             if (value == JOptionPane.UNINITIALIZED_VALUE) {
-                //ignore reset
                 return;
             }
 
-            //Reset the JOptionPane's value.
-            //If you don't do this, then if the user
-            //presses the same button next time, no
-            //property change event will be fired.
             optionPane.setValue(
                     JOptionPane.UNINITIALIZED_VALUE);
 
@@ -263,10 +225,7 @@ public class NewTeacherCustomDialog extends JDialog
                 }
 
                 errorMsg.append("!");
-
                 if (!errorOccured) {
-
-
                     try {
                         userBirthDate = (Date) ((JFormattedTextField) textField3)
                                 .getFormatter().stringToValue(userBirthDateStr);
@@ -280,7 +239,6 @@ public class NewTeacherCustomDialog extends JDialog
                         e1.printStackTrace();
                     }
 
-                    // collect all data
                     Context c = new Context();
                     c.put("name", userName);
                     c.put("surname", userSurmane);
@@ -298,7 +256,6 @@ public class NewTeacherCustomDialog extends JDialog
 
                     clearAndHide();
                 } else {
-                    //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
                             NewTeacherCustomDialog.this,
@@ -315,7 +272,7 @@ public class NewTeacherCustomDialog extends JDialog
                     userPassword = null;
                     focusComponent.requestFocusInWindow();
                 }
-            } else { //user closed dialog or clicked cancel
+            } else {
                 userName = null;
                 userSurmane = null;
                 userBirthDateStr = null;
@@ -329,7 +286,7 @@ public class NewTeacherCustomDialog extends JDialog
     }
 
     /**
-     * This method clears the dialog and hides it.
+     * Метод очищує всі поля діалогу
      */
     public void clearAndHide() {
         textField1.setText(null);

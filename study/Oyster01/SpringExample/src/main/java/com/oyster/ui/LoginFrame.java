@@ -1,5 +1,6 @@
 package com.oyster.ui;
 
+import com.oyster.app.AppConst;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 
@@ -9,8 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * @author bamboo
- * @since 4/13/14 7:18 PM
+ * Клас відповідає за вікно, що здійснює авторизацію користувача
  */
 public class LoginFrame extends JFrame implements ActionListener {
 
@@ -20,15 +20,22 @@ public class LoginFrame extends JFrame implements ActionListener {
     private String userName = null;
     private String userPassword = null;
 
+    /**
+     * Конструктор форми
+     */
     public LoginFrame() {
-        super("KPI City");
-
+        super((String) AppConst.APP_CONFIG.getValue("progTitle"));
         JPanel panel = new JPanel();
         add(panel);
         placeComponents(panel);
         setLocationRelativeTo(null);
     }
 
+    /**
+     * ініціалізує компоненти
+     *
+     * @param panel панель, на якуі помістити компоненти
+     */
     private void placeComponents(JPanel panel) {
 
         panel.setLayout(null);
@@ -55,6 +62,11 @@ public class LoginFrame extends JFrame implements ActionListener {
         panel.add(loginButton);
     }
 
+    /**
+     * спрацьовує на подію e
+     *
+     * @param e подія
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -98,6 +110,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * викликає команду здійснення авторизації
+     */
     private void tryToLogIn() {
 
         Context c = new Context();

@@ -6,7 +6,6 @@ import com.oyster.app.model.Profile;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
 import com.oyster.dao.exception.DAOException;
-import com.oyster.dao.impl.DAOCRUDJdbc;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 /**
- * Created by bamboo on 10.05.14.
+ * Клас відповідає табові, що відображає історію коритсувачів
  */
 public class HistoryTab {
 
@@ -26,6 +25,13 @@ public class HistoryTab {
 
     private Map<UUID, Profile> profiles;
 
+    /**
+     * Конструктор, що приймає елементи інтерфейсу для подальших операцій із ними
+     *
+     * @param frame       вікно програми
+     * @param comboBox    елемент вибору типу історії
+     * @param historyList список історії
+     */
     public HistoryTab(JFrame frame, JComboBox comboBox, JList historyList) {
         this.frame = frame;
         this.comboBox = comboBox;
@@ -36,6 +42,9 @@ public class HistoryTab {
         hardcoreInit();
     }
 
+    /**
+     * ініціалізує компоненти
+     */
     private void hardcoreInit() {
 
         comboBox.setModel(new DefaultComboBoxModel(new Object[]{"Власна", "Уся"}));
@@ -58,12 +67,13 @@ public class HistoryTab {
         comboBox.setSelectedIndex(0);
     }
 
-
+    /**
+     * реагує на зміну опції Власна/Уся історія
+     */
     private void comboboxChangedAction() {
 
         switch (comboBox.getSelectedIndex()) {
             case 0:
-
                 loadHistory("select * from HISTORY_TBL where author_id = \"" +
                         AppConst.getCurrentAdmin().getProfileId() + "\";");
                 break;
@@ -76,6 +86,11 @@ public class HistoryTab {
 
     }
 
+    /**
+     * Завантажує історію користувача, виконуюючи sql-запит
+     *
+     * @param sql SQL-запит для виконання
+     */
     private void loadHistory(String sql) {
 
         Context c = new Context();
@@ -107,6 +122,4 @@ public class HistoryTab {
             e.printStackTrace();
         }
     }
-
-
 }

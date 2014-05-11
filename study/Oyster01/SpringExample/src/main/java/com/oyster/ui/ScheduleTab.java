@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 10.05.14.
+ * Клас відповідає табові, що відображає розклад груп
  */
 public class ScheduleTab {
 
@@ -55,6 +55,14 @@ public class ScheduleTab {
     private Teacher emptyTeacher;
     private Subject emptySubject;
 
+    /**
+     * Конструктор, що приймає елементи інтерфейсу для подальших операцій із ними
+     *
+     * @param frame вікно програми
+     * @param comboBoxFaculty вибірка факультетів
+     * @param groupList список груп
+     * @param table таблиця розкладу
+     */
     public ScheduleTab(JFrame frame, JComboBox comboBoxFaculty, JList groupList, JTable table) {
         this.frame = frame;
         this.comboBoxFaculty = comboBoxFaculty;
@@ -64,6 +72,9 @@ public class ScheduleTab {
         hardcoreInit();
     }
 
+    /**
+     * ініціалізує компоненти
+     */
     private void hardcoreInit() {
 
         emptyTeacher = new Teacher();
@@ -90,6 +101,10 @@ public class ScheduleTab {
         reloadAll();
     }
 
+    /**
+     * перевіряє змінений елемент рзкладу та зберігає/видаляє його за потреби
+     * @param c елемент розкладу
+     */
     private void checkAndSave(Classes c) {
         try {
             AppConst.DAO.replace(c);
@@ -113,6 +128,10 @@ public class ScheduleTab {
         }
     }
 
+    /**
+     * реагує на зміну розкладу
+     * @param e подія
+     */
     private void tableValueChangedAction(TableModelEvent e) {
         if (e.getType() == TableModelEvent.UPDATE
                 | e.getType() == TableModelEvent.INSERT
@@ -200,6 +219,9 @@ public class ScheduleTab {
     }
 
 
+    /**
+     * заповнює таблицю розкладу
+     */
     private void fillTable() {
 
         final java.util.List<Classes> classesList = new ArrayList<>();
@@ -241,6 +263,11 @@ public class ScheduleTab {
         }
     }
 
+    /**
+     * повертає предмет за ключем
+     * @param id ключ предмету
+     * @return предмет
+     */
     private Subject getSubjectById(UUID id) {
 
         for (Subject s : subjects) {
@@ -252,6 +279,11 @@ public class ScheduleTab {
         return emptySubject;
     }
 
+    /**
+     * повертає викладача за ключем
+     * @param id ключ викладача
+     * @return викладача
+     */
     private Teacher getTeacherById(UUID id) {
 
         for (Teacher t : teachers) {
@@ -262,6 +294,9 @@ public class ScheduleTab {
         return emptyTeacher;
     }
 
+    /**
+     * регує на зміну факультету, завантажує групи ти розклад
+     */
     private void facultyChangedAction() {
         final Faculty f = (Faculty) comboBoxFaculty.getSelectedItem();
 
@@ -295,11 +330,17 @@ public class ScheduleTab {
         updateUI();
     }
 
+    /**
+     * оновлює інтерфейс
+     */
     private void updateUI() {
         frame.validate();
         frame.repaint();
     }
 
+    /**
+     * перезавантажує таблицю розкладу
+     */
     private void reloadTable() {
 
         classes = new ArrayList<>(30);
@@ -318,19 +359,18 @@ public class ScheduleTab {
             }
         });
 
-
         createScheduleTable();
 
-        //Set up column sizes.
         initColumnSizes(table);
-
-        //Fiddle with the Sport column' cell editors/renderers.
         setUpSubjectColumn(table, table.getColumnModel().getColumn(1));
         setUpTeacherColumn(table, table.getColumnModel().getColumn(2));
 
         fillTable();
     }
 
+    /**
+     * перезавантажує всі компоненти
+     */
     private void reloadAll() {
 
         reloadTable();
@@ -350,6 +390,9 @@ public class ScheduleTab {
     }
 
 
+    /**
+     * створює таблицю розкладу
+     */
     private void createScheduleTable() {
 
         data = new ArrayList<>(30);
@@ -365,6 +408,10 @@ public class ScheduleTab {
 
     }
 
+    /**
+     * ініціалізує розміри колонок таблиці
+     * @param table таблиця розкладу
+     */
     private void initColumnSizes(JTable table) {
         MyTableModel model = (MyTableModel) table.getModel();
         TableColumn column = null;
@@ -400,6 +447,11 @@ public class ScheduleTab {
         }
     }
 
+    /**
+     * ініціалізує колонку предметів
+     * @param table таблиця розкладу
+     * @param subjectColumn колонка розкладу
+     */
     public void setUpSubjectColumn(JTable table,
                                    TableColumn subjectColumn) {
 
@@ -419,17 +471,18 @@ public class ScheduleTab {
             System.out.println(":  : " + s.toString());
         }
 
-        //Set up the editor for the sport cells.
-
         subjectColumn.setCellEditor(new DefaultCellEditor(comboBoxSubject));
-
-        //Set up tool tips for the sport cells.
         DefaultTableCellRenderer renderer =
                 new DefaultTableCellRenderer();
         renderer.setToolTipText("Click for combo box");
         subjectColumn.setCellRenderer(renderer);
     }
 
+    /**
+     * ініціалізує колонку викладачів
+     * @param table таблиця розкладу
+     * @param teacherColumn колонка розкладу
+     */
     public void setUpTeacherColumn(JTable table,
                                    TableColumn teacherColumn) {
 
@@ -452,21 +505,18 @@ public class ScheduleTab {
             comboBoxTeacher.addItem(s);
             System.out.println(":  : " + s.toString());
         }
-
-        //Set up the editor for the sport cells.
-
         teacherColumn.setCellEditor(new DefaultCellEditor(comboBoxTeacher));
-
-        //Set up tool tips for the sport cells.
-        DefaultTableCellRenderer renderer =
+       DefaultTableCellRenderer renderer =
                 new DefaultTableCellRenderer();
         renderer.setToolTipText("Click for combo box");
         teacherColumn.setCellRenderer(renderer);
     }
 
 
+    /**
+     * модель для таблиці
+     */
     class MyTableModel extends AbstractTableModel {
-
 
         public final Object[] longValues = {"Sharon", "Campione",
                 "None of the above",
@@ -488,33 +538,17 @@ public class ScheduleTab {
             return data.get(row)[col];
         }
 
-        /*
-         * JTable uses this method to determine the default renderer/
-         * editor for each cell.  If we didn't implement this method,
-         * then the last column would contain text ("true"/"false"),
-         * rather than a check box.
-         */
         public Class getColumnClass(int c) {
             return getValueAt(0, c).getClass();
         }
 
-        /*
-         * Don't need to implement this method unless your table's
-         * editable.
-         */
         public boolean isCellEditable(int row, int col) {
-            //Note that the data/cell address is constant,
-            //no matter where the cell appears onscreen.
             if (col < 1 || row % 6 == 0) {
                 return false;
             }
             return true;
         }
 
-        /*
-              * Don't need to implement this method unless your table's
-              * data can change.
-              */
         public void setValueAt(Object value, int row, int col) {
             if (DEBUG) {
                 System.out.println("Setting value at " + row + "," + col
@@ -543,7 +577,6 @@ public class ScheduleTab {
                 }
                 System.out.println();
             }
-            System.out.println("--------------------------");
         }
     }
 

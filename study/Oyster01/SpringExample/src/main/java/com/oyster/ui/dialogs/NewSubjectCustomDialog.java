@@ -2,9 +2,6 @@ package com.oyster.ui.dialogs;
 
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
-import com.oyster.core.controller.exception.CommandNotFoundException;
-import com.oyster.core.controller.exception.InvalidCommandParameterException;
-import com.oyster.ui.MainForm;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
@@ -16,7 +13,9 @@ import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/* 1.4 example used by DialogDemo.java. */
+/**
+ * Клас відповідає за діалог, який збирає усі дані необхідні для створення нового предмету
+ */
 public class NewSubjectCustomDialog extends JDialog
         implements PropertyChangeListener {
     private String subjectName = null;
@@ -28,73 +27,39 @@ public class NewSubjectCustomDialog extends JDialog
     private String btnString2 = "Відмінити";
 
     /**
-     * Returns null if the typed string was invalid;
-     * otherwise, returns the string as the user entered it.
-     */
-    public String getValidatedText() {
-        return subjectName;
-    }
-
-    /**
-     * Creates the reusable dialog.
+     * Створює нове ділогове вікно
+     *
+     * @param aFrame вкно, що викликало діалог
      */
     public NewSubjectCustomDialog(Frame aFrame) {
         super(aFrame, true);
         super.setLocationRelativeTo(null);
 
         setTitle("Додати предмет");
-
         textFieldSubjectName = new JTextField(10);
-
-        //Create an array of the text and components to be displayed.
         String msgString1 = "Назва предмету : ";
         Object[] array = {msgString1, textFieldSubjectName};
-
-        //Create an array specifying the number of dialog buttons
-        //and their text.
         Object[] options = {btnString1, btnString2};
-
-        //Create the JOptionPane.
         optionPane = new JOptionPane(array,
                 JOptionPane.INFORMATION_MESSAGE,
                 JOptionPane.YES_NO_OPTION,
                 null,
                 options,
                 options[0]);
-
-        //Make this dialog display it.
         setContentPane(optionPane);
-
-        //Handle window closing correctly.
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
-                /*
-                 * Instead of directly closing the window,
-                 * we're going to change the JOptionPane's
-                 * value property.
-                 */
                 optionPane.setValue(new Integer(
                         JOptionPane.CLOSED_OPTION));
             }
         });
 
-        //Ensure the text field always gets the first focus.
         addComponentListener(new ComponentAdapter() {
             public void componentShown(ComponentEvent ce) {
                 textFieldSubjectName.requestFocusInWindow();
             }
         });
-
-        //Register an event handler that puts the text into the option pane.
-//        textFieldSubjectName.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                optionPane.setValue(btnString1);
-//            }
-//        });
-
-        //Register an event handler that reacts to option pane state changes.
         optionPane.addPropertyChangeListener(this);
 
         setPreferredSize(new Dimension(350, 140));
@@ -102,7 +67,9 @@ public class NewSubjectCustomDialog extends JDialog
     }
 
     /**
-     * This method reacts to state changes in the option pane.
+     * Метод спрацьовує на зміну властивостей у JOptionsPane
+     *
+     * @param e дані про подію
      */
     public void propertyChange(PropertyChangeEvent e) {
         String prop = e.getPropertyName();
@@ -114,14 +81,8 @@ public class NewSubjectCustomDialog extends JDialog
             Object value = optionPane.getValue();
 
             if (value == JOptionPane.UNINITIALIZED_VALUE) {
-                //ignore reset
                 return;
             }
-
-            //Reset the JOptionPane's value.
-            //If you don't do this, then if the user
-            //presses the same button next time, no
-            //property change event will be fired.
             optionPane.setValue(
                     JOptionPane.UNINITIALIZED_VALUE);
 
@@ -143,7 +104,6 @@ public class NewSubjectCustomDialog extends JDialog
                 if (!errorOccured) {
                     Context c = new Context();
                     c.put("name", subjectName);
-                    // and kick off action for performing
                     try {
                         CommandExecutor.getInstance().execute("registerSubject", c, null);
                     } catch (Exception e1) {
@@ -151,7 +111,6 @@ public class NewSubjectCustomDialog extends JDialog
                     }
                     clearAndHide();
                 } else {
-                    //text was invalid
                     focusComponent.selectAll();
                     JOptionPane.showMessageDialog(
                             NewSubjectCustomDialog.this,
@@ -162,7 +121,7 @@ public class NewSubjectCustomDialog extends JDialog
                     subjectName = null;
                     focusComponent.requestFocusInWindow();
                 }
-            } else { //user closed dialog or clicked cancel
+            } else {
                 subjectName = null;
                 clearAndHide();
             }
@@ -170,7 +129,7 @@ public class NewSubjectCustomDialog extends JDialog
     }
 
     /**
-     * This method clears the dialog and hides it.
+     * Метод очищує всі поля діалогу
      */
     public void clearAndHide() {
         textFieldSubjectName.setText(null);

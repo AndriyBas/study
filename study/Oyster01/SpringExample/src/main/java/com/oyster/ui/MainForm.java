@@ -24,8 +24,9 @@ import java.util.Date;
 
 
 /**
+ * Клас відповідає табові, що реалізує вікно кправління профілями
+ *
  * @author bamboo
- * @since 4/13/14 8:10 PM
  */
 public class MainForm extends JFrame {
 
@@ -242,7 +243,6 @@ public class MainForm extends JFrame {
             Student s = (Student) currentPerson;
             saveUpdate(s);
         }
-
         updateUI();
     }
 
@@ -269,30 +269,24 @@ public class MainForm extends JFrame {
         } catch (DAOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void saveUpdate(Profile p) {
-
         String firstName = mTextFieldInfo1.getText().trim();
         String secondName = mTextFieldInfo2.getText().trim();
         String password = mPasswordField1.getText().trim();
         String birthday = mTextFieldInfo3.getText().trim();
         Long birthdayLong = 0L;
-
         try {
             Date d = (Date) new DateFormatter(AppConst.DATE_FORMAT).stringToValue(birthday);
             birthdayLong = d.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         p.setFirstName(firstName);
         p.setSecondName(secondName);
         p.setBirthday(birthdayLong);
         p.setPassword(password);
-
-
         try {
             AppConst.DAO.update(p);
         } catch (DAOException e) {
@@ -301,25 +295,19 @@ public class MainForm extends JFrame {
     }
 
     private void saveUpdate(WorkerInfo wi) {
-
         String position = mTextFieldInfo4.getText().trim();
         String salary = mTextFieldInfo5.getText().trim();
         String dateHiredStr = mTextFieldInfo6.getText().trim();
-
         Long dateHired = 0L;
-
         try {
             Date d = (Date) new DateFormatter(AppConst.DATE_FORMAT).stringToValue(dateHiredStr);
             dateHired = d.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         wi.setPosition(position);
         wi.setSalary(Integer.parseInt(salary));
         wi.setDateHired(dateHired);
-
-
         try {
             AppConst.DAO.update(wi);
         } catch (DAOException e) {
@@ -329,16 +317,12 @@ public class MainForm extends JFrame {
 
     private void updateUI() {
         mButtonSave.setEnabled(false);
-
         validate();
         repaint();
     }
 
     private void facultyChangedAction() {
-
         final Faculty f = (Faculty) mComboBoxProfileStudentTypeFaculty.getSelectedItem();
-
-
         java.util.List<Group> groups = null;
         try {
             groups = AppConst.DAO.select(Group.class, new DAOFilter() {
@@ -354,21 +338,15 @@ public class MainForm extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         mComboBoxProfileStudentTypeGroup.setModel(new DefaultComboBoxModel(groups.toArray()));
         if (groups.size() > 0) {
             mComboBoxProfileStudentTypeGroup.setSelectedIndex(0);
         }
-
         updateUI();
     }
 
     private void groupChangedAction() {
-
-
         final Group group = (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem();
-
-
         java.util.List<Student> students = null;
         try {
             students = AppConst.DAO.select(Student.class, new DAOFilter() {
@@ -385,12 +363,10 @@ public class MainForm extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         showFilteredStudents(students);
     }
 
     private void showFilteredStudents(java.util.List<Student> students) {
-
         DefaultListModel<Student> model = new DefaultListModel<Student>();
         for (Student s : students) {
             model.addElement(s);
@@ -407,12 +383,9 @@ public class MainForm extends JFrame {
 
         mButtonSave.setEnabled(false);
         int selected = mComboBoxProfileType.getSelectedIndex();
-
-
         if (selected < 3) {
             mComboBoxProfileStudentTypeFaculty.setVisible(false);
             mComboBoxProfileStudentTypeGroup.setVisible(false);
-//            mButtonRating.setEnabled(false);
             mLable7.setVisible(false);
             mTextFieldInfo7.setVisible(false);
             mLable4.setText("Посада");
@@ -423,26 +396,18 @@ public class MainForm extends JFrame {
 
             mComboBoxProfileStudentTypeFaculty.setVisible(true);
             mComboBoxProfileStudentTypeGroup.setVisible(true);
-//            mButtonRating.setEnabled(true);
             mLable7.setVisible(true);
             mTextFieldInfo7.setVisible(true);
             mLable4.setText("Факультет");
             mLabel5.setText("Курс");
             mLable6.setText("Група");
             mLable7.setText("НЗК");
-
         }
-
         switch (mComboBoxProfileType.getSelectedIndex()) {
             case 0:
-
-
                 mScrollPanePeople.setVisible(false);
                 mButtonDelete.setEnabled(false);
-
                 fillInfoFields(AppConst.getCurrentAdmin());
-
-
                 break;
             case 1:
 
@@ -473,7 +438,6 @@ public class MainForm extends JFrame {
 
             case 2:
 
-
                 mScrollPanePeople.setVisible(true);
                 mButtonDelete.setEnabled(true);
 
@@ -496,7 +460,6 @@ public class MainForm extends JFrame {
                 mListPeople.setModel(teacherModel);
                 mListPeople.setSelectedIndex(0);
 
-
                 break;
 
             case 3:
@@ -518,7 +481,6 @@ public class MainForm extends JFrame {
 
                 break;
         }
-
         updateUI();
     }
 
@@ -605,7 +567,6 @@ public class MainForm extends JFrame {
                 possibilities,
                 "Студент");
 
-//If a string was returned, say so.
         if ((s != null) && (s.length() > 0)) {
 
             JDialog dialog = null;
@@ -644,26 +605,22 @@ public class MainForm extends JFrame {
         }
     }
 
-
     private void addJMenu() {
-        //Where the GUI is created:
+
         JMenuBar menuBar;
         JMenu menu, submenu;
         JMenuItem menuItem;
         JRadioButtonMenuItem rbMenuItem;
         JCheckBoxMenuItem cbMenuItem;
 
-//Create the menu bar.
         menuBar = new JMenuBar();
 
-//Build the first menu.
         menu = new JMenu("Файл");
         menu.setMnemonic(KeyEvent.VK_F);
         menu.getAccessibleContext().setAccessibleDescription(
                 "The only menu in this program that has menu items");
         menuBar.add(menu);
 
-//a group of JMenuItems
         menuItem = new JMenuItem("Додати акаунт",
                 KeyEvent
                         .VK_N
@@ -679,9 +636,7 @@ public class MainForm extends JFrame {
         });
         menu.add(menuItem);
 
-
         menu.addSeparator();
-
 
         menuItem = new JMenuItem("Вихід",
                 new ImageIcon("images/middle.gif"));
@@ -700,7 +655,6 @@ public class MainForm extends JFrame {
         menu.setMnemonic(KeyEvent.VK_H);
         menuBar.add(menu);
 
-
         menuItem = new JMenuItem("Посібник користувача",
                 KeyEvent.VK_K);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
@@ -711,7 +665,6 @@ public class MainForm extends JFrame {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_A, ActionEvent.ALT_MASK));
         menu.add(menuItem);
-
 
         setJMenuBar(menuBar);
     }

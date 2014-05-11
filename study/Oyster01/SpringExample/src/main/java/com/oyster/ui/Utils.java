@@ -3,10 +3,16 @@ package com.oyster.ui;
 import javax.swing.*;
 
 /**
- * Created by bamboo on 07.05.14.
+ * утилітний клас для показу стандартних повідомлень
  */
 public class Utils {
 
+    /**
+     * вставляє переноси у стрічку, щоб текст поміщався на екрані
+     *
+     * @param s текст для опрацювання
+     * @return опрацьований текст
+     */
     public static String makePretty(String s) {
         String[] words = s.split("\\s+");
         int lineWidth = 0;
@@ -20,10 +26,15 @@ public class Utils {
                 msg.append("\n");
             }
         }
-
         return msg.toString();
     }
 
+    /**
+     * показує діалог із повідомленням про помилку
+     *
+     * @param parent   фікно, що викликає діалог
+     * @param errorMsg повідомлення для показу
+     */
     public static void showErrorDialog(JFrame parent, String errorMsg) {
 
         JOptionPane.showMessageDialog(
