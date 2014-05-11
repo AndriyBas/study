@@ -18,31 +18,6 @@ import java.util.*;
  */
 public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
 
-
-/*
-
-    CREATE TABLE `POSITION` (
-            `_ID` VARCHAR(50),
-    `NAME` VARCHAR(30),
-    `DESCRIPTION`  VARCHAR(200),
-    PRIMARY KEY (`_ID`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
-    CREATE TABLE `ADMINISTRATOR` (
-            `_ID` VARCHAR(50),
-    `NAME` VARCHAR(30),
-    `USERNAME` VARCHAR(30),
-    `EMAIL` VARCHAR(30),
-    `PASSWORD` VARCHAR(30),
-    `POSITION_ID`  VARCHAR(50),
-    `AGE` INT(10) UNSIGNED,
-    PRIMARY KEY (`_ID`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*/
-
-
     /**
      * retrieves a Jdbc dao instance
      *
@@ -81,13 +56,8 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         String sql = keyWord + " INTO " + DAOAnnotationUtils.getStorageName(instance.getClass())
                 + " (" + sb.substring(1) + ")" + "VALUES" + " (" + q.substring(1) + ");";
 
-
-        System.out.println("fuck my balls : ");
         System.out.println(sql);
-
-
-        int result = getJdbcTemplate().update(sql);
-        System.out.println(result);
+        getJdbcTemplate().update(sql);
 
         return instance;
     }
@@ -118,7 +88,7 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
-//        System.out.println(sql);
+        System.out.println(sql);
 
         return DAOAnnotationUtils.mapToEntity(entityClass, map);
     }
@@ -145,8 +115,6 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
                 + " SET " + sb.substring(1) + " WHERE "
                 + primaryKeyField.getAnnotation(Stored.class).name()
                 + "=" + DAOAnnotationUtils.getStringValue(instance, primaryKeyField) + ";";
-
-//        String sql2 = "UPDATE POSITION SET NAME='new name' WHERE _ID='\"a91136fe-08bd-476c-9d0c-7a897083e809\"'";
 
         System.out.println(sql);
 

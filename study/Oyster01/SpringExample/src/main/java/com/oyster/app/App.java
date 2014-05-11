@@ -1,4 +1,4 @@
-package com.oyster.app.test;
+package com.oyster.app;
 
 import com.oyster.app.AppConst;
 import com.oyster.core.controller.CommandExecutor;
