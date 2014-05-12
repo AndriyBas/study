@@ -22,9 +22,10 @@ public interface CRUDInterface {
 
     /**
      * виконує базову операцію зчитування для даної сутності
+     *
      * @param entityClass клас сутності
-     * @param id ключ сутності
-     * @param <T> тип сутності
+     * @param id          ключ сутності
+     * @param <T>         тип сутності
      * @return саму сутність
      * @throws DAOException
      */
@@ -35,7 +36,6 @@ public interface CRUDInterface {
      *
      * @param instance сутність
      * @param <T>      тип сутності
-     * @return саму сутність
      * @throws DAOException
      */
     public <T> void update(T instance) throws DAOException;
@@ -45,16 +45,16 @@ public interface CRUDInterface {
      *
      * @param instance сутність
      * @param <T>      тип сутності
-     * @return саму сутність
      * @throws DAOException
      */
     public <T> void delete(T instance) throws DAOException;
 
     /**
      * виконує пошук сутностей у  постійному хранилищі
+     *
      * @param entityClass клас сутності
-     * @param filter фільтр
-     * @param <T> тип сутності
+     * @param filter      фільтр
+     * @param <T>         тип сутності
      * @return список знайдених сутностей, що задовільняють даному фільтру
      * @throws DAOException
      */
@@ -62,9 +62,10 @@ public interface CRUDInterface {
 
     /**
      * виконує пошук сутностей у базі даних
+     *
      * @param entityClass клас сутності
-     * @param SQLString SQL-запит до бази даних
-     * @param <T> тип сутності
+     * @param SQLString   SQL-запит до бази даних
+     * @param <T>         тип сутності
      * @return список знайдених сутностей
      * @throws DAOException
      */

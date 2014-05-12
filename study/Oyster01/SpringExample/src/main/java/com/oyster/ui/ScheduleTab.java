@@ -28,33 +28,24 @@ import java.util.UUID;
 public class ScheduleTab {
 
     private JFrame frame;
-
     private JComboBox comboBoxFaculty;
-
     private JComboBox comboBoxSubject;
     private JComboBox comboBoxTeacher;
     private JList groupList;
     private JTable table;
-
     private java.util.List<Subject> subjects = null;
     private java.util.List<Teacher> teachers = null;
-
     private boolean DEBUG = false;
-
     private String[] daysOfWeek = new String[]{"Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота"};
-
     private ArrayList<Object[]> data;
-
     private String[] columnNames = {"Пара",
             "Предмет",
             "Викладач",
             "Аудиторія",
     };
     private ArrayList<Classes> classes;
-
     private Teacher emptyTeacher;
     private Subject emptySubject;
-
     /**
      * Конструктор, що приймає елементи інтерфейсу для подальших операцій із ними
      *
@@ -76,13 +67,11 @@ public class ScheduleTab {
      * ініціалізує компоненти
      */
     private void hardcoreInit() {
-
         emptyTeacher = new Teacher();
         emptyTeacher.setProfile(new Profile());
 
         emptySubject = new Subject();
         emptySubject.setName("");
-
 
         comboBoxFaculty.addActionListener(new ActionListener() {
             @Override

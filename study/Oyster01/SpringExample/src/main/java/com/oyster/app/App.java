@@ -16,7 +16,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import javax.swing.*;
 
 /**
- * Rлас налаштовує програму,
+ * Клас налаштовує програму,
  * зававнтажує файли конфігурацій,
  * запускає контролер, відкриває зв’язок із базою даних
  * та запускає головне вікно програми

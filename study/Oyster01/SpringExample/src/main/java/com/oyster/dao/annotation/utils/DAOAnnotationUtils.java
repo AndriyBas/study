@@ -9,7 +9,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 import java.util.UUID;
 
 public class DAOAnnotationUtils {
@@ -110,10 +109,12 @@ public class DAOAnnotationUtils {
 
 
     /**
-     * @param instance
-     * @param f
-     * @param <T>
-     * @return
+     * повертає значення як стрічку
+     *
+     * @param instance екземпляр
+     * @param f        поле для перетворення
+     * @param <T>      тип екземпляру
+     * @return поле як стрічку
      */
     public static <T> String getStringValue(T instance, Field f) {
         try {
@@ -134,49 +135,11 @@ public class DAOAnnotationUtils {
     }
 
     /**
-     * @param instance
-     * @param f
-     * @param <T>
-     * @return
-     */
-    public static <T> T getFieldValue(T instance, Field f) {
-        PropertyDescriptor p;
-        try {
-            p = new PropertyDescriptor(f.getName(), instance.getClass());
-            return ((T) p.getReadMethod().invoke(instance, null));
-        } catch (IntrospectionException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }
-
-    /**
-     * @param instance
-     * @param <T>
-     * @return
-     */
-    public static <T> Properties getValueList(T instance) {
-        Properties res = new Properties();
-        Class instanceClass = instance.getClass();
-        HashMap<String, Field> storedFields = getStoredFields(instanceClass);
-        for (String storedName : storedFields.keySet()) {
-            Field f = storedFields.get(storedName);
-            res.setProperty(storedName, getStringValue(instance, f));
-        }
-        return res;
-    }
-
-    /**
-     * @param field
-     * @param <T>
-     * @return
+     * повертає конвертер даного поля
+     *
+     * @param field поле
+     * @param <T>   тип екземпляру
+     * @return конвертер поля
      */
     public static <T extends ValueConverter> T getValueConverter(Field field) {
         Stored s = (Stored) field.getAnnotation(Stored.class);
@@ -209,9 +172,11 @@ public class DAOAnnotationUtils {
     }
 
     /**
+     * перетворює екземпляр класу в карту значень
+     *
      * @param instance екземпляр для конвертування
      * @param <T>      тип екземпляру
-     * @return
+     * @return карту значень <ключ - поле>
      */
     public static <T> Map entityToMap(T instance) {
 
@@ -236,46 +201,13 @@ public class DAOAnnotationUtils {
         return null;
     }
 
-
     /**
-     * @param instanceClass
-     * @param map
+     * перетворює карту значень у екземпляр класу Т
+     *
+     * @param instanceClass клас екземпляру
+     * @param map           карта значень
      * @param <T>           тип екземпляру
-     * @return
-     */
-    public static <T> T convertedMapToEntity(Class instanceClass, Map map) {
-        PropertyDescriptor p;
-        HashMap<String, Field> storedFields = getStoredFields(instanceClass);
-        try {
-            T instance = (T) instanceClass.newInstance();
-
-            for (String storedName : storedFields.keySet()) {
-                Object strValue = map.get(storedName);
-                Field f = storedFields.get(storedName);
-                ValueConverter c = getValueConverter(f);
-                p = new PropertyDescriptor(f.getName(), instanceClass);
-                p.getWriteMethod().invoke(instance, c.toValue(strValue.toString()));
-            }
-            return instance;
-        } catch (IntrospectionException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * @param instanceClass
-     * @param map
-     * @param <T>           тип екземпляру
-     * @return
+     * @return екземпляр із  карти
      */
     public static <T> T mapToEntity(Class instanceClass, Map map) {
 

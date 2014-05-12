@@ -8,9 +8,11 @@ import com.oyster.dao.annotation.utils.ValueConverter;
 public class StringConverter implements ValueConverter {
 
     /**
-     * @param value параметр для конвертування
-     * @param <T>
-     * @return
+     * перетворює String в String
+     *
+     * @param value параметр для конвертації
+     * @param <T>   тип параметру
+     * @return параметр як стрічку
      */
     @Override
     public <T> String toString(T value) {
@@ -19,9 +21,10 @@ public class StringConverter implements ValueConverter {
     }
 
     /**
+     * перетворює String в String
      * @param str String для конвертування
-     * @param <T>
-     * @return
+     * @param <T> тип параметру
+     * @return стрічку як параметр
      */
     @Override
     public <T> T toValue(String str) {

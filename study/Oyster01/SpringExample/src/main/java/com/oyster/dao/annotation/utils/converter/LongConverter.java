@@ -10,9 +10,10 @@ import java.math.BigInteger;
 public class LongConverter implements ValueConverter {
 
     /**
-     * @param value параметр для конвертування
-     * @param <T>
-     * @return
+     * перетворює Long в String
+     * @param value параметр для конвертації
+     * @param <T> тип параметру
+     * @return параметр як стрічку
      */
     @Override
     public <T> String toString(T value) {
@@ -27,9 +28,11 @@ public class LongConverter implements ValueConverter {
     }
 
     /**
-     * @param str Long для конвертування
-     * @param <T>
-     * @return
+     * перетворює String в Long
+     *
+     * @param str String для конвертування
+     * @param <T> тип параметру
+     * @return стрічку як параметр
      */
     @Override
     public <T> T toValue(String str) {

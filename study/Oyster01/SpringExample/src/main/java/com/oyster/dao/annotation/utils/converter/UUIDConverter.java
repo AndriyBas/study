@@ -10,9 +10,11 @@ import java.util.UUID;
 public class UUIDConverter implements ValueConverter {
 
     /**
+     * перетворює UUID в String
+     *
      * @param value параметр для конвертації
-     * @param <T>
-     * @return
+     * @param <T>   тип параметру
+     * @return параметр як стрічку
      */
     @Override
     public <T> String toString(T value) {
@@ -21,15 +23,17 @@ public class UUIDConverter implements ValueConverter {
     }
 
     /**
-     * @param str String для конвертації
-     * @param <T>
-     * @return
+     * перетворює String в UUID
+     *
+     * @param str String для конвертування
+     * @param <T> тип параметру
+     * @return стрічку як параметр
      */
     @Override
     public <T> T toValue(String str) {
         if (str == null) return null;
         if (str.equals("null")) return null;
-		str = str.substring(1, str.length()-1);
+        str = str.substring(1, str.length() - 1);
         return (T) UUID.fromString(str);
     }
 }

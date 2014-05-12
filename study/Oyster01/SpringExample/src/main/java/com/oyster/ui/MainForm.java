@@ -95,9 +95,11 @@ public class MainForm extends JFrame {
     private ScheduleTab scheduleTab;
 
 
+    /**
+     * конструктор, створює елементи інтерфейсу
+     */
     public MainForm() {
         super((String) AppConst.APP_CONFIG.getValue("progTitle"));
-//        setContentPane(rootPane);
 
         add(rootPanel);
 
@@ -119,6 +121,9 @@ public class MainForm extends JFrame {
     }
 
 
+    /**
+     * ініціалізує елементи інтерфейсу
+     */
     private void hardCoreInit() {
 
         addJMenu();
@@ -192,6 +197,9 @@ public class MainForm extends JFrame {
         historyTab = new HistoryTab(this, mComboBoxAllHistory, mListAllHistory);
     }
 
+    /**
+     * метод спрацьовує при натисненні на кнопку "Видалити"
+     */
     private void deleteButtonClick() {
 
         if (currentPerson == null) {
@@ -223,6 +231,9 @@ public class MainForm extends JFrame {
         comboBoxChangeAction();
     }
 
+    /**
+     * метод спрацьовує при натисненні на кнопку "Зберегти"
+     */
     private void saveButtonClick() {
 
         if (currentPerson == null) {
@@ -247,6 +258,11 @@ public class MainForm extends JFrame {
     }
 
 
+    /**
+     * зберігає інформацію про профіль студента
+     *
+     * @param s екземпляр класу Student
+     */
     private void saveUpdate(Student s) {
         saveUpdate(s.getProfile());
 
@@ -271,6 +287,11 @@ public class MainForm extends JFrame {
         }
     }
 
+    /**
+     * зберігає інформацію про профіль
+     *
+     * @param p екземпляр класу Profile
+     */
     private void saveUpdate(Profile p) {
         String firstName = mTextFieldInfo1.getText().trim();
         String secondName = mTextFieldInfo2.getText().trim();
@@ -294,6 +315,11 @@ public class MainForm extends JFrame {
         }
     }
 
+    /**
+     * зберігає інформацію про роботу
+     *
+     * @param wi екземпляр класу WorkerInfo
+     */
     private void saveUpdate(WorkerInfo wi) {
         String position = mTextFieldInfo4.getText().trim();
         String salary = mTextFieldInfo5.getText().trim();
@@ -315,12 +341,18 @@ public class MainForm extends JFrame {
         }
     }
 
+    /**
+     * оновлює інтерфейс
+     */
     private void updateUI() {
         mButtonSave.setEnabled(false);
         validate();
         repaint();
     }
 
+    /**
+     * метод спрацьовує при зміні факультету
+     */
     private void facultyChangedAction() {
         final Faculty f = (Faculty) mComboBoxProfileStudentTypeFaculty.getSelectedItem();
         java.util.List<Group> groups = null;
@@ -345,6 +377,9 @@ public class MainForm extends JFrame {
         updateUI();
     }
 
+    /**
+     * метод спрацьовує при зміні групи
+     */
     private void groupChangedAction() {
         final Group group = (Group) mComboBoxProfileStudentTypeGroup.getSelectedItem();
         java.util.List<Student> students = null;
@@ -366,6 +401,11 @@ public class MainForm extends JFrame {
         showFilteredStudents(students);
     }
 
+    /**
+     * метод відображає список студентів, що пройшли фільтри, встановлені користувачем
+     *
+     * @param students список студентів
+     */
     private void showFilteredStudents(java.util.List<Student> students) {
         DefaultListModel<Student> model = new DefaultListModel<Student>();
         for (Student s : students) {
@@ -379,6 +419,9 @@ public class MainForm extends JFrame {
         updateUI();
     }
 
+    /**
+     * метод спрацьовує при зміні типу користувача
+     */
     private void comboBoxChangeAction() {
 
         mButtonSave.setEnabled(false);
@@ -484,6 +527,11 @@ public class MainForm extends JFrame {
         updateUI();
     }
 
+    /**
+     * метод заповнює інформацію про профіль
+     *
+     * @param profile екемпляр класу Profile
+     */
     private void fillInfoFields(Profile profile) {
         mTextFieldInfo1.setText(profile.getFirstName());
         mTextFieldInfo2.setText(profile.getSecondName());
@@ -493,6 +541,11 @@ public class MainForm extends JFrame {
         loadHistory(profile);
     }
 
+    /**
+     * метод завантажує історію вибраного користувача
+     *
+     * @param profile користувач
+     */
     private void loadHistory(final Profile profile) {
 
         final java.util.List<History> histories = new ArrayList<History>();
@@ -522,6 +575,11 @@ public class MainForm extends JFrame {
         }
     }
 
+    /**
+     * метод заповнює інформацію про роботу
+     *
+     * @param workerInfo екемпляр класу WorkerInfo
+     */
     private void fillInfoFields(WorkerInfo workerInfo) {
         mTextFieldInfo4.setText(workerInfo.getPosition());
         mTextFieldInfo5.setText(String.valueOf(workerInfo.getSalary()));
@@ -529,6 +587,11 @@ public class MainForm extends JFrame {
 
     }
 
+    /**
+     * метод заповнює інформацію про адміністратора
+     *
+     * @param admin екемпляр класу Admin
+     */
     private void fillInfoFields(Admin admin) {
         fillInfoFields(admin.getProfile());
         fillInfoFields(admin.getWorkerInfo());
@@ -537,6 +600,11 @@ public class MainForm extends JFrame {
         updateUI();
     }
 
+    /**
+     * метод заповнює інформацію про викладача
+     *
+     * @param teacher екемпляр класу Teacher
+     */
     private void fillInfoFields(Teacher teacher) {
         fillInfoFields(teacher.getProfile());
         fillInfoFields(teacher.getWorkerInfo());
@@ -545,6 +613,11 @@ public class MainForm extends JFrame {
         updateUI();
     }
 
+    /**
+     * метод заповнює інформацію про студента
+     *
+     * @param student екемпляр класу Student
+     */
     private void fillInfoFields(Student student) {
         fillInfoFields(student.getProfile());
         mTextFieldInfo4.setText(student.getGroup().getFaculty().getName());
@@ -556,6 +629,9 @@ public class MainForm extends JFrame {
         updateUI();
     }
 
+    /**
+     * метод спрацьовує при натисненні на клавішу "Додати аккаунт"
+     */
     private void newUserAction() {
         Object[] possibilities = {"Студент", "Виладач", "Адміністратор", "Група", "Факультет", "Предмет"};
         String s = (String) JOptionPane.showInputDialog(
@@ -605,6 +681,9 @@ public class MainForm extends JFrame {
         }
     }
 
+    /**
+     * ініціалізує меню у програмі
+     */
     private void addJMenu() {
 
         JMenuBar menuBar;
