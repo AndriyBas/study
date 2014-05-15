@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
         setPreferredSize(new Dimension(width, height));
         setMinimumSize(new Dimension(width, height));
 
-        hardCoreInit();
+        init();
 
         pack();
 
@@ -45,10 +45,9 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
-    private void hardCoreInit() {
+    private void init() {
 
         addJMenu();
-
     }
 
     /**

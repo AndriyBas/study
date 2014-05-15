@@ -1,11 +1,17 @@
 package com.fiot.core.controller.command;
 
+import com.fiot.app.AppConst;
+import com.fiot.app.model.User;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
+import com.fiot.dao.DAOFilter;
+import com.fiot.dao.exception.DAOException;
 import com.fiot.ui.MainFrame;
+import com.fiot.ui.Utils;
 
 import javax.swing.*;
+import java.util.List;
 
 /**
  * команда виконує авторизацію користувача із логіном та паролем, що ії передаються
@@ -35,7 +41,6 @@ public class LogInCommand extends AbstractCommand {
     @Override
     public void run() {
 
-        /*
         final String userName = (String) context.get("username");
         final String userPassword = (String) context.get("password");
 
@@ -45,7 +50,7 @@ public class LogInCommand extends AbstractCommand {
                 @Override
                 public <T> boolean accept(T entity) {
                     User p = (User) entity;
-                    return userName.equals(p.getFirstName() + "-" + p.getSecondName())
+                    return userName.equals(p.getEmail())
                             && userPassword.equals(p.getPassword());
                 }
             });
@@ -67,51 +72,12 @@ public class LogInCommand extends AbstractCommand {
                     Utils.showErrorDialog(null, "Помилка авторизації : неправильні логін чи пароль !");
                 }
             });
-
             return;
         }
 
-        final User profile = profiles.get(0);
-        WorkerInfo wi = null;
-        List<Admin> admins = null;
+        final User user = profiles.get(0);
 
-        try {
-            admins = AppConst.DAO.select(Admin.class, new DAOFilter() {
-                @Override
-                public <T> boolean accept(T entity) {
-                    Admin a = (Admin) entity;
-                    return a.getProfileId().equals(profile.getId());
-                }
-            });
-            wi = AppConst.DAO.read(WorkerInfo.class, admins.get(0).getWorkerInfoId());
-        } catch (final Exception e) {
-            e.printStackTrace();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.showErrorDialog(null,e.getMessage());
-                }
-            });
-
-            return;
-        }
-
-        if (admins.size() == 0) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.showErrorDialog(null, "Помилка авторизації : дані логін та пароль не відповідають адміністратору !");
-                }
-            });
-
-            return;
-        }
-
-        final Admin admin = admins.get(0);
-        admin.setProfile(profile);
-        admin.setWorkerInfo(wi);
-
-        AppConst.setCurrentUser(admin);*/
+        AppConst.setCurrentUser(user);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

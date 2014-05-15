@@ -12,6 +12,22 @@ import java.util.UUID;
  * @author bamboo
  */
 
+/*
+
+    CREATE TABLE `USER_TBL` (
+            `user_id` VARCHAR(50),
+    `first_name` VARCHAR(40),
+    `second_name` VARCHAR(40),
+    `email` VARCHAR(40),
+    `password` VARCHAR(40),
+    PRIMARY KEY (`user_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+    INSERT INTO USER_TBL ( user_id, first_name, second_name, email, password)
+    VALUES ( "abb03571-a1d2-4aef-8ab2-2494a2404fd5", "Льоша", "Краєвий", "krab@gmail.com", "password");
+
+ */
 
 @Stored(name = "USER_TBL")
 public class User {

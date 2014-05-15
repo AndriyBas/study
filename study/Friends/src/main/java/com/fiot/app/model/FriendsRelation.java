@@ -11,10 +11,23 @@ import java.util.UUID;
  *
  * @author bamboo
  */
+
+/*
+
+    CREATE TABLE `FRIEND_RELATION_TBL` (
+            `friend_relation_id` VARCHAR(50),
+    `first_id` VARCHAR(50),
+    `second_id` VARCHAR(50),
+    PRIMARY KEY (`friend_relation_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+ */
+
 @Stored(name = "FRIEND_RELATION_TBL")
 public class FriendsRelation {
     @Primary
-    @Stored(name = "friend_RELATION_id", converter = UUIDConverter.class)
+    @Stored(name = "friend_relation_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "first_id", converter = UUIDConverter.class)

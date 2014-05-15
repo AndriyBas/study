@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  */
 public class LoginFrame extends JFrame implements ActionListener {
 
-    private JTextField userText;
-    private JPasswordField passwordText;
+    private JTextField mTextFieldUsername;
+    private JPasswordField mJPasswordField;
 
     private String userName = null;
     private String userPassword = null;
@@ -44,22 +44,28 @@ public class LoginFrame extends JFrame implements ActionListener {
         userLabel.setBounds(10, 10, 80, 25);
         panel.add(userLabel);
 
-        userText = new JTextField(20);
-        userText.setBounds(100, 10, 170, 25);
-        panel.add(userText);
+        mTextFieldUsername = new JTextField(20);
+        mTextFieldUsername.setBounds(100, 10, 170, 25);
+        panel.add(mTextFieldUsername);
 
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setBounds(10, 40, 80, 25);
         panel.add(passwordLabel);
 
-        passwordText = new JPasswordField(20);
-        passwordText.setBounds(100, 40, 170, 25);
-        panel.add(passwordText);
+        mJPasswordField = new JPasswordField(20);
+        mJPasswordField.setBounds(100, 40, 170, 25);
+        panel.add(mJPasswordField);
 
         JButton loginButton = new JButton("login");
         loginButton.setBounds(10, 80, 260, 25);
         loginButton.addActionListener(this);
         panel.add(loginButton);
+
+
+        // remove later
+        mTextFieldUsername.setText("krab@gmail.com");
+        mJPasswordField.setText("password");
+
     }
 
     /**
@@ -70,13 +76,12 @@ public class LoginFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-
         StringBuilder errorMsg = new StringBuilder("Введіть ");
         boolean errorOccurred = false;
-        JTextComponent focusComponent = userText;
+        JTextComponent focusComponent = mTextFieldUsername;
 
-        userName = "admin-root";//userText.getText();
-        userPassword = "admin";//new String(passwordText.getPassword());
+        userName = mTextFieldUsername.getText();
+        userPassword = new String(mJPasswordField.getPassword());
 
         if (userName.trim().length() == 0) {
             errorMsg.append(" логін");
@@ -89,7 +94,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             }
             errorOccurred = true;
             errorMsg.append("  пароль");
-            focusComponent = passwordText;
+            focusComponent = mJPasswordField;
         }
 
         errorMsg.append("!");
@@ -115,7 +120,6 @@ public class LoginFrame extends JFrame implements ActionListener {
      */
     private void tryToLogIn() {
 
-        new MainFrame();
         Context c = new Context();
         c.put("username", userName);
         c.put("password", userPassword);

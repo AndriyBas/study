@@ -11,6 +11,19 @@ import java.util.UUID;
  *
  * @author bamboo
  */
+
+/*
+
+
+    CREATE TABLE `REQUEST_TBL` (
+            `request_id` VARCHAR(50),
+    `sender_id` VARCHAR(50),
+    `receiver_id` VARCHAR(50),
+    PRIMARY KEY (`request_id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ */
+
 @Stored(name = "REQUEST_TBL")
 public class Requests {
 
