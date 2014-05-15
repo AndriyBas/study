@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="362.8969381313133" y="109.0">com.oyster.app.model.Profile</node>
+    <node x="287.48493975903614" y="300.7259036144578">com.oyster.dao.annotation.Primary</node>
+    <node x="227.02193813131325" y="109.0">com.oyster.app.model.WorkerInfo</node>
+    <node x="21.75" y="109.0">com.oyster.app.model.Faculty</node>
+    <node x="588.2719381313133" y="109.0">com.oyster.app.model.Absence</node>
+    <node x="293.51704545454555" y="218.0">com.oyster.app.model.Teacher</node>
+    <node x="487.2719381313133" y="109.0">com.oyster.app.model.Subject</node>
+    <node x="191.55531881313144" y="218.0">com.oyster.app.model.Admin</node>
+    <node x="486.7719381313133" y="297.0">com.oyster.app.model.Classes</node>
+    <node x="131.02193813131325" y="109.0">com.oyster.app.model.IProfile</node>
+    <node x="0.0" y="218.0">com.oyster.app.model.Group</node>
+    <node x="419.0219381313133" y="218.0">com.oyster.app.model.History</node>
+    <node x="86.6507260101011" y="297.0">com.oyster.app.model.Student</node>
+    <node x="313.20967487373747" y="0.0">com.oyster.dao.annotation.Stored</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.oyster.app.model.Group" target="com.oyster.app.model.Faculty">
+      <point x="18.0" y="-14.5" />
+      <point x="54.0" y="198.0" />
+      <point x="60.75" y="198.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Student" target="com.oyster.app.model.Group">
+      <point x="-31.5" y="-14.5" />
+      <point x="97.1507260101011" y="277.0" />
+      <point x="36.0" y="277.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Teacher" target="com.oyster.app.model.IProfile">
+      <point x="-31.875" y="-14.5" />
+      <point x="304.14204545454555" y="168.0" />
+      <point x="194.35527146464656" y="168.0" />
+      <point x="25.333333333333314" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Admin" target="com.oyster.app.model.WorkerInfo">
+      <point x="9.000000000000028" y="-14.5" />
+      <point x="236.55531881313146" y="178.0" />
+      <point x="252.27193813131325" y="178.0" />
+      <point x="-25.25" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Admin" target="com.oyster.app.model.Profile">
+      <point x="27.00000000000003" y="-14.5" />
+      <point x="254.55531881313146" y="188.0" />
+      <point x="372.0219381313133" y="188.0" />
+      <point x="-27.375" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Teacher" target="com.oyster.app.model.WorkerInfo">
+      <point x="-10.625" y="-14.5" />
+      <point x="325.39204545454555" y="158.0" />
+      <point x="302.7719381313133" y="158.0" />
+      <point x="25.25" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Absence" target="com.oyster.dao.annotation.Stored">
+      <point x="0.0" y="-14.5" />
+      <point x="632.2719381313133" y="59.0" />
+      <point x="378.8460385101011" y="59.0" />
+      <point x="27.636363636363626" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.History" target="com.oyster.app.model.Profile">
+      <point x="-19.25" y="-14.5" />
+      <point x="438.2719381313133" y="198.0" />
+      <point x="426.7719381313133" y="198.0" />
+      <point x="27.375" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Classes" target="com.oyster.dao.annotation.Stored">
+      <point x="27.33333333333337" y="-14.5" />
+      <point x="555.1052714646466" y="277.0" />
+      <point x="686.7719381313133" y="277.0" />
+      <point x="686.7719381313133" y="49.0" />
+      <point x="385.755129419192" y="49.0" />
+      <point x="34.545454545454504" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Student" target="com.oyster.app.model.IProfile">
+      <point x="10.5" y="-14.5" />
+      <point x="139.1507260101011" y="277.0" />
+      <point x="143.8221275252526" y="277.0" />
+      <point x="-25.333333333333343" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Teacher" target="com.oyster.dao.annotation.Stored">
+      <point x="10.625" y="-14.5" />
+      <point x="346.64204545454555" y="178.0" />
+      <point x="352.3969381313133" y="178.0" />
+      <point x="352.3969381313133" y="89.0" />
+      <point x="351.20967487373747" y="89.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Student" target="com.oyster.dao.annotation.Stored">
+      <point x="-10.5" y="-14.5" />
+      <point x="118.1507260101011" y="277.0" />
+      <point x="110.25" y="277.0" />
+      <point x="110.25" y="69.0" />
+      <point x="330.4824021464647" y="69.0" />
+      <point x="-20.727272727272748" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Group" target="com.oyster.dao.annotation.Stored">
+      <point x="-18.0" y="-14.5" />
+      <point x="18.0" y="198.0" />
+      <point x="11.25" y="198.0" />
+      <point x="11.25" y="49.0" />
+      <point x="316.6642203282829" y="49.0" />
+      <point x="-34.54545454545456" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Classes" target="com.oyster.app.model.Subject">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Teacher" target="com.oyster.app.model.Profile">
+      <point x="31.875" y="-14.5" />
+      <point x="367.89204545454555" y="198.0" />
+      <point x="390.2719381313133" y="198.0" />
+      <point x="-9.125" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.WorkerInfo" target="com.oyster.dao.annotation.Stored">
+      <point x="0.0" y="-14.5" />
+      <point x="277.5219381313133" y="89.0" />
+      <point x="344.3005839646466" y="89.0" />
+      <point x="-6.909090909090878" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Admin" target="com.oyster.dao.annotation.Stored">
+      <point x="-26.99999999999997" y="-14.5" />
+      <point x="200.55531881313146" y="198.0" />
+      <point x="120.52193813131325" y="198.0" />
+      <point x="120.52193813131325" y="79.0" />
+      <point x="337.39149305555566" y="79.0" />
+      <point x="-13.818181818181813" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Profile" target="com.oyster.dao.annotation.Stored">
+      <point x="0.0" y="-14.5" />
+      <point x="399.3969381313133" y="89.0" />
+      <point x="358.11876578282835" y="89.0" />
+      <point x="6.909090909090878" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Subject" target="com.oyster.dao.annotation.Stored">
+      <point x="0.0" y="-14.5" />
+      <point x="527.7719381313133" y="69.0" />
+      <point x="371.9369476010102" y="69.0" />
+      <point x="20.727272727272748" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Student" target="com.oyster.app.model.Profile">
+      <point x="31.5" y="-14.5" />
+      <point x="160.1507260101011" y="277.0" />
+      <point x="408.5219381313133" y="277.0" />
+      <point x="9.125" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Faculty" target="com.oyster.dao.annotation.Stored">
+      <point x="0.0" y="-14.5" />
+      <point x="60.75" y="59.0" />
+      <point x="323.57331123737384" y="59.0" />
+      <point x="-27.636363636363626" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.History" target="com.oyster.dao.annotation.Stored">
+      <point x="19.25" y="-14.5" />
+      <point x="476.7719381313133" y="79.0" />
+      <point x="365.0278566919193" y="79.0" />
+      <point x="13.818181818181813" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Admin" target="com.oyster.app.model.IProfile">
+      <point x="-8.999999999999972" y="-14.5" />
+      <point x="218.55531881313146" y="188.0" />
+      <point x="169.02193813131325" y="188.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.oyster.app.model.Classes" target="com.oyster.app.model.Teacher">
+      <point x="-27.333333333333314" y="-14.5" />
+      <point x="500.4386047979799" y="267.0" />
+      <point x="336.01704545454555" y="267.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9391796322489392" x="343.5" y="200.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

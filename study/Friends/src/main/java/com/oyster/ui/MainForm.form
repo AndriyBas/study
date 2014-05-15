@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.oyster.ui.MainForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="7" left="0" bottom="7" right="7"/>
+    <constraints>
+      <xy x="20" y="20" width="800" height="503"/>
+    </constraints>
+    <properties>
+      <enabled value="true"/>
+      <minimumSize width="600" height="400"/>
+      <opaque value="false"/>
+      <preferredSize width="600" height="400"/>
+      <requestFocusEnabled value="false"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="bba88" binding="mTabbedPaneMain">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="1" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <tabLayoutPolicy value="0"/>
+        </properties>
+        <border type="line">
+          <font/>
+          <color color="-1"/>
+        </border>
+        <children>
+          <grid id="37ad1" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Профілі"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="6da32" binding="mPanelLeftControl" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="4" left="0" bottom="4" right="4"/>
+                <constraints border-constraint="West"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="48097" class="javax.swing.JComboBox" binding="mComboBoxProfileType">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value="Власний"/>
+                        <item value="Адміністратор"/>
+                        <item value="Викладач"/>
+                        <item value="Студент"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="50275" class="javax.swing.JComboBox" binding="mComboBoxProfileStudentTypeFaculty">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value="ФІОТ"/>
+                        <item value="ІПСА"/>
+                        <item value="ФММ"/>
+                        <item value="ФПМ"/>
+                        <item value="ІХФ"/>
+                        <item value="ФАКС"/>
+                        <item value="МУФ"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <component id="c225f" class="javax.swing.JComboBox" binding="mComboBoxProfileStudentTypeGroup">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model>
+                        <item value="ІО-21"/>
+                        <item value="ІО-22"/>
+                        <item value="ІО-23"/>
+                        <item value="ІО-24"/>
+                        <item value="ІО-25"/>
+                        <item value="ІП-21"/>
+                        <item value="ІП-22"/>
+                        <item value="ІП-23"/>
+                        <item value="ІП-24"/>
+                        <item value="ІП-25"/>
+                        <item value="ІК-21"/>
+                        <item value="ІК-22"/>
+                        <item value="ІК-23"/>
+                        <item value="ІК-24"/>
+                        <item value="ІК-25"/>
+                      </model>
+                    </properties>
+                  </component>
+                  <scrollpane id="c1130" binding="mScrollPanePeople">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="9fa56" class="javax.swing.JList" binding="mListPeople">
+                        <constraints/>
+                        <properties>
+                          <model>
+                            <item value="Student 1"/>
+                            <item value="Student 2"/>
+                            <item value="Student 3"/>
+                            <item value="Student 4"/>
+                            <item value="Student 5"/>
+                            <item value="Student 6"/>
+                            <item value="Student 7"/>
+                            <item value="Student 8"/>
+                            <item value="Student 9"/>
+                            <item value="Student 10"/>
+                            <item value="Student 11"/>
+                            <item value="Student 12"/>
+                            <item value="Student 13"/>
+                            <item value="Student 14"/>
+                            <item value="Student 15"/>
+                            <item value="Student 16"/>
+                            <item value="Student 17"/>
+                            <item value="Student 18"/>
+                            <item value="Student 19"/>
+                          </model>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="a8cc1" binding="mPanelProfile" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <minimumSize width="0" height="0"/>
+                  <opaque value="true"/>
+                  <preferredSize width="0" height="0"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="9d64e" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="3" left="3" bottom="3" right="3"/>
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <grid id="75924" layout-manager="BorderLayout" hgap="0" vgap="0">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="55cfc" class="javax.swing.JLabel" binding="mLablePhoto">
+                            <constraints border-constraint="Center"/>
+                            <properties>
+                              <enabled value="true"/>
+                              <horizontalAlignment value="0"/>
+                              <icon value="facee.png"/>
+                              <text value=""/>
+                              <verticalAlignment value="0"/>
+                              <verticalTextPosition value="3"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <grid id="3c76e" layout-manager="GridLayoutManager" row-count="8" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="3" left="3" bottom="3" right="3"/>
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <component id="f8eb6" class="javax.swing.JLabel" binding="mLable1">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Ім’я"/>
+                            </properties>
+                          </component>
+                          <component id="41468" class="javax.swing.JLabel" binding="mLable2">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Прізвище"/>
+                            </properties>
+                          </component>
+                          <component id="379fc" class="javax.swing.JLabel" binding="mLable3">
+                            <constraints>
+                              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="д / н"/>
+                            </properties>
+                          </component>
+                          <component id="7f72f" class="javax.swing.JLabel" binding="mLabel5">
+                            <constraints>
+                              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Курс"/>
+                            </properties>
+                          </component>
+                          <component id="69eb1" class="javax.swing.JLabel" binding="mLable6">
+                            <constraints>
+                              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Група"/>
+                            </properties>
+                          </component>
+                          <component id="53121" class="javax.swing.JTextField" binding="mTextFieldInfo1">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="a71ed" class="javax.swing.JTextField" binding="mTextFieldInfo2">
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="54de5" class="javax.swing.JTextField" binding="mTextFieldInfo3">
+                            <constraints>
+                              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="e31bd" class="javax.swing.JTextField" binding="mTextFieldInfo5">
+                            <constraints>
+                              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="b603d" class="javax.swing.JTextField" binding="mTextFieldInfo6">
+                            <constraints>
+                              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="4492d" class="javax.swing.JLabel" binding="mLable7">
+                            <constraints>
+                              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="НЗК"/>
+                            </properties>
+                          </component>
+                          <component id="d24c5" class="javax.swing.JTextField" binding="mTextFieldInfo7">
+                            <constraints>
+                              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="6f6df" class="javax.swing.JLabel" binding="mLable8">
+                            <constraints>
+                              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Пароль"/>
+                            </properties>
+                          </component>
+                          <component id="4c960" class="javax.swing.JPasswordField" binding="mPasswordField1" default-binding="true">
+                            <constraints>
+                              <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                          <component id="d8a1e" class="javax.swing.JLabel" binding="mLable4">
+                            <constraints>
+                              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <text value="Факультет"/>
+                            </properties>
+                          </component>
+                          <component id="cb823" class="javax.swing.JTextField" binding="mTextFieldInfo4">
+                            <constraints>
+                              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                <preferred-size width="150" height="-1"/>
+                              </grid>
+                            </constraints>
+                            <properties/>
+                          </component>
+                        </children>
+                      </grid>
+                      <component id="3ddde" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="ІСТОРІЯ :"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="b6ec9" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                    <constraints border-constraint="South"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="2785" class="javax.swing.JButton" binding="mButtonNewUser">
+                        <constraints/>
+                        <properties>
+                          <text value="Додати акаунт"/>
+                          <toolTipText value="Створити новий акаунт"/>
+                        </properties>
+                      </component>
+                      <component id="d214a" class="javax.swing.JButton" binding="mButtonSave">
+                        <constraints/>
+                        <properties>
+                          <text value="Зберегти"/>
+                          <toolTipText value="Зберегти зміни"/>
+                        </properties>
+                      </component>
+                      <component id="40db1" class="javax.swing.JButton" binding="mButtonDelete">
+                        <constraints/>
+                        <properties>
+                          <text value="Видалити"/>
+                          <toolTipText value="Видалити акаунт"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <scrollpane id="c8283">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="f09e7" class="javax.swing.JList" binding="mListHistoryProfile">
+                        <constraints/>
+                        <properties>
+                          <minimumSize width="0" height="0"/>
+                          <model>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                            <item value="History 1"/>
+                            <item value="History 2"/>
+                            <item value="..."/>
+                            <item value="..."/>
+                            <item value="History 3"/>
+                          </model>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="96787" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Розклад"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="56c27" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="4" left="4" bottom="4" right="4"/>
+                <constraints border-constraint="West"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="30a98" class="javax.swing.JComboBox" binding="mComboBoxScheduleFaculty">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <model/>
+                    </properties>
+                  </component>
+                  <scrollpane id="96044" binding="mListGroups">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="2" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="c7f69" class="javax.swing.JList" binding="mListTab2Group">
+                        <constraints/>
+                        <properties>
+                          <model/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="db876" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <scrollpane id="52d15">
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="9be9" class="javax.swing.JTable" binding="mTable1" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <fillsViewportHeight value="false"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+            </children>
+          </grid>
+          <grid id="1939a" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints>
+              <tabbedpane title="Історія">
+                <tooltip value="Історія внесених змін"/>
+              </tabbedpane>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="fbacc" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="2f8fa" class="javax.swing.JComboBox" binding="mComboBoxAllHistory">
+                    <constraints border-constraint="North"/>
+                    <properties>
+                      <model>
+                        <item value="Власна"/>
+                        <item value="Уся"/>
+                      </model>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="daefe" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <scrollpane id="2b4b8">
+                    <constraints border-constraint="Center"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="1e138" class="javax.swing.JList" binding="mListAllHistory">
+                        <constraints/>
+                        <properties>
+                          <model/>
+                        </properties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
