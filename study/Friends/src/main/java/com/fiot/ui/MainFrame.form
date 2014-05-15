@@ -32,6 +32,7 @@
                 </constraints>
                 <properties>
                   <model/>
+                  <selectionBackground color="-13408513"/>
                 </properties>
               </component>
               <component id="57255" class="javax.swing.JButton" binding="mButtonAccept">
@@ -68,6 +69,7 @@
                 </constraints>
                 <properties>
                   <model/>
+                  <selectionBackground color="-13408513"/>
                 </properties>
               </component>
             </children>
@@ -88,7 +90,10 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <model/>
+              <selectionBackground color="-10066177"/>
+            </properties>
           </component>
         </children>
       </grid>

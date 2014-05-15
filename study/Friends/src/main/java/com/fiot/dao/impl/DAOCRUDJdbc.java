@@ -191,6 +191,8 @@ public class DAOCRUDJdbc extends JdbcDaoSupport implements CRUDInterface {
             sql = "SELECT * FROM " + DAOAnnotationUtils.getStorageName(entityClass) + ";";
         }
 
+        System.out.println(sql);
+
         if (filter == null) {
             filter = new DAOFilter() {
                 @Override

@@ -6,6 +6,7 @@ import com.fiot.core.controller.command.Context;
 
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,6 +30,17 @@ public class LoginFrame extends JFrame implements ActionListener {
         add(panel);
         placeComponents(panel);
         setLocationRelativeTo(null);
+
+
+        int width = (Integer) AppConst.APP_CONFIG.getValue("logInScreenWidth");
+        int height = (Integer) AppConst.APP_CONFIG.getValue("logInScreenHeight");
+
+        setMinimumSize(new Dimension(width, height + 15));
+        setSize(width, height + 15);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        setVisible(true);
     }
 
     /**

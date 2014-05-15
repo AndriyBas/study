@@ -4,7 +4,7 @@ import com.fiot.config.AppConfig;
 import com.fiot.config.ConfigReader;
 import com.fiot.config.impl.JSONConfigReader;
 import com.fiot.core.controller.CommandExecutor;
-import com.fiot.core.controller.command.DeleteIProfileCommand;
+import com.fiot.core.controller.command.RemoveFromFriendCommand;
 import com.fiot.core.controller.command.LoadUsersCommand;
 import com.fiot.core.controller.command.LogInCommand;
 import com.fiot.dao.impl.DAOCRUDJdbc;
@@ -39,7 +39,7 @@ public class App {
 
         CommandExecutor executor = CommandExecutor.getInstance();
 
-        executor.addCommand(DeleteIProfileCommand.class);
+        executor.addCommand(RemoveFromFriendCommand.class);
         executor.addCommand(LogInCommand.class);
 
         executor.addCommand(LoadUsersCommand.class);
@@ -55,16 +55,7 @@ public class App {
             e.printStackTrace();
         }
 
-        JFrame loginFrame = new LoginFrame();
+        new LoginFrame();
 
-
-        int width = (Integer) AppConst.APP_CONFIG.getValue("logInScreenWidth");
-        int height = (Integer) AppConst.APP_CONFIG.getValue("logInScreenHeight");
-
-        loginFrame.setSize(width, height);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        loginFrame.setResizable(false);
-
-        loginFrame.setVisible(true);
     }
 }

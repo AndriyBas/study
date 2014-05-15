@@ -22,6 +22,10 @@ import java.util.UUID;
     PRIMARY KEY (`request_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+    INSERT INTO REQUEST_TBL ( request_id, sender_id, receiver_id)
+    VALUES ("66603571-a1d1-6aef-8ab2-1494a2404fd6",  "eee03571-a1d2-4aef-8ab2-2494a2404fd5", "abb03571-a1d2-4aef-8ab2-2494a2404fd5");
+
  */
 
 @Stored(name = "REQUEST_TBL")
