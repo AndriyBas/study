@@ -1,7 +1,6 @@
 package com.fiot.core.controller.command;
 
 import com.fiot.app.AppConst;
-import com.fiot.app.model.Classes;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
@@ -38,7 +37,7 @@ public class LoadScheduleCommand extends AbstractCommand {
     @Override
     public void run() {
 
-        String sqlQuery = (String) context.get("sqlQuery");
+      /*  String sqlQuery = (String) context.get("sqlQuery");
 
         List<Classes> classesList = (List<Classes>) context.get("list");
 
@@ -50,7 +49,7 @@ public class LoadScheduleCommand extends AbstractCommand {
 
         } catch (DAOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         if (getOnPostExecute() != null) {

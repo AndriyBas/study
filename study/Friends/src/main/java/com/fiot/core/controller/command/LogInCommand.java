@@ -1,18 +1,11 @@
 package com.fiot.core.controller.command;
 
-import com.fiot.app.AppConst;
-import com.fiot.app.model.Admin;
-import com.fiot.app.model.Profile;
-import com.fiot.app.model.WorkerInfo;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
-import com.fiot.dao.DAOFilter;
-import com.fiot.dao.exception.DAOException;
-import com.fiot.ui.Utils;
+import com.fiot.ui.MainFrame;
 
 import javax.swing.*;
-import java.util.List;
 
 /**
  * команда виконує авторизацію користувача із логіном та паролем, що ії передаються
@@ -42,15 +35,16 @@ public class LogInCommand extends AbstractCommand {
     @Override
     public void run() {
 
+        /*
         final String userName = (String) context.get("username");
         final String userPassword = (String) context.get("password");
 
-        List<Profile> profiles = null;
+        List<User> profiles = null;
         try {
-            profiles = AppConst.DAO.select(Profile.class, new DAOFilter() {
+            profiles = AppConst.DAO.select(User.class, new DAOFilter() {
                 @Override
                 public <T> boolean accept(T entity) {
-                    Profile p = (Profile) entity;
+                    User p = (User) entity;
                     return userName.equals(p.getFirstName() + "-" + p.getSecondName())
                             && userPassword.equals(p.getPassword());
                 }
@@ -60,7 +54,7 @@ public class LogInCommand extends AbstractCommand {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    Utils.showErrorDialog(null, Utils.makePretty(e.getMessage()));
+                    Utils.showErrorDialog(null, e.getMessage());
                 }
             });
             return;
@@ -77,7 +71,7 @@ public class LogInCommand extends AbstractCommand {
             return;
         }
 
-        final Profile profile = profiles.get(0);
+        final User profile = profiles.get(0);
         WorkerInfo wi = null;
         List<Admin> admins = null;
 
@@ -95,7 +89,7 @@ public class LogInCommand extends AbstractCommand {
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    Utils.showErrorDialog(null, Utils.makePretty(e.getMessage()));
+                    Utils.showErrorDialog(null,e.getMessage());
                 }
             });
 
@@ -117,12 +111,12 @@ public class LogInCommand extends AbstractCommand {
         admin.setProfile(profile);
         admin.setWorkerInfo(wi);
 
-        AppConst.setCurrentAdmin(admin);
+        AppConst.setCurrentUser(admin);*/
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-//                MainForm form = new MainForm();
+                MainFrame form = new MainFrame();
             }
         });
 

@@ -8,7 +8,6 @@ import com.fiot.core.controller.command.DeleteIProfileCommand;
 import com.fiot.core.controller.command.LoadHistoryCommand;
 import com.fiot.core.controller.command.LoadScheduleCommand;
 import com.fiot.core.controller.command.LogInCommand;
-import com.fiot.core.controller.command.register.*;
 import com.fiot.dao.impl.DAOCRUDJdbc;
 import com.fiot.ui.LoginFrame;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,12 +40,7 @@ public class App {
 
         CommandExecutor executor = CommandExecutor.getInstance();
 
-        executor.addCommand(RegisterStudentCommand.class);
-        executor.addCommand(RegisterAdminCommand.class);
-        executor.addCommand(RegisterTeacherCommand.class);
-        executor.addCommand(RegisterGroupCommand.class);
-        executor.addCommand(RegisterFacultyCommand.class);
-        executor.addCommand(RegisterSubjectCommand.class);
+
 
         executor.addCommand(DeleteIProfileCommand.class);
         executor.addCommand(LogInCommand.class);

@@ -1,8 +1,6 @@
 package com.fiot.core.controller.command;
 
 import com.fiot.app.AppConst;
-import com.fiot.app.model.History;
-import com.fiot.app.model.IProfile;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
@@ -17,7 +15,7 @@ import java.util.UUID;
  */
 @COMMAND(key = "deleteIProfile")
 @CONTEXT(list = {
-        @PARAMETER(key = "profile", type = IProfile.class)
+        @PARAMETER(key = "profile")
 })
 public class DeleteIProfileCommand extends AbstractCommand {
 
@@ -38,7 +36,7 @@ public class DeleteIProfileCommand extends AbstractCommand {
     @Override
     public void run() {
 
-        IProfile currentPerson = (IProfile) context.get("profile");
+       /* IProfile currentPerson = (IProfile) context.get("profile");
 
         try {
             AppConst.DAO.delete(currentPerson.getProfile());
@@ -46,14 +44,14 @@ public class DeleteIProfileCommand extends AbstractCommand {
 
             History h = new History(
                     UUID.randomUUID(),
-                    AppConst.getCurrentAdmin().getProfileId(),
+                    AppConst.getCurrentUser().getProfileId(),
                     "Видалив користувача " + currentPerson.getProfile().toString()
             );
             AppConst.DAO.insert(h);
 
         } catch (DAOException e) {
             e.printStackTrace();
-        }
+        }*/
 
         if (getOnPostExecute() != null) {
             SwingUtilities.invokeLater(getOnPostExecute());

@@ -2,7 +2,6 @@ package com.fiot.app.model;
 
 import com.fiot.dao.annotation.Primary;
 import com.fiot.dao.annotation.Stored;
-import com.fiot.dao.annotation.utils.converter.LongConverter;
 import com.fiot.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
@@ -14,11 +13,11 @@ import java.util.UUID;
  */
 
 
-@Stored(name = "PROFILE_TBL")
-public class Profile {
+@Stored(name = "USER_TBL")
+public class User {
 
     @Primary
-    @Stored(name = "profile_id", converter = UUIDConverter.class)
+    @Stored(name = "user_id", converter = UUIDConverter.class)
     private UUID id;
 
     @Stored(name = "first_name")
@@ -27,21 +26,21 @@ public class Profile {
     @Stored(name = "second_name")
     private String secondName = "";
 
+    @Stored(name = "email")
+    private String email = "";
+
     @Stored(name = "password")
     private String password;
 
-    @Stored(name = "birthday", converter = LongConverter.class)
-    private long birthday;
-
-    public Profile() {
+    public User() {
     }
 
-    public Profile(UUID id, String firstName, String secondName, String password, long birthday) {
-        this.id = id;
+    public User(String firstName, UUID id, String secondName, String email, String password) {
         this.firstName = firstName;
+        this.id = id;
         this.secondName = secondName;
+        this.email = email;
         this.password = password;
-        this.birthday = birthday;
     }
 
     public UUID getId() {
@@ -68,12 +67,12 @@ public class Profile {
         this.secondName = secondName;
     }
 
-    public long getBirthday() {
-        return birthday;
+    public String getEmail() {
+        return email;
     }
 
-    public void setBirthday(long birthday) {
-        this.birthday = birthday;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -84,8 +83,10 @@ public class Profile {
         this.password = password;
     }
 
+/*
     @Override
     public String toString() {
         return String.format("%s %s", getFirstName(), getSecondName());
     }
+*/
 }

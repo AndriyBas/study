@@ -1,11 +1,8 @@
 package com.fiot.ui;
 
 import com.fiot.app.AppConst;
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +16,8 @@ public class MainFrame extends JFrame {
     private JList mListFriends;
     private JList mListRequests;
     private JButton mButtonAccept;
-    private JButton mВідхилитиRefuse;
+    private JButton mButtonRefuse;
     private JList mListAll;
-
 
 
     /**
@@ -54,7 +50,6 @@ public class MainFrame extends JFrame {
         addJMenu();
 
     }
-
 
     /**
      * ініціалізує меню у програмі

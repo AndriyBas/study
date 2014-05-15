@@ -1,6 +1,6 @@
 package com.fiot.app;
 
-import com.fiot.app.model.Admin;
+import com.fiot.app.model.User;
 import com.fiot.config.AppConfig;
 import com.fiot.dao.impl.DAOCRUDJdbc;
 import org.springframework.context.ApplicationContext;
@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  */
 public class AppConst {
 
-    private static Admin currentAdmin;
+    private static User currentUser;
 
     public static ApplicationContext CONTEXT;
 
@@ -36,17 +36,17 @@ public class AppConst {
      *
      * @return адміністратора, що залогінився, або null, якщо такого немає
      */
-    public static Admin getCurrentAdmin() {
-        return currentAdmin;
+    public static User getCurrentUser() {
+        return currentUser;
     }
 
     /**
      * Встановлює адміністратора, що розпочав сесію
      *
-     * @param currentAdmin адміністратор, що здійснив авторизацію
+     * @param currentUser адміністратор, що здійснив авторизацію
      */
-    public static void setCurrentAdmin(Admin currentAdmin) {
-        AppConst.currentAdmin = currentAdmin;
+    public static void setCurrentUser(User currentUser) {
+        AppConst.currentUser = currentUser;
     }
 
 

@@ -1,7 +1,6 @@
 package com.fiot.core.controller.command;
 
 import com.fiot.app.AppConst;
-import com.fiot.app.model.History;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
@@ -40,7 +39,7 @@ public class LoadHistoryCommand extends AbstractCommand {
     @Override
     public void run() {
 
-        String sqlQuery = (String) context.get("sqlQuery");
+      /*  String sqlQuery = (String) context.get("sqlQuery");
 
         List<History> histories = (List<History>) context.get("list");
 
@@ -52,7 +51,7 @@ public class LoadHistoryCommand extends AbstractCommand {
 
         } catch (DAOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         if (getOnPostExecute() != null) {

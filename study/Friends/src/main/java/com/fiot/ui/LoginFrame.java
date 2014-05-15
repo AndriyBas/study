@@ -77,7 +77,7 @@ public class LoginFrame extends JFrame implements ActionListener {
 
         userName = "admin-root";//userText.getText();
         userPassword = "admin";//new String(passwordText.getPassword());
-/*
+
         if (userName.trim().length() == 0) {
             errorMsg.append(" логін");
             errorOccurred = true;
@@ -90,7 +90,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             errorOccurred = true;
             errorMsg.append("  пароль");
             focusComponent = passwordText;
-        }*/
+        }
 
         errorMsg.append("!");
 
@@ -116,7 +116,7 @@ public class LoginFrame extends JFrame implements ActionListener {
     private void tryToLogIn() {
 
         new MainFrame();
-      /*  Context c = new Context();
+        Context c = new Context();
         c.put("username", userName);
         c.put("password", userPassword);
 
@@ -130,7 +130,7 @@ public class LoginFrame extends JFrame implements ActionListener {
             });
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 }

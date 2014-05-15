@@ -8,15 +8,17 @@ import javax.swing.*;
 public class Utils {
 
     /**
-     * вставляє переноси у стрічку, щоб текст поміщався на екрані
+     * показує діалог із повідомленням про помилку
      *
-     * @param s текст для опрацювання
-     * @return опрацьований текст
+     * @param parent   фікно, що викликає діалог
+     * @param errorMsg повідомлення для показу
      */
-    public static String makePretty(String s) {
-        String[] words = s.split("\\s+");
+    public static void showErrorDialog(JFrame parent, String errorMsg) {
+
+        // вставляє переноси у стрічку, щоб текст поміщався на екрані
+        String[] words = errorMsg.split("\\s+");
         int lineWidth = 0;
-        StringBuilder msg = new StringBuilder(s.length());
+        StringBuilder msg = new StringBuilder(errorMsg.length());
         for (String w : words) {
             msg.append(w);
             msg.append(" ");
@@ -26,20 +28,10 @@ public class Utils {
                 msg.append("\n");
             }
         }
-        return msg.toString();
-    }
-
-    /**
-     * показує діалог із повідомленням про помилку
-     *
-     * @param parent   фікно, що викликає діалог
-     * @param errorMsg повідомлення для показу
-     */
-    public static void showErrorDialog(JFrame parent, String errorMsg) {
 
         JOptionPane.showMessageDialog(
                 parent,
-                errorMsg,
+                msg.toString(),
                 "Спробуйте ще раз",
                 JOptionPane.ERROR_MESSAGE
         );
