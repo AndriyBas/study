@@ -22,6 +22,10 @@ import java.util.UUID;
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+    INSERT INTO FRIEND_RELATION_TBL ( friend_relation_id, first_id, second_id)
+    VALUES ("77703571-a1d2-4aef-8ab2-1494a2404fd6",  "abb03571-a1d2-4aef-8ab2-2494a2404fd5", "bab03571-a1d2-4aef-8ab2-2494a2404fd5");
+
+
  */
 
 @Stored(name = "FRIEND_RELATION_TBL")

@@ -39,8 +39,6 @@ public class App {
 
         CommandExecutor executor = CommandExecutor.getInstance();
 
-
-
         executor.addCommand(DeleteIProfileCommand.class);
         executor.addCommand(LogInCommand.class);
 

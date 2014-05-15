@@ -5,7 +5,6 @@ import com.fiot.app.model.User;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
-import com.fiot.dao.DAOFilter;
 import com.fiot.dao.exception.DAOException;
 import com.fiot.ui.MainFrame;
 import com.fiot.ui.Utils;
@@ -46,14 +45,8 @@ public class LogInCommand extends AbstractCommand {
 
         List<User> profiles = null;
         try {
-            profiles = AppConst.DAO.select(User.class, new DAOFilter() {
-                @Override
-                public <T> boolean accept(T entity) {
-                    User p = (User) entity;
-                    return userName.equals(p.getEmail())
-                            && userPassword.equals(p.getPassword());
-                }
-            });
+            profiles = AppConst.DAO.select(User.class, "select * from USER_TBL where email =\"" +
+                    userName + "\" AND password = \"" + userPassword + "\";");
         } catch (final DAOException e) {
             e.printStackTrace();
             SwingUtilities.invokeLater(new Runnable() {

@@ -23,9 +23,20 @@ import java.util.UUID;
     PRIMARY KEY (`user_id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
     INSERT INTO USER_TBL ( user_id, first_name, second_name, email, password)
     VALUES ( "abb03571-a1d2-4aef-8ab2-2494a2404fd5", "Льоша", "Краєвий", "krab@gmail.com", "password");
+
+    INSERT INTO USER_TBL ( user_id, first_name, second_name, email, password)
+    VALUES ( "bab03571-a1d2-4aef-8ab2-2494a2404fd5", "Андрій", "Бас", "bas@gmail.com", "password");
+
+    INSERT INTO USER_TBL ( user_id, first_name, second_name, email, password)
+    VALUES ( "eee03571-a1d2-4aef-8ab2-2494a2404fd5", "Андрій", "Будяшевський", "budu@gmail.com", "password");
+
+    INSERT INTO USER_TBL ( user_id, first_name, second_name, email, password)
+    VALUES ( "cbac7e3c-24a9-4e31-997b-88084a9ca5df", "Олег", "Коломієць", "kolo@gmail.com", "password");
+
+    INSERT INTO USER_TBL ( user_id, first_name, second_name, email, password)
+    VALUES ( "45677e3c-24a9-4e31-997b-88084a9ca5df", "Данило", "Мулявко", "dan@gmail.com", "password");
 
  */
 
