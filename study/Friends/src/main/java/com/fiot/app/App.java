@@ -4,9 +4,10 @@ import com.fiot.config.AppConfig;
 import com.fiot.config.ConfigReader;
 import com.fiot.config.impl.JSONConfigReader;
 import com.fiot.core.controller.CommandExecutor;
-import com.fiot.core.controller.command.RemoveFromFriendCommand;
+import com.fiot.core.controller.command.AddToFriendCommand;
 import com.fiot.core.controller.command.LoadUsersCommand;
 import com.fiot.core.controller.command.LogInCommand;
+import com.fiot.core.controller.command.RemoveFromFriendCommand;
 import com.fiot.dao.impl.DAOCRUDJdbc;
 import com.fiot.ui.LoginFrame;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -40,18 +41,13 @@ public class App {
         CommandExecutor executor = CommandExecutor.getInstance();
 
         executor.addCommand(RemoveFromFriendCommand.class);
+        executor.addCommand(AddToFriendCommand.class);
         executor.addCommand(LogInCommand.class);
 
         executor.addCommand(LoadUsersCommand.class);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

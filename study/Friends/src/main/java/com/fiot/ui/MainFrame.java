@@ -13,7 +13,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
- * Created by bamboo on 15.05.14.
+ * Created by krabik on 15.04.14.
  */
 public class MainFrame extends JFrame {
     private JPanel rootPanel;
@@ -27,7 +27,6 @@ public class MainFrame extends JFrame {
     private JLabel mLabelCurrentUser;
 
     private JList mLastFocused;
-    private ArrayList<User> users;
 
     private JPopupMenu mListAllPopUp;
     private JPopupMenu mListFriendsPopUp;
@@ -55,14 +54,8 @@ public class MainFrame extends JFrame {
         mLabelCurrentUser.setText(AppConst.getCurrentUser().toString() + "("
                 + AppConst.getCurrentUser().getEmail() + ")");
 
-        reloadAllUsers();
-        reloadFriends();
-        reloadRequests();
-
-        setButtonsEnabled(false);
-
         mLastFocused = mListAll;
-        mLastFocused.setSelectedIndex(0);
+        reloadUsers();
 
         mListAll.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -102,10 +95,25 @@ public class MainFrame extends JFrame {
         });
 
         mListAllPopUp = new JPopupMenu();
-        mListAllPopUp.add(new JMenuItem("Додати до друзів"));
+        JMenuItem item = new JMenuItem("Додати до друзів");
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addFriend((User) mListAll.getSelectedValue());
+            }
+        });
+        mListAllPopUp.add(item);
+
 
         mListFriendsPopUp = new JPopupMenu();
-        mListFriendsPopUp.add(new JMenuItem("Видалити із друзів"));
+        item = new JMenuItem("Видалити із друзів");
+        item.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeFriend((User) mListFriends.getSelectedValue());
+            }
+        });
+        mListFriendsPopUp.add(item);
 
         mListAll.addMouseListener(new MouseAdapter() {
             @Override
@@ -145,12 +153,52 @@ public class MainFrame extends JFrame {
                     Component cmp = e.getComponent();
                     int x = e.getX();
                     int y = e.getY();
-                    mListFriends.setSelectedIndex(mListAll.locationToIndex(e.getPoint()));
+                    mListFriends.setSelectedIndex(mListFriends.locationToIndex(e.getPoint()));
                     mListFriendsPopUp.show(cmp, x, y);
                 }
             }
         });
 
+        mButtonAccept.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addFriend((User) mListRequests.getSelectedValue());
+            }
+        });
+
+        mButtonRefuse.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeFriend((User) mListRequests.getSelectedValue());
+            }
+        });
+    }
+
+    private void doFriendAction(String command, User selectedUser) {
+        if (selectedUser == null) {
+            return;
+        }
+        Context c = new Context();
+        c.put("receiverId", selectedUser.getId());
+        c.put("senderId", AppConst.getCurrentUser().getId());
+        try {
+            CommandExecutor.getInstance().execute(command, c, new Runnable() {
+                @Override
+                public void run() {
+                    reloadUsers();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addFriend(User selectedUser) {
+        doFriendAction("addToFriends", selectedUser);
+    }
+
+    private void removeFriend(User selectedUser) {
+        doFriendAction("removeFromFriends", selectedUser);
     }
 
     private void setButtonsEnabled(boolean isEnabled) {
@@ -170,7 +218,6 @@ public class MainFrame extends JFrame {
     }
 
     private void reloadFriends() {
-
         String currentID = AppConst.getCurrentUser().getId().toString();
         String sqlQuery = "SELECT b.* FROM  FRIEND_RELATION_TBL a " +
                 " JOIN USER_TBL b ON ( (a.first_id = b.user_id AND a.second_id = \"" + currentID + "\") " +
@@ -189,13 +236,11 @@ public class MainFrame extends JFrame {
                 mListRequests);
     }
 
-
     private void reloadUsers(String sqlQuery, final JList jList) {
         final ArrayList<User> list = new ArrayList<>();
         Context c = new Context();
         c.put("list", list);
         c.put("sqlQuery", sqlQuery);
-
         try {
             CommandExecutor.getInstance().execute("loadUsers", c, new Runnable() {
                 @Override
@@ -205,6 +250,7 @@ public class MainFrame extends JFrame {
                         model.addElement(u);
                     }
                     jList.setModel(model);
+                    setButtonsEnabled(false);
                 }
             });
         } catch (Exception e) {
@@ -212,9 +258,18 @@ public class MainFrame extends JFrame {
         }
     }
 
-    private void updateUI() {
-        validate();
-        repaint();
+    private void reloadUsers() {
+
+
+        reloadRequests();
+        reloadFriends();
+        reloadAllUsers();
+
+//        mLastFocused = mListAll;
+//        mListAll.setSelectedIndex(0);
+
+//        validate();
+//        repaint();
     }
 
     /**
@@ -260,11 +315,33 @@ public class MainFrame extends JFrame {
                 KeyEvent.VK_K);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_K, ActionEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(
+                        MainFrame.this,
+                        "Допомогло ?",
+                        "Посібник користувача",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
         menu.add(menuItem);
 
         menuItem = new JMenuItem("Про програму");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_A, ActionEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(
+                        MainFrame.this,
+                        "Автор : Олексій Краєвий\nВерсія : 1.0",
+                        "Про програму",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
         menu.add(menuItem);
 
         setJMenuBar(menuBar);
