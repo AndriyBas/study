@@ -66,8 +66,8 @@ public class RemoveFromFriendCommand extends AbstractCommand {
                 }
             }
 
-            for (FriendsRelation r : relationList) {
-                if (r != null) {
+            for(FriendsRelation r : relationList) {
+                if(r != null) {
                     AppConst.DAO.delete(r);
                 }
             }

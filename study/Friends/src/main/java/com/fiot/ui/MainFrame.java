@@ -99,7 +99,14 @@ public class MainFrame extends JFrame {
         item.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addFriend((User) mListAll.getSelectedValue());
+                User u = (User) mListAll.getSelectedValue();
+                addFriend(u);
+                JOptionPane.showMessageDialog(
+                        MainFrame.this,
+                        "Запит дружби користувачу " + u.toString() + " відправлено !",
+                        "Запит дружби",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
             }
         });
         mListAllPopUp.add(item);
