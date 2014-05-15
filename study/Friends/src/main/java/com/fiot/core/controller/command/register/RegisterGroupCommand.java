@@ -1,0 +1,108 @@
+package com.fiot.core.controller.command.register;
+
+import com.fiot.app.AppConst;
+import com.fiot.app.model.Faculty;
+import com.fiot.app.model.Group;
+import com.fiot.app.model.History;
+import com.fiot.core.controller.annotation.COMMAND;
+import com.fiot.core.controller.annotation.CONTEXT;
+import com.fiot.core.controller.annotation.PARAMETER;
+import com.fiot.core.controller.command.AbstractCommand;
+import com.fiot.core.controller.command.Context;
+import com.fiot.dao.DAOFilter;
+import com.fiot.dao.exception.DAOException;
+import com.fiot.ui.Utils;
+
+import javax.swing.*;
+import java.util.UUID;
+
+/**
+ * команда виконує реєстрацію групи у системі, інформацію про яку їй передається у контексті
+ * @author bamboo
+ */
+
+
+@COMMAND(key = "registerGroup")
+@CONTEXT(list = {
+        @PARAMETER(key = "name", type = String.class),
+        @PARAMETER(key = "faculty", type = String.class),
+
+})
+public class RegisterGroupCommand extends AbstractCommand {
+
+    public RegisterGroupCommand() {
+    }
+
+    /**
+     * Конструктор
+     * @param context1 контекст команди
+     */
+    public RegisterGroupCommand(Context context1) {
+        setContext(context1);
+    }
+
+    /**
+     * виконує роботу команди
+     */
+    @Override
+    public void run() {
+
+
+        final String facultyName = (String) context.get("faculty");
+        java.util.List<Faculty> faculties = null;
+        try {
+            faculties = AppConst.DAO.select(Faculty.class, new DAOFilter() {
+                @Override
+                public <T> boolean accept(T entity) {
+                    Faculty f = (Faculty) entity;
+                    return f.getName().equals(facultyName);
+
+                }
+            });
+        } catch (final DAOException e) {
+            e.printStackTrace();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.showErrorDialog(null, Utils.makePretty("Помилка зчитування факультету : \n" + e.getMessage()));
+                }
+            });
+        }
+
+        if (faculties.size() == 0) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.showErrorDialog(null, "Немає такого факультету!");
+                }
+            });
+            return;
+        }
+
+        Group g = new Group(UUID.randomUUID(),
+                faculties.get(0).getId(),
+                ((String) context.get("name")).toUpperCase());
+        try {
+            AppConst.DAO.insert(g);
+            History h = new History(
+                    UUID.randomUUID(),
+                    AppConst.getCurrentAdmin().getProfileId(),
+                    "Створив нову групу " + g.getName()
+            );
+            AppConst.DAO.insert(h);
+        } catch (final Exception e) {
+            e.printStackTrace();
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    Utils.showErrorDialog(null, Utils.makePretty("Помилка створення групи : \n" + e.getMessage()));
+                }
+            });
+        }
+
+        if (getOnPostExecute() != null) {
+            SwingUtilities.invokeLater(getOnPostExecute());
+        }
+    }
+
+}

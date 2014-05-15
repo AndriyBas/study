@@ -5,7 +5,7 @@
 
 <bean
             id="DAOJdbc"
-            class="com.oyster.dao.impl.DAOCRUDJdbc"
+            class="com.fiot.dao.impl.DAOCRUDJdbc"
             >
         <property name="dataSource" ref="dataSourceModelJdbc"/>
     </bean>
