@@ -18,13 +18,13 @@ public class MainFrame extends JFrame {
     private JButton mButtonAccept;
     private JButton mButtonRefuse;
     private JList mListAll;
-
+    private JLabel mLabelCurrentUser;
 
     /**
      * конструктор, створює елементи інтерфейсу
      */
     public MainFrame() {
-        super((String) AppConst.APP_CONFIG.getValue("progTitle"));
+        super((String) AppConst.APP_CONFIG.getValue("programTitle"));
 
         add(rootPanel);
 
@@ -48,6 +48,7 @@ public class MainFrame extends JFrame {
     private void init() {
 
         addJMenu();
+        mLabelCurrentUser.setText(AppConst.getCurrentUser().toString());
     }
 
     /**

@@ -99,10 +99,8 @@ public class User {
         this.password = password;
     }
 
-/*
     @Override
     public String toString() {
         return String.format("%s %s", getFirstName(), getSecondName());
     }
-*/
 }

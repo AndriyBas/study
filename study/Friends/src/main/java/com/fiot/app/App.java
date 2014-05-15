@@ -5,8 +5,7 @@ import com.fiot.config.ConfigReader;
 import com.fiot.config.impl.JSONConfigReader;
 import com.fiot.core.controller.CommandExecutor;
 import com.fiot.core.controller.command.DeleteIProfileCommand;
-import com.fiot.core.controller.command.LoadHistoryCommand;
-import com.fiot.core.controller.command.LoadScheduleCommand;
+import com.fiot.core.controller.command.LoadUsersCommand;
 import com.fiot.core.controller.command.LogInCommand;
 import com.fiot.dao.impl.DAOCRUDJdbc;
 import com.fiot.ui.LoginFrame;
@@ -45,9 +44,7 @@ public class App {
         executor.addCommand(DeleteIProfileCommand.class);
         executor.addCommand(LogInCommand.class);
 
-        executor.addCommand(LoadHistoryCommand.class);
-        executor.addCommand(LoadScheduleCommand.class);
-
+        executor.addCommand(LoadUsersCommand.class);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException e) {

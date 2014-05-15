@@ -1,6 +1,7 @@
 package com.fiot.core.controller.command;
 
 import com.fiot.app.AppConst;
+import com.fiot.app.model.User;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
@@ -11,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * команда виконує завантаження історії, виконуюючи SQL-запит, що їй передається
+ * команда виконує завантаження користувачів виконуюючи SQL-запит, що їй передається
  */
 
-@COMMAND(key = "loadHistory")
+@COMMAND(key = "loadUsers")
 @CONTEXT(list = {
         @PARAMETER(key = "sqlQuery", type = String.class),
         @PARAMETER(key = "list", type = ArrayList.class)
 })
-public class LoadHistoryCommand extends AbstractCommand {
+public class LoadUsersCommand extends AbstractCommand {
 
-    public LoadHistoryCommand() {
+    public LoadUsersCommand() {
     }
 
     /**
@@ -29,7 +30,7 @@ public class LoadHistoryCommand extends AbstractCommand {
      *
      * @param context1 контекст команди
      */
-    public LoadHistoryCommand(Context context1) {
+    public LoadUsersCommand(Context context1) {
         setContext(context1);
     }
 
@@ -39,20 +40,19 @@ public class LoadHistoryCommand extends AbstractCommand {
     @Override
     public void run() {
 
-      /*  String sqlQuery = (String) context.get("sqlQuery");
+        String sqlQuery = (String) context.get("sqlQuery");
 
-        List<History> histories = (List<History>) context.get("list");
+        List<User> users = (List<User>) context.get("list");
 
         try {
-            List<History> list = AppConst.DAO.select(History.class, sqlQuery);
-            for (History h : list) {
-                histories.add(h);
+            List<User> list = AppConst.DAO.select(User.class, sqlQuery);
+            for (User u : list) {
+                users.add(u);
             }
 
         } catch (DAOException e) {
             e.printStackTrace();
-        }*/
-
+        }
 
         if (getOnPostExecute() != null) {
             SwingUtilities.invokeLater(getOnPostExecute());
