@@ -1,6 +1,16 @@
 import java.io.*;
+import java.lang.reflect.AccessibleObject;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+
+
+class A {
+    private A() {
+        System.out.println("in constructor()");
+    }
+}
 
 public class Main {
     class Input {
@@ -69,32 +79,26 @@ public class Main {
             }
         }
 
+
+
+        void hack(Class c) {
+            try {
+                Constructor<?> constructor = A.class.getDeclaredConstructors()[0];
+                constructor.setAccessible(true);
+                constructor.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
         @SuppressWarnings("deprecation")
         public void solve() throws IOException {
 
-            int c = in.nextInt();
-            int d = in.nextInt();
-            int n = in.nextInt();
-            int m = in.nextInt();
-            int k = in.nextInt();
-
-            int N = n * m + 1;
-            int[] a = new int[N];
-            Arrays.fill(a, 0);
-
-            for (int i = 0; i <= n; i++) {
-                a[i] = Math.min(c, d * i);
-            }
-
-            for (int i = n + 1; i < N; i++) {
-                a[i] = Math.min(a[i - 1] + d, a[i - n] + c);
-            }
-
-            int s = Math.max(n * m - k, 0);
-
-            int res = a[s];
-
-            System.out.println(res);
+            hack(A.class);
         }
     }
 
@@ -102,7 +106,7 @@ public class Main {
     public void solveProblem() throws IOException {
 
         boolean oj = System.getProperty("ONLINE_JUDGE") != null;
-        in = new Input(oj ? System.in : new FileInputStream("//home/bamboo/GitProjects/studyDir/Acm/input.txt"));
+        in = new Input(oj ? System.in : new FileInputStream("//home/bamboo/GitProjects/study/Acm/input.txt"));
 
         // in = new Input(System.in);
         // in = new Input(new FileInputStream("D:/Codes/Java/input.txt"));
