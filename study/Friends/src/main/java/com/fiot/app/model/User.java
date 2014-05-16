@@ -40,6 +40,11 @@ import java.util.UUID;
 
  */
 
+/**
+ * Граничний клас, що представляє таблицю USER_TBL у базі даних,
+ * відповідає за профілі користувачів
+ */
+
 @Stored(name = "USER_TBL")
 public class User {
 

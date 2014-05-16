@@ -28,6 +28,10 @@ import java.util.UUID;
 
  */
 
+/**
+ * Граничний клас, що представляє таблицю REQUEST_TBL у базі даних,
+ * відповідає за заявки у друзі
+ */
 @Stored(name = "REQUEST_TBL")
 public class Requests {
 

@@ -1,0 +1,16 @@
+com.fiot.app
+com.fiot.app.model
+com.fiot.config
+com.fiot.config.impl
+com.fiot.core.controller
+com.fiot.core.controller.annotation
+com.fiot.core.controller.command
+com.fiot.core.controller.exception
+com.fiot.core.controller.utils
+com.fiot.dao
+com.fiot.dao.annotation
+com.fiot.dao.annotation.utils
+com.fiot.dao.annotation.utils.converter
+com.fiot.dao.exception
+com.fiot.dao.impl
+com.fiot.ui

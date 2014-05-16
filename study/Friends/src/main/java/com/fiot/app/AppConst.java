@@ -32,18 +32,18 @@ public class AppConst {
 
 
     /**
-     * Повертає адміністратора, що останній раз авторизувався
+     * Повертає користувача, що останній раз авторизувався
      *
-     * @return адміністратора, що залогінився, або null, якщо такого немає
+     * @return користувача, що залогінився, або null, якщо такого немає
      */
     public static User getCurrentUser() {
         return currentUser;
     }
 
     /**
-     * Встановлює адміністратора, що розпочав сесію
+     * Встановлює користувача, що розпочав сесію
      *
-     * @param currentUser адміністратор, що здійснив авторизацію
+     * @param currentUser користувача, що здійснив авторизацію
      */
     public static void setCurrentUser(User currentUser) {
         AppConst.currentUser = currentUser;

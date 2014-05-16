@@ -28,6 +28,12 @@ import java.util.UUID;
 
  */
 
+/**
+ *Граничний клас, що представляє таблицю FRIEND_RELATION_TBL у базі даних,
+ * відповідає за звязки друзів
+ *
+ */
+
 @Stored(name = "FRIEND_RELATION_TBL")
 public class FriendsRelation {
     @Primary

@@ -13,6 +13,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
+ * клас відповідає за роботу інтерфейсу головного вікна програми
+ *
  * Created by krabik on 15.04.14.
  */
 public class MainFrame extends JFrame {
@@ -48,6 +50,9 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * ініціалізує елементи інтерфейсу
+     */
     private void init() {
 
         addJMenu();
@@ -181,6 +186,13 @@ public class MainFrame extends JFrame {
         });
     }
 
+    /**
+     * виконує команду додавання/видалення зв’язку друзі між користувачем selectedUser та користувачем,
+     * що зараз залогінений
+     *
+     * @param command тип команди
+     * @param selectedUser користувач для встановлення зв’язку
+     */
     private void doFriendAction(String command, User selectedUser) {
         if (selectedUser == null) {
             return;
@@ -200,19 +212,38 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * виконує команду додавання зв’язку друзі між користувачем selectedUser та користувачем,
+     * що зараз залогінений
+     *
+     * @param selectedUser користувач для встановлення зв’язку
+     */
     private void addFriend(User selectedUser) {
         doFriendAction("addToFriends", selectedUser);
     }
 
+    /**
+     * виконує команду видалення зв’язку друзі між користувачем selectedUser та користувачем,
+     * що зараз залогінений
+     *
+     * @param selectedUser користувач для встановлення зв’язку
+     */
     private void removeFriend(User selectedUser) {
         doFriendAction("removeFromFriends", selectedUser);
     }
 
+    /**
+     * встановлює параметр активний (Enabled) для кнопок інтерфейсу
+     * @param isEnabled параметр для встановлення
+     */
     private void setButtonsEnabled(boolean isEnabled) {
         mButtonAccept.setEnabled(isEnabled);
         mButtonRefuse.setEnabled(isEnabled);
     }
 
+    /**
+     * завантажує список всіх користувачів, що не є друзями залогіненому користувачеві
+     */
     private void reloadAllUsers() {
         String currentID = AppConst.getCurrentUser().getId().toString();
         String sqlQuery = "SELECT a.* FROM USER_TBL a WHERE ( (a.user_id != \"" + currentID + "\") AND " +
@@ -224,6 +255,9 @@ public class MainFrame extends JFrame {
                 mListAll);
     }
 
+    /**
+     * завантажує список всіх користувачів, що є друзями залогіненому користувачеві
+     */
     private void reloadFriends() {
         String currentID = AppConst.getCurrentUser().getId().toString();
         String sqlQuery = "SELECT b.* FROM  FRIEND_RELATION_TBL a " +
@@ -234,6 +268,9 @@ public class MainFrame extends JFrame {
                 mListFriends);
     }
 
+    /**
+     * завантажує список всіх користувачів, що відправили заявку на друзі залогіненому користувачеві
+     */
     private void reloadRequests() {
         String currentID = AppConst.getCurrentUser().getId().toString();
         String sqlQuery = "SELECT b.* FROM  REQUEST_TBL a " +
@@ -243,6 +280,12 @@ public class MainFrame extends JFrame {
                 mListRequests);
     }
 
+    /**
+     * завантажує користувачів, виконуюючи sql-запит sqlQuery та відображає їх у
+     * JList-елементі інтерфейсу jList
+     * @param sqlQuery sql-запит для виконання
+     * @param jList куди завантажувати користувачів
+     */
     private void reloadUsers(String sqlQuery, final JList jList) {
         final ArrayList<User> list = new ArrayList<>();
         Context c = new Context();
@@ -265,18 +308,14 @@ public class MainFrame extends JFrame {
         }
     }
 
+
+    /**
+     * оновлює інтерфкйс програми
+     */
     private void reloadUsers() {
-
-
         reloadRequests();
         reloadFriends();
         reloadAllUsers();
-
-//        mLastFocused = mListAll;
-//        mListAll.setSelectedIndex(0);
-
-//        validate();
-//        repaint();
     }
 
     /**

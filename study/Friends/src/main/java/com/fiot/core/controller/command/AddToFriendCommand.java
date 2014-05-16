@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * команда виконує видалення профілю, що передається ії параметром
+ * команда виконує встановлення зв’язку друзі між 2 профілями
  */
 @COMMAND(key = "addToFriends")
 @CONTEXT(list = {
