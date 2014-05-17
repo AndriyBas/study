@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Клас відповідає за реєстрацію, валідацію та виконання команд,
@@ -28,6 +29,7 @@ public class CommandExecutor {
      * непосредственно в память.
      */
     private static volatile CommandExecutor sCommandExecutor;
+    private static final Object LOCK = new Object();
 
     private ExecutorService threadExecutorService;
 
@@ -36,7 +38,10 @@ public class CommandExecutor {
     /**
      * створює екземпляр класу CommandExecutor
      */
-    private CommandExecutor() {
+    private CommandExecutor() throws IllegalAccessException {
+        if (sCommandExecutor != null) {
+            throw new IllegalAccessException("Command Executor is a singleton, creating multiple instances not allowed");
+        }
         threadExecutorService = Executors.newFixedThreadPool(THREAD_NUM);
         commandContainer = new HashMap<>();
     }
@@ -49,9 +54,13 @@ public class CommandExecutor {
     public static CommandExecutor getInstance() {
         // double checked locking for thread safety
         if (sCommandExecutor == null) {
-            synchronized (CommandExecutor.class) {
+            synchronized (LOCK) {
                 if (sCommandExecutor == null) {
-                    sCommandExecutor = new CommandExecutor();
+                    try {
+                        sCommandExecutor = new CommandExecutor();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
