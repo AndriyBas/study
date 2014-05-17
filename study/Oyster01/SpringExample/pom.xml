@@ -5,8 +5,8 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.mkyong.common</groupId>
-    <artifactId>SpringExample</artifactId>
+    <groupId>com.oyster</groupId>
+    <artifactId>KPICity</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>SpringExample</name>
