@@ -1,14 +1,69 @@
 import java.io.*;
-import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 
-class A {
-    private A() {
-        System.out.println("in constructor()");
+class A implements Cloneable {
+
+    private A() throws IllegalAccessException {
+//        throw new IllegalAccessException("opa");
+        System.out.println("A : in constructor()");
+    }
+
+
+}
+
+class B implements Cloneable {
+    Integer b;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public String toString() {
+        return " b : " + String.valueOf(b);
+    }
+}
+
+class C implements Cloneable {
+
+    B bb;
+    Integer c;
+
+    @Override
+    public String toString() {
+        return " c : " + String.valueOf(c) + "\n" + bb.toString();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+
+class D implements Cloneable {
+    C c;
+    String s;
+    final int xxx = 10;
+    ArrayList<Integer> arr;
+    int[] intarr;
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        D ddd = (D) super.clone();
+
+        ddd.c = (C) c.clone();
+        ddd.intarr = intarr.clone();
+        return ddd;
+    }
+
+    @Override
+    public String toString() {
+        return "s : " + s + ", intarr[0] : " + intarr[0] + "\n" + c.toString();
     }
 }
 
@@ -80,10 +135,9 @@ public class Main {
         }
 
 
-
         void hack(Class c) {
             try {
-                Constructor<?> constructor = A.class.getDeclaredConstructors()[0];
+                Constructor<?> constructor = c.getDeclaredConstructors()[0];
                 constructor.setAccessible(true);
                 constructor.newInstance();
             } catch (InstantiationException e) {
@@ -98,7 +152,71 @@ public class Main {
         @SuppressWarnings("deprecation")
         public void solve() throws IOException {
 
-            hack(A.class);
+
+            B b = new B();
+            b.b = new Integer(100000);
+            System.out.println(b);
+
+            C c = new C();
+            c.c = new Integer(1400);
+            c.bb = new B();
+            c.bb.b = new Integer(470);
+
+            D d = new D();
+            d.c = c;
+            d.s = new String("ololo");
+            d.arr = new ArrayList<>();
+            d.arr.add(1);
+            d.arr.add(10);
+            d.arr.add(1000);
+            d.intarr = new int[]{-1, 2};
+
+            System.out.println(d);
+            try {
+//                Object clone = b.clone();
+//                System.out.println(clone);
+
+                Object clone2 = d.clone();
+                System.out.println(clone2);
+                d.arr.set(0, 46);
+                d.c.c = -99;
+                d.intarr[0] = -2;
+
+                System.out.println(d);
+                System.out.println(clone2);
+
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+   /*         hack(A.class);
+
+            Object rr = new Object();
+            rr.hashCode();
+
+            Integer[] arr = new Integer[]{2, 2};
+            Integer[] arr2 = new Integer[]{1, 2};
+
+            List<Integer> arrayList1 = Arrays.asList(arr);
+            List<Integer> arrayList2 = Arrays.asList(arr2);
+            System.out.println(arr.hashCode());
+            System.out.println(arr2.hashCode());
+
+           Object q = arr;
+
+
+
+            int d = arr.length;
+
+            System.out.println(arrayList1.hashCode());
+            System.out.println(arrayList2.hashCode());
+
+            Integer i = new Integer(1453643562);
+            String s = i.toString();
+            System.out.println(String.format("%0123d", 3));
+*/
+//            System.out.println(s);
+//            AtomicInteger s;
+
         }
     }
 
