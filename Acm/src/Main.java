@@ -1,8 +1,11 @@
 import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 
 
 class A implements Cloneable {
@@ -188,6 +191,29 @@ public class Main {
             } catch (CloneNotSupportedException e) {
                 e.printStackTrace();
             }
+
+            BigDecimal d1 = new BigDecimal("1.00");
+            BigDecimal d2 = new BigDecimal("1.0");
+
+
+            System.out.println("-----------------");
+            System.out.println(d1.compareTo(d2));
+
+            HashMap<BigDecimal, String> m1 = new HashMap<>();
+            m1.put(d1, "oleh");
+            m1.put(d2, "yulia");
+
+            TreeMap<BigDecimal, String> m2 = new TreeMap<>();
+            m2.put(d1, "oleh");
+            m2.put(d2, "yulia");
+
+            System.out.println(m1);
+            System.out.println(m2);
+
+            System.out.println(0.0f / 0.0f);
+
+
+
    /*         hack(A.class);
 
             Object rr = new Object();
