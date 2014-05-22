@@ -18,7 +18,7 @@ import java.util.UUID;
 /**
  * клас відповідає за роботу інтерфейсу головного вікна програми
  * <p/>
- * Created by krabik on 15.04.14.
+ * Created by matiash on 15.04.14.
  */
 public class GroupFrame extends JFrame {
     private JPanel rootPanel;
@@ -308,6 +308,9 @@ public class GroupFrame extends JFrame {
 
     }
 
+    /**
+     * записує нове повідомлення на стіну
+     */
     private void postMessage() {
 
         String msg = mTextFieldPost.getText().trim();
@@ -328,6 +331,11 @@ public class GroupFrame extends JFrame {
         reloadPosts();
     }
 
+    /**
+     * видаляє повідомлення із стіни
+     *
+     * @param msg повідомлення для видалення
+     */
     private void deleteMessage(Message msg) {
 
         if (msg == null) {
@@ -344,6 +352,11 @@ public class GroupFrame extends JFrame {
         reloadPosts();
     }
 
+    /**
+     * видалює профіль користувача
+     *
+     * @param selectedUser профіль користувача
+     */
     private void removeUser(User selectedUser) {
         if (selectedUser == null) {
             return;
@@ -371,6 +384,12 @@ public class GroupFrame extends JFrame {
         }
     }
 
+    /**
+     * змінює права користувача
+     *
+     * @param selectedUser профіль користувача
+     * @param newStatus    нові права
+     */
     private void changeStatus(User selectedUser, String newStatus) {
         if (selectedUser == null) {
             return;
@@ -391,7 +410,7 @@ public class GroupFrame extends JFrame {
     }
 
     /**
-     * завантажує список всіх користувачів, що не є друзями залогіненому користувачеві
+     * завантажує список всіх користувачів (не модераторів)
      */
     private void reloadAllUsers() {
         String sqlQuery = "SELECT a.* FROM USER_TBL a WHERE ( a.status = \"user\");";
@@ -401,7 +420,7 @@ public class GroupFrame extends JFrame {
     }
 
     /**
-     * завантажує список всіх користувачів, що є друзями залогіненому користувачеві
+     * завантажує список всіх користувачів, що є друзями модераторами
      */
     private void reloadModers() {
         String sqlQuery = "SELECT a.* FROM USER_TBL a WHERE ( a.status = \"moder\");";
@@ -411,7 +430,7 @@ public class GroupFrame extends JFrame {
     }
 
     /**
-     * завантажує список всіх користувачів, що відправили заявку на друзі залогіненому користувачеві
+     * завантажує список всіх користувачів, що є у чорному списку
      */
     private void reloadBlack() {
         String sqlQuery = "SELECT a.* FROM USER_TBL a WHERE ( a.status = \"black\");";
@@ -450,7 +469,7 @@ public class GroupFrame extends JFrame {
 
 
     /**
-     * оновлює інтерфкйс програми
+     * оновлює інтерфейс програми
      */
     public void reloadUsers() {
         reloadBlack();
@@ -458,6 +477,9 @@ public class GroupFrame extends JFrame {
         reloadAllUsers();
     }
 
+    /**
+     * завантажує усі пости із бази
+     */
     private void reloadPosts() {
         final ArrayList<Message> list = new ArrayList<>();
         Context c = new Context();

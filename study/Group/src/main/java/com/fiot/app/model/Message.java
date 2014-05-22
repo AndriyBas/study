@@ -9,7 +9,7 @@ import java.util.UUID;
 /**
  * Граничний клас, що представляє таблицю MESSAGE_TBL у базі даних
  *
- * @author bamboo
+ * @author matiash
  */
 
 /*

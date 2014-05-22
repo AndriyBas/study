@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * команда видаляє зв’язок друзі між 2 профілями
+ * команда видаляє користувача із бази
  */
 @COMMAND(key = "removeUser")
 @CONTEXT(list = {

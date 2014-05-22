@@ -14,7 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * Клас відповідає за діалог, який збирає усі дані необхідні для створення нового студента
+ * Клас відповідає за діалог, який збирає усі дані необхідні для створення нового користувача
  */
 public class RegisterUserDialog extends JDialog
         implements PropertyChangeListener {

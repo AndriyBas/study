@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * команда виконує завантаження користувачів виконуюючи SQL-запит, що їй передається
+ * команда виконує завантаження постів
  */
 
 @COMMAND(key = "loadPosts")

@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * команда виконує встановлення зв’язку друзі між 2 профілями
+ * команда відповідає за реєстацію нового користувача
  */
 @COMMAND(key = "registerUser")
 @CONTEXT(list = {

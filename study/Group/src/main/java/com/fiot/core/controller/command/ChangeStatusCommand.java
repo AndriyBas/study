@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * команда виконує авторизацію користувача із логіном та паролем, що ії передаються
+ * команда виконує зміну прав користувача
  */
 @COMMAND(key = "changeStatus")
 @CONTEXT(list = {
