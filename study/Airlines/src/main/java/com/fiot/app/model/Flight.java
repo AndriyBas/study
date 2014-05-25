@@ -1,9 +1,12 @@
 package com.fiot.app.model;
 
+import com.fiot.app.AppConst;
 import com.fiot.dao.annotation.Primary;
 import com.fiot.dao.annotation.Stored;
+import com.fiot.dao.annotation.utils.converter.LongConverter;
 import com.fiot.dao.annotation.utils.converter.UUIDConverter;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -23,7 +26,7 @@ import java.util.UUID;
     `arr_time` BIGINT UNSIGNED ZEROFILL,
 
     `class_type` VARCHAR(50),
-    `price` INT UNSIGNED ZEROFILL,
+    `price` BIGINT UNSIGNED ZEROFILL,
 
 
     PRIMARY KEY (`flight_id`)
@@ -50,17 +53,17 @@ public class Flight {
     @Stored(name = "arr_air_id", converter = UUIDConverter.class)
     private UUID arrAirportID;
 
-    @Stored(name = "dep_time", converter = Long.class)
+    @Stored(name = "dep_time", converter = LongConverter.class)
     private long depTime;
 
-    @Stored(name = "arr_time", converter = Long.class)
+    @Stored(name = "arr_time", converter = LongConverter.class)
     private long arrTime;
 
     @Stored(name = "class_type")
     private String classType;
 
-    @Stored(name = "price", converter = Integer.class)
-    private int price;
+    @Stored(name = "price", converter = LongConverter.class)
+    private long price;
 
     private Airport depAirport;
     private Airport arrAirport;
@@ -75,7 +78,7 @@ public class Flight {
                   long depTime,
                   long arrTime,
                   String classType,
-                  int price) {
+                  long price) {
         this.id = id;
         this.depAirportID = depAirportID;
         this.arrAirportID = arrAirportID;
@@ -149,11 +152,25 @@ public class Flight {
         this.classType = classType;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("From : %s(%s) at %s -> To : %s(%s) at  %s, %s, %s",
+                getDepAirport().getCode(),
+                getDepAirport().getName(),
+                AppConst.DATE_FORMAT.format(new Date(getDepTime())),
+                getArrAirport().getCode(),
+                getArrAirport().getName(),
+                AppConst.DATE_FORMAT.format(new Date(getArrTime())),
+                getClassType(),
+                getPrice() + "$ "
+        );
     }
 }

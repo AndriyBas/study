@@ -1,7 +1,7 @@
 package com.fiot.core.controller.command;
 
 import com.fiot.app.AppConst;
-import com.fiot.app.model.User;
+import com.fiot.app.model.Flight;
 import com.fiot.core.controller.annotation.COMMAND;
 import com.fiot.core.controller.annotation.CONTEXT;
 import com.fiot.core.controller.annotation.PARAMETER;
@@ -15,14 +15,14 @@ import java.util.List;
  * команда виконує завантаження користувачів виконуюючи SQL-запит, що їй передається
  */
 
-@COMMAND(key = "loadUsers")
+@COMMAND(key = "loadFlights")
 @CONTEXT(list = {
         @PARAMETER(key = "sqlQuery", type = String.class),
         @PARAMETER(key = "list", type = ArrayList.class)
 })
-public class LoadUsersCommand extends AbstractCommand {
+public class LoadFlightsCommand extends AbstractCommand {
 
-    public LoadUsersCommand() {
+    public LoadFlightsCommand() {
     }
 
     /**
@@ -30,7 +30,7 @@ public class LoadUsersCommand extends AbstractCommand {
      *
      * @param context1 контекст команди
      */
-    public LoadUsersCommand(Context context1) {
+    public LoadFlightsCommand(Context context1) {
         setContext(context1);
     }
 
@@ -42,12 +42,12 @@ public class LoadUsersCommand extends AbstractCommand {
 
         String sqlQuery = (String) context.get("sqlQuery");
 
-        List<User> users = (List<User>) context.get("list");
+        List<Flight> flights = (List<Flight>) context.get("list");
 
         try {
-            List<User> list = AppConst.DAO.select(User.class, sqlQuery);
-            for (User u : list) {
-                users.add(u);
+            List<Flight> list = AppConst.DAO.select(Flight.class, sqlQuery);
+            for (Flight f : list) {
+                flights.add(f);
             }
 
         } catch (DAOException e) {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="120.25" y="0.0">com.fiot.app.model.User</node>
+    <node x="0.0" y="493.0">com.fiot.app.App</node>
+    <node x="0.0" y="270.0">com.fiot.app.model.Message</node>
+    <node x="264.0" y="323.5">com.fiot.app.AppConst</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.fiot.app.model.Message" target="com.fiot.app.model.User">
+      <point x="0.0" y="-89.0" />
+      <point x="122.0" y="245.0" />
+      <point x="184.5" y="245.0" />
+      <point x="-64.25" y="110.0" />
+    </edge>
+    <edge source="com.fiot.app.AppConst" target="com.fiot.app.model.User">
+      <point x="0.0" y="-35.5" />
+      <point x="375.5" y="245.0" />
+      <point x="313.0" y="245.0" />
+      <point x="64.25" y="110.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="243.5" y="271.5" />
+  <SelectedNodes>
+    <node>com.fiot.app.model.User</node>
+    <node>com.fiot.app.App</node>
+    <node>com.fiot.app.model.Message</node>
+    <node>com.fiot.app.AppConst</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

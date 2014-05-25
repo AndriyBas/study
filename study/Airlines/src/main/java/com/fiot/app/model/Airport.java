@@ -22,8 +22,29 @@ import java.util.UUID;
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-    INSERT INTO FRIEND_RELATION_TBL ( friend_relation_id, first_id, second_id)
-    VALUES ("77703571-a1d2-4aef-8ab2-1494a2404fd6",  "abb03571-a1d2-4aef-8ab2-2494a2404fd5", "bab03571-a1d2-4aef-8ab2-2494a2404fd5");
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11103571-a1d2-4aef-8ab2-1494a2404fd6",  "KBP", "Boryspil International");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11203571-a1d2-4aef-8ab2-1494a2404fd6",  "LGW", "London Gatwick");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11303571-a1d2-4aef-8ab2-1494a2404fd6",  "LCY", "London City");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11403571-a1d2-4aef-8ab2-1494a2404fd6",  "LHR", "London Heathrow");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11503571-a1d2-4aef-8ab2-1494a2404fd6",  "LBG", "Paris-Le Bourget");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11603571-a1d2-4aef-8ab2-1494a2404fd6",  "ORY", "Paris-Orly");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11703571-a1d2-4aef-8ab2-1494a2404fd6",  "SNY", "Sidney");
+
+    INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
+    VALUES ("11803571-a1d2-4aef-8ab2-1494a2404fd6",  "LGA", "La Guardia");
 
 
  */

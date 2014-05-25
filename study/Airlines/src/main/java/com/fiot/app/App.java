@@ -4,10 +4,7 @@ import com.fiot.config.AppConfig;
 import com.fiot.config.ConfigReader;
 import com.fiot.config.impl.JSONConfigReader;
 import com.fiot.core.controller.CommandExecutor;
-import com.fiot.core.controller.command.AddToFriendCommand;
-import com.fiot.core.controller.command.LoadUsersCommand;
-import com.fiot.core.controller.command.LogInCommand;
-import com.fiot.core.controller.command.RegisterUserCommand;
+import com.fiot.core.controller.command.*;
 import com.fiot.dao.impl.DAOCRUDJdbc;
 import com.fiot.ui.LoginForm;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -40,11 +37,12 @@ public class App {
 
         CommandExecutor executor = CommandExecutor.getInstance();
 
-        executor.addCommand(AddToFriendCommand.class);
         executor.addCommand(LogInCommand.class);
         executor.addCommand(RegisterUserCommand.class);
+        executor.addCommand(LoadFlightsCommand.class);
+        executor.addCommand(UpdateUserCommand.class);
 
-        executor.addCommand(LoadUsersCommand.class);
+        executor.addCommand(UpdateFlight.class);
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {

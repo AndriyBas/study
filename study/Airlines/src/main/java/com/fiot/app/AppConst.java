@@ -26,7 +26,7 @@ public class AppConst {
     public static AppConfig APP_CONFIG;
 
     static {
-        DATE_FORMAT = new SimpleDateFormat("d/M/y");
+        DATE_FORMAT = new SimpleDateFormat("d/M/y H:m");
         SESSION_TIME = 0;
     }
 

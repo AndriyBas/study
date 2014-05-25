@@ -115,5 +115,4 @@ public class LoginForm extends JFrame {
             e.printStackTrace();
         }
     }
-
 }
