@@ -1,6 +1,8 @@
 package com.fiot.ui;
 
 import com.fiot.app.AppConst;
+import com.fiot.app.model.Airport;
+import com.fiot.dao.exception.DAOException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,19 +16,22 @@ import java.awt.event.KeyEvent;
 public class MainForm extends JFrame {
     private JTabbedPane mTabbedPane1;
     private JPanel rootPane;
-    private JComboBox mComboBox2;
-    private JComboBox mComboBox3;
-    private JComboBox mComboBox4;
-    private JComboBox mComboBox5;
+    private JComboBox mComboBoxDepAir;
+    private JComboBox mComboBoxArrAir;
+    private JComboBox mComboBoxClass;
+    private JComboBox mComboBoxPrice;
     private JButton mПошукButton;
-    private JTable mTable1;
+    private JTable mTableFlights;
     private JTextField mTextFieldFirstName;
     private JTextField mTextFieldSecondName;
     private JTextField mTextFieldEmail;
     private JPasswordField mPasswordField1;
     private JFormattedTextField mFormattedTextFieldPhone;
     private JTextField mTextFieldAddress;
-    private JTable mTable2;
+    private JTable mTableOrdered;
+    private JButton mЗберегтиButton;
+
+    private java.util.List<Airport> mAirports;
 
     public MainForm() {
         super((String) AppConst.APP_CONFIG.getValue("programTitle"));
@@ -47,8 +52,30 @@ public class MainForm extends JFrame {
     private void init() {
 
         addJMenu();
+        try {
+            mAirports = AppConst.DAO.select(Airport.class, "");
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+
+        mComboBoxArrAir.addItem("Усі");
+        mComboBoxDepAir.addItem("Усі");
+        for (Airport a : mAirports) {
+            mComboBoxArrAir.addItem(a);
+            mComboBoxDepAir.addItem(a);
+        }
+
+        mComboBoxClass.addItem("Економ");
+        mComboBoxClass.addItem("Бізнес");
+        mComboBoxClass.addItem("Змішаний");
+
+
+        mComboBoxClass.setSelectedIndex(0);
+        mComboBoxArrAir.setSelectedIndex(0);
+        mComboBoxDepAir.setSelectedIndex(0);
 
     }
+
 
     /**
      * ініціалізує меню у програмі

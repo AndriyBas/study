@@ -7,6 +7,7 @@ import com.fiot.core.controller.CommandExecutor;
 import com.fiot.core.controller.command.AddToFriendCommand;
 import com.fiot.core.controller.command.LoadUsersCommand;
 import com.fiot.core.controller.command.LogInCommand;
+import com.fiot.core.controller.command.RegisterUserCommand;
 import com.fiot.dao.impl.DAOCRUDJdbc;
 import com.fiot.ui.LoginForm;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -41,6 +42,7 @@ public class App {
 
         executor.addCommand(AddToFriendCommand.class);
         executor.addCommand(LogInCommand.class);
+        executor.addCommand(RegisterUserCommand.class);
 
         executor.addCommand(LoadUsersCommand.class);
         try {

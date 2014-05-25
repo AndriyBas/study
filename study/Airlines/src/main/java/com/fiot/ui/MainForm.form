@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="rootPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="607" height="470"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -38,25 +38,25 @@
                       <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
                     </constraints>
                   </vspacer>
-                  <component id="dbe69" class="javax.swing.JComboBox" binding="mComboBox2" default-binding="true">
+                  <component id="dbe69" class="javax.swing.JComboBox" binding="mComboBoxDepAir">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="2db42" class="javax.swing.JComboBox" binding="mComboBox3" default-binding="true">
+                  <component id="2db42" class="javax.swing.JComboBox" binding="mComboBoxArrAir">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="8b7c9" class="javax.swing.JComboBox" binding="mComboBox4" default-binding="true">
+                  <component id="8b7c9" class="javax.swing.JComboBox" binding="mComboBoxClass">
                     <constraints>
                       <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="ca8ca" class="javax.swing.JComboBox" binding="mComboBox5" default-binding="true">
+                  <component id="ca8ca" class="javax.swing.JComboBox" binding="mComboBoxPrice">
                     <constraints>
                       <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -112,7 +112,7 @@
                 <properties/>
                 <border type="etched" title="Рейси"/>
                 <children>
-                  <component id="45f74" class="javax.swing.JTable" binding="mTable1" default-binding="true">
+                  <component id="45f74" class="javax.swing.JTable" binding="mTableFlights">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="50"/>
@@ -140,7 +140,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <grid id="f1b50" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                  <grid id="f1b50" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -148,19 +148,29 @@
                     <properties/>
                     <border type="etched" title="Профіль"/>
                     <children>
-                      <grid id="c9e3b" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                      <grid id="c9e3b" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties/>
                         <border type="none"/>
-                        <children/>
+                        <children>
+                          <component id="8e75a" class="javax.swing.JLabel">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties>
+                              <icon value="face.png"/>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
                       </grid>
                       <grid id="d8aea" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <minimumSize width="260" height="240"/>
@@ -285,6 +295,14 @@
                           </component>
                         </children>
                       </grid>
+                      <component id="b3d1f" class="javax.swing.JButton" binding="mЗберегтиButton" default-binding="true">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Зберегти"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                 </children>
@@ -297,7 +315,7 @@
                 <properties/>
                 <border type="etched" title="Замовлення"/>
                 <children>
-                  <component id="e705a" class="javax.swing.JTable" binding="mTable2" default-binding="true">
+                  <component id="e705a" class="javax.swing.JTable" binding="mTableOrdered">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="50"/>

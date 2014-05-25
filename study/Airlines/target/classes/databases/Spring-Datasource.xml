@@ -9,7 +9,7 @@
             >
 
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/friends?characterEncoding=UTF-8"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/airlines?characterEncoding=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value="Zk.,k.rgsnow1!1"/>
 
