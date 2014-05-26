@@ -245,7 +245,7 @@ public class NewAdminCustomDialog extends JDialog
                     c.put("password", userPassword);
 
                     try {
-                        CommandExecutor.getInstance().execute("registerAdmin", c, null);
+                        CommandExecutor.getInstance().execute("registerAdmin", c);
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }

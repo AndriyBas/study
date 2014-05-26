@@ -120,7 +120,7 @@ public class NewGroupCustomDialog extends JDialog
                     c.put("name", groupName);
                     c.put("faculty", groupFaculty);
                     try {
-                        CommandExecutor.getInstance().execute("registerGroup", c, null);
+                        CommandExecutor.getInstance().execute("registerGroup", c);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

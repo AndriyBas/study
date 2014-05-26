@@ -7,7 +7,6 @@ import com.oyster.core.controller.annotation.CONTEXT;
 import com.oyster.core.controller.annotation.PARAMETER;
 import com.oyster.dao.exception.DAOException;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +18,11 @@ import java.util.List;
         @PARAMETER(key = "sqlQuery", type = String.class),
         @PARAMETER(key = "list", type = ArrayList.class)
 })
-public class LoadScheduleCommand extends AbstractCommand {
+public class LoadScheduleCommand extends AsyncCommand<Integer, Boolean> {
 
-    public LoadScheduleCommand() {
-    }
-
-    /**
-     * Конструктор
-     * @param context1 контекст команди
-     */
-    public LoadScheduleCommand(Context context1) {
-        setContext(context1);
-    }
-
-    /**
-     * виконує роботу команди
-     */
     @Override
-    public void run() {
+    protected Boolean doInBackGround(Context context) {
+
 
         String sqlQuery = (String) context.get("sqlQuery");
 
@@ -44,18 +30,21 @@ public class LoadScheduleCommand extends AbstractCommand {
 
         try {
             List<Classes> list = AppConst.DAO.select(Classes.class, sqlQuery);
+
             for (Classes c : list) {
                 classesList.add(c);
             }
 
         } catch (DAOException e) {
             e.printStackTrace();
+            return false;
         }
 
-
-        if (getOnPostExecute() != null) {
-            SwingUtilities.invokeLater(getOnPostExecute());
-        }
+        return true;
     }
 
+    @Override
+    protected void onPostExecute(Boolean aBoolean) {
+        System.out.println("Loaded " + (aBoolean ? "" : "un") + "successfully !");
+    }
 }

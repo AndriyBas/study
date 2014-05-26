@@ -1,7 +1,7 @@
 package com.oyster.core.controller;
 
 import com.oyster.core.controller.annotation.COMMAND;
-import com.oyster.core.controller.command.AbstractCommand;
+import com.oyster.core.controller.command.AsyncCommand;
 import com.oyster.core.controller.command.Context;
 import com.oyster.core.controller.exception.CommandNotFoundException;
 import com.oyster.core.controller.exception.InvalidCommandParameterException;
@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Клас відповідає за реєстрацію, валідацію та виконання команд,
@@ -30,6 +29,10 @@ public class CommandExecutor {
      */
     private static volatile CommandExecutor sCommandExecutor;
     private static final Object LOCK = new Object();
+
+    public ExecutorService getThreadExecutorService() {
+        return threadExecutorService;
+    }
 
     private ExecutorService threadExecutorService;
 
@@ -73,7 +76,17 @@ public class CommandExecutor {
      * @param action ключ команди
      * @param params контекст команди
      */
-    public void execute(String action, Context params, Runnable onPostExecute) throws CommandNotFoundException, InstantiationException, IllegalAccessException, InvalidCommandParameterException {
+    public void execute(String action, Context params) throws CommandNotFoundException, InstantiationException, IllegalAccessException, InvalidCommandParameterException {
+        execute(action, params, null);
+    }
+
+    /**
+     * виконує команду у  фоновому режимі
+     *
+     * @param action ключ команди
+     * @param params контекст команди
+     */
+    public void execute(String action, Context params, Runnable runnable) throws CommandNotFoundException, InstantiationException, IllegalAccessException, InvalidCommandParameterException {
 
         Class commandClass = findCommandByAction(action);
 
@@ -81,16 +94,14 @@ public class CommandExecutor {
             throw new CommandNotFoundException();
         }
 
-        AbstractCommand c = (AbstractCommand) commandClass.newInstance();
+        AsyncCommand c = (AsyncCommand) commandClass.newInstance();
 
         Validator.validate(c.getClass(), params);
 
-        c.setContext(params);
+        c.execute(params);
 
-        c.setOnPostExecute(onPostExecute);
-
-        threadExecutorService.submit(c);
-
+        getThreadExecutorService()
+                .submit(runnable);
     }
 
     /**

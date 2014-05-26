@@ -108,7 +108,7 @@ public class NewFacultyCustomDialog extends JDialog
                     Context c = new Context();
                     c.put("name", facultyName);
                     try {
-                        CommandExecutor.getInstance().execute("registerFaculty", c, null);
+                        CommandExecutor.getInstance().execute("registerFaculty", c);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

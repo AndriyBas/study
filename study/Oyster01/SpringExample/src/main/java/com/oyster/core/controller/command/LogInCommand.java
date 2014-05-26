@@ -23,25 +23,11 @@ import java.util.List;
         @PARAMETER(key = "username", type = String.class),
         @PARAMETER(key = "password", type = String.class)
 })
-public class LogInCommand extends AbstractCommand {
+public class LogInCommand extends AsyncCommand<String, Admin> {
 
-    public LogInCommand() {
-    }
-
-    /**
-     * Конструктор
-     *
-     * @param context1 контекст команди
-     */
-    public LogInCommand(Context context1) {
-        setContext(context1);
-    }
-
-    /**
-     * виконує роботу команди
-     */
     @Override
-    public void run() {
+    protected Admin doInBackGround(Context context) {
+
 
         final String userName = (String) context.get("username");
         final String userPassword = (String) context.get("password");
@@ -58,24 +44,13 @@ public class LogInCommand extends AbstractCommand {
             });
         } catch (final DAOException e) {
             e.printStackTrace();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.showErrorDialog(null, Utils.makePretty(e.getMessage()));
-                }
-            });
-            return;
+            publishProgress(e.getMessage());
+            return null;
         }
 
         if (profiles.size() == 0) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.showErrorDialog(null, "Помилка авторизації : неправильні логін чи пароль !");
-                }
-            });
-
-            return;
+            publishProgress("Помилка авторизації : неправильні логін чи пароль !");
+            return null;
         }
 
         final Profile profile = profiles.get(0);
@@ -93,43 +68,39 @@ public class LogInCommand extends AbstractCommand {
             wi = AppConst.DAO.read(WorkerInfo.class, admins.get(0).getWorkerInfoId());
         } catch (final Exception e) {
             e.printStackTrace();
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.showErrorDialog(null, Utils.makePretty(e.getMessage()));
-                }
-            });
-
-            return;
+            publishProgress(e.getMessage());
+            return null;
         }
 
         if (admins.size() == 0) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.showErrorDialog(null, "Помилка авторизації : дані логін та пароль не відповідають адміністратору !");
-                }
-            });
-
-            return;
+            publishProgress("Помилка авторизації : дані логін та пароль не відповідають адміністратору !");
+            return null;
         }
 
-        final Admin admin = admins.get(0);
+        Admin admin = admins.get(0);
         admin.setProfile(profile);
         admin.setWorkerInfo(wi);
 
-        AppConst.setCurrentAdmin(admin);
+        return admin;
+    }
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MainForm form = new MainForm();
-            }
-        });
+    @Override
+    protected void onPostExecute(Admin admin) {
+        if (admin != null) {
+            AppConst.setCurrentAdmin(admin);
+            new MainForm();
+        } else {
 
-        if (getOnPostExecute() != null) {
-            SwingUtilities.invokeLater(getOnPostExecute());
         }
     }
 
+    @Override
+    protected void onProgressUpdate(final String... progress) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                Utils.showErrorDialog(null, Utils.makePretty(progress[0]));
+            }
+        });
+    }
 }

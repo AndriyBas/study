@@ -249,7 +249,7 @@ public class NewTeacherCustomDialog extends JDialog
                     c.put("password", userPassword);
 
                     try {
-                        CommandExecutor.getInstance().execute("registerTeacher", c, null);
+                        CommandExecutor.getInstance().execute("registerTeacher", c);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

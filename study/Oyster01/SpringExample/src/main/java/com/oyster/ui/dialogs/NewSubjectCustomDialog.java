@@ -105,7 +105,7 @@ public class NewSubjectCustomDialog extends JDialog
                     Context c = new Context();
                     c.put("name", subjectName);
                     try {
-                        CommandExecutor.getInstance().execute("registerSubject", c, null);
+                        CommandExecutor.getInstance().execute("registerSubject", c);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

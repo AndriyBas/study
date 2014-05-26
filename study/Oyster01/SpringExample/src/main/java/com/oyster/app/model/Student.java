@@ -35,7 +35,6 @@ public class Student implements IProfile {
 
     private Profile profile;
 
-
     private Group group;
 
     public Student() {

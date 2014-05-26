@@ -260,7 +260,7 @@ public class NewStudentCustomDialog extends JDialog
                     c.put("password", userPassword);
 
                     try {
-                        CommandExecutor.getInstance().execute("registerStudent", c, null);
+                        CommandExecutor.getInstance().execute("registerStudent", c);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }

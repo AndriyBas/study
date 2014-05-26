@@ -7,7 +7,6 @@ import com.oyster.core.controller.annotation.CONTEXT;
 import com.oyster.core.controller.annotation.PARAMETER;
 import com.oyster.dao.exception.DAOException;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,26 +19,11 @@ import java.util.List;
         @PARAMETER(key = "sqlQuery", type = String.class),
         @PARAMETER(key = "list", type = ArrayList.class)
 })
-public class LoadHistoryCommand extends AbstractCommand {
+public class LoadHistoryCommand extends AsyncCommand<Void, Boolean> {
 
-    public LoadHistoryCommand() {
-    }
 
-    /**
-     * Конструктор
-     *
-     * @param context1 контекст команди
-     */
-    public LoadHistoryCommand(Context context1) {
-        setContext(context1);
-    }
-
-    /**
-     * виконує роботу команди
-     */
     @Override
-    public void run() {
-
+    protected Boolean doInBackGround(Context context) {
         String sqlQuery = (String) context.get("sqlQuery");
 
         List<History> histories = (List<History>) context.get("list");
@@ -52,12 +36,14 @@ public class LoadHistoryCommand extends AbstractCommand {
 
         } catch (DAOException e) {
             e.printStackTrace();
+            return false;
         }
 
-
-        if (getOnPostExecute() != null) {
-            SwingUtilities.invokeLater(getOnPostExecute());
-        }
+        return true;
     }
 
+    @Override
+    protected void onPostExecute(Boolean aBoolean) {
+        System.out.println("Loaded " + (aBoolean ? "" : "un") + "successfully !");
+    }
 }

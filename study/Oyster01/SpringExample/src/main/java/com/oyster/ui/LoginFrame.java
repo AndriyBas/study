@@ -20,15 +20,22 @@ public class LoginFrame extends JFrame implements ActionListener {
     private String userName = null;
     private String userPassword = null;
 
+    private static LoginFrame instance;
+
     /**
      * Конструктор форми
      */
     public LoginFrame() {
         super((String) AppConst.APP_CONFIG.getValue("progTitle"));
+        instance = this;
         JPanel panel = new JPanel();
         add(panel);
         placeComponents(panel);
         setLocationRelativeTo(null);
+    }
+
+    public static LoginFrame getInstance() {
+        return instance;
     }
 
     /**
@@ -60,6 +67,9 @@ public class LoginFrame extends JFrame implements ActionListener {
         loginButton.setBounds(160, 80, 100, 25);
         loginButton.addActionListener(this);
         panel.add(loginButton);
+
+        userText.setText("admin-root");
+        passwordText.setText("admin");
     }
 
     /**
@@ -75,8 +85,8 @@ public class LoginFrame extends JFrame implements ActionListener {
         boolean errorOccurred = false;
         JTextComponent focusComponent = userText;
 
-        userName = "admin-root";//userText.getText();
-        userPassword = "admin";//new String(passwordText.getPassword());
+        userName = userText.getText();
+        userPassword = new String(passwordText.getPassword());
 /*
         if (userName.trim().length() == 0) {
             errorMsg.append(" логін");
@@ -120,16 +130,12 @@ public class LoginFrame extends JFrame implements ActionListener {
         c.put("password", userPassword);
 
         try {
-            CommandExecutor.getInstance().execute("logIn", c, new Runnable() {
-                @Override
-                public void run() {
-                    LoginFrame.this.dispose();
-
-                }
-            });
+            CommandExecutor.getInstance().execute("logIn", c);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        LoginFrame.this.dispose();
 
     }
 }

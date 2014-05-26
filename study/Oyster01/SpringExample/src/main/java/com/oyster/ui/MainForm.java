@@ -4,6 +4,7 @@ import com.oyster.app.AppConst;
 import com.oyster.app.model.*;
 import com.oyster.core.controller.CommandExecutor;
 import com.oyster.core.controller.command.Context;
+import com.oyster.core.controller.command.TestCommand;
 import com.oyster.dao.DAOFilter;
 import com.oyster.dao.exception.DAOException;
 import com.oyster.ui.dialogs.*;
@@ -21,6 +22,7 @@ import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 
 /**
@@ -66,6 +68,7 @@ public class MainForm extends JFrame {
     private JTextField mTextFieldInfo4;
     private JScrollPane mScrollPanePeople;
     private JList mListTab2Group;
+    private JButton mTestButton;
 
     private IProfile currentPerson;
 
@@ -125,6 +128,18 @@ public class MainForm extends JFrame {
      * ініціалізує елементи інтерфейсу
      */
     private void hardCoreInit() {
+
+        mTestButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Random r = new Random();
+                char a = (char) ('a' + r.nextInt(26));
+                Context context = new Context();
+                context.put("power", 10);
+                new TestCommand(String.valueOf(a)).execute(context);
+            }
+        });
 
         addJMenu();
         mButtonNewUser.addActionListener(new ActionListener() {
@@ -221,7 +236,7 @@ public class MainForm extends JFrame {
         c.put("profile", currentPerson);
 
         try {
-            CommandExecutor.getInstance().execute("deleteIProfile", c, null);
+            CommandExecutor.getInstance().execute("deleteIProfile", c);
         } catch (Exception e) {
             e.printStackTrace();
         }

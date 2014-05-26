@@ -8,35 +8,19 @@ import com.oyster.core.controller.annotation.CONTEXT;
 import com.oyster.core.controller.annotation.PARAMETER;
 import com.oyster.dao.exception.DAOException;
 
-import javax.swing.*;
 import java.util.UUID;
 
 /**
  * команда виконує видалення профілю, що передається ії параметром
- * 
  */
 @COMMAND(key = "deleteIProfile")
 @CONTEXT(list = {
         @PARAMETER(key = "profile", type = IProfile.class)
 })
-public class DeleteIProfileCommand extends AbstractCommand {
+public class DeleteIProfileCommand extends AsyncCommand<Void, Boolean> {
 
-    public DeleteIProfileCommand() {
-    }
-
-    /**
-     * Конструктор
-     * @param context1 контекст команди
-     */
-    public DeleteIProfileCommand(Context context1) {
-        setContext(context1);
-    }
-
-    /**
-     * виконує роботу команди
-     */
     @Override
-    public void run() {
+    protected Boolean doInBackGround(Context context) {
 
         IProfile currentPerson = (IProfile) context.get("profile");
 
@@ -53,11 +37,14 @@ public class DeleteIProfileCommand extends AbstractCommand {
 
         } catch (DAOException e) {
             e.printStackTrace();
+            return false;
         }
 
-        if (getOnPostExecute() != null) {
-            SwingUtilities.invokeLater(getOnPostExecute());
-        }
+        return true;
     }
 
+    @Override
+    protected void onPostExecute(Boolean aBoolean) {
+        System.out.println("Deleted " + (aBoolean ? "" : "un") + "successfully !");
+    }
 }

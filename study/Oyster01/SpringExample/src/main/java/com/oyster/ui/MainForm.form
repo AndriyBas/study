@@ -340,6 +340,12 @@
                           <toolTipText value="Видалити акаунт"/>
                         </properties>
                       </component>
+                      <component id="23320" class="javax.swing.JButton" binding="mTestButton" default-binding="true">
+                        <constraints/>
+                        <properties>
+                          <text value="test"/>
+                        </properties>
+                      </component>
                     </children>
                   </grid>
                   <scrollpane id="c8283">
