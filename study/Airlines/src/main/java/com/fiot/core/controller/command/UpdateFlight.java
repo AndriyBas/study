@@ -12,9 +12,8 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * команда виконує завантаження користувачів виконуюючи SQL-запит, що їй передається
+ * команда виконує оновлення рейсу, або створення нового, якщо такого ще немає, на основі даних, що ії передаються
  */
-
 @COMMAND(key = "updateFlight")
 @CONTEXT(list = {
         @PARAMETER(key = "id", type = UUID.class),
@@ -66,7 +65,7 @@ public class UpdateFlight extends AbstractCommand {
         );
 
         try {
-            AppConst.DAO.replace(flight);
+            AppConst.DAO.insert(flight);
 
         } catch (DAOException e) {
             e.printStackTrace();

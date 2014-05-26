@@ -1,0 +1,11 @@
+{
+    "programTitle": "Small Sun",
+    "mainScreenWidth": 850,
+    "mainScreenHeight": 560,
+    "logInScreenWidth": 300,
+    "logInScreenHeight": 100,
+    "registerScreenWidth": 260,
+    "registerScreenHeight": 240,
+    "flightScreenWidth": 430,
+    "flightScreenHeight": 270
+}

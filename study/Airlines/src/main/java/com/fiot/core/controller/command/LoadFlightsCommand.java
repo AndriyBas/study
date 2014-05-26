@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * команда виконує завантаження користувачів виконуюючи SQL-запит, що їй передається
+ * команда виконує завантаження htqcsd виконуюючи SQL-запит, що їй передається
  */
 
 @COMMAND(key = "loadFlights")

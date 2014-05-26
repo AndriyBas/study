@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by bamboo on 25.05.14.
+ * Клас Інтерфейсу, відповідає за вікно авторизації
  */
 public class LoginForm extends JFrame {
 
@@ -25,6 +25,9 @@ public class LoginForm extends JFrame {
     private String userName;
     private String userPassword;
 
+    /**
+     * Конструктор, створює компоненти
+     */
     public LoginForm() {
         super((String) AppConst.APP_CONFIG.getValue("programTitle") + " : Авторизація");
         add(rootPane);
@@ -41,10 +44,16 @@ public class LoginForm extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * ініціалізує компоненти
+     */
     private void init() {
 
+        //****************************************
         mFieldEmail.setText("losha@gmail.com");
         mFieldPassword.setText("password");
+        //*******************************************
+
 
         mButtonRegister.addActionListener(new ActionListener() {
             @Override
@@ -98,6 +107,9 @@ public class LoginForm extends JFrame {
         });
     }
 
+    /**
+     * відправляє команду реєстрації у контролер
+     */
     private void tryToLogIn() {
 
         Context c = new Context();

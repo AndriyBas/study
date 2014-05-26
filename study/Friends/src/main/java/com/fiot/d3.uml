@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="211.0" y="613.0">com.fiot.core.controller.Validator</node>
+    <node x="0.0" y="263.5">com.fiot.core.controller.command.LoadUsersCommand</node>
+    <node x="330.0" y="412.0">com.fiot.core.controller.utils.ControllerAnnotationUtils</node>
+    <node x="0.0" y="412.0">com.fiot.core.controller.CommandExecutor</node>
+    <node x="173.85416666666663" y="31.5">com.fiot.core.controller.annotation.CONTEXT</node>
+    <node x="427.5" y="31.5">com.fiot.core.controller.annotation.COMMAND</node>
+    <node x="479.0" y="263.5">com.fiot.core.controller.command.RemoveFromFriendCommand</node>
+    <node x="255.99999999999997" y="263.5">com.fiot.core.controller.command.LogInCommand</node>
+    <node x="513.0" y="613.0">com.fiot.core.controller.command.Context</node>
+    <node x="788.0" y="253.0">com.fiot.core.controller.command.AddToFriendCommand</node>
+    <node x="628.7291666666666" y="0.0">com.fiot.core.controller.command.AbstractCommand</node>
+    <node x="0.0" y="613.0">com.fiot.core.controller.annotation.PARAMETER</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.fiot.core.controller.command.AddToFriendCommand" target="com.fiot.core.controller.annotation.CONTEXT">
+      <point x="-89.33333333333326" y="-57.0" />
+      <point x="832.6666666666667" y="153.0" />
+      <point x="321.72916666666663" y="153.0" />
+      <point x="63.375" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.LogInCommand" target="com.fiot.core.controller.command.AbstractCommand">
+      <point x="67.66666666666669" y="-46.5" />
+      <point x="425.16666666666663" y="223.0" />
+      <point x="720.6041666666666" y="223.0" />
+      <point x="-30.625" y="56.5" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.AddToFriendCommand" target="com.fiot.core.controller.command.AbstractCommand">
+      <point x="89.33333333333337" y="-57.0" />
+      <point x="1011.3333333333334" y="133.0" />
+      <point x="843.1041666666666" y="133.0" />
+      <point x="91.875" y="56.5" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.LogInCommand" target="com.fiot.core.controller.annotation.COMMAND">
+      <point x="0.0" y="-46.5" />
+      <point x="357.5" y="203.0" />
+      <point x="474.75" y="203.0" />
+      <point x="-15.75" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.RemoveFromFriendCommand" target="com.fiot.core.controller.annotation.CONTEXT">
+      <point x="-96.33333333333326" y="-46.5" />
+      <point x="527.1666666666667" y="173.0" />
+      <point x="279.47916666666663" y="173.0" />
+      <point x="21.125" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.RemoveFromFriendCommand" target="com.fiot.core.controller.command.AbstractCommand">
+      <point x="96.33333333333337" y="-46.5" />
+      <point x="719.8333333333334" y="233.0" />
+      <point x="781.8541666666666" y="233.0" />
+      <point x="30.625" y="56.5" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.RemoveFromFriendCommand" target="com.fiot.core.controller.annotation.COMMAND">
+      <point x="0.0" y="-46.5" />
+      <point x="623.5" y="163.0" />
+      <point x="506.25" y="163.0" />
+      <point x="15.75" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.LoadUsersCommand" target="com.fiot.core.controller.command.AbstractCommand">
+      <point x="78.66666666666669" y="-46.5" />
+      <point x="196.66666666666669" y="213.0" />
+      <point x="659.3541666666666" y="213.0" />
+      <point x="-91.875" y="56.5" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.LoadUsersCommand" target="com.fiot.core.controller.annotation.COMMAND">
+      <point x="-1.4210854715202004E-14" y="-46.5" />
+      <point x="118.0" y="193.0" />
+      <point x="443.25" y="193.0" />
+      <point x="-47.25" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.LogInCommand" target="com.fiot.core.controller.annotation.CONTEXT">
+      <point x="-67.66666666666669" y="-46.5" />
+      <point x="289.83333333333326" y="183.0" />
+      <point x="237.22916666666663" y="183.0" />
+      <point x="-21.125" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.LoadUsersCommand" target="com.fiot.core.controller.annotation.CONTEXT">
+      <point x="-78.66666666666669" y="-46.5" />
+      <point x="39.333333333333314" y="183.0" />
+      <point x="194.97916666666663" y="183.0" />
+      <point x="-63.375" y="25.0" />
+    </edge>
+    <edge source="com.fiot.core.controller.command.AddToFriendCommand" target="com.fiot.core.controller.annotation.COMMAND">
+      <point x="0.0" y="-57.0" />
+      <point x="922.0" y="143.0" />
+      <point x="537.75" y="143.0" />
+      <point x="47.25" y="25.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7986206896551724" x="528.0" y="352.5" />
+  <SelectedNodes>
+    <node>com.fiot.core.controller.Validator</node>
+    <node>com.fiot.core.controller.command.LoadUsersCommand</node>
+    <node>com.fiot.core.controller.utils.ControllerAnnotationUtils</node>
+    <node>com.fiot.core.controller.CommandExecutor</node>
+    <node>com.fiot.core.controller.annotation.CONTEXT</node>
+    <node>com.fiot.core.controller.annotation.COMMAND</node>
+    <node>com.fiot.core.controller.command.RemoveFromFriendCommand</node>
+    <node>com.fiot.core.controller.command.LogInCommand</node>
+    <node>com.fiot.core.controller.command.Context</node>
+    <node>com.fiot.core.controller.command.AddToFriendCommand</node>
+    <node>com.fiot.core.controller.command.AbstractCommand</node>
+    <node>com.fiot.core.controller.annotation.PARAMETER</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

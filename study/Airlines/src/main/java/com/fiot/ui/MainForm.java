@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 25.05.14.
+ * Клас інтерфейсу, відповідає за головне вікно
  */
 public class MainForm extends JFrame {
     private JTabbedPane mTabbedPane1;
@@ -44,6 +44,9 @@ public class MainForm extends JFrame {
     private java.util.List<Airport> mAirports;
     private java.util.Map<UUID, Airport> mapAir;
 
+    /**
+     * Конструктор, створює компоненти
+     */
     public MainForm() {
         super((String) AppConst.APP_CONFIG.getValue("programTitle"));
         add(rootPane);
@@ -60,6 +63,9 @@ public class MainForm extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * ініціалізує компоненти
+     */
     private void init() {
 
         addJMenu();
@@ -148,6 +154,8 @@ public class MainForm extends JFrame {
             }
         });
 
+
+/************************************************************************************************/
         mJPopupMenu = new JPopupMenu();
         JMenuItem item = new JMenuItem("Замовити");
         item.addActionListener(new ActionListener() {
@@ -204,6 +212,8 @@ public class MainForm extends JFrame {
                 }
             }
         });
+        /*********************************************************************/
+
 
         mButtonUpdate.addActionListener(new ActionListener() {
             @Override
@@ -236,6 +246,10 @@ public class MainForm extends JFrame {
         });
     }
 
+
+    /**
+     * функція завантажує замовлення
+     */
     private void reloadOrdered() {
 
         String sql = "select b.* from ORDER_TBL a JOIN FLIGHT_TBL b on ( (a.flight_id = b.flight_id) "
@@ -244,6 +258,11 @@ public class MainForm extends JFrame {
     }
 
 
+    /**
+     * функція завантадує рейси
+     * @param sqlQuery sql-запит для виконання
+     * @param jList список, куди завантажити рейси
+     */
     private void reloadFlights(String sqlQuery, final JList jList) {
         final ArrayList<Flight> list = new ArrayList<>();
         Context c = new Context();
@@ -318,8 +337,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         MainForm.this,
-                        // TODO
-                        "тут інфа про компанію",
+                        "Тут знаходиться інформація про компанію !",
                         "Про компанію",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -333,8 +351,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         MainForm.this,
-                        // TODO
-                        "тут інфа",
+                        "Тут ви можете знайти інформацію про всі необхідні документи !",
                         "Необхідні документи",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -348,8 +365,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         MainForm.this,
-                        // TODO
-                        "тут інфа",
+                        "Тут ви можете знайти інформацію про вартість послуг",
                         "Вартість послуг",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -363,8 +379,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         MainForm.this,
-                        // TODO
-                        "тут інфа",
+                        "Тут знаходиться необхідна інформація про правила перевезення дітей",
                         "Перевезення дітей",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -379,8 +394,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         MainForm.this,
-                        // TODO
-                        "тут інфа ",
+                        "Якщо хочете прочитати детальну інформацію про перевезення тварин, \nзаходьте сюди ! ",
                         "Перевезення тварин",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -394,8 +408,7 @@ public class MainForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(
                         MainForm.this,
-                        // TODO
-                        "тут інфа ",
+                        "Про перевезення людей із особливими потребами, почитайте тут ! ",
                         "Перевезення людей із особливими потребами",
                         JOptionPane.INFORMATION_MESSAGE
                 );

@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by bamboo on 25.05.14.
+ * Клас інтерфейсу, відповідає за вікно реєстрації
  */
 public class RegisterForm extends JFrame {
     private JTextField mTextFieldFirstName;
@@ -30,6 +30,9 @@ public class RegisterForm extends JFrame {
     private String phone;
     private String address;
 
+    /**
+     * конструктор, визначає розміри та наповнення вікна
+     */
     public RegisterForm() {
         super((String) AppConst.APP_CONFIG.getValue("programTitle") + " : Реєстрація");
         add(rootPane);
@@ -46,6 +49,9 @@ public class RegisterForm extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * ініціалізує компоненти
+     */
     private void init() {
 
         mButtonRegister.addActionListener(new ActionListener() {
@@ -137,6 +143,9 @@ public class RegisterForm extends JFrame {
         });
     }
 
+    /**
+     * збирає дані та викликає команду реєстрації
+     */
     private void tryToRegister() {
 
         // collect all data

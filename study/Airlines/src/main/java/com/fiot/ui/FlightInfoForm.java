@@ -17,7 +17,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 25.05.14.
+ * Клас інтерфейсу, відповідає за вікно створення рейсу
  */
 public class FlightInfoForm extends JFrame {
 
@@ -34,6 +34,11 @@ public class FlightInfoForm extends JFrame {
     private Flight mFlight;
 
 
+    /**
+     * Конструктор, створює компоненти
+     * @param airportList список еропортів
+     * @param flight сам рейс
+     */
     public FlightInfoForm(java.util.List<Airport> airportList, Flight flight) {
         super((String) AppConst.APP_CONFIG.getValue("programTitle") + " : Рейс");
 
@@ -54,6 +59,9 @@ public class FlightInfoForm extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * ініціалізує компоненти
+     */
     private void init() {
         mComboBoxClass.addItem("Економ");
         mComboBoxClass.addItem("Бізнес");

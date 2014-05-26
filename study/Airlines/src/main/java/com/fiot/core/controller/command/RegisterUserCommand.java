@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.util.UUID;
 
 /**
- * Created by bamboo on 25.05.14.
+ * команда виконує реєстрацію користувача на основі даних, що ії передаються
  */
 @COMMAND(key = "registerUser")
 @CONTEXT(list = {

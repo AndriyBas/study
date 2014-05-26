@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="0.0">com.fiot.app.model.User</node>
+    <node x="312.0" y="469.0">com.fiot.app.App</node>
+    <node x="0.0" y="469.0">com.fiot.app.model.Requests</node>
+    <node x="61.5" y="353.0">com.fiot.app.AppConst</node>
+    <node x="382.0" y="0.0">com.fiot.app.model.FriendsRelation</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.fiot.app.AppConst" target="com.fiot.app.model.User">
+      <point x="0.0" y="-35.5" />
+      <point x="0.0" y="151.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8427947598253275" x="343.5" y="333.5" />
+  <SelectedNodes>
+    <node>com.fiot.app.model.User</node>
+    <node>com.fiot.app.App</node>
+    <node>com.fiot.app.model.Requests</node>
+    <node>com.fiot.app.AppConst</node>
+    <node>com.fiot.app.model.FriendsRelation</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

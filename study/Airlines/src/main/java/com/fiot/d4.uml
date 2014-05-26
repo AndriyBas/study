@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="116.0" y="0.0">com.fiot.app.model.Airport</node>
+    <node x="547.0" y="0.0">com.fiot.app.model.User</node>
+    <node x="0.0" y="269.0">com.fiot.app.model.Flight</node>
+    <node x="288.0" y="785.0">com.fiot.app.App</node>
+    <node x="648.5" y="437.0">com.fiot.app.AppConst</node>
+    <node x="0.0" y="785.0">com.fiot.app.model.Order</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.fiot.app.AppConst" target="com.fiot.app.model.User">
+      <point x="0.0" y="-35.5" />
+      <point x="0.0" y="193.5" />
+    </edge>
+    <edge source="com.fiot.app.model.Flight" target="com.fiot.app.model.Airport">
+      <point x="0.0" y="-235.5" />
+      <point x="0.0" y="109.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5772681954137587" x="482.0" y="491.5" />
+  <SelectedNodes>
+    <node>com.fiot.app.model.Airport</node>
+    <node>com.fiot.app.model.User</node>
+    <node>com.fiot.app.model.Flight</node>
+    <node>com.fiot.app.App</node>
+    <node>com.fiot.app.AppConst</node>
+    <node>com.fiot.app.model.Order</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

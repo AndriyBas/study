@@ -8,7 +8,6 @@ import com.fiot.core.controller.annotation.PARAMETER;
 import com.fiot.dao.exception.DAOException;
 import com.fiot.ui.MainForm;
 import com.fiot.ui.Utils;
-import sun.applet.Main;
 
 import javax.swing.*;
 import java.util.List;

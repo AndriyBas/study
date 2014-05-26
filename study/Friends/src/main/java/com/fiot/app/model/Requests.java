@@ -6,12 +6,6 @@ import com.fiot.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
 
-/**
- * Граничний клас, що представляє таблицю ABSENCE_TBL у базі даних
- *
- * @author bamboo
- */
-
 /*
 
 

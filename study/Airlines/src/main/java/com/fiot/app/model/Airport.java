@@ -6,14 +6,8 @@ import com.fiot.dao.annotation.utils.converter.UUIDConverter;
 
 import java.util.UUID;
 
-/**
- * Граничний клас, що представляє таблицю ABSENCE_TBL у базі даних
- *
- * @author bamboo
- */
 
 /*
-
     CREATE TABLE `AIRPORT_TBL` (
             `airport_id` VARCHAR(50),
     `airport_code` VARCHAR(50),
@@ -46,11 +40,10 @@ import java.util.UUID;
     INSERT INTO AIRPORT_TBL ( airport_id, airport_code, airport_name)
     VALUES ("11803571-a1d2-4aef-8ab2-1494a2404fd6",  "LGA", "La Guardia");
 
-
  */
 
 /**
- * Граничний клас, що представляє таблицю FRIEND_RELATION_TBL у базі даних,
+ * Граничний клас, що представляє таблицю AIRPORT_TBL у базі даних,
  * відповідає за звязки друзів
  */
 

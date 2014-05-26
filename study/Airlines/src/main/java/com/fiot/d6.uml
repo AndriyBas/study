@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="0.0" y="487.0">com.fiot.ui.Utils</node>
+    <node x="204.75" y="307.0">com.fiot.ui.MainForm</node>
+    <node x="361.0" y="153.5">com.fiot.ui.LoginForm</node>
+    <node x="0.0" y="143.0">com.fiot.ui.FlightInfoForm</node>
+    <node x="351.5" y="0.0">com.fiot.ui.RegisterForm</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.fiot.ui.LoginForm" target="com.fiot.ui.RegisterForm">
+      <point x="-43.0" y="-46.5" />
+      <point x="404.0" y="118.0" />
+      <point x="399.25" y="118.0" />
+      <point x="-47.75" y="46.5" />
+    </edge>
+    <edge source="com.fiot.ui.MainForm" target="com.fiot.ui.FlightInfoForm">
+      <point x="-52.0" y="-67.5" />
+      <point x="256.75" y="282.0" />
+      <point x="170.5" y="282.0" />
+      <point x="0.0" y="57.0" />
+    </edge>
+    <edge source="com.fiot.ui.RegisterForm" target="com.fiot.ui.LoginForm">
+      <point x="47.75" y="46.5" />
+      <point x="494.75" y="118.0" />
+      <point x="490.0" y="118.0" />
+      <point x="43.0" y="-46.5" />
+    </edge>
+    <edge source="com.fiot.ui.MainForm" target="com.fiot.ui.LoginForm">
+      <point x="52.0" y="-67.5" />
+      <point x="360.75" y="282.0" />
+      <point x="447.0" y="282.0" />
+      <point x="0.0" y="46.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="271.5" y="268.5" />
+  <SelectedNodes>
+    <node>com.fiot.ui.Utils</node>
+    <node>com.fiot.ui.MainForm</node>
+    <node>com.fiot.ui.LoginForm</node>
+    <node>com.fiot.ui.FlightInfoForm</node>
+    <node>com.fiot.ui.RegisterForm</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
