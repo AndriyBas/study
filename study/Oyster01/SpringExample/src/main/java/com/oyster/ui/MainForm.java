@@ -716,8 +716,7 @@ public class MainForm extends JFrame {
         menuBar.add(menu);
 
         menuItem = new JMenuItem("Додати акаунт",
-                KeyEvent
-                        .VK_N
+                KeyEvent.VK_N
         );
         menuItem.setMnemonic(KeyEvent.VK_N);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
@@ -753,11 +752,33 @@ public class MainForm extends JFrame {
                 KeyEvent.VK_K);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_K, ActionEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(
+                        MainForm.this,
+                        "Це посібник користувача",
+                        "Посібник користувача",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
         menu.add(menuItem);
 
         menuItem = new JMenuItem("Про програму");
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_A, ActionEvent.ALT_MASK));
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(
+                        MainForm.this,
+                        "Автор :\t\tБас Андрій\nВерсія :\t\t1.3",
+                        "Про програму",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
         menu.add(menuItem);
 
         setJMenuBar(menuBar);
