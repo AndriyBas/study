@@ -240,12 +240,53 @@ public class Main {
 //            System.out.println(s);
 //            AtomicInteger s;
 
-            try {
-                ex1();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                ex1();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
+            ex2();
         }
+
+        double sum(double[] a) {
+            double res = 0;
+            for (double d : a) {
+                res += d;
+            }
+            return res;
+        }
+
+        public void ex2() {
+
+            int x1 = 0;
+            int x2 = 0;
+            Random random = new Random();
+
+            for (int i = 0; i < 1000_000; i++) {
+
+                double[] arr = random.doubles(10).toArray();
+
+                double c = 0;
+                for (int j = 0; j < arr.length; j++) {
+                    c += arr[j];
+                }
+                double d = 0;
+                for (int j = arr.length - 1; j >= 0; j--) {
+                    d += arr[j];
+                }
+
+                if (c == d) {
+                    x1++;
+                } else {
+                    x2++;
+                }
+            }
+
+            System.out.println("equal : " + x1);
+            System.out.println("NOT equal : " + x2);
+        }
+
 
         public void ex1() throws InterruptedException {
             System.out.println("Ex1 : \n------------------");
