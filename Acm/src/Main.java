@@ -2,10 +2,7 @@ import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.StringTokenizer;
-import java.util.TreeMap;
+import java.util.*;
 
 
 class A implements Cloneable {
@@ -242,6 +239,60 @@ public class Main {
 */
 //            System.out.println(s);
 //            AtomicInteger s;
+
+            try {
+                ex1();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void ex1() throws InterruptedException {
+            System.out.println("Ex1 : \n------------------");
+
+            BlockingQueueConc<Integer> b = new BlockingQueueConc<>(10);
+
+            Thread t1 = new Thread(new Runnable() {
+                Random random = new Random();
+
+                @Override
+                public void run() {
+                    try {
+
+                        for (; ; ) {
+                            b.put(random.nextInt(1000));
+                            Thread.sleep(500 + random.nextInt(1000));
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+            Thread t2 = new Thread(new Runnable() {
+                Random random = new Random();
+
+                @Override
+                public void run() {
+                    try {
+
+                        for (; ; ) {
+                            b.take();
+                            Thread.sleep(500 + random.nextInt(1000));
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+            t1.start();
+            t2.start();
+
+            t1.join();
+            t2.join();
 
         }
     }
