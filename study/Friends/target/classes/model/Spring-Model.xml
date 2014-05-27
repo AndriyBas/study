@@ -5,7 +5,11 @@
 
 <bean
             id="DAOJdbc"
+<<<<<<< Updated upstream
             class="com.fiot.dao.impl.DAOCRUDJdbc"
+=======
+            class="com.fiot.kursach.dao.impl.DAOCRUDJdbc"
+>>>>>>> Stashed changes
             >
         <property name="dataSource" ref="dataSourceModelJdbc"/>
     </bean>
