@@ -247,6 +247,9 @@ public class Main {
 //            }
 
             ex2();
+
+            test(ExtendedOperation.class, 1.0, 2.0);
+
         }
 
         double sum(double[] a) {
@@ -257,13 +260,21 @@ public class Main {
             return res;
         }
 
+
+        <T extends Enum<T> & Operation> void test(Class<T> opSet, double a, double b) {
+            System.out.println("\nIn test\n------------");
+            for (Operation op : opSet.getEnumConstants()) {
+                System.out.printf("%.2f %s %.2f = %.2f%n", a, op, b, op.apply(a, b));
+            }
+        }
+
         public void ex2() {
 
             int x1 = 0;
             int x2 = 0;
             Random random = new Random();
 
-            for (int i = 0; i < 1000_000; i++) {
+            for (int i = 0; i < 1000; i++) {
 
                 double[] arr = random.doubles(10).toArray();
 
