@@ -1,15 +1,9 @@
 {
-<<<<<<< Updated upstream
-    "programTitle": "Friends",
-    "mainScreenWidth": 750,
-    "mainScreenHeight": 480,
-    "logInScreenWidth": 290,
-    "logInScreenHeight": 120
-=======
+
 	"programTitle":"Friends",
 	"mainScreenWidth":750,
     "mainScreenHeight":480,
     "logInScreenWidth" :290,
     "logInScreenHeight":120
->>>>>>> Stashed changes
+
 }
