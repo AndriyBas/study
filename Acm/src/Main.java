@@ -56,6 +56,7 @@ class D implements Cloneable {
     public Object clone() throws CloneNotSupportedException {
         D ddd = (D) super.clone();
 
+
         ddd.c = (C) c.clone();
         ddd.intarr = intarr.clone();
         return ddd;
@@ -240,11 +241,11 @@ public class Main {
 //            System.out.println(s);
 //            AtomicInteger s;
 
-//            try {
-//                ex1();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                ex1();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             ex2();
 
