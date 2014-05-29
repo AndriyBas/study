@@ -23,4 +23,8 @@ public class Person {
     public int getAge() {
         return age;
     }
+
+    public boolean testOlolo(MyFuncInterface f) {
+        return f.doOlolo(this);
+    }
 }

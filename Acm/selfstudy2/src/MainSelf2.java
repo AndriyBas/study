@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by bamboo on 28.05.14.
@@ -120,6 +121,34 @@ public class MainSelf2 {
                 Comparator.comparing(Person::getName).reversed()
                         .thenComparing(Person::getAge));
         System.out.println(list);
+
+
+        System.out.println(list.stream().filter(x -> x.getAge() > 88)
+                .collect(Collectors.toList()));
+
+        int sum = list.stream()
+                .filter(x -> x.getAge() > 50)
+                .mapToInt(p -> p.getAge())
+                .sum();
+        System.out.println("Sum : " + sum);
+
+        double av = list.stream()
+                .filter(p -> p.getAge() < 50)
+                .mapToInt(p -> p.getAge())
+                .average().getAsDouble();
+        System.out.println("Average : \t\t\t" + av);
+
+        double av2 = list.parallelStream()
+                .filter(p -> p.getAge() < 50)
+                .mapToDouble(p -> p.getAge())
+                .average().getAsDouble();
+        System.out.println("Average parallel : \t" + av2);
+
+        int count = 0;
+        for (Person p : list) {
+            count += p.testOlolo(x -> x.getAge() > 50) ? 1 : 0;
+        }
+        System.out.println("Count : " + count);
     }
 
 }
