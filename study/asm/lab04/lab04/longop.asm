@@ -26,11 +26,19 @@ Add_LONGOP proc
 		adc eax, dword ptr [ebx + edx] ; add them with nex 32 bits of B
 		mov dword ptr [edi + edx], eax ; write result on appropriate position
 		
-		;add edx, 4 ; increment redister, that is responsible for taking next bits
-		inc edx
-		inc edx
-		inc edx
-		inc edx
+		jnc @laa
+		mov ebp, 1
+		clc 
+		 
+		@laa:
+			add edx, 4 
+		
+		dec ebp
+		jnz @lab
+		stc
+
+		@lab:
+
 		dec ecx
 		jnz @cycle
 
