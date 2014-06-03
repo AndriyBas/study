@@ -56,8 +56,11 @@ Sub_LONGOP endp
 
 ;***************************
 ;**
-;** ATTENTION !!!! multiplicatioin is not writen to result, but added to it ))) enjoy
-;** 
+;** 1 param : len of A
+;** 2 param : pointer to A
+;** 3 param : 32-bit multiplier
+;** 4 param : pointer to RESULT
+;**
 ;***************************
 Mul_N32_LONGOP proc
 	
@@ -71,6 +74,14 @@ Mul_N32_LONGOP proc
 						 ; simply, just lenght of the array (operand A) 
 
 	clc         ; обнулюємо біт CF регістру EFLAGS, куди записується переповнення
+
+	; put all zero's to RESULT
+	mov ebp, ecx
+	dec ebp
+	@zero:
+		mov dword ptr [edi + ebp * 4], 0
+		dec ebp
+		jge @zero
 
 	mov ebp, 0  ; лічильник, що відповідає за зсув
 
@@ -96,7 +107,13 @@ Mul_N32_LONGOP endp
 ;***************************
 ;**
 ;** ATTENTION !!!! multiplicatioin is writen to result, but added to it ))) enjoy
-;** 
+;**
+;** 1 param : len of A
+;** 2 param : pointer to A
+;** 3 param : len of B
+;** 4 param : pointer to B
+;** 5 param : pointer to RESULT
+;**
 ;***************************
 Mul_NN_LONGOP proc
 	
