@@ -1,4 +1,9 @@
 EXTERN Add_LONGOP : proc
 EXTERN Sub_LONGOP : proc
+
 EXTERN Mul_N32_LONGOP : proc
 EXTERN Mul_NN_LONGOP : proc
+
+EXTERN Copy_LONGOP : proc
+
+EXTERN Div_N32_LONGOP : proc

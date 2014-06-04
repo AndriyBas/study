@@ -78,10 +78,10 @@ Mul_N32_LONGOP proc
 	; put all zero's to RESULT
 	mov ebp, ecx
 	dec ebp
-	@zero:
+	@putZero:
 		mov dword ptr [edi + ebp * 4], 0
 		dec ebp
-		jge @zero
+		jge @putZero
 
 	mov ebp, 0  ; лічильник, що відповідає за зсув
 
@@ -168,9 +168,71 @@ Mul_NN_LONGOP proc
 		ret 20   ; because 5 operands
 Mul_NN_LONGOP endp
 
+
+;***************************
+;**
+;** procedure divides array A by 32-bit value N, fraction written to edx
+;**
+;** 1 param : length of A
+;** 2 param : pointer to A
+;** 3 param : divider N
+;** 4 param : pointer to RESULT
+;**
+;***************************
+Div_N32_LONGOP proc
+	push ebp
+	mov ebp,esp
+	
+	mov esi, [ebp + 8]  ; address of RESULT
+
+	mov ecx, [ebp + 12]  ; divider (32-bit value)
+	mov divider, ecx     ; save divider
+
+	mov ebx, [ebp + 16]  ; address of dividend A (array of 32-bits)
+	mov ecx, [ebp + 20]  ; length of A
+	
+	xor edx, edx
+	dec ecx
+	@cycle:
+		
+		mov eax, dword ptr [ebx + 4 * ecx]   ; get next 32-bits to divide
+		div divider						     ; divide them
+		mov dword ptr [esi + 4 * ecx], eax   ; save result
+
+		dec ecx
+		jge @cycle
+
+	@exitp:
+		pop ebp
+		ret 16   ; because 4 operands	
+Div_N32_LONGOP endp
+
+Copy_LONGOP proc
+	push ebp
+	mov ebp, esp
+
+	mov edi, [ebp + 8]   ; address of DEST
+	mov ebx, [ebp + 12]  ; address of SRC
+	mov ecx, [ebp + 16]  ; length of arrays
+
+	dec ecx
+	@copy_my:
+		mov eax, [ebx + 4 * ecx]
+		mov [edi + 4 * ecx], eax 
+		dec ecx
+		jge @copy_my
+
+	pop ebp
+	ret 12
+Copy_LONGOP endp
+
 .data
+	; vars for Mul_NN
 	counter1 dd 0h
 	counter2 dd 0h
 	maxCounter1 dd 0h
 	maxCounter2 dd 0h
+
+	; vars for Div_N32
+	divider dd 1
 end

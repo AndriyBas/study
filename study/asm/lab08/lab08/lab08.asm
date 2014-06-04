@@ -17,6 +17,8 @@ include module.inc
 include longop.inc
 
 .const
+	;Len equ 267
+	;FVal equ 1000
 	Len equ 8
 	FVal equ 51
 
@@ -25,7 +27,7 @@ include longop.inc
 	captionHeaderSquare db "Lab 5, square", 0	
 		
 	textBufFactorial dd Len dup(0)
-	textBufSquare dd Len * 2 dup(0)
+	textBufSquare dd Len * 4 dup(0)
 	
 	R dd Len dup(0)
 	pTemp dd ?				;Len dup(0)   ; temporary pointer 
@@ -34,11 +36,11 @@ include longop.inc
 	; count factorial correctly only for N <= 51, for bigger numbers needs bigger arrays (more than 8) and also counters updated)
 	N dd ?
 
-	szFileName db 256 dup(0)
+	;szFileName db 256 dup(0)
 
 	hFile dd 0
 	pResFile dd 0
-	;szFileName db "ololo.txt", 0
+	szFileName db "ololo.txt", 0
 	szTextBuf db "Рядок тексту, записаний у файл", 10, 13, 10, 13, 0
 	newLine db 0ah, 0dh, 0ah, 0dh, 0
 
@@ -56,9 +58,9 @@ MySaveFileName endp
 
  main:
 
-	call MySaveFileName
-	cmp eax, 0 ; перевірка: якщо у вікні було натиснуто кнопку Cancel, то EAX=0
-	je @exit
+	;call MySaveFileName
+	;cmp eax, 0 ; перевірка: якщо у вікні було натиснуто кнопку Cancel, то EAX=0
+	;je @exit
 	
 	invoke GlobalAlloc, GPTR, 32 * Len
 	mov pTemp, eax
@@ -86,24 +88,24 @@ MySaveFileName endp
 		push offset R
 		call Mul_N32_LONGOP
 
-		; copy content of R to pTemp
-		mov ecx, Len
-		dec ecx
-		mov edx, pTemp
-		@copy_R_to_pTemp:
-			mov eax, [R + 4 * ecx]
-			mov [edx + 4 * ecx], eax  ; запис у масив по вказівнику робиться через регістр
-			dec ecx
-			jge @copy_R_to_pTemp
 
+		; copy content of R to pTemp
+		push Len
+		push offset dword ptr [R]
+		push pTemp
+		call Copy_LONGOP
+
+		; get line
 		push offset dword ptr [textBufFactorial]
 		push offset dword ptr [R]
 		push Len * 32
 		call StrHex_MY
 		
+		; write current number to file
 		invoke lstrlen, ADDR textBufFactorial
 		invoke WriteFile, hFile, ADDR textBufFactorial, eax, ADDR pResFile, 0
 
+		;write new line to file
 		invoke lstrlen, ADDR newLine
 		invoke WriteFile, hFile, ADDR newLine, eax, ADDR pResFile, 0
 
@@ -121,6 +123,25 @@ MySaveFileName endp
 	push Len * 32
 	call StrHex_MY
 	invoke MessageBoxA, 0, ADDR textBufFactorial, ADDR captionHeaderFactorial, MB_ICONINFORMATION	
+
+
+	;push Len
+	;push offset dword ptr [R]
+	;push 7
+	;push offset dword ptr [RF]
+	;call Div_N32_LONGOP
+
+	mov ecx, Len * 4
+	@c1:
+		mov dword ptr[textBufSquare + 4 * ecx - 4], 0ffffffffh
+		dec ecx
+		jnz @c1
+
+	push offset dword ptr [textBufSquare]
+	push offset dword ptr [R]
+	push Len * 32
+	call StrDec_MY
+	invoke MessageBoxA, 0, ADDR textBufSquare, ADDR captionHeaderSquare, MB_ICONINFORMATION	
 
 	; call NxN procedure
 	;push Len
