@@ -30,6 +30,12 @@
     <ClInclude Include="lab09.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="longop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -59,5 +65,10 @@
     <MASM Include="module.asm">
       <Filter>Source Files</Filter>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="longop.inc">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

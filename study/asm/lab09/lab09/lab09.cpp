@@ -187,7 +187,28 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	return (INT_PTR)FALSE;
 }
 
-void lab09Func(HWND hWnd) 
+void lab09Func(HWND hWnd)
 {
+	const long len = 1;
+	long oA[len] = { 0x00010001 };
+	long oB[len] = { 0x00001001 };
+	long oC[len * 2] = { 0x00010001, 0x02100022 };
+	long oD[len * 2] = { 0x00010001, 0x20010003 };
 
+	long oAB[len * 2] = { 0, 0 };
+	long res1[len * 2] = { 0, 0 };
+	long res2[len * 2] = { 0, 0 };
+
+	char TextBuf[len * 2 * 32];
+	Mul_NN_LONGOP(len, oA, len, oB, oAB);
+	StrHex_MY(len * 2 * 32, oAB, TextBuf);
+	MessageBox(hWnd, TextBuf, "Результат A * B", MB_OK);
+
+	Add_LONGOP(len * 2, oAB, oC, res1);
+	StrHex_MY(len * 2 * 32, res1, TextBuf);
+	MessageBox(hWnd, TextBuf, "Результат A * B + C", MB_OK);
+	
+	Sub_LONGOP(len * 2, res1, oD, res2);
+	StrHex_MY(len * 2 * 32, res2, TextBuf);
+	MessageBox(hWnd, TextBuf, "Результат A * B + C - D", MB_OK);
 }
