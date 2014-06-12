@@ -3,6 +3,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * The realization of this is in week4 implementation of coursera android 2 course
+ *
  * Created by bamboo on 28.05.14.
  */
 public class PingPongGame {
